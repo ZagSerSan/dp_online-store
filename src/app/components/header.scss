@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 80px;
+  background-color: #fff;
+}
+
+.header-nav {
+  &__link {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    // line-height: 120px;
+    color: #383838;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 30px;
+    transition: color 0.1s linear;
+    &:hover {
+      // font-weight: 700;
+      color: #f6ab44;
+    }
+  }
+}

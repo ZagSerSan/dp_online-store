@@ -1,0 +1,28 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80px;
+  background-color: #fff;
+}
+
+.header-nav__link {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #383838;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 30px;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+.header-nav__link:hover {
+  color: #f6ab44;
+}
