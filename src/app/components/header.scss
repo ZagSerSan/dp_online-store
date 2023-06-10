@@ -8,9 +8,18 @@
 	background-color: #fff;
 }
 
+// navigation
 .header-nav {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+
 	&__link {
 		display: inline-block;
+		align-items: center;
 		font-family: "Montserrat", sans-serif;
 		font-weight: 500;
 		color: #383838;
@@ -18,25 +27,77 @@
 		text-transform: uppercase;
 		margin-right: 30px;
 		transition: color 0.1s linear;
+		a:not(.drop-menu__link) {
+			display: flex;
+			align-items: center;
+			height: 50px;
+			text-decoration: none;
+		}
 		&:hover {
 			color: #f6ab44;
 			text-decoration: none;
 		}
 	}
+	// позиция относительно .header-nav
+	.drop-menu {
+		position: absolute;
+		top: 100%;
+		left: 12%;
+		z-index: 2;
+		// transform: translateX(-50%);
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		box-shadow: 0 0 5px 0px #525252;
+
+		// анимация появления drop-menu
+		animation: 0.4s alternate forwards slidein;
+		@keyframes slidein {
+			from {
+				top: 130%;
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+				top: 100%;
+			}
+		}
+		// drop-menu__link:
+		&__link {
+			display: inline-block;
+			margin-bottom: 10px;
+
+			font-family: "Montserrat", sans-serif;
+			font-weight: 500;
+			color: #383838;
+			text-decoration: none;
+			text-transform: uppercase;
+			transition: color 0.1s linear;
+			&:hover {
+				color: #f6ab44;
+				text-decoration: none;
+				opacity: 1;
+			}
+		}
+	}
 }
 
+// cart
 .header-cart {
 	&__icon {
 		height: 25px;
 		margin-right: 10px;
-		cursor: pointer;
 		transition: fill 0.15s linear;
+		cursor: pointer;
+
 		path {
 			transition: stroke 0.15s linear;
 		}
-
 		&:hover:not(:last-child) {
-			fill: #ca8d38;
+			fill: #f6ab44;
 		}
 		&:hover:last-child {
 			path {
@@ -48,6 +109,7 @@
 		}
 	}
 }
+
 //====================================================================================================
 /*
 .burger {

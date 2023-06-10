@@ -12,8 +12,25 @@
   background-color: #fff;
 }
 
+.header-nav {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  margin: 0;
+}
 .header-nav__link {
   display: inline-block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #383838;
@@ -23,24 +40,94 @@
   -webkit-transition: color 0.1s linear;
   transition: color 0.1s linear;
 }
+.header-nav__link a:not(.drop-menu__link) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  text-decoration: none;
+}
 .header-nav__link:hover {
   color: #f6ab44;
   text-decoration: none;
+}
+.header-nav .drop-menu {
+  position: absolute;
+  top: 100%;
+  left: 12%;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 5px 0px #525252;
+          box-shadow: 0 0 5px 0px #525252;
+  -webkit-animation: 0.4s alternate forwards slidein;
+          animation: 0.4s alternate forwards slidein;
+}
+@-webkit-keyframes slidein {
+  from {
+    top: 130%;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    top: 100%;
+  }
+}
+@keyframes slidein {
+  from {
+    top: 130%;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    top: 100%;
+  }
+}
+.header-nav .drop-menu__link {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #383838;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+.header-nav .drop-menu__link:hover {
+  color: #f6ab44;
+  text-decoration: none;
+  opacity: 1;
 }
 
 .header-cart__icon {
   height: 25px;
   margin-right: 10px;
-  cursor: pointer;
   -webkit-transition: fill 0.15s linear;
   transition: fill 0.15s linear;
+  cursor: pointer;
 }
 .header-cart__icon path {
   -webkit-transition: stroke 0.15s linear;
   transition: stroke 0.15s linear;
 }
 .header-cart__icon:hover:not(:last-child) {
-  fill: #ca8d38;
+  fill: #f6ab44;
 }
 .header-cart__icon:hover:last-child path {
   stroke: #f6ab44;
