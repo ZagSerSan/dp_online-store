@@ -33,7 +33,7 @@ const Header = () => {
             >
               <Link className='drop-menu__link' to='/category/forher'>For her</Link>
               <Link className='drop-menu__link' to='/category/forhim'>For him</Link>
-              <Link className='drop-menu__link' to='/category/forauto'>For auto</Link>
+              <Link className='drop-menu__link' to='/category/forcar'>For a car</Link>
             </div>}
           </li>
           <li className='header-nav__link'><Link to="/delivery">Delivery</Link></li>
