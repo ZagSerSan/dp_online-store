@@ -1,26 +1,93 @@
+//====================================================================================================
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  height: 80px;
-  background-color: #fff;
+	height: 80px;
+	background-color: #fff;
 }
 
 .header-nav {
-  &__link {
-    display: inline-block;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    // line-height: 120px;
-    color: #383838;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-right: 30px;
-    transition: color 0.1s linear;
-    &:hover {
-      // font-weight: 700;
-      color: #f6ab44;
-    }
-  }
+	&__link {
+		display: inline-block;
+		font-family: "Montserrat", sans-serif;
+		font-weight: 500;
+		color: #383838;
+		text-decoration: none;
+		text-transform: uppercase;
+		margin-right: 30px;
+		transition: color 0.1s linear;
+		&:hover {
+			color: #f6ab44;
+			text-decoration: none;
+		}
+	}
 }
+
+.header-cart {
+	&__icon {
+		height: 25px;
+		margin-right: 10px;
+		cursor: pointer;
+		transition: fill 0.15s linear;
+		path {
+			transition: stroke 0.15s linear;
+		}
+
+		&:hover:not(:last-child) {
+			fill: #ca8d38;
+		}
+		&:hover:last-child {
+			path {
+				stroke: #f6ab44;
+			}
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+//====================================================================================================
+/*
+.burger {
+	display: none;
+	background: none;
+	padding: 13px 2px;
+	border: 0px;
+	font-size: 0;
+	cursor: pointer;
+	&__icon {
+		display: block;
+		width: 37px;
+		height: 3px;
+		background-color: #fff;
+		border-radius: 2px;
+
+		position: relative;
+		
+		&:before, &:after {
+			content: "";
+			position: absolute;
+			top: 9px;
+			left: 0;
+			width: 37px;
+			height: 3px;
+			background-color: #fff;
+			border-radius: 2px;
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			top: -9px;
+			left: 0;
+			width: 37px;
+			height: 3px;
+			background-color: #fff;
+			border-radius: 2px
+		}
+	}
+}
+*/
+
+//====================================================================================================
