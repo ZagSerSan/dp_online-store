@@ -1,0 +1,105 @@
+.intro {
+  background-color: #ffe4b3;
+}
+
+.slick-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 40px 0;
+}
+.slick-slider button {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  font-size: 0;
+  width: 30px;
+  height: 30px;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+  background-color: transparent;
+  cursor: pointer;
+  border: 3px #7e4c4f solid;
+  border-radius: 10%;
+  -webkit-transition: border-color 0.15s linear;
+  transition: border-color 0.15s linear;
+}
+.slick-slider button.slick-next {
+  left: 0;
+  border-top: none;
+  border-right: none;
+}
+.slick-slider button.slick-prev {
+  right: 0;
+  border-bottom: none;
+  border-left: none;
+}
+.slick-slider button:hover {
+  border-color: #f6ab44;
+}
+
+.slick-list {
+  overflow: hidden;
+}
+
+.slick-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slider-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 80px;
+}
+.slider-item__column {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.slider-item__content h3 {
+  color: #000101;
+  font-family: "Pacifico", cursive;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 61px;
+  margin: 0;
+}
+.slider-item__content h1 {
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 80px;
+  margin: 18px 0 31px;
+}
+.slider-item__content a {
+  display: inline-block;
+  padding: 20px 45px;
+  font-weight: bold;
+  background-color: #7e4c4f;
+  border-radius: 50px;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.1s linear;
+  transition: background-color 0.1s linear;
+}
+.slider-item__content a:hover {
+  text-decoration: none;
+  background-color: #c57d17;
+}

@@ -29,7 +29,6 @@ const Header = () => {
               onMouseEnter={() => setDropMenu(true)}
               onMouseLeave={() => setDropMenu(false)}
               className='drop-menu'
-              // className={'drop-menu active' + (dropMenu ? ' active' : '')}
             >
               <Link className='drop-menu__link' to='/category/forher'>For her</Link>
               <Link className='drop-menu__link' to='/category/forhim'>For him</Link>

@@ -73,6 +73,7 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 20px;
+  background-color: #fff;
   -webkit-box-shadow: 0 0 5px 0px #525252;
           box-shadow: 0 0 5px 0px #525252;
   -webkit-animation: 0.4s alternate forwards slidein;
@@ -113,6 +114,9 @@
   color: #f6ab44;
   text-decoration: none;
   opacity: 1;
+}
+.header-nav .drop-menu__link:last-child {
+  margin-bottom: 0;
 }
 
 .header-cart__icon {
