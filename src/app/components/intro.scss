@@ -43,6 +43,47 @@
 .slick-track {
   display: flex;
 }
+.slick-slide {
+  opacity: 0;
+  // transition: opacity 0.2s linear;
+  animation: 0.4s alternate forwards slickDeActive;
+  @keyframes slickDeActive {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  &.slick-current {
+    // opacity: 1;
+    // transition: opacity 0.2s linear;
+    animation: 0.4s alternate forwards slickActive;
+    animation-delay: 0.3s;
+    @keyframes slickActive {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  // &.slick-active {
+  //   // анимация появления slidera
+  //   animation: 0.4s alternate forwards slickActive;
+  //   @keyframes slickActive {
+  //     from {
+  //       opacity: 0;
+  //     }
+  //     to {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
+}
+
 .slider-item {
   display: flex;
   justify-content: space-between;
