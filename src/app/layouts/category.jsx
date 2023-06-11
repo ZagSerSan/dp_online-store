@@ -1,14 +1,12 @@
 import React from 'react'
-import Intro from '../components/intro'
 import CategoryNav from '../components/categoryNav'
 
-const Home = () => {
+const Category = () => {
   return (
-    <>
-      <Intro/>
+    <div className="container">
       <CategoryNav />
-    </>
+    </div>
   )
 }
  
-export default Home
+export default Category

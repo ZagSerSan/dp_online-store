@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 import './app.css'
 // components
 import Header from './components/header'
+// --Routes
+import Category from './layouts/category'
 import Home from './layouts/home'
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
     <Header/>
     <Switch>
       <Route path='/' exact component={Home}></Route>
+      <Route path='/category/:type?' exact component={Category}></Route>
     </Switch>
   </>)
 }

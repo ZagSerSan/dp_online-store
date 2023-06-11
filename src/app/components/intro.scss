@@ -1,5 +1,6 @@
 .intro {
   background-color: #ffe4b3;
+  margin-bottom: 60px;
 }
 
 // slider
@@ -45,8 +46,8 @@
 }
 .slick-slide {
   opacity: 0;
-  // transition: opacity 0.2s linear;
   animation: 0.4s alternate forwards slickDeActive;
+  // анимация исчезающего слайдера
   @keyframes slickDeActive {
     from {
       opacity: 1;
@@ -55,10 +56,8 @@
       opacity: 0;
     }
   }
-
+  // анимация появляющегося слайдера
   &.slick-current {
-    // opacity: 1;
-    // transition: opacity 0.2s linear;
     animation: 0.4s alternate forwards slickActive;
     animation-delay: 0.3s;
     @keyframes slickActive {
@@ -70,18 +69,6 @@
       }
     }
   }
-  // &.slick-active {
-  //   // анимация появления slidera
-  //   animation: 0.4s alternate forwards slickActive;
-  //   @keyframes slickActive {
-  //     from {
-  //       opacity: 0;
-  //     }
-  //     to {
-  //       opacity: 1;
-  //     }
-  //   }
-  // }
 }
 
 .slider-item {

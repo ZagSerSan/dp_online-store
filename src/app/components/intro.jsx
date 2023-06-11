@@ -9,7 +9,7 @@ import SLIDER_2 from '../assets/img/intro/slider_2.png'
 const Intro = () => {
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1
@@ -33,7 +33,7 @@ const Intro = () => {
     <div  className='intro'>
       <Slider className='container' {...settings}>
         {sliders.map(slider => (
-          <div>
+          <div key={slider.alt}>
             <div className='slider-item'>
               <div className="slider-item__column">
                 <div className="slider-item__content">
