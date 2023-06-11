@@ -24,7 +24,7 @@ const CategoryNav = ({ type }) => {
           <h3>Car</h3>
         </Link>
       </div>
-      {type && <h1>Category: {type}</h1>}
+      {type && <h1>categoryNav.jsx: {type}</h1>}
     </div>
   )
 }

@@ -7,7 +7,7 @@ const Category = () => {
   const { type } = useParams()
 
   return (
-    <div className="container">
+    <div className="">
       <CategoryNav type={type}/>
       {!type && <PopularProducts />}
     </div>

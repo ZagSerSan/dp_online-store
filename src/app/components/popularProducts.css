@@ -1,0 +1,100 @@
+.popular {
+  padding: 95px 0 70px;
+  text-align: center;
+  background-color: #f6f6f6;
+}
+.popular__toptitle {
+  margin: 0 0 20px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 22px;
+  color: #000101;
+}
+.popular__bottomtitle {
+  color: #000101;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 35px;
+  margin: 0;
+}
+
+.popular-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 55px;
+}
+
+.popular-item {
+  width: 25%;
+  text-align: left;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.popular-item:hover .popular-item__img-popap {
+  opacity: 1;
+  top: 50%;
+}
+.popular-item:hover .popular-item__img img {
+  opacity: 0.8;
+}
+.popular-item__img {
+  position: relative;
+}
+.popular-item__img a {
+  display: block;
+  -webkit-transition: background-color 0.3s ease 0s;
+  transition: background-color 0.3s ease 0s;
+}
+.popular-item__img img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  opacity: 1;
+}
+.popular-item__img-popap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  z-index: 5;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+.popular-item__img-popap a:hover {
+  background-color: rgba(246, 172, 68, 0.4509803922);
+}
+.popular-item__img-popap svg {
+  height: 30px;
+  width: 30px;
+  margin: 5px 10px;
+}
+.popular-item__content {
+  padding: 17px 10px 16px;
+}
+.popular-item__title {
+  font-family: "Montserrat", sans-serif;
+  color: #000101;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  letter-spacing: 0.08px;
+}
+.popular-item__price {
+  font-family: "Montserrat", sans-serif;
+  color: #686868;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 12px 0 0;
+}
