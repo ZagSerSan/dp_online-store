@@ -14,24 +14,24 @@
     z-index: 2;
 
     font-size: 0;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     transform: rotateZ(45deg);
     background-color: transparent;
     cursor: pointer;
-    border: 3px #7e4c4f solid;
+    border: 4px #7e4c4f solid;
     border-radius: 10%;
     transition: border-color 0.15s linear;
 
     &.slick-next {
-      left: 0;
-      border-top: none;
-      border-right: none;
-    }
-    &.slick-prev {
       right: 0;
       border-bottom: none;
       border-left: none;
+    }
+    &.slick-prev {
+      left: 0;
+      border-top: none;
+      border-right: none;
     }
     &:hover {
       border-color: #f6ab44;
@@ -57,7 +57,7 @@
     }
   }
   // анимация появляющегося слайдера
-  &.slick-current {
+  &.slick-active {
     animation: 0.4s alternate forwards slickActive;
     animation-delay: 0.3s;
     @keyframes slickActive {

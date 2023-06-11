@@ -30,9 +30,9 @@ const Header = () => {
               onMouseLeave={() => setDropMenu(false)}
               className='drop-menu'
             >
-              <Link className='drop-menu__link' to='/category/fordog'>For Dog</Link>
-              <Link className='drop-menu__link' to='/category/forcat'>For Cat</Link>
-              <Link className='drop-menu__link' to='/category/forfish'>For Fish</Link>
+              <Link className='drop-menu__link' to='/category/formen'>Men's</Link>
+              <Link className='drop-menu__link' to='/category/forwomen'>Women's</Link>
+              <Link className='drop-menu__link' to='/category/forcar'>For Car</Link>
             </div>}
           </li>
           <li className='header-nav__link'><Link to="/delivery">Delivery</Link></li>

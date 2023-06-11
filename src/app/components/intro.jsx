@@ -27,6 +27,18 @@ const Intro = () => {
       supTitle: 'We keep pets for pleasure.',
       title: `Food & Vitamins For all Pets`,
       alt: 'slider_2'
+    },
+    {
+      src: SLIDER_1,
+      supTitle: 'We keep pets for pleasure.',
+      title: `Food & Vitamins For all Pets`,
+      alt: 'slider_2'
+    },
+    {
+      src: SLIDER_2,
+      supTitle: 'We keep pets for pleasure.',
+      title: `Food & Vitamins For all Pets`,
+      alt: 'slider_2'
     }
   ]
   return (
@@ -39,7 +51,7 @@ const Intro = () => {
                 <div className="slider-item__content">
                   <h3>{slider.supTitle}</h3>
                   <h1>{slider.title}</h1>
-                  <Link to='/category/forhim/id'>SHOP NOW</Link>
+                  <Link to='/category/fordog/id'>SHOP NOW</Link>
                 </div>
               </div>
               <div className="slider-item__column">

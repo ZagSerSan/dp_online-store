@@ -2,26 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import './categoryNav.css'
 // img
-import IMG_DOG from '../assets/img/category-nav/dog.jpg' 
-import IMG_CAT from '../assets/img/category-nav/cat.jpg' 
-import IMG_FISH from '../assets/img/category-nav/fish.jpg' 
+import IMG_DOG from '../assets/img/category-nav/menCateg.png' 
+import IMG_CAT from '../assets/img/category-nav/womenCateg.png' 
+import IMG_FISH from '../assets/img/category-nav/carCateg.png' 
 
 const CategoryNav = ({ type }) => {
 
   return (
     <div className="container">
       <div className={'category-nav' + (type ? ' small' : '')}>
-        <Link to='/category/fordog' className={'category-nav-item' + (type === 'fordog' ? ' active' : '')}>
-          <img src={IMG_DOG} alt="for dog" />
-          <h3>Dogs Food</h3>
+        <Link to='/category/formen' className={'category-nav-item men-color' + (type === 'formen' ? ' active' : '')}>
+          <img src={IMG_DOG} alt="for Men" />
+          <h3>Men's</h3>
         </Link>
-        <Link to='/category/forcat' className={'category-nav-item' + (type === 'forcat' ? ' active' : '')}>
-          <img src={IMG_CAT} alt="for cat" />
-          <h3>Cats Food</h3>
+        <Link to='/category/forwomen' className={'category-nav-item women-color' + (type === 'forwomen' ? ' active' : '')}>
+          <img src={IMG_CAT} alt="for women" />
+          <h3>Women's</h3>
         </Link>
-        <Link to='/category/forfish' className={'category-nav-item' + (type === 'forfish' ? ' active' : '')}>
-          <img src={IMG_FISH} alt="for fish" />
-          <h3>Fishs Food</h3>
+        <Link to='/category/forcar' className={'category-nav-item car-color' + (type === 'forcar' ? ' active' : '')}>
+          <img src={IMG_FISH} alt="for car" />
+          <h3>Car</h3>
         </Link>
       </div>
       {type && <h1>Category: {type}</h1>}
