@@ -58,7 +58,7 @@
   position: absolute;
   top: 100%;
   left: 12%;
-  z-index: 2;
+  z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
