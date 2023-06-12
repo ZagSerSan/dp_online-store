@@ -10,14 +10,14 @@ import IMG_ITEM_CAR from '../assets/img/popular/car_item.png'
 
 const PopularProducts = () => {
   const items = [
-    {name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
-    {name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
-    {name: 'Car item', src: IMG_ITEM_CAR, price: '$24.50'},
-    {name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
-    {name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
-    {name: 'Car item', src: IMG_ITEM_CAR, price: '$24.50'},
-    {name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
-    {name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
+    {id: '1', name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
+    {id: '2', name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
+    {id: '3', name: 'Car item', src: IMG_ITEM_CAR, price: '$24.50'},
+    {id: '4', name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
+    {id: '5', name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
+    {id: '6', name: 'Car item', src: IMG_ITEM_CAR, price: '$24.50'},
+    {id: '7', name: 'Momen item', src: IMG_ITEM_WOMEN, price: '$24.50'},
+    {id: '8', name: 'Men item', src: IMG_ITEM_MEN, price: '$24.50'},
   ]
 
   return (
@@ -27,7 +27,7 @@ const PopularProducts = () => {
         <h2 className="popular__bottomtitle">Recent Products</h2>
         <div className="popular-content">
           {items.map(item => (
-            <div className="popular-item">
+            <div key={item.id} className="popular-item">
               <div className="popular-item__img">
                 <Link to='/category/fordog/id'>
                   <img src={item.src} alt={item.name} />

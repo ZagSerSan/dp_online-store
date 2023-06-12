@@ -91,12 +91,55 @@
 
 // cart
 .header-cart {
+	position: relative;
+
+	// button {
+	// 	cursor: pointer;
+	// 	background-color: transparent;
+	// 	border: 0;
+	// 	&:hover {
+	// 		svg {
+	// 			fill: #f6ab44;
+	// 		}
+	// 	}
+	// }
+	input {
+		position: absolute;
+		top: 50%;
+		right: 100%;
+		z-index: 3;
+		transform: translateY(-50%);
+
+		font-family: "Montserrat", sans-serif;
+		font-weight: 500;
+		font-size: 14px;
+		color: #383838;
+
+		height: 25px;
+		border-radius: 5px;
+		outline-color: #f6ab44;
+
+		// amination
+		opacity: 0;
+		width: 0;
+		transition: all 0.2s ease 0s;
+		&.active {
+			opacity: 1;
+			width: 200px;
+		}
+	}
+
 	&__icon {
 		height: 23px;
-		margin-right: 20px;
-		transition: fill 0.15s linear;
+		// margin-right: 10px;
+		background-color: transparent;
+		border: 0;
 		cursor: pointer;
+		transition: fill 0.15s linear;
 
+		svg {
+			height: 23px;
+		}
 		path {
 			transition: stroke 0.15s linear;
 		}

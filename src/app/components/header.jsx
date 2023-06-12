@@ -5,9 +5,18 @@ import './header.css'
 // components
 import LOGO from '../assets/img/logo/logo.png'
 import Icon from './common/icon'
+import { useRef } from 'react'
 
 const Header = () => {
   const [dropMenu, setDropMenu] = useState(false)
+  const searchInputRef = useRef()
+  const [searchInputState, setSearchInputState] = useState(false)
+
+  const handleSearch = () => {
+    searchInputRef.current.classList.toggle('active')
+    searchInputRef.current.focus()
+    setSearchInputState(Boolean(searchInputRef.current.className))
+  }
 
   return (
     <header className='container header'>
@@ -41,9 +50,16 @@ const Header = () => {
         </ul>
       </nav>
       <div className='header-cart'>
-        <Icon className='header-cart__icon' id='search'/>
-        <Icon className='header-cart__icon' id='user'/>
-        <Icon className='header-cart__icon' id='cart'/>
+        <input ref={searchInputRef} type="text" className=''/>
+        <button className='header-cart__icon' onClick={handleSearch}>
+          {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
+        </button>
+        <button className='header-cart__icon'>
+          <Icon id='user'/>
+        </button>
+        <button className='header-cart__icon'>
+          <Icon id='cart'/>
+        </button>
       </div>
     </header>
   )
