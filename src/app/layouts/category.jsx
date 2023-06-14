@@ -3,15 +3,31 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import CategoryNav from '../components/categoryNav'
 import PopularProducts from '../components/popularProducts'
 
-const Category = () => {
-  const { type } = useParams()
+// Higher-Order Component
+const withCategory = (CompCategoryNav, CompPopularProducts) => {
+  return () => {
+    const { type } = useParams()
 
-  return (
-    <div className="">
-      <CategoryNav type={type}/>
-      {!type && <PopularProducts />}
-    </div>
-  )
+    return (
+      <div className="">
+        <CompCategoryNav type={type}/>
+        {!type && <CompPopularProducts />}
+      </div>
+    )
+  }
 }
  
-export default Category
+export default withCategory(CategoryNav, PopularProducts)
+
+// const Category = () => {
+//   const { type } = useParams()
+
+//   return (
+//     <div className="">
+//       <CategoryNav type={type}/>
+//       {!type && <PopularProducts />}
+//     </div>
+//   )
+// }
+ 
+// export default Category
