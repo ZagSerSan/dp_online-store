@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import CategoryNav from '../components/categoryNav'
+import CategoryPage from '../components/pages/category/categoryPage'
 import PopularProducts from '../components/popularProducts'
 
 // Higher-Order Component
@@ -11,7 +12,7 @@ const withCategory = (CompCategoryNav, CompPopularProducts) => {
     return (
       <div className="">
         <CompCategoryNav type={type}/>
-        {!type && <CompPopularProducts />}
+        {type ? <CategoryPage type={type}/> : <CompPopularProducts />}
       </div>
     )
   }

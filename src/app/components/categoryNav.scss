@@ -41,7 +41,7 @@
   position: relative;
   width: 33.3%;
   margin: 0 15px;
-  // background-color: #000;
+  background-color: #ccc;
   cursor: pointer;
 
   img {
@@ -90,11 +90,11 @@
       width: 100%;
       height: 100%;
     }
-    &.men-color h3 {
+    &.man-color h3 {
       color: #fff;
       background-color: #015ea4;
     }
-    &.women-color h3 {
+    &.woman-color h3 {
       color: #fff;
       background-color: #fd3281;
     }
@@ -113,11 +113,11 @@
       width: 100%;
       height: 100%;
     }
-    &.men-color h3 {
+    &.man-color h3 {
       color: #fff;
       background-color: #015ea4;
     }
-    &.women-color h3 {
+    &.woman-color h3 {
       color: #fff;
       background-color: #fd3281;
     }

@@ -1,30 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import categoriesApi from '../api/fake.api/categories.api'
 import './categoryNav.css'
-// img
-import IMG_DOG from '../assets/img/category-nav/menCateg.png' 
-import IMG_CAT from '../assets/img/category-nav/womenCateg.png' 
-import IMG_FISH from '../assets/img/category-nav/carCateg.png' 
 
 const CategoryNav = ({ type }) => {
-
+  // Загрузка файлов с fake.api
+  const [test, setTest] = useState()
+  useEffect(() => {
+    if (localStorage.getItem("categories")) {
+      setTest(JSON.parse(localStorage.getItem("categories")))
+    } else {
+      categoriesApi.fetchCategories().then(data => {
+        setTest(data)
+        localStorage.setItem("categories", JSON.stringify(data))
+      })
+    }
+  }, [])
+ 
   return (
     <div className="container">
       <div className={'category-nav' + (type ? ' small' : '')}>
-        <Link to='/category/formen' className={'category-nav-item men-color' + (type === 'formen' ? ' active' : '')}>
-          <img src={IMG_DOG} alt="for Men" />
-          <h3>Men's</h3>
-        </Link>
-        <Link to='/category/forwomen' className={'category-nav-item women-color' + (type === 'forwomen' ? ' active' : '')}>
-          <img src={IMG_CAT} alt="for women" />
-          <h3>Women's</h3>
-        </Link>
-        <Link to='/category/forcar' className={'category-nav-item car-color' + (type === 'forcar' ? ' active' : '')}>
-          <img src={IMG_FISH} alt="for car" />
-          <h3>Car</h3>
-        </Link>
+        {test && (test.map(item => (
+          <Link
+            key={item.id}
+            to={item.to}
+            className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}
+            style={test && {backgroundColor: '#fff'}}
+          >
+            {test && <img src={item.img} alt={item.alt} />}
+            <h3>{item.label}</h3>
+          </Link>
+          )))}
       </div>
-      {type && <h1>categoryNav.jsx: {type}</h1>}
     </div>
   )
 }
