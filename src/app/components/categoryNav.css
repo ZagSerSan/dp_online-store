@@ -33,6 +33,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #ffe4b3;
+  border-radius: 10px;
   -webkit-animation: 0.4s alternate forwards categoryToSmall;
           animation: 0.4s alternate forwards categoryToSmall;
 }
@@ -52,6 +54,15 @@
     height: 100px;
   }
 }
+.category-nav.small .category-nav-item {
+  background-color: transparent;
+}
+.category-nav.small .category-nav-item img {
+  display: none;
+}
+.category-nav.small .category-nav-item:after {
+  display: none;
+}
 .category-nav.small .category-nav-item h3 {
   bottom: 50%;
   -webkit-transform: translate3d(-50%, 50%, 0);
@@ -62,7 +73,6 @@
   position: relative;
   width: 33.3%;
   margin: 0 15px;
-  background-color: #ccc;
   cursor: pointer;
 }
 .category-nav-item img {

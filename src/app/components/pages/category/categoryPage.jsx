@@ -15,7 +15,7 @@ const CategoryPage = ({type}) => {
 
   return (
     <div className="container">
-      {/* {test ? <h1>CategoryPage.jsx: {test.url}</h1> : <p>loading...</p>} */}
+      {test ? <h1>CategoryPage.jsx: {type}</h1> : <p>loading...</p>}
       {test && <img src={test} alt='test' />}
     </div>
   )

@@ -25,7 +25,7 @@ const CategoryNav = ({ type }) => {
             key={item.id}
             to={item.to}
             className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}
-            style={test && {backgroundColor: '#fff'}}
+            // style={test && {backgroundColor: '#fff'}}
           >
             {test && <img src={item.img} alt={item.alt} />}
             <h3>{item.label}</h3>
