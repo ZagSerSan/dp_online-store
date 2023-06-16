@@ -72,8 +72,18 @@
   -webkit-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
 }
-.popular-item__img-popap a:hover {
+.popular-item__img-popap a:hover,
+.popular-item__img-popap button:hover {
   background-color: rgba(246, 172, 68, 0.4509803922);
+  cursor: pointer;
+}
+.popular-item__img-popap button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
 }
 .popular-item__img-popap svg {
   height: 30px;

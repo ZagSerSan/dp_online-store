@@ -1,0 +1,116 @@
+.modal-is-open {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.product-modal {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+.product-modal.active {
+  display: block;
+  -webkit-animation: 0.4s alternate forwards openProductModal;
+          animation: 0.4s alternate forwards openProductModal;
+}
+@-webkit-keyframes openProductModal {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+@keyframes openProductModal {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+.product-modal.active .product-modal__wrapper {
+  -webkit-animation: 0.4s alternate forwards openProductModalWrapper;
+          animation: 0.4s alternate forwards openProductModalWrapper;
+}
+@-webkit-keyframes openProductModalWrapper {
+  from {
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+@keyframes openProductModalWrapper {
+  from {
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+.product-modal.active.hiding {
+  -webkit-animation: 0.4s alternate forwards closeProductModal;
+          animation: 0.4s alternate forwards closeProductModal;
+}
+@-webkit-keyframes closeProductModal {
+  from {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes closeProductModal {
+  from {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+.product-modal.active.hiding .product-modal__wrapper {
+  -webkit-animation: 0.4s alternate forwards closeProductModalWrapper;
+          animation: 0.4s alternate forwards closeProductModalWrapper;
+}
+@-webkit-keyframes closeProductModalWrapper {
+  from {
+    top: 50%;
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes closeProductModalWrapper {
+  from {
+    top: 50%;
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.product-modal__wrapper {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  width: 400px;
+  height: 400px;
+  overflow: auto;
+  background-color: #fff;
+  opacity: 0;
+}
+.product-modal__wrapper button {
+  cursor: pointer;
+}

@@ -7,6 +7,7 @@ import Header from '././components/ui/header'
 // --Routes
 import Category from './layouts/category'
 import Home from './layouts/home'
+import ProductModal from './components/common/product/productModal'
 
 function App() {
   return (<>

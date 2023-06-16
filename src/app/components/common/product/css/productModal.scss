@@ -1,0 +1,89 @@
+// 'no-scroll' for body tag
+.modal-is-open {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// css for modal window
+.product-modal {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+
+  &.active {
+    display: block;
+    // open animation
+    animation: 0.4s alternate forwards openProductModal;
+    @keyframes openProductModal {
+      from {
+        background-color: rgba(0, 0, 0, 0);
+      }
+      to {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    }
+    // open animation for child wrapper
+    .product-modal__wrapper {
+      animation: 0.4s alternate forwards openProductModalWrapper;
+      @keyframes openProductModalWrapper {
+        from {
+          opacity: 0;
+        }
+        to {
+          top: 50%;
+          opacity: 1;
+        }
+      }
+    }
+    // close animation
+    &.hiding {
+      animation: 0.4s alternate forwards closeProductModal;
+      @keyframes closeProductModal {
+        from {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+        to {
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+      // close animation for child wrapper
+      .product-modal__wrapper {
+        animation: 0.4s alternate forwards closeProductModalWrapper;
+        @keyframes closeProductModalWrapper {
+          from {
+            top: 50%;
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // inner window
+  &__wrapper {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 400px;
+    height: 400px;
+
+    overflow: auto;
+    background-color: #fff;
+    opacity: 0;
+
+    button {
+      cursor: pointer;
+    }
+  }
+}
