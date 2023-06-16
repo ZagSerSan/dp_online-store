@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 // styles
 import './app.css'
 // components
-import Header from './components/header'
+import Header from '././components/ui/header'
 // --Routes
 import Category from './layouts/category'
 import Home from './layouts/home'

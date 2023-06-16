@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 // css
-import './header.css'
+import './css/header.css'
 // components
-import LOGO from '../assets/img/logo/logo.png'
-import Icon from './common/icon'
+import LOGO from '../../assets/img/logo/logo.png'
+import Icon from '../common/icon'
 import { useRef } from 'react'
 
 const Header = () => {

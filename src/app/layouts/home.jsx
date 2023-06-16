@@ -1,16 +1,8 @@
 import React from 'react'
-import Intro from '../components/intro'
-import CategoryNav from '../components/categoryNav'
-import PopularProducts from '../components/popularProducts'
+import HomePage from '../components/pages/homePage'
 
 const Home = () => {
-  return (
-    <>
-      <Intro/>
-      <CategoryNav />
-      <PopularProducts/>
-    </>
-  )
+  return <HomePage/>
 }
  
 export default Home

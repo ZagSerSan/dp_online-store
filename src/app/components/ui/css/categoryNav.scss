@@ -1,9 +1,22 @@
+// Higth Wrapper
+.category-nav_HW {
+  h2 {
+    color: #000101;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 35px;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+
 .category-nav {
   width: 100%;
   height: 277px;
   display: flex;
-  // padding: 100px 0 60px;
-  margin: 40px auto 60px;
+  padding-top: 0px;
+  margin: 0px auto 60px;
   transition: all 0.3s ease 0s;
   animation: 0.4s alternate forwards categoryToNormal;
   @keyframes categoryToNormal {
@@ -19,7 +32,7 @@
   &.small {
     overflow: hidden;
     justify-content: center;
-    background-color: #ffe4b3;
+    // background-color: #ffe4b3;
     border-radius: 10px;
     animation: 0.4s alternate forwards categoryToSmall;
     @keyframes categoryToSmall {
@@ -32,6 +45,9 @@
     }
     .category-nav-item {
       background-color: transparent;
+      h3 {
+        width: 100%;
+      }
       img {
         display: none;
       }
@@ -43,8 +59,9 @@
       bottom: 50%;
       transform: translate3d(-50%, 50%, 0);
     }
-  }
+  } // /&.small
 }
+
 .category-nav-item {
   position: relative;
   width: 33.3%;

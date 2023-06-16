@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Slider from 'react-slick'
-import './intro.css'
+import './css/intro.css'
 // slick imgs
-import SLIDER_1 from '../assets/img/intro/slider_1.png'
-import SLIDER_2 from '../assets/img/intro/slider_2.png'
+import SLIDER_1 from '../../assets/img/intro/slider_1.png'
+import SLIDER_2 from '../../assets/img/intro/slider_2.png'
 
 const Intro = () => {
   var settings = {

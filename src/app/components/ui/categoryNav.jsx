@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
-import categoriesApi from '../api/fake.api/categories.api'
-import './categoryNav.css'
+import categoriesApi from '../../api/fake.api/categories.api'
+import './css/categoryNav.css'
 
 const CategoryNav = ({ type }) => {
   // Загрузка файлов с fake.api
@@ -18,7 +18,7 @@ const CategoryNav = ({ type }) => {
   }, [])
  
   return (
-    <div className="container">
+    <div className="category-nav_HW container">
       <div className={'category-nav' + (type ? ' small' : '')}>
         {test && (test.map(item => (
           <Link

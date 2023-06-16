@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 // css, components
-import './popularProducts.css'
-import Icon from './common/icon'
+import './css/popularProducts.css'
+import Icon from '../common/icon'
 // img
-import IMG_ITEM_MEN from '../assets/img/popular/men_item.png'
-import IMG_ITEM_WOMEN from '../assets/img/popular/women_item.png'
-import IMG_ITEM_CAR from '../assets/img/popular/car_item.png'
+import IMG_ITEM_MEN from '../../assets/img/popular/men_item.png'
+import IMG_ITEM_WOMEN from '../../assets/img/popular/women_item.png'
+import IMG_ITEM_CAR from '../../assets/img/popular/car_item.png'
 
 const PopularProducts = () => {
   const items = [
