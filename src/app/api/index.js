@@ -1,11 +1,9 @@
-import products from './fake.api/user.api'
-import professions from './fake.api/professions.api'
-import qualities from './fake.api/categories.api'
+import products from './fake.api/products.api'
+import categories from './fake.api/products.api'
 
 const API = {
   products,
-  professions,
-  qualities
+  categories
 }
 
 export default API

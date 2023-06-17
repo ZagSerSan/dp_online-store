@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Icon from '../icon'
 
 const ProductItem = ({ item, onClick }) => {
-  const { id, src, name, price } = item
+  const { _id, name, preview, title, price } = item
   return (
-    <div key={id} className="popular-item">
+    <div key={_id} className="popular-item">
       <div className="popular-item__img">
-        <Link to='/category/fordog/id'>
-          <img src={src} alt={name} />
+        <Link to={`/category/${item.type}/_id`}>
+          <img src={preview} alt={title} />
         </Link>
         <div className="popular-item__img-popap">
           <button onClick={onClick}>
-            <Icon id='view'/>
+            <Icon id='view' data-modal='1'/>
           </button>
           <button>
             <Icon id='cart'/>
@@ -22,9 +22,9 @@ const ProductItem = ({ item, onClick }) => {
 
       <div className="popular-item__content">
         <h4 className="popular-item__title">
-          <Link to='/category/fordog/id'>{name}</Link>
+        <Link to={`/category/${item.type}/_id`}>{name}</Link>
         </h4>
-        <p className="popular-item__price">{price}</p>
+        <p className="popular-item__price">${price}.00</p>
       </div>
     </div>
   )
