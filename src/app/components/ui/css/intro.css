@@ -2,15 +2,14 @@
   background-color: #ffe4b3;
   margin-bottom: 60px;
 }
-
-.slick-slider {
+.intro .slick-slider {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: relative;
   padding: 40px 0;
 }
-.slick-slider button {
+.intro .slick-slider button {
   position: absolute;
   top: 50%;
   z-index: 2;
@@ -26,31 +25,28 @@
   -webkit-transition: border-color 0.15s linear;
   transition: border-color 0.15s linear;
 }
-.slick-slider button.slick-next {
+.intro .slick-slider button.slick-next {
   right: 0;
   border-bottom: none;
   border-left: none;
 }
-.slick-slider button.slick-prev {
+.intro .slick-slider button.slick-prev {
   left: 0;
   border-top: none;
   border-right: none;
 }
-.slick-slider button:hover {
+.intro .slick-slider button:hover {
   border-color: #f6ab44;
 }
-
-.slick-list {
+.intro .slick-list {
   overflow: hidden;
 }
-
-.slick-track {
+.intro .slick-track {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-
-.slick-slide {
+.intro .slick-slide {
   opacity: 0;
   -webkit-animation: 0.4s alternate forwards slickDeActive;
           animation: 0.4s alternate forwards slickDeActive;
@@ -71,7 +67,7 @@
     opacity: 0;
   }
 }
-.slick-slide.slick-active {
+.intro .slick-slide.slick-active {
   -webkit-animation: 0.4s alternate forwards slickActive;
           animation: 0.4s alternate forwards slickActive;
   -webkit-animation-delay: 0.3s;
@@ -93,8 +89,7 @@
     opacity: 1;
   }
 }
-
-.slider-item {
+.intro .slider-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -103,7 +98,7 @@
           justify-content: space-between;
   padding: 0 80px;
 }
-.slider-item__column {
+.intro .slider-item__column {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -116,7 +111,7 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
-.slider-item__content h3 {
+.intro .slider-item__content h3 {
   color: #000101;
   font-family: "Pacifico", cursive;
   font-size: 34px;
@@ -124,7 +119,7 @@
   line-height: 61px;
   margin: 0;
 }
-.slider-item__content h1 {
+.intro .slider-item__content h1 {
   color: #000000;
   font-family: "Montserrat", sans-serif;
   font-size: 60px;
@@ -132,7 +127,7 @@
   line-height: 80px;
   margin: 18px 0 31px;
 }
-.slider-item__content a {
+.intro .slider-item__content a {
   display: inline-block;
   padding: 20px 45px;
   font-weight: bold;
@@ -144,7 +139,7 @@
   -webkit-transition: background-color 0.1s linear;
   transition: background-color 0.1s linear;
 }
-.slider-item__content a:hover {
+.intro .slider-item__content a:hover {
   text-decoration: none;
   background-color: #c57d17;
 }

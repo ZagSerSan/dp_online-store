@@ -1,118 +1,118 @@
 .intro {
   background-color: #ffe4b3;
   margin-bottom: 60px;
-}
 
-// slider
-.slick-slider {
-  display: flex;
-  position: relative;
-  padding: 40px 0;
-  button {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
+  // slider
+  .slick-slider {
+    display: flex;
+    position: relative;
+    padding: 40px 0;
+    button {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
 
-    font-size: 0;
-    width: 40px;
-    height: 40px;
-    transform: rotateZ(45deg);
-    background-color: transparent;
-    cursor: pointer;
-    border: 4px #7e4c4f solid;
-    border-radius: 10%;
-    transition: border-color 0.15s linear;
+      font-size: 0;
+      width: 40px;
+      height: 40px;
+      transform: rotateZ(45deg);
+      background-color: transparent;
+      cursor: pointer;
+      border: 4px #7e4c4f solid;
+      border-radius: 10%;
+      transition: border-color 0.15s linear;
 
-    &.slick-next {
-      right: 0;
-      border-bottom: none;
-      border-left: none;
-    }
-    &.slick-prev {
-      left: 0;
-      border-top: none;
-      border-right: none;
-    }
-    &:hover {
-      border-color: #f6ab44;
-    }
-  }
-}
-.slick-list {
-  overflow: hidden;
-}
-.slick-track {
-  display: flex;
-}
-.slick-slide {
-  opacity: 0;
-  animation: 0.4s alternate forwards slickDeActive;
-  // анимация исчезающего слайдера
-  @keyframes slickDeActive {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  // анимация появляющегося слайдера
-  &.slick-active {
-    animation: 0.4s alternate forwards slickActive;
-    animation-delay: 0.3s;
-    @keyframes slickActive {
-      from {
-        opacity: 0;
+      &.slick-next {
+        right: 0;
+        border-bottom: none;
+        border-left: none;
       }
-      to {
+      &.slick-prev {
+        left: 0;
+        border-top: none;
+        border-right: none;
+      }
+      &:hover {
+        border-color: #f6ab44;
+      }
+    }
+  }
+  .slick-list {
+    overflow: hidden;
+  }
+  .slick-track {
+    display: flex;
+  }
+  .slick-slide {
+    opacity: 0;
+    animation: 0.4s alternate forwards slickDeActive;
+    // анимация исчезающего слайдера
+    @keyframes slickDeActive {
+      from {
         opacity: 1;
       }
+      to {
+        opacity: 0;
+      }
+    }
+    // анимация появляющегося слайдера
+    &.slick-active {
+      animation: 0.4s alternate forwards slickActive;
+      animation-delay: 0.3s;
+      @keyframes slickActive {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     }
   }
-}
 
-.slider-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 80px;
-
-  &__column {
-    width: 50%;
+  .slider-item {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  &__content {
-    h3 {
-      color: #000101;
-      font-family: "Pacifico", cursive;
-      font-size: 34px;
-      font-weight: 400;
-      line-height: 61px;
-      margin: 0;
-    }
-    h1 {
-      color: #000000;
-      font-family: "Montserrat", sans-serif;
-      font-size: 60px;
-      font-weight: 700;
-      line-height: 80px;
-      margin: 18px 0 31px;
-    }
-    a {
-      display: inline-block;
-      padding: 20px 45px;
+    justify-content: space-between;
+    padding: 0 80px;
 
-      font-weight: bold;
-      background-color: #7e4c4f;
-      border-radius: 50px;
-      color: #fff;
-      line-height: 1;
-      text-transform: uppercase;
-      transition: background-color 0.1s linear;
-      &:hover {
-        text-decoration: none;
-        background-color: #c57d17;
+    &__column {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &__content {
+      h3 {
+        color: #000101;
+        font-family: "Pacifico", cursive;
+        font-size: 34px;
+        font-weight: 400;
+        line-height: 61px;
+        margin: 0;
+      }
+      h1 {
+        color: #000000;
+        font-family: "Montserrat", sans-serif;
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 80px;
+        margin: 18px 0 31px;
+      }
+      a {
+        display: inline-block;
+        padding: 20px 45px;
+
+        font-weight: bold;
+        background-color: #7e4c4f;
+        border-radius: 50px;
+        color: #fff;
+        line-height: 1;
+        text-transform: uppercase;
+        transition: background-color 0.1s linear;
+        &:hover {
+          text-decoration: none;
+          background-color: #c57d17;
+        }
       }
     }
   }

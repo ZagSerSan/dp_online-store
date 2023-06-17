@@ -105,31 +105,91 @@
   left: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
           transform: translate3d(-50%, -50%, 0);
-  width: 400px;
-  height: 400px;
+  max-width: 875px;
+  height: 610px;
+  padding: 50px;
   overflow: auto;
-  background-color: #fff;
+  background-color: #f6f6f6;
   opacity: 0;
 }
-.product-modal__wrapper button {
+.product-modal__wrapper .product-modal__close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   z-index: 2;
   cursor: pointer;
   width: 40px;
   height: 40px;
-  padding: 0;
   margin: 0;
   background-color: transparent;
   border: 0;
 }
-.product-modal__wrapper button svg {
+.product-modal__wrapper .product-modal__close svg {
   -webkit-transition: all 0.2s ease 0s;
   transition: all 0.2s ease 0s;
 }
-.product-modal__wrapper button:hover svg {
-  width: 35px;
-  height: 35px;
+.product-modal__wrapper .product-modal__close:hover svg {
+  width: 90%;
+  height: 90%;
   fill: #7e4c4f;
+}
+.product-modal .product-modal-preview {
+  max-width: 320px;
+  max-height: 380px;
+  border: 1px solid #ddd;
+}
+.product-modal .product-modal-preview .slick-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots {
+  position: absolute;
+  top: 103%;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  padding: 0px;
+  margin: 0;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots li {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+  list-style: none;
+  overflow: hidden;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots li:last-child {
+  margin-right: 0;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots li button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots li button img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: opacity 0.2s ease 0s;
+  transition: opacity 0.2s ease 0s;
+}
+.product-modal .product-modal-preview .slick-slider .slick-dots li button img:hover {
+  opacity: 0.5;
+}
+.product-modal .product-modal-preview .slick-list {
+  overflow: hidden;
+  width: 100%;
+}
+.product-modal .product-modal-preview .slick-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
