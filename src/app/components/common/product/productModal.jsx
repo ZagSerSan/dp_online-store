@@ -23,10 +23,10 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
       const slider_arrows = productModalPreview.querySelectorAll('.slick-arrow')
       slider_arrows.forEach(arrow => {
         arrow.style.display = 'none'
-      });
+      })
       const productModalPreview_btn = productModalPreview.querySelectorAll('li > button')
       productModalPreview_btn.forEach((btn, index) => btn.innerHTML = `<img src=${item.slider_dots[index]} alt='${index}'/>`)
-    }, 100);
+    }, 100)
   }
 
   // modal close func
@@ -37,22 +37,28 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
       onToggleState(false)
     }, 400)
   }
+  // сброс положение слайдера в модалке
+  if (!modalState) {
+    item = undefined
+  }
 
   return (
     <div className={"product-modal" + (modalState ? ' active' : '')}>
       <div className="product-modal__wrapper">
         <button className='product-modal__close' onClick={closeModal}><Icon id={'close'}/></button>
-        <div className="product-modal-preview">
-          <Slider {...settings}>
-            {item.slider.map(item => (
-              <div key={item.id}>
-                <div className='item-item'>
-                  <img src={item.preview} alt={item.title} />
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
+          {item && (
+            <div className="product-modal-preview">
+              <Slider {...settings}>
+                {item.slider.map(item => (
+                  <div key={item.id}>
+                    <div className='item-item'>
+                      <img src={item.preview} alt={item.title} />
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          )}
         <div className="product-modal-content"></div>
       </div>
     </div>

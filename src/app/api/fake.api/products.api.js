@@ -2,8 +2,8 @@
 import { IMG_ITEM_MAN, IMG_ITEM_WOMAN, IMG_ITEM_CAR } from "./images"
 // modal
 import {
-  PREVIEW_1, PREVIEW_2, PREVIEW_3,
-  DOT_IMG_1, DOT_IMG_2, DOT_IMG_3
+  PREVIEW_1, PREVIEW_2, PREVIEW_3, PREVIEW_TEST,
+  DOT_IMG_1, DOT_IMG_2, DOT_IMG_3, DOT_IMG_TEST
 } from "./images"
 
 const products = [
@@ -14,7 +14,7 @@ const products = [
     title: 'Some title',
     price: 14,
     bookmark: false,
-    rate: 2,
+    rate: 4,
     preview: IMG_ITEM_MAN,
     slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
     slider: [
@@ -37,23 +37,23 @@ const products = [
   },
   {
     _id: '2',
-    name: 'Moman item 1',
+    name: 'Woman item 1',
     type: 'woman',
     title: 'Some title',
     price: 16,
     bookmark: false,
     rate: 3,
     preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_2,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
@@ -72,21 +72,21 @@ const products = [
     bookmark: false,
     rate: 4,
     preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_3,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: PREVIEW_2,
         title: 'Some title'
       }
     ]
@@ -98,7 +98,7 @@ const products = [
     title: 'Some title',
     price: 20,
     bookmark: false,
-    rate: 5,
+    rate: 2,
     preview: IMG_ITEM_MAN,
     slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
     slider: [
@@ -121,23 +121,23 @@ const products = [
   },
   {
     _id: '5',
-    name: 'Moman item 2',
+    name: 'Woman item 2',
     type: 'woman',
     title: 'Some title',
     price: 22,
     bookmark: false,
     rate: 2,
     preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_2,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
@@ -156,44 +156,44 @@ const products = [
     bookmark: false,
     rate: 3,
     preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_3,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: PREVIEW_2,
         title: 'Some title'
       }
     ]
   },
   {
     _id: '7',
-    name: 'Moman item 3',
+    name: 'Woman item 3',
     type: 'woman',
     title: 'Some title',
     price: 26,
     bookmark: false,
     rate: 4,
     preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_2,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
@@ -240,21 +240,21 @@ const products = [
     bookmark: false,
     rate: 2,
     preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: PREVIEW_3,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: PREVIEW_1,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: PREVIEW_2,
         title: 'Some title'
       }
     ]
@@ -265,21 +265,21 @@ const getPopularProducts = () =>
   new Promise((resolve) => {
     window.setTimeout(function () {
       resolve(products.filter(product => product.rate > 3))
-    }, 1000)
+    }, 1500)
   })
 
 const getProductById = (id) =>
   new Promise((resolve) => {
     window.setTimeout(function () {
       resolve(products.filter(product => product._id === id))
-    }, 1000)
+    }, 1500)
   })
 
 const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(function () {
       resolve(products)
-    }, 2000)
+    }, 1500)
   })
 
 export default {

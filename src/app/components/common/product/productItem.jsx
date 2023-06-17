@@ -4,6 +4,7 @@ import Icon from '../icon'
 
 const ProductItem = ({ item, onClick }) => {
   const { _id, name, preview, title, price } = item
+  
   return (
     <div key={_id} className="popular-item">
       <div className="popular-item__img">
