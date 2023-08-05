@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
-// styles
 import './app.css'
 // components
-import Header from '././components/ui/header'
+import Header from './components/ui/header'
 // --Routes
 import Category from './layouts/category'
 import Home from './layouts/home'

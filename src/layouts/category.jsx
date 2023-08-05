@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { useParams } from 'react-router-dom'
 import './css/category.css'
 // cmpts
 import CategoryPage from '../components/pages/categoryPage'
