@@ -16,7 +16,7 @@ const products = [
     bookmark: false,
     rate: 4,
     // preview: IMG_ITEM_MAN,
-    preview: '/images/items/car_item.png',
+    preview: IMG_ITEM_MAN,
     slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
     slider: [
       {

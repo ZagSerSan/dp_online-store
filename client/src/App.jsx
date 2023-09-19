@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React from 'react'
+import { useRoutes } from "react-router-dom";
 import './app.css'
-// components
 import Header from './components/ui/header'
-// --Routes
-import Category from './layouts/category'
-import Home from './layouts/home'
-import ProductModal from './components/common/product/productModal'
+import routes from './routes'
+// components
+import withRouter from './utils/withRouter';
 
 function App() {
+const elements = useRoutes(routes)
+
   return (<>
     <Header/>
-    <Switch>
-      <Route path='/' exact component={Home}></Route>
-      <Route path='/category/:type?' exact component={Category}></Route>
-    </Switch>
+    {elements}
+    <div>footer</div>
   </>)
 }
 
-export default App
+const AppWithRoutes = withRouter(App)
+export default AppWithRoutes
