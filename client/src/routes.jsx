@@ -9,7 +9,6 @@ const routes = [
   {path: '/', element: <Home/>},
   {
     path: 'category',
-    // element: <Category/>,
     children: [
       {path: '', element: <Category/>},
       {path: ":type", element: <CategoryPage />}

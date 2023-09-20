@@ -1,19 +1,24 @@
 import React from 'react'
 import { useRoutes } from "react-router-dom";
 import './app.css'
-import Header from './components/ui/header'
-import routes from './routes'
 // components
+import Header from './components/ui/header'
+import AppLoader from './components/ui/hoc/appLoader';
+import routes from './routes'
 import withRouter from './utils/withRouter';
 
 function App() {
-const elements = useRoutes(routes)
+  const elements = useRoutes(routes)
 
-  return (<>
-    <Header/>
-    {elements}
-    <div>footer</div>
-  </>)
+  return (
+    <>
+      <AppLoader>
+        <Header/>
+        {elements}
+        <div>footer</div>
+      </AppLoader>
+    </>
+  )
 }
 
 const AppWithRoutes = withRouter(App)

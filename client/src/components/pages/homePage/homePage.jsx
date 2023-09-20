@@ -1,12 +1,12 @@
 import React from 'react'
-import { Intro, CategoryNav, PopularProducts } from '../../ui'
+import { Intro, CategoryNav, ProductsList } from '../../ui'
 
 const HomePage = () => {
   return (
     <>
       <Intro/>
       <CategoryNav />
-      <PopularProducts/>
+      <ProductsList/>
     </>
   )
 }

@@ -1,6 +1,8 @@
 import React from 'react'
+import { RotatingTriangles } from 'react-loader-spinner'
+import './iconStyles.css'
 
-const Icon = ({ id, className }) => {
+const Icon = ({ id, className, log }) => {
   switch (id) {
     case 'search':
       return (
@@ -31,6 +33,20 @@ const Icon = ({ id, className }) => {
         <svg className={className} viewBox="4 4 16 16">
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fillRule="evenodd" clipRule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z"></path></g>
         </svg>
+      )
+    case 'loader':
+      if (log) {
+        console.log('IconLogger:', log)
+      }
+      return (
+        <RotatingTriangles
+          visible={true}
+          height="100"
+          width="100"
+          ariaLabel="rotating-triangels-loading"
+          wrapperStyle={{}}
+          wrapperClass={'rotating-triangels-wrapper loader'}
+        />
       )
     default:
       return null
