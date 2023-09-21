@@ -4,12 +4,12 @@ const schema = new Schema({
   name: {type: String},
 	email: {type: String, required: true, unique: true},
 	password: {type: String},
-	completedMeetings: Number,
+	// completedMeetings: Number,
 	image: {type: String},
-	rate: Number,
+	// rate: Number,
 	sex: {type: String, enum: ['male', 'female', 'other']},
-	profession: {type: Schema.Types.ObjectId, ref: 'Profession'},
-	qualities: [{type: Schema.Types.ObjectId, ref: 'Quality'}],
+	// profession: {type: Schema.Types.ObjectId, ref: 'Profession'},
+	// qualities: [{type: Schema.Types.ObjectId, ref: 'Quality'}],
 }, {
   timestamps: true
 })

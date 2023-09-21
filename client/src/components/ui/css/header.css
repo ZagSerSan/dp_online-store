@@ -175,6 +175,12 @@
 .header-cart__user-container {
   position: relative;
 }
+.header-cart__user-container img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px #7e4c4f solid;
+}
 .header-cart__user-container div {
   position: absolute;
   top: 100%;

@@ -7,12 +7,12 @@ const RadioField = ({ label, options, name, onChange, value }) => {
   }
 
   return (
-    <div>
+    <div className='radio-field'>
       <label>{label}</label>
       {options.map((option) => (
         <div
           key={option.name + '_' + option.value}
-          className="form-check form-check-inline"
+          className="input-wrapper"
         >
           <input
             className="form-check-input"

@@ -3,6 +3,10 @@ import TextField from '../../common/form/textField'
 import RadioField from '../../common/form/radioField'
 import CheckBoxField from '../../common/form/checkBoxField'
 import './auth.css'
+import authService from '../../../service/auth.service'
+import useStore from '../../../store/createStore'
+import { getRandomInt } from '../../../utils/helper'
+
 
 const RegisterPage = () => {
   const [errors, setErrors] = useState({})
@@ -12,12 +16,15 @@ const RegisterPage = () => {
     email: 'user@example.com',
     password: 'User1234',
     sex: 'male',
-    licence: false
+    licence: false,
+    image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
+  const { setAuthedUser } = useStore()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(data)
+    authService.register(data)
+    setAuthedUser(data)
   }
   const handleChange = ({ name, value }) => {
     setData(prev => ({
@@ -74,7 +81,7 @@ const RegisterPage = () => {
           <button
             type="submit"
             // disabled={!isValid}
-            className="btn btn-primary w-100 mx-auto"
+            className=""
           >
             Register
           </button>

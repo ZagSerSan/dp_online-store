@@ -13,7 +13,7 @@ const CheckBoxField = ({ name, value, onChange, children, error }) => {
   // }
 
   return (
-    <div className={'form-check mb-4 '}>
+    <div className='checkbox-field'>
       <input
         // onBlur={getValidationClasses}
         className="form-check-input"

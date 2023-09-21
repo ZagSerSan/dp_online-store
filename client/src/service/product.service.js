@@ -4,7 +4,7 @@ const productEndpoint = 'product/'
 
 const productService = {
   get: async () => {
-    const {data} = await httpService.get(productEndpoint)
+    const { data } = await httpService.get(productEndpoint)
     return data
   }
 }

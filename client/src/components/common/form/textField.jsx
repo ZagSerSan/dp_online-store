@@ -23,14 +23,14 @@ const TextField = ({ name, label, value, type, errors, onChange }) => {
 
   return (
     <div className="">
-      <div className="input-wrapper">
-        <label style={{ marginRight: '10px' }} htmlFor={name}>
+      <div className="text-field">
+        <label htmlFor={name}>
           {label}
         </label>
         <input
           type={showPassword ? 'text' : type}
           className={
-            'form-control' +
+            'form-control ' +
             (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
           }
           id={name}

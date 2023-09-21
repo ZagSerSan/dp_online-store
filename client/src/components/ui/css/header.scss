@@ -158,6 +158,12 @@
 
 	&__user-container {
 		position: relative;
+		img {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			border: 1px #7e4c4f solid;
+		}
 		div {
 			position: absolute;
 			top: 100%;

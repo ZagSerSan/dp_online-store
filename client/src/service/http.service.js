@@ -65,30 +65,30 @@ const http = axios.create({
 // )
 
 // перехват ответа сервера
-// http.interceptors.response.use((res) => {
-//   if (configFile.isFirebase) {
-//     res.data = {content: transformData(res.data)}
-//   }
-//   res.data = { content: res.data }
-//   return res
-// },
-// function (error) {
-//   // условие для отлавливания ожидаемой ошибки, со стороны клиента, запроса. (см коды статусов http)
-//   const expectedErrors = 
-//   error.response &&
-//   error.response.status >= 400 &&
-//   error.response.status < 500
-//   // expectedErrors = 401, 404, ...
-//   // условие для отлавливания НЕожидаемой ошибки (см коды статусов http)
-//   // если ошибка не от клиента (нет подключения к серверу или он упал)
-//   if (!expectedErrors) {
-//     // если expectedErrors НЕ = 401, 404, ...
-//     // то ловим и показываем неожидаемые ошибки
-//     console.log('error :>> ', error)
-//     toast.error(error.message + '. http.service -> line: 68')
-//   }
-//   return Promise.reject(error)
-// })
+http.interceptors.response.use((res) => {
+  // if (configFile.isFirebase) {
+  //   res.data = {content: transformData(res.data)}
+  // }
+  res.data = { content: res.data }
+  return res
+},
+function (error) {
+  // условие для отлавливания ожидаемой ошибки, со стороны клиента, запроса. (см коды статусов http)
+  const expectedErrors = 
+  error.response &&
+  error.response.status >= 400 &&
+  error.response.status < 500
+  // expectedErrors = 401, 404, ...
+  // условие для отлавливания НЕожидаемой ошибки (см коды статусов http)
+  // если ошибка не от клиента (нет подключения к серверу или он упал)
+  if (!expectedErrors) {
+    // если expectedErrors НЕ = 401, 404, ...
+    // то ловим и показываем неожидаемые ошибки
+    console.log('error :>> ', error)
+    toast.error(error.message + '. http.service -> line: 68')
+  }
+  return Promise.reject(error)
+})
 
 // ------------------------
 

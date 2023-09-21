@@ -6,12 +6,14 @@ import './css/header.css'
 import LOGO from '../../assets/img/logo/logo.png'
 import Icon from '../common/icon'
 import { useRef } from 'react'
+import useStore from '../../store/createStore'
 
 const Header = () => {
   const [dropMenu, setDropMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
   const searchInputRef = useRef()
   const [searchInputState, setSearchInputState] = useState(false)
+  const { authedUser } = useStore()
 
   const handleSearch = () => {
     searchInputRef.current.classList.toggle('active')
@@ -61,18 +63,34 @@ const Header = () => {
             onMouseEnter={() => setAuthDropMenu(true)}
             onMouseLeave={() => setAuthDropMenu(false)}
           >
-            <Icon id='user'/>
+            {authedUser
+              ? <img src={authedUser.image} alt="avatar" />
+              : <Icon id='user'/>
+            }
           </button>
-          {authDropMenu &&
-            <div
-              onMouseEnter={() => setAuthDropMenu(true)}
-              onMouseLeave={() => setAuthDropMenu(false)}
-              className='drop-menu'
-            >
-              <NavLink to='/auth/login'>Login</NavLink>
-              <NavLink to='/auth/register'>Register</NavLink>
-            </div>
+          {authedUser
+            ? (authDropMenu &&
+                <div
+                  onMouseEnter={() => setAuthDropMenu(true)}
+                  onMouseLeave={() => setAuthDropMenu(false)}
+                  className='drop-menu'
+                >
+                  <NavLink to='/auth/login'>Profile</NavLink>
+                  <NavLink to='/auth/register' style={{color: 'red'}}>LogOut</NavLink>
+                </div>
+            )
+            : (authDropMenu &&
+              <div
+                onMouseEnter={() => setAuthDropMenu(true)}
+                onMouseLeave={() => setAuthDropMenu(false)}
+                className='drop-menu'
+              >
+                <NavLink to='/auth/login'>Login</NavLink>
+                <NavLink to='/auth/register'>Register</NavLink>
+              </div>
+            )
           }
+          
         </div>
         <button className='header-cart__icon'>
           <Icon id='cart'/>
