@@ -121,6 +121,9 @@
 
 .header-cart {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .header-cart input {
   position: absolute;
@@ -146,7 +149,7 @@
   width: 200px;
 }
 .header-cart__icon {
-  height: 23px;
+  height: 40px;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -168,6 +171,51 @@
 }
 .header-cart__icon:last-child {
   margin-right: 0;
+}
+.header-cart__user-container {
+  position: relative;
+}
+.header-cart__user-container div {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 4;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding: 15px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 5px 0px #525252;
+          box-shadow: 0 0 5px 0px #525252;
+}
+.header-cart__user-container div a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #383838;
+  text-decoration: none;
+  margin-bottom: 8px;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+.header-cart__user-container div a:hover {
+  color: #f6ab44;
+  text-decoration: none;
+  opacity: 1;
+}
+.header-cart__user-container div a:last-child {
+  margin-bottom: 0;
 }
 
 /*

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 // css
 import './css/header.css'
 // components
@@ -9,6 +9,7 @@ import { useRef } from 'react'
 
 const Header = () => {
   const [dropMenu, setDropMenu] = useState(false)
+  const [authDropMenu, setAuthDropMenu] = useState(false)
   const searchInputRef = useRef()
   const [searchInputState, setSearchInputState] = useState(false)
 
@@ -54,9 +55,25 @@ const Header = () => {
         <button className='header-cart__icon' onClick={handleSearch}>
           {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
         </button>
-        <button className='header-cart__icon'>
-          <Icon id='user'/>
-        </button>
+        <div className='header-cart__user-container'>
+          <button
+            className='header-cart__icon'
+            onMouseEnter={() => setAuthDropMenu(true)}
+            onMouseLeave={() => setAuthDropMenu(false)}
+          >
+            <Icon id='user'/>
+          </button>
+          {authDropMenu &&
+            <div
+              onMouseEnter={() => setAuthDropMenu(true)}
+              onMouseLeave={() => setAuthDropMenu(false)}
+              className='drop-menu'
+            >
+              <NavLink to='/auth/login'>Login</NavLink>
+              <NavLink to='/auth/register'>Register</NavLink>
+            </div>
+          }
+        </div>
         <button className='header-cart__icon'>
           <Icon id='cart'/>
         </button>

@@ -15,7 +15,6 @@ function App() {
       <AppLoader>
         <Header/>
         {elements}
-        <div>footer</div>
       </AppLoader>
     </>
   )

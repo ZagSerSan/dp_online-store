@@ -1,37 +1,17 @@
-const apiServerUrl = 'http://localhost:8080/'
-//* ITEMS
-// const IMG_ITEM_MAN = '/src/api/fake.api/images/items/man_item.png'
-// const IMG_ITEM_WOMAN =  '/src/api/fake.api/images/items/woman_item.png'
-// const IMG_ITEM_CAR =  '/src/api/fake.api/images/items/car_item.png'
+const apiServerUrl = 'http://localhost:8080/' // если не продакшн версия то = ''
 
+//* ITEMS
 const IMG_ITEM_MAN = apiServerUrl + 'images/items/man_item.png'
 const IMG_ITEM_WOMAN = apiServerUrl + 'images/items/woman_item.png'
 const IMG_ITEM_CAR = apiServerUrl + 'images/items/car_item.png'
 
 //* MODAL
-// const PREVIEW_1 = '/src/api/fake.api/images/modal/l1.png'
-// const PREVIEW_2 = '/src/api/fake.api/images/modal/l2.png'
-// const PREVIEW_3 = '/src/api/fake.api/images/modal/l3.png'
-// const DOT_IMG_1 = '/src/api/fake.api/images/modal/s1.png'
-// const DOT_IMG_2 = '/src/api/fake.api/images/modal/s2.png'
-// const DOT_IMG_3 = '/src/api/fake.api/images/modal/s3.png'
-
 const PREVIEW_1 = apiServerUrl + 'images/modal/l1.png'
 const PREVIEW_2 = apiServerUrl + 'images/modal/l2.png'
 const PREVIEW_3 = apiServerUrl + 'images/modal/l3.png'
 const DOT_IMG_1 = apiServerUrl + 'images/modal/s1.png'
 const DOT_IMG_2 = apiServerUrl + 'images/modal/s2.png'
 const DOT_IMG_3 = apiServerUrl + 'images/modal/s3.png'
-
-// const PREVIEW_1 = require('./modal/l1.png')
-// const PREVIEW_2 = require('./modal/l2.png')
-// const PREVIEW_3 = require('./modal/l3.png')
-// const DOT_IMG_1 = require('./modal/s1.png')
-// const DOT_IMG_2 = require('./modal/s2.png')
-// const DOT_IMG_3 = require('./modal/s3.png')
-
-// const PREVIEW_TEST = require('./modal/l2.jpg')
-// const DOT_IMG_TEST = require('./modal/s2.jpg')
 
 //* EXPORT
 module.exports = {

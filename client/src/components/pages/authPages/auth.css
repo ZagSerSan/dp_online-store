@@ -1,0 +1,58 @@
+.pointerForOptoins label,
+.pointerForOptoins input {
+  cursor: pointer;
+}
+
+.form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+h2 {
+  color: #7e4c4f;
+  font-family: "Pacifico", cursive;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 61px;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 400px;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 5px 0px #525252;
+          box-shadow: 0 0 5px 0px #525252;
+  background-color: #fff;
+  border-radius: 10px;
+}
+form .input-wrapper {
+  margin-bottom: 10px;
+}
+form label {
+  color: #7e4c4f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+form input {
+  color: #f6ab44;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  border: 1px rgba(126, 76, 79, 0.4509803922) solid;
+  border-radius: 3px;
+  padding: 2px 3px;
+}
+form input:focus {
+  outline: 1px #7e4c4f solid;
+}
