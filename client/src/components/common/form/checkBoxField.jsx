@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 // import style from './form.module.css'
 
 const CheckBoxField = ({ name, value, onChange, children, error }) => {
+  const [isBlured, setIsBlured] = useState(false)
+
   const handleChange = () => {
-    // onChange({name: name, value: !value})
     onChange({name, value: !value})
+    setIsBlured(true)
   }
 
   // const getValidationClasses = () => {
@@ -22,10 +24,10 @@ const CheckBoxField = ({ name, value, onChange, children, error }) => {
         id={name}
         onChange={handleChange}
       />
-      <label className="form-check-label" htmlFor={name}>
+      <label htmlFor={name}>
         {children}
       </label>
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && isBlured && <div className="error-msg">{error}</div>}
     </div>
   )
 }

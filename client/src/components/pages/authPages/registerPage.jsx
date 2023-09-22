@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '../../common/form/textField'
 import RadioField from '../../common/form/radioField'
 import CheckBoxField from '../../common/form/checkBoxField'
@@ -7,14 +7,16 @@ import authService from '../../../service/auth.service'
 import { getRandomInt } from '../../../utils/helper'
 import useStore from '../../../store/createStore'
 import { Navigate, Link } from 'react-router-dom'
+import { validator } from '../../../utils/validator'
+import { validatorConfig } from '../../../utils/validatorConfig'
 
 const RegisterPage = () => {
   const [errors, setErrors] = useState({})
   // значение полей формы
   const [data, setData] = useState({
-    name: 'User',
-    email: 'user@example.com',
-    password: 'User1234',
+    name: '',
+    email: '',
+    password: '',
     sex: 'male',
     licence: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
@@ -23,6 +25,9 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const ifValid = validate()
+    if (!ifValid) return
+
     try {
       await authService.register(data)
       setAuthedUser()
@@ -36,6 +41,17 @@ const RegisterPage = () => {
       [name]: value
     }))
   }
+
+  useEffect(() => {
+    validate()
+  }, [data])
+  const validate = () => {
+    const errors = validator(data, validatorConfig)
+    setErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+  // блокировка кнопки
+  const isValid = Object.keys(errors).length === 0
 
   if (authorizated) {
     return <Navigate to='/home'/>
@@ -88,7 +104,7 @@ const RegisterPage = () => {
           </CheckBoxField>
           <button
             type="submit"
-            // disabled={!isValid}
+            disabled={!isValid}
             className=""
           >
             Register

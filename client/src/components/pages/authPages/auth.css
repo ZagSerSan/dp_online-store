@@ -58,6 +58,13 @@ form button {
   color: #fff;
   cursor: pointer;
 }
+form button:disabled {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+  cursor: default;
+}
+form button:disabled:hover {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+}
 form button:hover {
   background-color: #f6ab44;
 }
@@ -92,4 +99,11 @@ form .relocate-msg {
   font-weight: 400;
   margin-top: 10px;
   color: #7e4c4f;
+}
+form .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  color: red;
 }

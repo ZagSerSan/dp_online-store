@@ -50,6 +50,13 @@ form {
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
+    &:disabled {
+      background-color: #7e4c4f63;
+      cursor: default;
+      &:hover {
+        background-color: #7e4c4f63;
+      }
+    }
 
     &:hover {
       background-color: #f6ab44;
@@ -81,9 +88,15 @@ form {
     font-size: 12px;
     font-weight: 400;
 
-    // background-color: #7e4c4f;
     margin-top: 10px;
     color: #7e4c4f;
-    // cursor: pointer;
+  }
+  .error-msg {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+
+    margin-top: 5px;
+    color: red;
   }
 }

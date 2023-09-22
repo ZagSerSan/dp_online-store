@@ -4,13 +4,15 @@ import TextField from '../../common/form/textField'
 import authService from '../../../service/auth.service'
 import useStore from '../../../store/createStore'
 import { useNavigate, Navigate, Link } from "react-router-dom"
+import { validator } from '../../../utils/validator'
+import { validatorConfig } from '../../../utils/validatorConfig'
 
 const LoginPage = () => {
   const [errors, setErrors] = useState({})
   // значение полей формы
   const [data, setData] = useState({
-    email: 'user@example.com',
-    password: 'User1234',
+    email: '',
+    password: '',
   })
 
   const { setAuthedUser, authorizated } = useStore()
@@ -18,12 +20,22 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const ifValid = validate()
+    if (!ifValid) return
+
     try {
       await authService.login(data)
       setAuthedUser()
       navigate('/home')
     } catch (e) {
       console.log('e', e)
+      const errorType = e.response.data.error.message
+      if (errorType === 'EMAIL_NOT_FOUND') {
+        setErrors({email: 'Email not found!'})
+      }
+      if (errorType === 'INVALID_PASSWORD') {
+        setErrors({password: 'Invalid password!'})
+      }
     }
   }
   const handleChange = ({ name, value }) => {
@@ -32,6 +44,17 @@ const LoginPage = () => {
       [name]: value
     }))
   }
+
+  useEffect(() => {
+    validate()
+  }, [data])
+  const validate = () => {
+    const errors = validator(data, validatorConfig)
+    setErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+  // блокировка кнопки
+  const isValid = Object.keys(errors).length === 0
 
   if (authorizated) {
     return <Navigate to='/home'/>
@@ -66,7 +89,7 @@ const LoginPage = () => {
           </CheckBoxField> */}
           <button
             type="submit"
-            // disabled={!isValid}
+            disabled={!isValid}
             className=""
           >
             Login

@@ -9,7 +9,7 @@ const TextField = ({ name, label, value, type, errors, onChange }) => {
 
   const handleChange = ({ target }) => {
     onChange({ name: target.name, value: target.value })
-    // setIsBlured(true)
+    setIsBlured(true)
   }
 
   // Метод для изменения состояния
@@ -48,7 +48,7 @@ const TextField = ({ name, label, value, type, errors, onChange }) => {
             <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
           </button>
         )} */}
-        {errors && <div className="invalid-feedback">{errors[name]}</div>}
+        {errors && isBlured && <div className="error-msg">{errors[name]}</div>}
       </div>
     </div>
   )
