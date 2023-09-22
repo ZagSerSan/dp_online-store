@@ -6,9 +6,11 @@ import Home from './layouts/home'
 import CategoryPage from "./components/pages/categoryPage"
 import LoginPage from "./components/pages/authPages/loginPage"
 import RegisterPage from "./components/pages/authPages/registerPage"
+import Profile from "./components/pages/profile/profile"
 
 const routes = [
   {path: '/', element: <Home/>},
+  {path: 'profile', element: <Profile />},
   {
     path: 'auth',
     children: [

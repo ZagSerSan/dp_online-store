@@ -76,7 +76,7 @@ const Header = () => {
                   onMouseLeave={() => setAuthDropMenu(false)}
                   className='drop-menu'
                 >
-                  <NavLink to='/auth/login'>Profile</NavLink>
+                  <NavLink to='/profile'>Profile</NavLink>
                   <NavLink to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
                 </div>
             )
