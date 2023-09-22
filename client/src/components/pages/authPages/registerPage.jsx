@@ -4,9 +4,9 @@ import RadioField from '../../common/form/radioField'
 import CheckBoxField from '../../common/form/checkBoxField'
 import './auth.css'
 import authService from '../../../service/auth.service'
-import useStore from '../../../store/createStore'
 import { getRandomInt } from '../../../utils/helper'
-
+import useStore from '../../../store/createStore'
+import { Navigate, Link } from 'react-router-dom'
 
 const RegisterPage = () => {
   const [errors, setErrors] = useState({})
@@ -19,18 +19,26 @@ const RegisterPage = () => {
     licence: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
-  const { setAuthedUser } = useStore()
+  const { setAuthedUser, authorizated } = useStore()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    authService.register(data)
-    setAuthedUser(data)
+    try {
+      await authService.register(data)
+      setAuthedUser()
+    } catch (e) {
+      console.log('e', e)
+    }
   }
   const handleChange = ({ name, value }) => {
     setData(prev => ({
       ...prev,
       [name]: value
     }))
+  }
+
+  if (authorizated) {
+    return <Navigate to='/home'/>
   }
 
   return (
@@ -85,9 +93,9 @@ const RegisterPage = () => {
           >
             Register
           </button>
-          {/* <p className="mt-2">
-            If you have account, please <Link to="/Login">Sign in</Link>
-          </p> */}
+          <p className='relocate-msg'>
+            If you have account, please <Link to='/auth/login'>Login</Link>
+          </p>
         </form>
       {/* </div> */}
 

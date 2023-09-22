@@ -13,7 +13,8 @@ const Header = () => {
   const [authDropMenu, setAuthDropMenu] = useState(false)
   const searchInputRef = useRef()
   const [searchInputState, setSearchInputState] = useState(false)
-  const { authedUser } = useStore()
+  const { authedUser, logOut } = useStore()
+  // console.log('authedUser', authedUser)
 
   const handleSearch = () => {
     searchInputRef.current.classList.toggle('active')
@@ -76,7 +77,7 @@ const Header = () => {
                   className='drop-menu'
                 >
                   <NavLink to='/auth/login'>Profile</NavLink>
-                  <NavLink to='/auth/register' style={{color: 'red'}}>LogOut</NavLink>
+                  <NavLink to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
                 </div>
             )
             : (authDropMenu &&

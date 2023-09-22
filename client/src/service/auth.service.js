@@ -3,7 +3,6 @@ import axios from 'axios'
 // import userService from './users.service'
 import config from '../config.json'
 import localStorageService from './localStorage.service'
-// import useStore from '../store/createStore'
 
 const httpAuth = axios.create({
   baseURL: config.apiEndPoint + 'auth/',
@@ -20,16 +19,17 @@ const authService = {
     localStorageService.setTokens(data)
     return data
   },
-  // login: async (email, password) => {
-  //   // const url = 'accounts:signInWithPassword'
-  //   const url = 'signInWithPassword'
-  //   const { data } = await httpAuth.post(url, {
-  //     email,
-  //     password,
-  //     returnSecureToken: true
-  //   })
-  //   return data
-  // },
+  login: async ({ email, password }) => {
+    // const url = 'accounts:signInWithPassword'
+    const url = 'signInWithPassword'
+    const { data } = await httpAuth.post(url, {
+      email,
+      password,
+      returnSecureToken: true
+    })
+    localStorageService.setTokens(data)
+    return data
+  },
   // refresh: async () => {
   //   const { data } = await httpAuth.post('token', {
   //     grant_type: 'refresh_token',

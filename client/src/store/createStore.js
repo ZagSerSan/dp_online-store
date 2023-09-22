@@ -1,8 +1,12 @@
 import { create } from 'zustand'
 import productService from '../service/product.service'
+import userService from '../service/user.service'
+import localStorageService from '../service/localStorage.service'
 
 const useStore = create((set) => ({
   authedUser: null,
+  authorizated: false,
+  
   productsEntity: null,
   productsLoadingStatus: true,
 
@@ -11,8 +15,15 @@ const useStore = create((set) => ({
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoadingStatus: false}))
   },
-  setAuthedUser: (user) => {
-    set((state) => ({ authedUser: user}))
+  setAuthedUser: async () => {
+    const { content } = await userService.getCurrentUser()
+    set((state) => ({ authedUser: content }))
+    set((state) => ({ authorizated: true }))
+  },
+  logOut: () => {
+    localStorageService.removeAuthData()
+    set((state) => ({ authedUser: null }))
+    set((state) => ({ authorizated: false }))
   }
 }))
 

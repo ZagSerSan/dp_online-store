@@ -25,8 +25,8 @@ router.put('/:userId', auth, async (req, res) => {
     res.status(401).json({message: 'Unauthorized'})
   }
 })
-
-router.get('/', auth, async (req, res) => {
+// + "auth" middleware 
+router.get('/', async (req, res) => {
   try {
     const list = await User.find() 
     res.send(list)
@@ -38,5 +38,25 @@ router.get('/', auth, async (req, res) => {
     })
   }
 })
+router.get('/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params    
+
+    // if (userId === req.user._id) {
+      const authedUser = await User.findById(userId)
+      res.send(authedUser)
+    // } else {
+    //   res.status(401).json({
+    //     message: 'На сервере проихошла ошибка, попробуйте позже.',
+    //     errors: errors.array()
+    //   })
+    // }
+
+  } catch (e) {
+    console.log(chalk.red('error'), e)
+    res.status(401).json({message: 'Unauthorized'})
+  }
+})
+
 
 module.exports = router

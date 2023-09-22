@@ -86,3 +86,10 @@ form .radio-field {
 form .checkbox-field {
   margin: 20px 0 15px;
 }
+form .relocate-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #7e4c4f;
+}
