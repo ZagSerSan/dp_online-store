@@ -1,0 +1,28 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 100px;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  color: #f6ab44;
+  font-size: 38px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  color: #7e4c4f;
+  font-size: 22px;
+  font-weight: 400;
+}

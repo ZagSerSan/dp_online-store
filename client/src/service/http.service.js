@@ -85,7 +85,7 @@ function (error) {
     // если expectedErrors НЕ = 401, 404, ...
     // то ловим и показываем неожидаемые ошибки
     console.log('error :>> ', error)
-    toast.error(error.message + '. http.service -> line: 68')
+    // toast.error(error.message + '. http.service -> line: 68')
   }
   return Promise.reject(error)
 })

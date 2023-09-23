@@ -1,0 +1,22 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 500px;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 5px 0px #525252;
+          box-shadow: 0 0 5px 0px #525252;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+h1 {
+  margin: 0px auto;
+}

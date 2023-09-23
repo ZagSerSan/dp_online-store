@@ -1,21 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useStore from '../../../store/createStore'
 import PropTypes from 'prop-types'
 import Icon from '../../common/icon'
 import localStorageService from '../../../service/localStorage.service'
+// import { Navigate, useNavigate } from 'react-router-dom'
+import ErrorPage from '../../pages/errorPage/errorPage'
 
 const AppLoader = ({ children }) => {
   const { loadProductsList, productsLoadingStatus, setAuthedUser } = useStore()
+  const [error, setError] = useState(false)
   
-  useEffect(() => {
-    loadProductsList()
-    if (localStorageService.getAccessToken()) {
-      setAuthedUser()
+  const test = async () => {
+    try {
+      await loadProductsList()
+      if (localStorageService.getAccessToken()) {
+        await setAuthedUser()
+      }
+    } catch (error) {
+      console.log('appLoader log', error)
+      setError(true)
     }
+  }
+
+  useEffect(() => {
+    test()
   }, [])
 
-  if (productsLoadingStatus) {
+  if (productsLoadingStatus && !error) {
     return <Icon id='loader' />
+  } else if (error) {
+    return <ErrorPage/>
   } else {
     return children
   }
