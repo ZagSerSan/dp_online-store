@@ -124,6 +124,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .header-cart input {
   position: absolute;
@@ -150,6 +153,7 @@
 }
 .header-cart__icon {
   height: 40px;
+  margin-right: 15px;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -157,7 +161,7 @@
   transition: fill 0.15s linear;
 }
 .header-cart__icon svg {
-  height: 23px;
+  height: 27px;
 }
 .header-cart__icon path {
   -webkit-transition: stroke 0.15s linear;
@@ -169,25 +173,50 @@
 .header-cart__icon:hover:last-child path {
   stroke: #f6ab44;
 }
-.header-cart__icon:last-child {
-  margin-right: 0;
-}
 .header-cart__user-container {
   position: relative;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+.header-cart__user-container button {
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  -webkit-transition: fill 0.15s linear;
+  transition: fill 0.15s linear;
+}
+.header-cart__user-container button svg {
+  margin-top: 4px;
+  height: 27px;
+}
+.header-cart__user-container button path {
+  -webkit-transition: stroke 0.15s linear;
+  transition: stroke 0.15s linear;
+}
+.header-cart__user-container button:hover:not(:last-child) {
+  fill: #f6ab44;
+}
+.header-cart__user-container button:hover:last-child path {
+  stroke: #f6ab44;
 }
 .header-cart__user-container img {
-  width: 30px;
-  height: 30px;
+  width: 100%;
   border-radius: 50%;
   border: 1px #7e4c4f solid;
 }
-.header-cart__user-container div {
+.header-cart__user-container .drop-menu {
   position: absolute;
   top: 100%;
   left: 50%;
   z-index: 4;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  margin-top: 10px;
   padding: 15px;
   background-color: #fff;
   display: -webkit-box;
@@ -206,7 +235,7 @@
   -webkit-box-shadow: 0 0 5px 0px #525252;
           box-shadow: 0 0 5px 0px #525252;
 }
-.header-cart__user-container div a {
+.header-cart__user-container .drop-menu a {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #383838;
@@ -215,12 +244,12 @@
   -webkit-transition: color 0.1s linear;
   transition: color 0.1s linear;
 }
-.header-cart__user-container div a:hover {
+.header-cart__user-container .drop-menu a:hover {
   color: #f6ab44;
   text-decoration: none;
   opacity: 1;
 }
-.header-cart__user-container div a:last-child {
+.header-cart__user-container .drop-menu a:last-child {
   margin-bottom: 0;
 }
 

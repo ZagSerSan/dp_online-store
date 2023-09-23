@@ -28,15 +28,15 @@ const routes = [
   },
   {
     path: 'delivery',
-    element: <h1>delivery /</h1>,
+    element: <div className="my-container text-[40px]">delivery</div>,
   },
   {
     path: 'about',
-    element: <h1>about /</h1>,
+    element: <div className="my-container text-[40px]">about</div>,
   },
   {
     path: 'contacts',
-    element: <h1>contacts /</h1>,
+    element: <div className="my-container text-[40px]">contacts</div>,
   },
   {path: '*', element: <Navigate to='/'/>}
 ]

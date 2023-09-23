@@ -23,7 +23,7 @@ const Header = () => {
   }
 
   return (
-    <header className='container header'>
+    <header className='my-container header'>
       <div className='header-logo'>
         <img src={LOGO} alt="logo" />
       </div>
@@ -60,7 +60,7 @@ const Header = () => {
         </button>
         <div className='header-cart__user-container'>
           <button
-            className='header-cart__icon'
+            className=''
             onMouseEnter={() => setAuthDropMenu(true)}
             onMouseLeave={() => setAuthDropMenu(false)}
           >

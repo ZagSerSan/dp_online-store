@@ -27,7 +27,7 @@ const ProductsList = () => {
   return (
     <div className="popular">
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>
-      <div className="container">
+      <div className="my-container">
         {!type &&
           <>
             <h3 className="popular__toptitle">Most Populer</h3>

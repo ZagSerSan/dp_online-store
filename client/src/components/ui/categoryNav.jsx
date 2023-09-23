@@ -39,7 +39,7 @@ const CategoryNav = () => {
   ]
  
   return (
-    <div className="category-nav_HW container">
+    <div className="category-nav_HW my-container">
       <div className={'category-nav' + (type ? ' small' : '')}>
         {categories.map(item => (
           <Link

@@ -43,7 +43,7 @@ const Intro = () => {
   ]
   return (
     <div  className='intro'>
-      <Slider className='container' {...settings}>
+      <Slider className='my-container' {...settings}>
         {sliders.map(slider => (
           <div key={slider.alt}>
             <div className='slider-item'>

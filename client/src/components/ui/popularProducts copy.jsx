@@ -22,7 +22,7 @@ const PopularProducts = () => {
     <div className="popular">
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>
       {/* {modalState && <ProductModal modalState={modalState} onToggleState={setModalState}/>} */}
-      <div className="container">
+      <div className="my-container">
         <h3 className="popular__toptitle">Most Populer</h3>
         <h2 className="popular__bottomtitle">Recent Products</h2>
         <div className="popular-content">
