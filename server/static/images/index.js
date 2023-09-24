@@ -1,7 +1,13 @@
 const apiServerUrl = 'http://localhost:8080/' // если не продакшн версия то = ''
 
 //* ITEMS
-const IMG_ITEM_MAN = apiServerUrl + 'images/items/man_item.png'
+const IMG_ITEM_MAN_1 = apiServerUrl + 'images/items/man/1.png'
+const IMG_ITEM_MAN_2 = apiServerUrl + 'images/items/man/2.png'
+const IMG_ITEM_MAN_3 = apiServerUrl + 'images/items/man/3.png'
+const IMG_ITEM_MAN_4 = apiServerUrl + 'images/items/man/4.png'
+const IMG_ITEM_MAN_5 = apiServerUrl + 'images/items/man/5.png'
+const IMG_ITEM_MAN_6 = apiServerUrl + 'images/items/man/6.png'
+
 const IMG_ITEM_WOMAN = apiServerUrl + 'images/items/woman_item.png'
 const IMG_ITEM_CAR = apiServerUrl + 'images/items/car_item.png'
 
@@ -15,7 +21,12 @@ const DOT_IMG_3 = apiServerUrl + 'images/modal/s3.png'
 
 //* EXPORT
 module.exports = {
-  IMG_ITEM_MAN,
+  IMG_ITEM_MAN_1,
+  IMG_ITEM_MAN_2,
+  IMG_ITEM_MAN_3,
+  IMG_ITEM_MAN_4,
+  IMG_ITEM_MAN_5,
+  IMG_ITEM_MAN_6,
   IMG_ITEM_WOMAN,
   IMG_ITEM_CAR,
   PREVIEW_1,

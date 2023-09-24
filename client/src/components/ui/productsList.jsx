@@ -19,13 +19,15 @@ const ProductsList = () => {
   const [modalState, setModalState] = useState(false)
   modalState ? document.body.classList.add('modal-is-open') : document.body.classList.remove('modal-is-open')
   const [modalItem, setModalItem] = useState()
-  const handleItem = (item) => {
+  
+  const handleItem = (e, item) => {
+    e.stopPropagation()
     setModalState(true)
     setModalItem(item)
   }
 
   return (
-    <div className="popular">
+    <div className={'popular' + (type ? ' litle-padding' : '')}>
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>
       <div className="my-container">
         {!type &&
@@ -39,7 +41,7 @@ const ProductsList = () => {
             <ProductItem
               key={item._id}
               item={item}
-              onClick={()=>handleItem(item)}
+              onClick={(e)=>handleItem(e, item)}
             />
           ))}
         </div>

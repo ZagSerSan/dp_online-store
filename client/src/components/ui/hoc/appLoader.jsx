@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Icon from '../../common/icon'
 import localStorageService from '../../../service/localStorage.service'
 // import { Navigate, useNavigate } from 'react-router-dom'
-import ErrorPage from '../../pages/errorPage/errorPage'
+import ErrorPage from '../../pages/error'
 
 const AppLoader = ({ children }) => {
   const { loadProductsList, productsLoadingStatus, setAuthedUser } = useStore()

@@ -3,7 +3,8 @@ import { Link, NavLink } from 'react-router-dom'
 // css
 import './css/header.css'
 // components
-import LOGO from '../../assets/img/logo/logo.png'
+// import LOGO from '../../assets/img/logo/logo.png'
+import LOGO from '../../assets/img/logo/logoSapach.jpg'
 import Icon from '../common/icon'
 import { useRef } from 'react'
 import useStore from '../../store/createStore'

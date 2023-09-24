@@ -4,7 +4,7 @@ import { CategoryNav, ProductsList } from '../../ui'
 
 const CategoryPage = () => {
   return (
-    <div className="my-container">
+    <div className="">
       <CategoryNav />
       <ProductsList />
     </div>

@@ -6,7 +6,13 @@
 // const IMG_ITEM_WOMAN =  require('./items/woman_item.png')
 // const IMG_ITEM_CAR =  require('./items/car_item.png')
 
-const IMG_ITEM_MAN = '/src/api/fake.api/images/items/man_item.png'
+const IMG_MAN_ITEM_1 = 'images/items/man/1.png'
+const IMG_MAN_ITEM_2 = 'images/items/man/2.png'
+const IMG_MAN_ITEM_3 = 'images/items/man/3.png'
+const IMG_MAN_ITEM_4 = 'images/items/man/4.png'
+const IMG_MAN_ITEM_5 = 'images/items/man/5.png'
+const IMG_MAN_ITEM_6 = 'images/items/man/6.png'
+
 const IMG_ITEM_WOMAN =  '/src/api/fake.api/images/items/woman_item.png'
 const IMG_ITEM_CAR =  '/src/api/fake.api/images/items/car_item.png'
 
@@ -38,7 +44,7 @@ const DOT_IMG_3 = '/src/api/fake.api/images/modal/s3.png'
 
 //* EXPORT
 module.exports = {
-  IMG_ITEM_MAN,
+  IMG_MAN_ITEM_1,
   IMG_ITEM_WOMAN,
   IMG_ITEM_CAR,
   PREVIEW_1,

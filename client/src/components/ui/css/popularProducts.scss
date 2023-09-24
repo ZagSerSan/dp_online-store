@@ -1,7 +1,13 @@
 .popular {
   padding: 95px 0 70px;
   text-align: center;
-  background-color: #f6f6f6;
+  // background-color: #f6f6f6;
+  background-color: #fff;
+
+  &.litle-padding {
+    padding: 0px 0;
+  }
+
   &__toptitle {
     margin: 0 0 20px;
     font-family: "Pacifico", cursive;
@@ -25,23 +31,48 @@
 }
 
 .popular-item {
+  position: relative;
   width: 25%;
   text-align: left;
   padding: 0 15px;
   margin-bottom: 10px;
   border-radius: 10px;
+
   &:hover {
     .popular-item__img-popap {
       opacity: 1;
       top: 50%;
     }
     .popular-item__img img {
-      opacity: 0.8;
+      // opacity: 0.8;
+    }
+    .popular-item__img:before {
+      opacity: 0.5;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
     }
   }
 
   &__img {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      // top: 0;
+      // left: 0;
+      z-index: 1;
+      width: 35%;
+      height: 35%;
+      background-color: #000000;
+      opacity: 0;
+      transition: all 0.5s ease 0s;
+    }
     a {
       display: block;
       transition: background-color 0.3s ease 0s;

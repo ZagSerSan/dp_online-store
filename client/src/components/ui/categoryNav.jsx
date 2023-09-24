@@ -37,20 +37,30 @@ const CategoryNav = () => {
       styleClass: ' car-color'
     }
   ]
+
+  if (type) {
+    window.scrollTo({
+      top: 0,
+      // left: 100,
+      behavior: "smooth",
+    })
+  }
  
   return (
-    <div className="category-nav_HW my-container">
-      <div className={'category-nav' + (type ? ' small' : '')}>
-        {categories.map(item => (
-          <Link
-            key={item.id}
-            to={item.to}
-            className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}
-          >
-            <img src={item.img} alt={item.alt} />
-            <h3>{item.label}</h3>
-          </Link>
-          ))}
+    <div className={'category-nav_HW' + (type ? ' litle-padding' : '')}>
+      <div className="my-container">
+        <div className={'category-nav' + (type ? ' small' : '')}>
+          {categories.map(item => (
+            <Link
+              key={item.id}
+              to={item.to}
+              className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}
+            >
+              <img src={item.img} alt={item.alt} />
+              <h3>{item.label}</h3>
+            </Link>
+            ))}
+        </div>
       </div>
     </div>
   )

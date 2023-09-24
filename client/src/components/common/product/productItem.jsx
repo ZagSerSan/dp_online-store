@@ -1,16 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Icon from '../icon'
 
 const ProductItem = ({ item, onClick }) => {
-  const { _id, name, preview, title, price } = item
-  
+  const { _id, name, preview, title, price, type } = item
+  const navigate = useNavigate()
+
+  const openItemPage = (e) => {
+    e.stopPropagation()
+    navigate(`/category/${type}/${_id}`)
+  }
+
   return (
     <div key={_id} className="popular-item">
-      <div className="popular-item__img">
-        <Link to={`/category/${item.type}/_id`}>
+      <div onClick={openItemPage} className="popular-item__img">
+        {/* <Link to={`/category/${item.type}/_id`}> */}
           <img src={preview} alt={title} />
-        </Link>
+        {/* </Link> */}
         <div className="popular-item__img-popap">
           <button onClick={onClick}>
             <Icon id='view' data-modal='1'/>

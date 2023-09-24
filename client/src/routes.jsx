@@ -3,10 +3,13 @@ import { Navigate } from "react-router-dom"
 import Category from './layouts/category'
 import Home from './layouts/home'
 // import ProductModal from './components/common/product/productModal'
-import CategoryPage from "./components/pages/categoryPage"
-import LoginPage from "./components/pages/authPages/loginPage"
-import RegisterPage from "./components/pages/authPages/registerPage"
+import CategoryPage from "./components/pages/category"
+import LoginPage from "./components/pages/auth/loginPage"
+import RegisterPage from "./components/pages/auth/registerPage"
 import Profile from "./components/pages/profile/profile"
+import DeliveryPage from "./components/pages/delivery"
+import AboutPage from "./components/pages/about"
+import ItemPage from "./components/pages/item/itemPage"
 
 const routes = [
   {path: '/', element: <Home/>},
@@ -23,16 +26,23 @@ const routes = [
     path: 'category',
     children: [
       {path: '', element: <Category/>},
-      {path: ":type", element: <CategoryPage />},
+      {
+        path: ":type",
+        // element: <CategoryPage />,
+        children: [
+          {path: '', element: <CategoryPage />},
+          {path: ':itemId', element: <ItemPage />}
+        ]
+      },
     ]
   },
   {
     path: 'delivery',
-    element: <div className="my-container text-[40px]">delivery</div>,
+    element: <DeliveryPage />,
   },
   {
     path: 'about',
-    element: <div className="my-container text-[40px]">about</div>,
+    element: <AboutPage/>,
   },
   {
     path: 'contacts',
