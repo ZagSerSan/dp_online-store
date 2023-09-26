@@ -1,4 +1,14 @@
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  margin: 0px auto;
+  background-color: #fff;
+  padding: 15px 0;
+}
+.header__inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,8 +18,28 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 80px;
-  background-color: #fff;
+}
+.header.fixed {
+  position: fixed;
+  padding: 7px 0;
+  -webkit-animation: 0.4s fixedHeader forwards;
+          animation: 0.4s fixedHeader forwards;
+}
+@-webkit-keyframes fixedHeader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fixedHeader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .header-nav {

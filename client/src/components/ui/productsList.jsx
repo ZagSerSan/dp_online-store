@@ -25,7 +25,7 @@ const ProductsList = () => {
     setModalState(true)
     setModalItem(item)
   }
-
+  
   return (
     <div className={'popular' + (type ? ' litle-padding' : '')}>
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>

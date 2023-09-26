@@ -1,11 +1,34 @@
 //====================================================================================================
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
-	height: 80px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	margin: 0px auto;
 	background-color: #fff;
+	padding: 15px 0;
+
+	&__inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&.fixed {
+		position: fixed;
+		padding: 7px 0;
+
+		animation: 0.4s fixedHeader forwards;
+		@keyframes fixedHeader {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	}
 }
 
 // navigation

@@ -14,9 +14,7 @@ const ProductItem = ({ item, onClick }) => {
   return (
     <div key={_id} className="popular-item">
       <div onClick={openItemPage} className="popular-item__img">
-        {/* <Link to={`/category/${item.type}/_id`}> */}
-          <img src={preview} alt={title} />
-        {/* </Link> */}
+        <img src={preview} alt={title} />
         <div className="popular-item__img-popap">
           <button onClick={onClick}>
             <Icon id='view' data-modal='1'/>

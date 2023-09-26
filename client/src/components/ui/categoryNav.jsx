@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-// import categoriesApi from '../../api/fake.api/categories.api'
 import './css/categoryNav.css'
-// images
-import IMG_MAN from '../../assets/img/category-nav/manCateg.png' 
-import IMG_WOMAN from '../../assets/img/category-nav/womanCateg.png' 
-import IMG_CAR from '../../assets/img/category-nav/carCateg.png'
 
 const CategoryNav = () => {
   const { type } = useParams()
+  // images
+  const IMG_MAN = 'http://localhost:8080/images/category-nav/manCateg.png'
+  const IMG_WOMAN = 'http://localhost:8080/images/category-nav/womanCateg.png'
+  const IMG_CAR = 'http://localhost:8080/images/category-nav/carCateg.png'
+
   const categories = [
     {
       id: '1',

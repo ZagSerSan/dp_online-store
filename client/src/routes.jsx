@@ -9,6 +9,7 @@ import RegisterPage from "./components/pages/auth/registerPage"
 import Profile from "./components/pages/profile/profile"
 import DeliveryPage from "./components/pages/delivery"
 import AboutPage from "./components/pages/about"
+import ContactPage from "./components/pages/contact"
 import ItemPage from "./components/pages/item/itemPage"
 
 const routes = [
@@ -46,7 +47,7 @@ const routes = [
   },
   {
     path: 'contacts',
-    element: <div className="my-container text-[40px]">contacts</div>,
+    element: <ContactPage />,
   },
   {path: '*', element: <Navigate to='/'/>}
 ]

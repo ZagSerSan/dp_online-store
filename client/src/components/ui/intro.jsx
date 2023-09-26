@@ -2,11 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import './css/intro.css'
-// slick imgs
-import SLIDER_1 from '../../assets/img/intro/slider_1.png'
-import SLIDER_2 from '../../assets/img/intro/slider_2.png'
 
 const Intro = () => {
+  // slick imgs
+  const SLIDER_URL_1 = 'http://localhost:8080/images/intro/slider_1.png'
+  const SLIDER_URL_2 = 'http://localhost:8080/images/intro/slider_2.png'
+  const SLIDER_URL_3 = 'http://localhost:8080/images/intro/slider_3.png'
+  const SLIDER_URL_4 = 'http://localhost:8080/images/intro/slider_4.png'
+
   var settings = {
     dots: false,
     infinite: false,
@@ -17,25 +20,25 @@ const Intro = () => {
 
   const sliders = [
     {
-      src: SLIDER_1,
+      src: SLIDER_URL_1,
       supTitle: 'We keep pets for pleasure.',
       title: 'Food & Vitamins For all Pets',
       alt: 'slider_1'
     },
     {
-      src: SLIDER_2,
+      src: SLIDER_URL_2,
       supTitle: 'We keep pets for pleasure.',
       title: `Food & Vitamins For all Pets`,
       alt: 'slider_2'
     },
     {
-      src: SLIDER_1,
+      src: SLIDER_URL_3,
       supTitle: 'We keep pets for pleasure.',
       title: `Food & Vitamins For all Pets`,
       alt: 'slider_2'
     },
     {
-      src: SLIDER_2,
+      src: SLIDER_URL_4,
       supTitle: 'We keep pets for pleasure.',
       title: `Food & Vitamins For all Pets`,
       alt: 'slider_2'

@@ -7,7 +7,7 @@ import localStorageService from '../../../service/localStorage.service'
 import ErrorPage from '../../pages/error'
 
 const AppLoader = ({ children }) => {
-  const { loadProductsList, productsLoadingStatus, setAuthedUser } = useStore()
+  const { loadProductsList, productsLoadingStatus, setAuthedUser, setGlobalLoading } = useStore()
   const [error, setError] = useState(false)
   
   const test = async () => {
@@ -16,6 +16,7 @@ const AppLoader = ({ children }) => {
       if (localStorageService.getAccessToken()) {
         await setAuthedUser()
       }
+      setGlobalLoading()
     } catch (error) {
       console.log('appLoader log', error)
       setError(true)

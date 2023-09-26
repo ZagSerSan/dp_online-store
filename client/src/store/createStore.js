@@ -6,6 +6,7 @@ import localStorageService from '../service/localStorage.service'
 const useStore = create((set) => ({
   authedUser: null,
   authorizated: false,
+  globalLoading: true,
   
   productsEntity: null,
   productsLoadingStatus: true,
@@ -15,6 +16,7 @@ const useStore = create((set) => ({
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoadingStatus: false}))
   },
+  setGlobalLoading: () => set((state) => ({ globalLoading: false})),
   setAuthedUser: async () => {
     const { content } = await userService.getCurrentUser()
     set((state) => ({ authedUser: content }))

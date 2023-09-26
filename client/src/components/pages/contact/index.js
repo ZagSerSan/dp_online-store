@@ -1,2 +1,2 @@
-import ContactPage from './categoryPage'
+import ContactPage from './contactPage'
 export default ContactPage
