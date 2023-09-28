@@ -1,14 +1,9 @@
 // items
-const {
-  IMG_ITEM_MAN_1, IMG_ITEM_MAN_2, IMG_ITEM_MAN_3, IMG_ITEM_MAN_4, IMG_ITEM_MAN_5, IMG_ITEM_MAN_6,
-  IMG_ITEM_WOMAN,
-  IMG_ITEM_CAR
-} = require("../static/images")
-// modal
-const {
-  PREVIEW_1, PREVIEW_2, PREVIEW_3, PREVIEW_TEST,
-  DOT_IMG_1, DOT_IMG_2, DOT_IMG_3, DOT_IMG_TEST
-} = require("../static/images")
+const { manItems, womanItems, carItems } = require("../static/images")
+
+const { manItem1, manItem2, manItem3, manItem4, manItem5, manItem6 } = manItems
+const { womanItem1, womanItem2, womanItem3, womanItem4, womanItem5, womanItem6 } = womanItems
+const { carItem1, carItem2, carItem3, carItem4, carItem5, carItem6 } = carItems
 
 const products = [
   {
@@ -17,23 +12,27 @@ const products = [
     title: 'Some title',
     price: 14,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem1.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_MAN_1,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem1.list,
+    slider_dots: manItem1.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem1.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem1.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem1.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -44,23 +43,27 @@ const products = [
     title: 'Some title',
     price: 16,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: womanItem1.introSliderPreview
+    },
     rate: 3,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem1.list,
+    slider_dots: womanItem1.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem1.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem1.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem1.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -71,23 +74,27 @@ const products = [
     title: 'Some title',
     price: 18,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: carItem1.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem1.list,
+    slider_dots: carItem1.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem1.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem1.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem1.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -98,23 +105,27 @@ const products = [
     title: 'Some title',
     price: 20,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem2.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_MAN_2,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem2.list,
+    slider_dots: manItem2.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem2.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem2.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem2.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -125,23 +136,27 @@ const products = [
     title: 'Some title',
     price: 22,
     bookmark: false,
+    introSlider: {
+      switched: true,
+      slide: womanItem2.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem2.list,
+    slider_dots: womanItem2.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem2.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem2.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem2.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -152,23 +167,27 @@ const products = [
     title: 'Some title',
     price: 24,
     bookmark: false,
+    introSlider: {
+      switched: true,
+      slide: carItem2.introSliderPreview
+    },
     rate: 3,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem2.list,
+    slider_dots: carItem2.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem2.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem2.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem2.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -179,23 +198,27 @@ const products = [
     title: 'Some title',
     price: 26,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: womanItem3.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem3.list,
+    slider_dots: womanItem3.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem3.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem3.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem3.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -206,23 +229,27 @@ const products = [
     title: 'Some title',
     price: 28,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem3.introSliderPreview
+    },
     rate: 5,
-    preview: IMG_ITEM_MAN_3,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem3.list,
+    slider_dots: manItem3.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem3.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem3.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem3.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -233,23 +260,27 @@ const products = [
     title: 'Some title',
     price: 39,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: carItem3.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem3.list,
+    slider_dots: carItem3.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem3.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem3.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem3.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -260,23 +291,27 @@ const products = [
     title: 'Some title',
     price: 14,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem4.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_MAN_4,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem4.list,
+    slider_dots: manItem4.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem4.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem4.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem4.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -287,23 +322,27 @@ const products = [
     title: 'Some title',
     price: 16,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: womanItem4.introSliderPreview
+    },
     rate: 3,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem4.list,
+    slider_dots: womanItem4.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem4.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem4.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem4.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -314,23 +353,27 @@ const products = [
     title: 'Some title',
     price: 18,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: carItem4.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem4.list,
+    slider_dots: carItem4.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem4.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem4.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem4.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -341,23 +384,27 @@ const products = [
     title: 'Some title',
     price: 20,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem5.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_MAN_5,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem5.list,
+    slider_dots: manItem5.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem5.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem5.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem5.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -368,23 +415,27 @@ const products = [
     title: 'Some title',
     price: 22,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: womanItem5.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem5.list,
+    slider_dots: womanItem5.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem5.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem5.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem5.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -395,23 +446,27 @@ const products = [
     title: 'Some title',
     price: 24,
     bookmark: false,
+    introSlider: {
+      switched: true,
+      slide: carItem5.introSliderPreview
+    },
     rate: 3,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem5.list,
+    slider_dots: carItem5.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem5.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem5.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem5.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -422,23 +477,27 @@ const products = [
     title: 'Some title',
     price: 26,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: womanItem6.introSliderPreview
+    },
     rate: 4,
-    preview: IMG_ITEM_WOMAN,
-    slider_dots: [DOT_IMG_2, DOT_IMG_1, DOT_IMG_3],
+    preview: womanItem6.list,
+    slider_dots: womanItem6.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_2,
+        preview: womanItem6.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: womanItem6.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: womanItem6.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -449,23 +508,27 @@ const products = [
     title: 'Some title',
     price: 28,
     bookmark: false,
+    introSlider: {
+      switched: false,
+      // slide: manItem6.introSliderPreview
+    },
     rate: 5,
-    preview: IMG_ITEM_MAN_6,
-    slider_dots: [DOT_IMG_1, DOT_IMG_2, DOT_IMG_3],
+    preview: manItem6.list,
+    slider_dots: manItem6.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_1,
+        preview: manItem6.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_2,
+        preview: manItem6.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_3,
+        preview: manItem6.modalPreviews.slide3,
         title: 'Some title'
       }
     ]
@@ -476,23 +539,27 @@ const products = [
     title: 'Some title',
     price: 39,
     bookmark: false,
+    introSlider: {
+      switched: true,
+      slide: carItem6.introSliderPreview
+    },
     rate: 2,
-    preview: IMG_ITEM_CAR,
-    slider_dots: [DOT_IMG_3, DOT_IMG_1, DOT_IMG_2],
+    preview: carItem6.list,
+    slider_dots: carItem6.dots,
     slider: [
       {
         id: 'slider_1',
-        preview: PREVIEW_3,
+        preview: carItem6.modalPreviews.slide1,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: PREVIEW_1,
+        preview: carItem6.modalPreviews.slide2,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: PREVIEW_2,
+        preview: carItem6.modalPreviews.slide3,
         title: 'Some title'
       }
     ]

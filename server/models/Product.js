@@ -6,6 +6,7 @@ const schema = new Schema({
   title: {type: String, required: true},
   price: {type: Number, required: true},
   bookmark: {type: Boolean, required: true},
+  introSlider: {type: Object, required: false},
   rate: {type: Number, required: true},
   bookmark: {type: Boolean, required: true},
   preview: {type: String, required: true},

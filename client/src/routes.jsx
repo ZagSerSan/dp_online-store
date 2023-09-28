@@ -29,10 +29,9 @@ const routes = [
       {path: '', element: <Category/>},
       {
         path: ":type",
-        // element: <CategoryPage />,
         children: [
           {path: '', element: <CategoryPage />},
-          {path: ':itemId', element: <ItemPage />}
+          {path: ':itemId', element: <ItemPage />},
         ]
       },
     ]
