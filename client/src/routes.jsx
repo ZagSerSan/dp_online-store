@@ -11,9 +11,11 @@ import DeliveryPage from "./components/pages/delivery"
 import AboutPage from "./components/pages/about"
 import ContactPage from "./components/pages/contact"
 import ItemPage from "./components/pages/item/itemPage"
+import FavouritesPage from "./components/pages/favourites/favouritesPage"
 
 const routes = [
   {path: '/', element: <Home/>},
+  {path: 'favourites', element: <FavouritesPage />},
   {path: 'profile', element: <Profile />},
   {
     path: 'auth',

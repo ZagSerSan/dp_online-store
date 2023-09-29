@@ -30,7 +30,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className='mt-[15px]'>
-                <NavLink  avLink to='/auth/login' onClick={logOut} className='text-[red] text-[20px] mt-[20px]'>LogOut</NavLink>
+                <NavLink to='/auth/login' onClick={logOut} className='text-[red] text-[20px] mt-[20px]'>LogOut</NavLink>
               </div>
             </div>
             

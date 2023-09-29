@@ -8,6 +8,7 @@ const schema = new Schema({
 	image: {type: String},
 	// rate: Number,
 	sex: {type: String, enum: ['male', 'female', 'other']},
+	bookmarks: {type: Schema.Types.Array},
 	// profession: {type: Schema.Types.ObjectId, ref: 'Profession'},
 	// qualities: [{type: Schema.Types.ObjectId, ref: 'Quality'}],
 }, {

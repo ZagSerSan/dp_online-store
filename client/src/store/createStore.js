@@ -16,12 +16,12 @@ const useStore = create((set) => ({
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoadingStatus: false}))
   },
-  setBookmarkForProduct: (newItemData) => set((state) => {
-    const filteredEntities = state.productsEntity.filter(item => item._id !== newItemData._id)
-    const newEntities = [...filteredEntities, newItemData]
-    return { productsEntity: newEntities }
-  }),
-
+  // setBookmarkForProduct: (newItemData) => set((state) => {
+  //   const filteredEntities = state.productsEntity.filter(item => item._id !== newItemData._id)
+  //   const newEntities = [...filteredEntities, newItemData]
+  //   return { productsEntity: newEntities }
+  // }),
+  updAuthedUser: (newUserData) => set((state) => ({ authedUser: newUserData })),
   setGlobalLoading: () => set((state) => ({ globalLoading: false})),
   setAuthedUser: async () => {
     const { content } = await userService.getCurrentUser()

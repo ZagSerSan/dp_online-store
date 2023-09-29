@@ -11,7 +11,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 14,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem1.introSliderPreview
@@ -42,7 +41,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 16,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: womanItem1.introSliderPreview
@@ -73,7 +71,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 18,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: carItem1.introSliderPreview
@@ -104,7 +101,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 20,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem2.introSliderPreview
@@ -135,7 +131,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 22,
-    bookmark: false,
     introSlider: {
       switched: true,
       slide: womanItem2.introSliderPreview
@@ -166,7 +161,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 24,
-    bookmark: false,
     introSlider: {
       switched: true,
       slide: carItem2.introSliderPreview
@@ -197,7 +191,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 26,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: womanItem3.introSliderPreview
@@ -228,7 +221,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 28,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem3.introSliderPreview
@@ -259,7 +251,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 39,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: carItem3.introSliderPreview
@@ -290,7 +281,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 14,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem4.introSliderPreview
@@ -321,7 +311,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 16,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: womanItem4.introSliderPreview
@@ -352,7 +341,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 18,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: carItem4.introSliderPreview
@@ -383,7 +371,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 20,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem5.introSliderPreview
@@ -414,7 +401,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 22,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: womanItem5.introSliderPreview
@@ -445,7 +431,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 24,
-    bookmark: false,
     introSlider: {
       switched: true,
       slide: carItem5.introSliderPreview
@@ -476,7 +461,6 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 26,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: womanItem6.introSliderPreview
@@ -507,7 +491,6 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 28,
-    bookmark: false,
     introSlider: {
       switched: false,
       // slide: manItem6.introSliderPreview
@@ -538,7 +521,6 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 39,
-    bookmark: false,
     introSlider: {
       switched: true,
       slide: carItem6.introSliderPreview

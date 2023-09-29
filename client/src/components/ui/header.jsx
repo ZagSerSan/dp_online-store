@@ -91,6 +91,7 @@ const Header = () => {
                     className='drop-menu'
                   >
                     <NavLink to='/profile'>Profile</NavLink>
+                    <NavLink to='/favourites'>Favourites</NavLink>
                     <NavLink to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
                   </div>
               )

@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import _ from 'lodash'
 // css, api
 import './css/popularProducts.css'
 import useStore from '../../store/createStore'
 // components
 import ProductItem from '../common/product/productItem'
 import ProductModal from '../common/product/productModal'
-import { useParams } from 'react-router-dom'
 
 const ProductsList = () => {
   const { type } = useParams()
   // store entities
   const { productsEntity } = useStore()
-  const filteredProductsByType = type
-    ? productsEntity.filter(item => item.type === type)
-    : productsEntity
 
   // product modal state and body scroll
   const [modalState, setModalState] = useState(false)
@@ -25,6 +23,14 @@ const ProductsList = () => {
     setModalState(true)
     setModalItem(item)
   }
+
+  const filteredProductsByType = type
+    ? productsEntity.filter(item => item.type === type)
+    : productsEntity
+  
+  // Sort by `user` in ascending order and by `age` in descending order.
+  const sortedProducts = _.orderBy(filteredProductsByType, ['name'], ['asc'])
+  // console.log('sortedProducts :>> ', sortedProducts)
   
   return (
     <div className={'popular' + (type ? ' litle-padding' : '')}>
@@ -37,7 +43,7 @@ const ProductsList = () => {
           </>
         }
         <div className="popular-content">
-          {filteredProductsByType.map(item => (
+          {sortedProducts.map(item => (
             <ProductItem
               key={item._id}
               item={item}
