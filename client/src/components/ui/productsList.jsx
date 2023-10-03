@@ -7,6 +7,7 @@ import useStore from '../../store/createStore'
 // components
 import ProductItem from '../common/product/productItem'
 import ProductModal from '../common/product/productModal'
+import Icon from '../common/icon'
 
 const ProductsList = ({role = ''}) => {
   const { type } = useParams()
@@ -18,7 +19,42 @@ const ProductsList = ({role = ''}) => {
   modalState ? document.body.classList.add('modal-is-open') : document.body.classList.remove('modal-is-open')
   const [modalItem, setModalItem] = useState()
 
-  const handleItem = (e, item) => {
+  // todo
+  const addToCart = (e, item) => {
+    e.stopPropagation()
+    
+    const target = e.target
+    const targetCoords = target.getBoundingClientRect()
+    // const modalWindowEl = document.querySelector('.product-modal__wrapper')
+    const testWindowEl = document.querySelector('.test')
+    const cartElement = document.querySelector('[data-cart="cart"]')
+
+    const cartCoords = cartElement.getBoundingClientRect()
+    
+    // const prodItem_height = document.querySelector('.popular-item__img').clientHeight
+    testWindowEl.style.top = `${targetCoords.top}px`
+    testWindowEl.style.left = `${targetCoords.left}px`
+    testWindowEl.style.height = `30px`
+    testWindowEl.style.width = `30px`
+    //todo вставить изображение вместо красного фона
+
+    setTimeout(() => {
+      testWindowEl.classList.add('active')
+    }, 100);
+    setTimeout(() => {
+      testWindowEl.style.top = `${cartCoords.top}px`
+      testWindowEl.style.left = `${cartCoords.left}px`
+      // testWindowEl.style.height = '30px'
+      // testWindowEl.style.width = '30px'
+      testWindowEl.style.transform = 'rotateZ(45deg)'
+    }, 150)
+    setTimeout(() => {
+      testWindowEl.style.transform = 'rotateZ(0deg)'
+      testWindowEl.classList.remove('active')
+    }, 850);
+  }
+
+  const showItem = (e, item) => {
     e.stopPropagation()
     setModalState(true)
     setModalItem(item)
@@ -48,6 +84,9 @@ const ProductsList = ({role = ''}) => {
 
   return (
     <div className={'popular' + (type ? ' litle-padding' : '')}>
+      <div className='test'>
+        <Icon id='cart'/>
+      </div>
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>
       <div className="my-container">
         {!type &&
@@ -61,7 +100,8 @@ const ProductsList = ({role = ''}) => {
             <ProductItem
               key={item._id}
               item={item}
-              onClick={(e)=>handleItem(e, item)}
+              onShow={(e)=>showItem(e, item)}
+              onAddCart={(e)=>addToCart(e, item)}
             />
           ))}
         </div>

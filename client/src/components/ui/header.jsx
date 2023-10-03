@@ -110,7 +110,7 @@ const Header = () => {
             }
             
           </div>
-          <button className='header-panel__icon'>
+          <button className='header-panel__icon' data-cart='cart'>
             <Icon id='cart'/>
           </button>
         </div>

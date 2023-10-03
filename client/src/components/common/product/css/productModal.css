@@ -13,6 +13,7 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .product-modal.active {
   display: block;
@@ -21,18 +22,18 @@
 }
 @-webkit-keyframes openProductModal {
   from {
-    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
   }
   to {
-    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
   }
 }
 @keyframes openProductModal {
   from {
-    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
   }
   to {
-    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
   }
 }
 .product-modal.active .product-modal__wrapper {
@@ -67,18 +68,22 @@
 }
 @-webkit-keyframes closeProductModal {
   from {
+    opacity: 1;
     background-color: rgba(0, 0, 0, 0.8);
   }
   to {
     background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
   }
 }
 @keyframes closeProductModal {
   from {
+    opacity: 1;
     background-color: rgba(0, 0, 0, 0.8);
   }
   to {
     background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
   }
 }
 .product-modal.active.hiding .product-modal__wrapper {
@@ -232,4 +237,21 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+.test.active {
+  display: block;
+  opacity: 1;
+  -webkit-transition: all 0.7s linear;
+  transition: all 0.7s linear;
 }

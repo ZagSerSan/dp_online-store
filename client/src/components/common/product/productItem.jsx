@@ -4,7 +4,7 @@ import Icon from '../icon'
 import useStore from '../../../store/createStore'
 import userService from '../../../service/user.service'
 
-const ProductItem = ({ item, onClick }) => {
+const ProductItem = ({ item, onShow, onAddCart }) => {
   const { _id, name, preview, title, price, type } = item
   const navigate = useNavigate()
   const { authedUser, updAuthedUser } = useStore()
@@ -49,13 +49,14 @@ const ProductItem = ({ item, onClick }) => {
 
   return (
     <div key={_id} className="popular-item">
+      {/* <img className='test' src={preview} alt="" /> */}
       <div onClick={openItemPage} className="popular-item__img">
         <img src={preview} alt={title} />
         <div className="popular-item__img-popap">
-          <button onClick={onClick}>
+          <button onClick={onShow}>
             <Icon id='view' data-modal='1'/>
           </button>
-          <button>
+          <button onClick={onAddCart}>
             <Icon id='cart'/>
           </button>
         </div>
