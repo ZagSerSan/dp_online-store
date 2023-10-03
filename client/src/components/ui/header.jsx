@@ -41,6 +41,7 @@ const Header = () => {
         <div className='header-logo'>
           <img src={LOGO_URL} alt="logo" />
         </div>
+
         <nav>
           <ul className='header-nav'>
             <li className='header-nav__link'><Link to="/">Home</Link></li>
@@ -67,12 +68,13 @@ const Header = () => {
             <li className='header-nav__link'><Link to="/contacts">Contacts</Link></li>
           </ul>
         </nav>
-        <div className='header-cart'>
+        
+        <div className='header-panel'>
           <input ref={searchInputRef} type="text" className=''/>
-          <button className='header-cart__icon' onClick={handleSearch}>
+          <button className='header-panel__icon' onClick={handleSearch}>
             {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
-          <div className='header-cart__user-container'>
+          <div className='header-panel__user-container'>
             <button
               className=''
               onMouseEnter={() => setAuthDropMenu(true)}
@@ -108,7 +110,7 @@ const Header = () => {
             }
             
           </div>
-          <button className='header-cart__icon'>
+          <button className='header-panel__icon'>
             <Icon id='cart'/>
           </button>
         </div>

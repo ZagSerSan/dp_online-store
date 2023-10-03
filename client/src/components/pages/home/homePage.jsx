@@ -6,7 +6,7 @@ const HomePage = () => {
     <>
       <Intro/>
       <CategoryNav />
-      <ProductsList/>
+      <ProductsList role='homePage'/>
     </>
   )
 }

@@ -8,7 +8,7 @@ import useStore from '../../store/createStore'
 import ProductItem from '../common/product/productItem'
 import ProductModal from '../common/product/productModal'
 
-const ProductsList = () => {
+const ProductsList = ({role = ''}) => {
   const { type } = useParams()
   // store entities
   const { productsEntity } = useStore()
@@ -17,21 +17,35 @@ const ProductsList = () => {
   const [modalState, setModalState] = useState(false)
   modalState ? document.body.classList.add('modal-is-open') : document.body.classList.remove('modal-is-open')
   const [modalItem, setModalItem] = useState()
-  
+
   const handleItem = (e, item) => {
     e.stopPropagation()
     setModalState(true)
     setModalItem(item)
+
+    // open modal window animation
+    const target = e.target
+    const targetCoords = target.getBoundingClientRect()
+    const modalWindow = document.querySelector('.product-modal__wrapper')
+    const prodItem_height = document.querySelector('.popular-item__img').clientHeight
+    
+    modalWindow.style.top = `${targetCoords.top - 130}px`
+    modalWindow.style.left = `${targetCoords.left - 90}px`
+    modalWindow.style.height = `${prodItem_height}px`
+    modalWindow.style.width = `${prodItem_height}px`
   }
 
-  const filteredProductsByType = type
+  let filteredProductsByType = type
     ? productsEntity.filter(item => item.type === type)
     : productsEntity
-  
-  // Sort by `user` in ascending order and by `age` in descending order.
-  const sortedProducts = _.orderBy(filteredProductsByType, ['name'], ['asc'])
-  // console.log('sortedProducts :>> ', sortedProducts)
-  
+
+  let sortedProducts = _.orderBy(filteredProductsByType, ['name'], ['asc'])
+
+  if (role === 'homePage') {
+    sortedProducts = _.orderBy(sortedProducts, ['rate'], ['desc'])
+    sortedProducts.splice(8, sortedProducts.length)
+  }
+
   return (
     <div className={'popular' + (type ? ' litle-padding' : '')}>
       <ProductModal item={modalItem} modalState={modalState} onToggleState={setModalState}/>

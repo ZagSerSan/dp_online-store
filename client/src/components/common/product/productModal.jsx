@@ -31,15 +31,15 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
 
   // modal close func
   const closeModal = () => {
-    const el = document.querySelector('.product-modal')
-    el.classList.add('hiding')
+    const modalBg_el = document.querySelector('.product-modal')
+    modalBg_el.classList.add('hiding')
     setTimeout(() => {
       onToggleState(false)
     }, 400)
   }
   // сброс положение слайдера в модалке
   if (!modalState) {
-    item = undefined
+    item = null
   }
 
   return (
@@ -47,19 +47,26 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
       <div className="product-modal__wrapper">
         <button className='product-modal__close' onClick={closeModal}><Icon id={'close'}/></button>
           {item && (
-            <div className="product-modal-preview">
-              <Slider {...settings}>
-                {item.slider.map(item => (
-                  <div key={item.id}>
-                    <div className='item-item'>
-                      <img src={item.preview} alt={item.title} />
+            <>
+              <div className="product-modal-preview">
+                <Slider {...settings}>
+                  {item.slider.map(item => (
+                    <div key={item.id}>
+                      <div className='item-item'>
+                        <img src={item.preview} alt={item.title} />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
+                  ))}
+                </Slider>
+              </div>
+
+              <div className="product-modal-content">
+                <h3 className="product-modal-content__name">{item.name}</h3>
+                <p className="product-modal-content__price">${item.price}.00</p>
+                <p className="product-modal-content__description">{item.description}</p>
+              </div>
+            </>
           )}
-        <div className="product-modal-content"></div>
       </div>
     </div>
   )

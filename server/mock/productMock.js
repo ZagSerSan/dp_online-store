@@ -11,11 +11,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 14,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem1.introSliderPreview
     },
-    rate: 4,
     preview: manItem1.list,
     slider_dots: manItem1.dots,
     slider: [
@@ -41,11 +42,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 16,
+    rate: 3,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: womanItem1.introSliderPreview
     },
-    rate: 3,
     preview: womanItem1.list,
     slider_dots: womanItem1.dots,
     slider: [
@@ -71,11 +73,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 18,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: carItem1.introSliderPreview
     },
-    rate: 4,
     preview: carItem1.list,
     slider_dots: carItem1.dots,
     slider: [
@@ -101,11 +104,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 20,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem2.introSliderPreview
     },
-    rate: 2,
     preview: manItem2.list,
     slider_dots: manItem2.dots,
     slider: [
@@ -131,11 +135,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 22,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: true,
       slide: womanItem2.introSliderPreview
     },
-    rate: 2,
     preview: womanItem2.list,
     slider_dots: womanItem2.dots,
     slider: [
@@ -161,11 +166,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 24,
+    rate: 5,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: true,
       slide: carItem2.introSliderPreview
     },
-    rate: 3,
     preview: carItem2.list,
     slider_dots: carItem2.dots,
     slider: [
@@ -191,11 +197,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 26,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: womanItem3.introSliderPreview
     },
-    rate: 4,
     preview: womanItem3.list,
     slider_dots: womanItem3.dots,
     slider: [
@@ -221,11 +228,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 28,
+    rate: 5,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem3.introSliderPreview
     },
-    rate: 5,
     preview: manItem3.list,
     slider_dots: manItem3.dots,
     slider: [
@@ -251,11 +259,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 39,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: carItem3.introSliderPreview
     },
-    rate: 2,
     preview: carItem3.list,
     slider_dots: carItem3.dots,
     slider: [
@@ -281,11 +290,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 14,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem4.introSliderPreview
     },
-    rate: 4,
     preview: manItem4.list,
     slider_dots: manItem4.dots,
     slider: [
@@ -311,11 +321,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 16,
+    rate: 3,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: womanItem4.introSliderPreview
     },
-    rate: 3,
     preview: womanItem4.list,
     slider_dots: womanItem4.dots,
     slider: [
@@ -341,11 +352,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 18,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: carItem4.introSliderPreview
     },
-    rate: 4,
     preview: carItem4.list,
     slider_dots: carItem4.dots,
     slider: [
@@ -371,11 +383,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 20,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem5.introSliderPreview
     },
-    rate: 2,
     preview: manItem5.list,
     slider_dots: manItem5.dots,
     slider: [
@@ -401,11 +414,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 22,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: womanItem5.introSliderPreview
     },
-    rate: 2,
     preview: womanItem5.list,
     slider_dots: womanItem5.dots,
     slider: [
@@ -431,11 +445,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 24,
+    rate: 3,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: true,
       slide: carItem5.introSliderPreview
     },
-    rate: 3,
     preview: carItem5.list,
     slider_dots: carItem5.dots,
     slider: [
@@ -461,11 +476,12 @@ const products = [
     type: 'woman',
     title: 'Some title',
     price: 26,
+    rate: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: womanItem6.introSliderPreview
     },
-    rate: 4,
     preview: womanItem6.list,
     slider_dots: womanItem6.dots,
     slider: [
@@ -491,11 +507,12 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 28,
+    rate: 5,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: false,
       // slide: manItem6.introSliderPreview
     },
-    rate: 5,
     preview: manItem6.list,
     slider_dots: manItem6.dots,
     slider: [
@@ -521,11 +538,12 @@ const products = [
     type: 'car',
     title: 'Some title',
     price: 39,
+    rate: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
     introSlider: {
       switched: true,
       slide: carItem6.introSliderPreview
     },
-    rate: 2,
     preview: carItem6.list,
     slider_dots: carItem6.dots,
     slider: [

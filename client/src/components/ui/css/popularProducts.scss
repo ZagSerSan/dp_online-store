@@ -149,3 +149,34 @@
     margin: 0 12px 0 0;
   }
 }
+
+//todo
+
+.test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 270px;
+  width: 270px;
+  background-color: red;
+  z-index: 10;
+
+  &.active {
+    animation: 3s alternate forwards openTestModal;
+    animation-delay: 2s;
+    @keyframes openTestModal {
+      from {
+        // background-color: red;
+
+        // top: 0;
+        // left: 0;
+      }
+      to {
+        background-color: green;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+  }
+}

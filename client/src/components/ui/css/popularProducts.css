@@ -154,3 +154,37 @@
   font-weight: 500;
   margin: 0 12px 0 0;
 }
+
+.test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 270px;
+  width: 270px;
+  background-color: red;
+  z-index: 10;
+}
+.test.active {
+  -webkit-animation: 3s alternate forwards openTestModal;
+          animation: 3s alternate forwards openTestModal;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+@-webkit-keyframes openTestModal {
+  to {
+    background-color: green;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+  }
+}
+@keyframes openTestModal {
+  to {
+    background-color: green;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+  }
+}
