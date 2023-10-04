@@ -239,7 +239,7 @@
   display: flex;
 }
 
-.test {
+.cart-helper {
   position: fixed;
   top: 0;
   left: 0;
@@ -249,7 +249,7 @@
   height: 0px;
   opacity: 0;
 }
-.test.active {
+.cart-helper.active {
   display: block;
   opacity: 1;
   -webkit-transition: all 0.7s linear;

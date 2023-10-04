@@ -1,63 +1,102 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Icon from '../icon'
 import useStore from '../../../store/createStore'
 import userService from '../../../service/user.service'
+import { cartAnimation } from '../../../utils/cartAnimation'
 
-const ProductItem = ({ item, onShow, onAddCart }) => {
+const ProductItem = ({ item, setModalState, setModalItem }) => {
   const { _id, name, preview, title, price, type } = item
   const navigate = useNavigate()
-  const { authedUser, updAuthedUser } = useStore()
-  const isBookmarked = authedUser?.bookmarks.includes(_id)
+  const { authedUser, updAuthedUser, localUser, updLocalUserBookmarks, updLocalUserCart } = useStore()
+  const [cartHover, setCartHover] = useState(false)
+
+  const isBookmarked = authedUser
+    ? authedUser.bookmarks.includes(_id)
+    : (localUser ? localUser.bookmarks?.includes(_id) : false)
+  const isInCart = authedUser
+    ? authedUser.cart.includes(_id)
+    : (localUser ? localUser.cart?.includes(_id) : false)
 
   const openItemPage = (e) => {
     e.stopPropagation()
     navigate(`/category/${type}/${_id}`)
   }
 
-  // const toggleBookmark = async (e, item) => {
-    // console.log('e.target :>> ', e.target)
-    // console.log('item :>> ', item)
-    // e.stopPropagation()
-    // const newItemData = {
-    //   ...item,
-    //   bookmark: item.bookmark === true ? false : true
-    // }
-    // try {
-    //   const { content } = await productService.toggleBookmark(newItemData)
-    //   setBookmarkForProduct(content)
-    // } catch (e) {
-    //   console.log('e :>> ', e)
-    // }
-  // }
+  const addToCart = async (e, id) => {
+    e.stopPropagation()
+    cartAnimation(e.target, isInCart)
+    if (authedUser) {
+      try {
+        const newUserData = {
+          ...authedUser,
+          cart: authedUser.cart.includes(id)
+            ? authedUser.cart.filter(item => item !== id)
+            : [...authedUser.cart, id]
+        }
+        const { content } = await userService.updateUser(newUserData)
+        updAuthedUser(content)
+      } catch (e) {
+        console.log('e :>> ', e)
+      }
+    } else {
+      updLocalUserCart(id)
+    }
+  }
+  const showItem = (e, item) => {
+    e.stopPropagation()
+    setModalState(true)
+    setModalItem(item)
+
+    // open modal window animation
+    const target = e.target
+    const targetCoords = target.getBoundingClientRect()
+    const modalWindow = document.querySelector('.product-modal__wrapper')
+    const prodItem_height = document.querySelector('.popular-item__img').clientHeight
+    
+    modalWindow.style.top = `${targetCoords.top - 130}px`
+    modalWindow.style.left = `${targetCoords.left - 90}px`
+    modalWindow.style.height = `${prodItem_height}px`
+    modalWindow.style.width = `${prodItem_height}px`
+  }
 
   const toggleBookmark = async (e, id) => {
     e.stopPropagation()
-    try {
-      const newUserData = {
-        ...authedUser,
-        bookmarks: authedUser.bookmarks.includes(id)
-          ? authedUser.bookmarks.filter(item => item !== id)
-          : [...authedUser.bookmarks, id]
+    if (authedUser) {
+      try {
+        const newUserData = {
+          ...authedUser,
+          bookmarks: authedUser.bookmarks.includes(id)
+            ? authedUser.bookmarks.filter(item => item !== id)
+            : [...authedUser.bookmarks, id]
+        }
+        const { content } = await userService.updateUser(newUserData)
+        updAuthedUser(content)
+      } catch (e) {
+        console.log('e :>> ', e)
       }
-      const { content } = await userService.updateUser(newUserData)
-      updAuthedUser(content)
-    } catch (e) {
-      console.log('e :>> ', e)
+    } else {
+      updLocalUserBookmarks(id)
     }
   }
 
   return (
     <div key={_id} className="popular-item">
-      {/* <img className='test' src={preview} alt="" /> */}
       <div onClick={openItemPage} className="popular-item__img">
         <img src={preview} alt={title} />
         <div className="popular-item__img-popap">
-          <button onClick={onShow}>
+          <button onClick={(e) => showItem(e, item)}>
             <Icon id='view' data-modal='1'/>
           </button>
-          <button onClick={onAddCart}>
-            <Icon id='cart'/>
+          <button
+            onClick={(e) => addToCart(e, item._id)}
+            onMouseEnter={() => setCartHover(true)}
+            onMouseLeave={() => setCartHover(false)}
+          >
+            {isInCart
+              ? (cartHover ? <Icon id='cart-del'/> : <Icon id='cart-check'/>)
+              : (cartHover ? <Icon id='cart-add'/> : <Icon id='cart-init'/>)
+            }
           </button>
         </div>
       </div>

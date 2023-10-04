@@ -111,6 +111,9 @@ const Header = () => {
             
           </div>
           <button className='header-panel__icon' data-cart='cart'>
+            <div className="card-index">
+              {authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null}
+            </div>
             <Icon id='cart'/>
           </button>
         </div>

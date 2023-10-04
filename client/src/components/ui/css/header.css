@@ -182,6 +182,7 @@
   width: 200px;
 }
 .header-panel__icon {
+  position: relative;
   height: 40px;
   margin-right: 15px;
   background-color: transparent;
@@ -202,6 +203,16 @@
 }
 .header-panel__icon:hover:last-child path {
   stroke: #f6ab44;
+}
+.header-panel__icon .card-index {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 1;
+  color: #7e4c4f;
+  width: 10px;
+  height: 10px;
 }
 .header-panel__user-container {
   position: relative;

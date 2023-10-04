@@ -29,13 +29,58 @@ export function removeAuthData() {
   localStorage.removeItem(LOCAL_ID)
 }
 
+// todo
+export function removeLocalUser() {
+  localStorage.removeItem('cart')
+  localStorage.removeItem('bookmarks')
+}
+export function setCart(id) {
+  let isContain = Boolean(localStorage.getItem('cart'))
+  let cart = []
+  if (isContain) {
+    cart = JSON.parse(localStorage.getItem('cart'))
+    const updatedCart = cart.includes(id)
+      ? cart.filter(item => item !== id)
+      : [...cart, id]
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+    // для стейта localUser
+    return updatedCart
+  } else {
+    cart.push(id)
+    localStorage.setItem('cart', JSON.stringify(cart))
+    // для стейта localUser
+    return cart
+  }
+}
+export function setBookmarks(id) {
+  let isContain = Boolean(localStorage.getItem('bookmarks'))
+  let bookmarks = []
+  if (isContain) {
+    bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
+    const updatedBookmarks = bookmarks.includes(id)
+      ? bookmarks.filter(item => item !== id)
+      : [...bookmarks, id]
+    localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks))
+    // для стейта localUser
+    return updatedBookmarks
+  } else {
+    bookmarks.push(id)
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+    // для стейта localUser
+    return bookmarks
+  }
+}
+
 const localStorageService = {
   setTokens,
   getAccessToken,
   getRefreshToken,
   getTokenExpirensData,
   getUserId,
-  removeAuthData
+  removeAuthData,
+  setBookmarks,
+  setCart,
+  removeLocalUser
 }
 
 export default localStorageService

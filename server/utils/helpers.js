@@ -8,6 +8,7 @@ function generateUserData() {
     //   .toString(36)
     //   .substring(7)}.svg`,
     bookmarks: [],
+    cart: [],
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   }
 }
