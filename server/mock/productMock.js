@@ -13,6 +13,24 @@ const products = [
     price: 14,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem1.introSliderPreview
@@ -44,6 +62,24 @@ const products = [
     price: 16,
     rate: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: womanItem1.introSliderPreview
@@ -75,6 +111,24 @@ const products = [
     price: 18,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: carItem1.introSliderPreview
@@ -106,6 +160,24 @@ const products = [
     price: 20,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem2.introSliderPreview
@@ -137,6 +209,24 @@ const products = [
     price: 22,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: true,
       slide: womanItem2.introSliderPreview
@@ -168,6 +258,24 @@ const products = [
     price: 24,
     rate: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: true,
       slide: carItem2.introSliderPreview
@@ -199,6 +307,24 @@ const products = [
     price: 26,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: womanItem3.introSliderPreview
@@ -230,6 +356,24 @@ const products = [
     price: 28,
     rate: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem3.introSliderPreview
@@ -261,6 +405,24 @@ const products = [
     price: 39,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: carItem3.introSliderPreview
@@ -292,6 +454,24 @@ const products = [
     price: 14,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem4.introSliderPreview
@@ -323,6 +503,24 @@ const products = [
     price: 16,
     rate: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: womanItem4.introSliderPreview
@@ -354,6 +552,24 @@ const products = [
     price: 18,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: carItem4.introSliderPreview
@@ -385,6 +601,24 @@ const products = [
     price: 20,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem5.introSliderPreview
@@ -416,6 +650,24 @@ const products = [
     price: 22,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: womanItem5.introSliderPreview
@@ -447,6 +699,24 @@ const products = [
     price: 24,
     rate: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: true,
       slide: carItem5.introSliderPreview
@@ -478,6 +748,24 @@ const products = [
     price: 26,
     rate: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: womanItem6.introSliderPreview
@@ -509,6 +797,24 @@ const products = [
     price: 28,
     rate: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: false,
       // slide: manItem6.introSliderPreview
@@ -540,6 +846,24 @@ const products = [
     price: 39,
     rate: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        type: 'size',
+        options: [
+          {value: '3ml', selected: true},
+          {value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          {value: 'default', selected: true},
+          {value: 'black', selected: false},
+        ] 
+      }
+    ],
     introSlider: {
       switched: true,
       slide: carItem6.introSliderPreview

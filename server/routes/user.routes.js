@@ -8,8 +8,6 @@ const auth = require('../middleware/auth.middleware')
 router.put('/:userId', async (req, res) => {
   try {
     const { userId } = req.params    
-    console.log('userId::', userId)
-    console.log('req.user :>> ', req.user)
     //! if (userId === req.user._id) {
       const updatedUser = await User.findByIdAndUpdate(userId, req.body, {new: true})
       res.send(updatedUser)

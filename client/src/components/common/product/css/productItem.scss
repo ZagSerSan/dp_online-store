@@ -1,35 +1,3 @@
-.popular {
-  padding: 95px 0 70px;
-  text-align: center;
-  // background-color: #f6f6f6;
-  background-color: #fff;
-
-  &.litle-padding {
-    padding: 0px 0;
-  }
-
-  &__toptitle {
-    margin: 0 0 20px;
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
-    font-size: 22px;
-    color: #000101;
-  }
-  &__bottomtitle {
-    color: #000101;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 35px;
-    margin: 0;
-  }
-}
-
-.popular-content {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 55px;
-}
-
 .popular-item {
   position: relative;
   width: 25%;
@@ -130,6 +98,10 @@
 
     button {
       position: relative;
+      svg {
+        fill: transparent;
+        stroke: #000;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -138,6 +110,11 @@
         width: 100%;
         height: 100%;
         z-index: 3;
+      }
+      &.active {
+        svg {
+          fill: #000;
+        }
       }
     }
   }
@@ -149,34 +126,3 @@
     margin: 0 12px 0 0;
   }
 }
-
-//todo
-
-// .test {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   height: 270px;
-//   width: 270px;
-//   background-color: red;
-//   z-index: 10;
-
-//   &.active {
-//     animation: 3s alternate forwards openTestModal;
-//     animation-delay: 2s;
-//     @keyframes openTestModal {
-//       from {
-//         // background-color: red;
-
-//         // top: 0;
-//         // left: 0;
-//       }
-//       to {
-//         background-color: green;
-//         top: 50%;
-//         left: 50%;
-//         transform: translate3d(-50%, -50%, 0);
-//       }
-//     }
-//   }
-// }

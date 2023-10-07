@@ -1,0 +1,30 @@
+.modal-option {
+  margin-bottom: 25px;
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #242424;
+    margin-bottom: 14px;
+  }
+  &__button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #888888;
+
+    padding: 10px;
+    border: 2px #888888 solid;
+    margin-right: 7px;
+    transition: all 0.2s ease 0s;
+
+    &:hover {
+      color: #c57d17;
+      border: 2px #c57d17 solid;
+    }
+    &.selected {
+      color: #7e4c4f;
+      border: 2px #7e4c4f solid;
+    }
+  }
+}

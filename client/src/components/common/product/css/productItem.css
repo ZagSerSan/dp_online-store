@@ -1,35 +1,3 @@
-.popular {
-  padding: 95px 0 70px;
-  text-align: center;
-  background-color: #fff;
-}
-.popular.litle-padding {
-  padding: 0px 0;
-}
-.popular__toptitle {
-  margin: 0 0 20px;
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
-  font-size: 22px;
-  color: #000101;
-}
-.popular__bottomtitle {
-  color: #000101;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 35px;
-  margin: 0;
-}
-
-.popular-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 55px;
-}
-
 .popular-item {
   position: relative;
   width: 25%;
@@ -138,6 +106,10 @@
 .popular-item__title button {
   position: relative;
 }
+.popular-item__title button svg {
+  fill: transparent;
+  stroke: #000;
+}
 .popular-item__title button:before {
   content: "";
   position: absolute;
@@ -146,6 +118,9 @@
   width: 100%;
   height: 100%;
   z-index: 3;
+}
+.popular-item__title button.active svg {
+  fill: #000;
 }
 .popular-item__price {
   font-family: "Montserrat", sans-serif;

@@ -7,6 +7,7 @@ const schema = new Schema({
   price: {type: Number, required: true},
   rate: {type: Number, required: true},
   description: {type: String, required: true},
+  modalOptionTypes: {type: Array, required: true},
   introSlider: {type: Object, required: false},
   preview: {type: String, required: true},
   slider_dots: {type: Array, required: true},

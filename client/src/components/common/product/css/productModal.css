@@ -171,17 +171,111 @@
   max-height: 380px;
   border: 1px solid #ddd;
 }
+.product-modal-content {
+  text-align: left;
+  padding-left: 30px;
+}
 .product-modal-content__name {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: #333;
+  margin-bottom: 15px;
 }
 .product-modal-content__price {
   font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: #333;
+  font-weight: 400;
+  font-size: 16px;
+  color: #686868;
+  margin-bottom: 12px;
+}
+.product-modal-content__description {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  color: #242424;
+  margin-bottom: 20px;
+}
+.product-modal-content__rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 18px;
+}
+.product-modal-content__rate svg {
+  height: 20px;
+  fill: transparent;
+  stroke: #7e4c4f;
+}
+.product-modal-content__rate svg:not(:last-child) {
+  margin-right: 5px;
+}
+.product-modal-content-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #242424;
+}
+.product-modal-content-actions-counter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 9px;
+  border: 1px solid #a0a0a0;
+  margin-right: 25px;
+}
+.product-modal-content-actions-counter button,
+.product-modal-content-actions-counter p {
+  padding: 0 6px;
+}
+.product-modal-content-actions-cartadd {
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 25px;
+  padding: 10px 42px;
+  border: 1px solid #a0a0a0;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.product-modal-content-actions-cartadd:hover {
+  background-color: #000;
+  color: #fff;
+}
+.product-modal-content-actions-bookmark {
+  padding: 10px auto;
+  border: 1px solid #a0a0a0;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  padding: 0 10px;
+}
+.product-modal-content-actions-bookmark svg {
+  fill: transparent;
+  stroke: #a0a0a0;
+  width: 25px;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.product-modal-content-actions-bookmark:hover {
+  background-color: #000;
+}
+.product-modal-content-actions-bookmark:hover svg {
+  stroke: #fff;
+}
+.product-modal-content-actions-bookmark.active svg {
+  fill: #000;
+  stroke: #000;
+}
+.product-modal-content-actions-bookmark.active:hover {
+  background-color: #000;
+}
+.product-modal-content-actions-bookmark.active:hover svg {
+  fill: #fff;
+  stroke: #fff;
 }
 .product-modal .slick-slider {
   display: -webkit-box;
@@ -237,21 +331,4 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.cart-helper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  display: none;
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-}
-.cart-helper.active {
-  display: block;
-  opacity: 1;
-  -webkit-transition: all 0.7s linear;
-  transition: all 0.7s linear;
 }

@@ -1,0 +1,48 @@
+.products-list {
+  padding: 95px 0 70px;
+  text-align: center;
+  background-color: #fff;
+}
+.products-list.litle-padding {
+  padding: 0px 0;
+}
+.products-list__toptitle {
+  margin: 0 0 20px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 22px;
+  color: #000101;
+}
+.products-list__bottomtitle {
+  color: #000101;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 35px;
+  margin: 0;
+}
+
+.products-list-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 55px;
+}
+
+.cart-helper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+.cart-helper.active {
+  display: block;
+  opacity: 1;
+  -webkit-transition: all 0.7s linear;
+  transition: all 0.7s linear;
+}

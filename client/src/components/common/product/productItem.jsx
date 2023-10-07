@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import './css/productItem.css'
 import Icon from '../icon'
 import useStore from '../../../store/createStore'
 import userService from '../../../service/user.service'
 import { cartAnimation } from '../../../utils/cartAnimation'
 
-const ProductItem = ({ item, setModalState, setModalItem }) => {
+const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark }) => {
   const { _id, name, preview, title, price, type } = item
   const navigate = useNavigate()
   const { authedUser, updAuthedUser, localUser, updLocalUserBookmarks, updLocalUserCart } = useStore()
@@ -60,25 +61,25 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
     modalWindow.style.width = `${prodItem_height}px`
   }
 
-  const toggleBookmark = async (e, id) => {
-    e.stopPropagation()
-    if (authedUser) {
-      try {
-        const newUserData = {
-          ...authedUser,
-          bookmarks: authedUser.bookmarks.includes(id)
-            ? authedUser.bookmarks.filter(item => item !== id)
-            : [...authedUser.bookmarks, id]
-        }
-        const { content } = await userService.updateUser(newUserData)
-        updAuthedUser(content)
-      } catch (e) {
-        console.log('e :>> ', e)
-      }
-    } else {
-      updLocalUserBookmarks(id)
-    }
-  }
+  // const toggleBookmark = async (e, id) => {
+  //   e.stopPropagation()
+  //   if (authedUser) {
+  //     try {
+  //       const newUserData = {
+  //         ...authedUser,
+  //         bookmarks: authedUser.bookmarks.includes(id)
+  //           ? authedUser.bookmarks.filter(item => item !== id)
+  //           : [...authedUser.bookmarks, id]
+  //       }
+  //       const { content } = await userService.updateUser(newUserData)
+  //       updAuthedUser(content)
+  //     } catch (e) {
+  //       console.log('e :>> ', e)
+  //     }
+  //   } else {
+  //     updLocalUserBookmarks(id)
+  //   }
+  // }
 
   return (
     <div key={_id} className="popular-item">
@@ -104,8 +105,11 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
       <div className="popular-item__content">
         <div className="popular-item__title">
           <Link to={`/category/${item.type}/${item._id}`}>{name}</Link>
-          <button onClick={(e) => toggleBookmark(e, item._id)} className='w-[24px] h-[24px] z-10'>
-            <Icon id='heart' fill={isBookmarked && '#000'}/>
+          <button
+            onClick={(e) => toggleBookmark(e, item._id)}
+            className={'w-[24px] h-[24px] z-10' + (isBookmarked ? ' active' : '')}
+          >
+            <Icon id='heart'/>
           </button>
         </div>
         <p className="popular-item__price">${price}.00</p>
