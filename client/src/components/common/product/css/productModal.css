@@ -243,8 +243,15 @@
   transition: all 0.2s ease 0s;
 }
 .product-modal-content-actions-cartadd:hover {
-  background-color: #000;
+  background-color: #07610e;
   color: #fff;
+}
+.product-modal-content-actions-cartadd.added {
+  color: #a10000;
+}
+.product-modal-content-actions-cartadd.added:hover {
+  color: #fff;
+  background-color: #a10000;
 }
 .product-modal-content-actions-bookmark {
   padding: 10px auto;

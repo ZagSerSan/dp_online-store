@@ -34,19 +34,19 @@ export function removeLocalUser() {
   localStorage.removeItem('cart')
   localStorage.removeItem('bookmarks')
 }
-export function setCart(id) {
+export function setCart(newCartItem) {
   let isContain = Boolean(localStorage.getItem('cart'))
   let cart = []
   if (isContain) {
     cart = JSON.parse(localStorage.getItem('cart'))
-    const updatedCart = cart.includes(id)
-      ? cart.filter(item => item !== id)
-      : [...cart, id]
+    const updatedCart = cart.find(item=> item._id === newCartItem._id)
+      ? cart.filter(item => item._id !== newCartItem._id)
+      : [...cart, newCartItem]
     localStorage.setItem('cart', JSON.stringify(updatedCart))
     // для стейта localUser
     return updatedCart
   } else {
-    cart.push(id)
+    cart.push(newCartItem)
     localStorage.setItem('cart', JSON.stringify(cart))
     // для стейта localUser
     return cart

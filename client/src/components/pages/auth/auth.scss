@@ -51,6 +51,9 @@ form {
     color: #fff;
     cursor: pointer;
 
+    &.submit {
+      background-color: #7e4c4f;
+    }
     &:disabled {
       background-color: #7e4c4f63;
       cursor: default;

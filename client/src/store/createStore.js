@@ -17,21 +17,21 @@ const useStore = create((set) => ({
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoadingStatus: false}))
   },
-  updLocalUserCart: (id) => set((state) => {
+  updLocalUserCart: (cartItem) => set((state) => {
     if (state.localUser?.cart) {
       const newLocalUserData = {
         ...state.localUser,
-        cart: localStorageService.setCart(id)
+        cart: localStorageService.setCart(cartItem)
       }
       return { localUser: newLocalUserData }
     } else {
       const newLocalUserData = state.localUser
         ? {
           ...state.localUser,
-          cart: localStorageService.setCart(id)
+          cart: localStorageService.setCart(cartItem)
         }
         : {
-          cart: localStorageService.setCart(id)
+          cart: localStorageService.setCart(cartItem)
         }
       return { localUser: newLocalUserData }
     }
@@ -68,11 +68,6 @@ const useStore = create((set) => ({
     set((state) => ({ authedUser: null }))
     set((state) => ({ authorizated: false }))
   }
-  // setBookmarkForProduct: (newItemData) => set((state) => {
-  //   const filteredEntities = state.productsEntity.filter(item => item._id !== newItemData._id)
-  //   const newEntities = [...filteredEntities, newItemData]
-  //   return { productsEntity: newEntities }
-  // }),
 }))
 
 export default useStore

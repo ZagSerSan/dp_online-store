@@ -61,8 +61,8 @@ const LoginPage = () => {
   }
   
   return (
-    <div className="my-container form-container">
-      <h2>Authorization</h2>
+    <div className="my-container form-container pt-[80px]">
+      <h2 className='mb-[20px] text-[34px]'>Authorization</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
             label="Email:"
@@ -90,7 +90,7 @@ const LoginPage = () => {
           <button
             type="submit"
             disabled={!isValid}
-            className=""
+            className="submit"
           >
             Login
           </button>

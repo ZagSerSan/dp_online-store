@@ -12,11 +12,13 @@ import AboutPage from "./components/pages/about"
 import ContactPage from "./components/pages/contact"
 import ItemPage from "./components/pages/item/itemPage"
 import FavouritesPage from "./components/pages/favourites/favouritesPage"
+import Cart from "./components/pages/cart/cart"
 
 const routes = [
   {path: '/', element: <Home/>},
   {path: 'favourites', element: <FavouritesPage />},
   {path: 'profile', element: <Profile />},
+  {path: 'cart', element: <Cart />},
   {
     path: 'auth',
     children: [

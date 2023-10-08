@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
 import './css/modalOption.css'
 
-const ModalOption = ({ name, type, options, data, setData }) => {
-
-  console.log('data :>> ', data)
+const ModalOption = ({ name, type, options, cartData, setCartData, setCartItemDataIsChange }) => {
 
   useEffect(() => {
     options.filter(option => option.selected === true).forEach(option => {
-      setData(prev => (
+      setCartData(prev => (
         {
           ...prev,
           [type]: option.value
@@ -18,8 +16,8 @@ const ModalOption = ({ name, type, options, data, setData }) => {
 
   const toggleOptions = (e, value) => {
     e.stopPropagation()
-    // const target = e.target
-    setData(prev => (
+    setCartItemDataIsChange(true)
+    setCartData(prev => (
       {
         ...prev,
         [type]: value
@@ -36,7 +34,7 @@ const ModalOption = ({ name, type, options, data, setData }) => {
           <button
             key={option.value}
             className={'modal-option__button ' + 
-              (data.size === option.value || data.color === option.value ? ' selected' : '')
+              (cartData.size === option.value || cartData.color === option.value ? ' selected' : '')
             }
             onClick={(e) => toggleOptions(e, option.value)}
           >

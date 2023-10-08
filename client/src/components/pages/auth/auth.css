@@ -58,6 +58,9 @@ form button {
   color: #fff;
   cursor: pointer;
 }
+form button.submit {
+  background-color: #7e4c4f;
+}
 form button:disabled {
   background-color: rgba(126, 76, 79, 0.3882352941);
   cursor: default;

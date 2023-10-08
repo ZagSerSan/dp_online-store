@@ -9,11 +9,20 @@ import ProductItem from '../common/product/productItem'
 import ProductModal from '../common/product/productModal'
 import Icon from '../common/icon'
 import userService from '../../service/user.service'
+import { cartAnimation } from '../../utils/cartAnimation'
 
 const ProductsList = ({role = ''}) => {
   const { type } = useParams()
   // store entities
-  const { productsEntity, authedUser, updAuthedUser, updBookmarks, updLocalUserCart} = useStore()
+  const { productsEntity, authedUser, updAuthedUser, updLocalUserBookmarks, updLocalUserCart} = useStore()
+  // cart item data
+  const initialCartData = {
+    count: 1,
+    size: '',
+    color: ''
+  }
+  const [cartData, setCartData] = useState(initialCartData)
+  const [cartItemDataIsChanged, setCartItemDataIsChange] = useState(false)
 
   // product modal state and body scroll
   const [modalState, setModalState] = useState(false)
@@ -47,7 +56,78 @@ const ProductsList = ({role = ''}) => {
         console.log('e :>> ', e)
       }
     } else {
-      updBookmarks(id)
+      updLocalUserBookmarks(id)
+    }
+  }
+
+  const addToCart = async (e, id, isInCart, item) => {
+    e.stopPropagation()
+    cartAnimation(e.target, isInCart)
+
+    // create new cart item for send to server
+    let newCartItemData = {
+      ...cartData,
+      _id: id,
+      name: item.name,
+      type: item.type,
+      price: `$${item.price}`,
+      totalPrice: `$${item.price * cartData.count}`,
+      image: item.preview
+    }
+
+    // if default options is was not changed
+    if (!cartItemDataIsChanged) {
+      const test = item.modalOptionTypes
+      test.forEach(optionItem => {
+        const { options } = optionItem
+        for (let i = 0; i < options.length; i++) {
+          const filtered = options.filter(item => item.selected === true)
+          // console.log('filtered :>> ', filtered[0].value)
+          newCartItemData = {
+            ...newCartItemData,
+            [optionItem.type]: filtered[0].value
+          }
+        }
+      })
+    }
+
+    if (authedUser) {
+      try {
+        const newUserData = {
+          ...authedUser,
+          cart: authedUser.cart.find(item => item._id === id)
+            ? authedUser.cart.filter(item => item._id !== id)
+            : [...authedUser.cart, newCartItemData]
+        }
+        const { content } = await userService.updateUser(newUserData)
+        updAuthedUser(content)
+      } catch (e) {
+        console.log('e :>> ', e)
+      }
+    } else {
+      updLocalUserCart(newCartItemData)
+    }
+  }
+
+  const changeCount = (type) => {
+    setCartItemDataIsChange(true)
+    switch (type) {
+      case 'decrement':
+        if (cartData.count > 1) {
+          setCartData(prev => (
+            {...prev, count: prev.count - 1 }
+          ))
+        }
+      break
+      case 'increment':
+        if (cartData.count < 10) {
+          setCartData(prev => (
+            {...prev, count: prev.count + 1 }
+          ))
+        }
+      break
+      default:
+        break
     }
   }
 
@@ -61,6 +141,12 @@ const ProductsList = ({role = ''}) => {
         modalState={modalState}
         onToggleState={setModalState}
         toggleBookmark={toggleBookmark}
+        addToCart={addToCart}
+        changeCount={changeCount}
+        cartData={cartData}
+        setCartData={setCartData}
+        initialCartData={initialCartData}
+        setCartItemDataIsChange={setCartItemDataIsChange}
       />
       <div className="my-container">
         {!type &&
@@ -77,6 +163,10 @@ const ProductsList = ({role = ''}) => {
               setModalState={setModalState}
               setModalItem={setModalItem}
               toggleBookmark={toggleBookmark}
+              addToCart={addToCart}
+              setCartData={setCartData}
+              changeCount={changeCount}
+              setCartItemDataIsChange={setCartItemDataIsChange}
             />
           ))}
         </div>

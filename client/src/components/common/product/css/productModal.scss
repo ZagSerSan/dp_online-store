@@ -228,8 +228,15 @@
         border: 1px solid #a0a0a0;
         transition: all 0.2s ease 0s;
         &:hover {
-          background-color: #000;
+          background-color: #07610e;
           color: #fff;
+        }
+        &.added {
+          color: #a10000;
+          &:hover {
+            color: #fff;
+            background-color: #a10000;
+          }
         }
       }
       &-bookmark {

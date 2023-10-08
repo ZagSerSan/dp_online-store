@@ -6,14 +6,17 @@ import './css/header.css'
 // components
 import Icon from '../common/icon'
 import useStore from '../../store/createStore'
+import userService from '../../service/user.service'
 
 const Header = () => {
-  const [dropMenu, setDropMenu] = useState(false)
-  const [authDropMenu, setAuthDropMenu] = useState(false)
-  const searchInputRef = useRef()
-  const [searchInputState, setSearchInputState] = useState(false)
-  const { authedUser, logOut, globalLoading } = useStore()
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.jpg'  
+  const searchInputRef = useRef()
+  const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut, globalLoading } = useStore()
+
+  const [dropMenu, setDropMenu] = useState(false)
+  const [cartMenu, setCartMenu] = useState(false)
+  const [authDropMenu, setAuthDropMenu] = useState(false)
+  const [searchInputState, setSearchInputState] = useState(false)
   
   if (!globalLoading) {
     const header = document.querySelector('.header')
@@ -33,7 +36,30 @@ const Header = () => {
     searchInputRef.current.focus()
     setSearchInputState(Boolean(searchInputRef.current.className))
   }
- 
+
+  const removeFromCart = async (item) => {
+    if (authedUser) {
+      try {
+        const newUserData = {
+          ...authedUser,
+          cart: authedUser.cart.filter(cartItem => cartItem._id !== item._id)
+        }
+        const { content } = await userService.updateUser(newUserData)
+        updAuthedUser(content)
+      } catch (e) {
+        console.log('e :>> ', e)
+      }
+    } else {
+      //todo удалять из локал стор
+      updLocalUserCart(item)
+    }
+    
+  }
+
+  const cartItemsForDropMenu = authedUser
+    ? authedUser.cart
+    : localUser ? localUser.cart : null
+
   return (
     <header className='header'>
       <div className="my-container header__inner">
@@ -90,32 +116,77 @@ const Header = () => {
                   <div
                     onMouseEnter={() => setAuthDropMenu(true)}
                     onMouseLeave={() => setAuthDropMenu(false)}
-                    className='drop-menu'
+                    className='drop-menu user'
                   >
-                    <NavLink to='/profile'>Profile</NavLink>
-                    <NavLink to='/favourites'>Favourites</NavLink>
-                    <NavLink to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
+                    <NavLink className='drop-menu__link' to='/profile'>Profile</NavLink>
+                    <NavLink className='drop-menu__link' to='/favourites'>Favourites</NavLink>
+                    <NavLink className='drop-menu__link' to='/cart'>My cart</NavLink>
+                    <NavLink className='drop-menu__link' to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
                   </div>
               )
               : (authDropMenu &&
                 <div
                   onMouseEnter={() => setAuthDropMenu(true)}
                   onMouseLeave={() => setAuthDropMenu(false)}
-                  className='drop-menu'
+                  className='drop-menu user'
                 >
-                  <NavLink to='/auth/login'>Login</NavLink>
-                  <NavLink to='/auth/register'>Register</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/login'>Login</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/register'>Register</NavLink>
                 </div>
               )
             }
             
           </div>
-          <button className='header-panel__icon' data-cart='cart'>
+          <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
+            data-cart='cart'
+            onMouseEnter={() => setCartMenu(true)}
+            onMouseLeave={() => setCartMenu(false)}
+          >
             <div className="card-index">
-              {authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null}
+              {
+                (authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null)
+                || (localUser && localUser?.cart.length > 0 ? localUser.cart.length : null)
+              }
             </div>
             <Icon id='cart'/>
-          </button>
+            {cartMenu &&
+              <div
+                onMouseEnter={() => setCartMenu(true)}
+                onMouseLeave={() => setCartMenu(false)}
+                className='drop-menu cart'
+              >
+                {(cartItemsForDropMenu && cartItemsForDropMenu.length > 0)
+                  ? <div className='cart-wrapper'>
+                    {(cartItemsForDropMenu.map(item => (
+                      <div key={item._id} className='cart-wrapper__col'>
+                        <div className="cart-wrapper__row">
+                          <NavLink to={`/category/${item.type}/${item._id}`}>
+                            <img src={item.image} alt={item.name} />
+                          </NavLink>
+                        </div>
+                        <div className="cart-wrapper__row">
+                          <NavLink to={`/category/${item.type}/${item._id}`}>
+                            {item.name}
+                          </NavLink>
+                          <p>{item.price} x {item.count} = <span className='total-price'>{item.totalPrice}</span></p>
+                        </div>
+                        <button onClick={() => removeFromCart(item)}><Icon id='close'/></button>
+                      </div>
+                      ))
+                    )}
+                    <div className='to-cart-btn'>
+                      <NavLink className='drop-menu__link to-cart-btn' to='/cart'>
+                        Go to cart
+                      </NavLink>
+                    </div>
+                  </div>
+                  : <p>cart is empty</p>
+                }
+                   {/* (authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null)
+                   || (localUser && localUser?.cart.length > 0 ? localUser.cart.length : null) */}
+              </div>
+            }
+          </div>
         </div>
       </div>
     </header>
