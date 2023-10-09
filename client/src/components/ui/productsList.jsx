@@ -14,16 +14,10 @@ import { cartAnimation } from '../../utils/cartAnimation'
 const ProductsList = ({role = ''}) => {
   const { type } = useParams()
   // store entities
-  const { productsEntity, authedUser, updAuthedUser, updLocalUserBookmarks, updLocalUserCart} = useStore()
-  // cart item data
-  const initialCartData = {
-    count: 1,
-    size: '',
-    color: ''
-  }
-  const [cartData, setCartData] = useState(initialCartData)
-  const [cartItemDataIsChanged, setCartItemDataIsChange] = useState(false)
-
+  const {productsEntity, authedUser, updAuthedUser, updLocalUserBookmarks,
+    updLocalUserCart, cartItemData, setCartItemData, cartWasChanged, setCartItemDataIsChanged
+  } = useStore()
+  
   // product modal state and body scroll
   const [modalState, setModalState] = useState(false)
   modalState ? document.body.classList.add('modal-is-open') : document.body.classList.remove('modal-is-open')
@@ -66,17 +60,17 @@ const ProductsList = ({role = ''}) => {
 
     // create new cart item for send to server
     let newCartItemData = {
-      ...cartData,
+      ...cartItemData,
       _id: id,
       name: item.name,
       type: item.type,
       price: `$${item.price}`,
-      totalPrice: `$${item.price * cartData.count}`,
+      totalPrice: `$${item.price * cartItemData.count}`,
       image: item.preview
     }
 
     // if default options is was not changed
-    if (!cartItemDataIsChanged) {
+    if (!cartWasChanged) {
       const test = item.modalOptionTypes
       test.forEach(optionItem => {
         const { options } = optionItem
@@ -109,27 +103,41 @@ const ProductsList = ({role = ''}) => {
     }
   }
 
-  const changeCount = (type) => {
-    setCartItemDataIsChange(true)
-    switch (type) {
-      case 'decrement':
-        if (cartData.count > 1) {
-          setCartData(prev => (
-            {...prev, count: prev.count - 1 }
-          ))
-        }
-      break
-      case 'increment':
-        if (cartData.count < 10) {
-          setCartData(prev => (
-            {...prev, count: prev.count + 1 }
-          ))
-        }
-      break
-      default:
-        break
-    }
-  }
+  // const changeCount = (type) => {
+  //   setCartItemDataIsChanged(true)
+  //   switch (type) {
+  //     case 'decrement':
+  //       if (cartData.count > 1) {
+  //         setCartData(prev => (
+  //           {...prev, count: prev.count - 1 }
+  //         ))
+  //       }
+  //     break
+  //     case 'increment':
+  //       if (cartData.count < 10) {
+  //         setCartData(prev => (
+  //           {...prev, count: prev.count + 1 }
+  //         ))
+  //       }
+  //     break
+  //     default:
+  //       break
+  //   }
+  // }
+
+  // const changeCount = (type) => {
+  //   setCartItemDataIsChanged(true)
+  //     switch (type) {
+  //       case 'decrement':
+  //         setCartItemData('decrement')
+  //       break
+  //       case 'increment':
+  //         setCartItemData('increment')
+  //       break
+  //       default:
+  //         break
+  //     }
+  //   }
 
   return (
     <div className={'products-list' + (type ? ' litle-padding' : '')}>
@@ -142,11 +150,11 @@ const ProductsList = ({role = ''}) => {
         onToggleState={setModalState}
         toggleBookmark={toggleBookmark}
         addToCart={addToCart}
-        changeCount={changeCount}
-        cartData={cartData}
-        setCartData={setCartData}
-        initialCartData={initialCartData}
-        setCartItemDataIsChange={setCartItemDataIsChange}
+        // changeCount={changeCount}
+        cartItemData={cartItemData}
+        setCartItemData={setCartItemData}
+        // initialCartData={initialCartData}
+        setCartItemDataIsChanged={setCartItemDataIsChanged}
       />
       <div className="my-container">
         {!type &&
@@ -164,9 +172,6 @@ const ProductsList = ({role = ''}) => {
               setModalItem={setModalItem}
               toggleBookmark={toggleBookmark}
               addToCart={addToCart}
-              setCartData={setCartData}
-              changeCount={changeCount}
-              setCartItemDataIsChange={setCartItemDataIsChange}
             />
           ))}
         </div>

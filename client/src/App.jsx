@@ -11,12 +11,12 @@ function App() {
   const elements = useRoutes(routes)
 
   return (
-    <>
+    <div className='app-wrapper'>
       <AppLoader>
         <Header/>
         {elements}
       </AppLoader>
-    </>
+    </div>
   )
 }
 

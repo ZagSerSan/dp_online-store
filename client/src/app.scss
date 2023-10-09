@@ -27,10 +27,12 @@ body {
 // @import "footer.scss";
 
 //* <ОБОЛОЧКА>===========================================================================================================
-.wrapper {
+.app-wrapper {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
+  margin: 0 auto;
+  padding-top: 80px;
   // &.loaded {
   // }
 }

@@ -12,22 +12,22 @@ const products = [
     title: 'Some title',
     price: 14,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -61,22 +61,22 @@ const products = [
     title: 'Some title',
     price: 16,
     rate: 3,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -110,22 +110,22 @@ const products = [
     title: 'Some title',
     price: 18,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -159,22 +159,22 @@ const products = [
     title: 'Some title',
     price: 20,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -208,22 +208,22 @@ const products = [
     title: 'Some title',
     price: 22,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -257,22 +257,22 @@ const products = [
     title: 'Some title',
     price: 24,
     rate: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -306,22 +306,22 @@ const products = [
     title: 'Some title',
     price: 26,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -355,22 +355,22 @@ const products = [
     title: 'Some title',
     price: 28,
     rate: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -404,22 +404,22 @@ const products = [
     title: 'Some title',
     price: 39,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -453,22 +453,22 @@ const products = [
     title: 'Some title',
     price: 14,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -502,22 +502,22 @@ const products = [
     title: 'Some title',
     price: 16,
     rate: 3,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -551,22 +551,22 @@ const products = [
     title: 'Some title',
     price: 18,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -600,22 +600,22 @@ const products = [
     title: 'Some title',
     price: 20,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -649,22 +649,22 @@ const products = [
     title: 'Some title',
     price: 22,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -698,22 +698,22 @@ const products = [
     title: 'Some title',
     price: 24,
     rate: 3,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -747,22 +747,22 @@ const products = [
     title: 'Some title',
     price: 26,
     rate: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -796,22 +796,22 @@ const products = [
     title: 'Some title',
     price: 28,
     rate: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],
@@ -845,22 +845,22 @@ const products = [
     title: 'Some title',
     price: 39,
     rate: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .',
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     modalOptionTypes: [
       {
         name: 'Size',
         type: 'size',
         options: [
-          {value: '3ml', selected: true},
-          {value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
         ]
       },
       {
         name: 'Color',
         type: 'color',
         options: [
-          {value: 'default', selected: true},
-          {value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: true},
+          {type: 'size', value: 'black', selected: false},
         ] 
       }
     ],

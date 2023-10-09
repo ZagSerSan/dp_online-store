@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react'
 import './css/modalOption.css'
+import useStore from '../../../store/createStore'
 
-const ModalOption = ({ name, type, options, cartData, setCartData, setCartItemDataIsChange }) => {
+const ModalOption = ({ name, type, options }) => {
+  const { cartItemData, setCartItemData, cartItemDataWasChanged, setCartItemDataIsChanged } = useStore()
 
   useEffect(() => {
     options.filter(option => option.selected === true).forEach(option => {
-      setCartData(prev => (
-        {
-          ...prev,
-          [type]: option.value
-        }
-      ))
+      setCartItemData('option', option)
     })
   }, [])
 
+
   const toggleOptions = (e, value) => {
     e.stopPropagation()
-    setCartItemDataIsChange(true)
-    setCartData(prev => (
-      {
-        ...prev,
-        [type]: value
-      }
-    ))
+    //todo, теперь это вызывается из стора
+    setCartItemDataIsChanged(true)
+
+    // setCartItemData(prev => (
+    //   {
+    //     ...prev,
+    //     [type]: value
+    //   }
+    // ))
     return null
   }
 
@@ -34,7 +34,7 @@ const ModalOption = ({ name, type, options, cartData, setCartData, setCartItemDa
           <button
             key={option.value}
             className={'modal-option__button ' + 
-              (cartData.size === option.value || cartData.color === option.value ? ' selected' : '')
+              (cartItemData.size === option.value || cartItemData.color === option.value ? ' selected' : '')
             }
             onClick={(e) => toggleOptions(e, option.value)}
           >

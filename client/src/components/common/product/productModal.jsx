@@ -6,8 +6,13 @@ import { settings } from '../../../utils/sliderSettings'
 import ModalOption from './modalOption'
 import useStore from '../../../store/createStore'
 
-const ProductModal = ({ item, modalState, onToggleState, toggleBookmark, addToCart, changeCount, cartData, setCartData, initialCartData, setCartItemDataIsChange }) => {
-  const { authedUser, localUser } = useStore()
+const ProductModal = ({
+  item, modalState, onToggleState, 
+  toggleBookmark, addToCart, changeCount,
+  cartData, setCartData, initialCartData
+  // setCartItemDataIsChanged 
+}) => {
+  const { authedUser, localUser, cartItemData, setCartItemData, setCartItemDataIsChanged } = useStore()
 
   let isBookmarked
   let isInCart
@@ -27,8 +32,10 @@ const ProductModal = ({ item, modalState, onToggleState, toggleBookmark, addToCa
     setTimeout(() => {
       onToggleState(false)
     }, 400)
-    setCartData(initialCartData)
-    setCartItemDataIsChange(false)
+    // setCartData(initialCartData)
+    //todo, теперь это из стора
+    setCartItemDataIsChanged(false)
+    setCartItemData('closeModal')
   }
 
   // corretcing slider html
@@ -85,17 +92,14 @@ const ProductModal = ({ item, modalState, onToggleState, toggleBookmark, addToCa
                     type={item.type} 
                     name={item.name} 
                     options={item.options}
-                    cartData={cartData}
-                    setCartData={setCartData}
-                    setCartItemDataIsChange={setCartItemDataIsChange}
                   />
                 ))}
                 </div>
                 <div className="product-modal-content-actions">
                   <div className="product-modal-content-actions-counter">
-                    <button onClick={() => changeCount('decrement')}>-</button>
-                    <p>{cartData.count}</p>
-                    <button onClick={() => changeCount('increment')}>+</button>
+                    <button onClick={() => setCartItemData('decrement')}>-</button>
+                    <p>{cartItemData.count}</p>
+                    <button onClick={() => setCartItemData('increment')}>+</button>
                   </div>
                   <button
                     className={"product-modal-content-actions-cartadd" + (isInCart ? ' added' : '')}

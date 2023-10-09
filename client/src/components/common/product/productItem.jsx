@@ -4,10 +4,10 @@ import './css/productItem.css'
 import Icon from '../icon'
 import useStore from '../../../store/createStore'
 
-const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToCart, setCartItemDataIsChange }) => {
+const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToCart }) => {
   const { _id: id, name, preview, title, price, type } = item
   const navigate = useNavigate()
-  const { authedUser, localUser } = useStore()
+  const { authedUser, localUser, setCartItemDataIsChanged } = useStore()
   const [cartHover, setCartHover] = useState(false)
 
   const isBookmarked = authedUser
@@ -26,7 +26,8 @@ const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToC
     e.stopPropagation()
     setModalState(true)
     setModalItem(item)
-    setCartItemDataIsChange(true)
+    //todo, теперь это вызывается из стора
+    setCartItemDataIsChanged(true)
 
     // open modal window animation
     const target = e.target

@@ -5,10 +5,12 @@ body {
   color: #6c7279;
 }
 
-.wrapper {
+.app-wrapper {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
+  margin: 0 auto;
+  padding-top: 80px;
 }
 
 .my-container {
