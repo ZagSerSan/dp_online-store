@@ -16,7 +16,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -24,10 +23,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -65,18 +63,16 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
-          {type: 'size', value: '3ml', selected: true},
-          {type: 'size', value: '6ml', selected: false}
+          {type: 'size', value: '3ml', selected: false},
+          {type: 'size', value: '6ml', selected: true}
         ]
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
-          {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'default', selected: false},
+          {type: 'color', value: 'black', selected: true},
         ] 
       }
     ],
@@ -114,7 +110,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -122,7 +117,6 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
           {type: 'color', value: 'black', selected: false},
@@ -163,7 +157,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -171,10 +164,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -212,7 +204,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -220,10 +211,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -261,7 +251,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -269,10 +258,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -310,7 +298,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -318,10 +305,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -359,7 +345,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -367,10 +352,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -408,7 +392,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -416,10 +399,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -457,7 +439,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -465,10 +446,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -506,7 +486,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -514,10 +493,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -555,7 +533,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -563,10 +540,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -604,7 +580,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -612,10 +587,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -653,7 +627,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -661,10 +634,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -702,7 +674,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -710,10 +681,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -751,7 +721,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -759,10 +728,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -800,7 +768,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -808,10 +775,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],
@@ -849,7 +815,6 @@ const products = [
     modalOptionTypes: [
       {
         name: 'Size',
-        type: 'size',
         options: [
           {type: 'size', value: '3ml', selected: true},
           {type: 'size', value: '6ml', selected: false}
@@ -857,10 +822,9 @@ const products = [
       },
       {
         name: 'Color',
-        type: 'color',
         options: [
           {type: 'color', value: 'default', selected: true},
-          {type: 'size', value: 'black', selected: false},
+          {type: 'color', value: 'black', selected: false},
         ] 
       }
     ],

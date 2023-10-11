@@ -199,78 +199,78 @@
         }
       }
     }
-    &-actions {
-      display: flex;
-      // justify-content: space-between;
-      padding-top: 15px;
+    // &-actions {
+    //   display: flex;
+    //   // justify-content: space-between;
+    //   padding-top: 15px;
 
-      font-family: "Montserrat", sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-      color: #242424;
+    //   font-family: "Montserrat", sans-serif;
+    //   font-weight: 400;
+    //   font-size: 18px;
+    //   color: #242424;
 
-      &-counter {
-        display: flex;
-        padding: 9px;
-        border: 1px solid #a0a0a0;
-        margin-right: 25px;
+    //   &-counter {
+    //     display: flex;
+    //     padding: 9px;
+    //     border: 1px solid #a0a0a0;
+    //     margin-right: 25px;
 
-        button,
-        p {
-          padding: 0 6px;
-        }
-      }
-      &-cartadd {
-        font-size: 14px;
-        font-weight: 500;
-        margin-right: 25px;
-        padding: 10px 42px;
-        border: 1px solid #a0a0a0;
-        transition: all 0.2s ease 0s;
-        &:hover {
-          background-color: #07610e;
-          color: #fff;
-        }
-        &.added {
-          color: #a10000;
-          &:hover {
-            color: #fff;
-            background-color: #a10000;
-          }
-        }
-      }
-      &-bookmark {
-        padding: 10px auto;
-        border: 1px solid #a0a0a0;
-        transition: all 0.2s ease 0s;
-        padding: 0 10px;
-        svg {
-          fill: transparent;
-          stroke: #a0a0a0;
-          width: 25px;
-          transition: all 0.2s ease 0s;
-        }
-        &:hover {
-          background-color: #000;
-          svg {
-            stroke: #fff;
-          }
-        }
-        &.active {
-          svg {
-            fill: #000;
-            stroke: #000;
-          }
-          &:hover {
-            background-color: #000;
-            svg {
-              fill: #fff;
-              stroke: #fff;
-            }
-          }
-        }
-      }
-    }
+    //     button,
+    //     p {
+    //       padding: 0 6px;
+    //     }
+    //   }
+    //   &-cartadd {
+    //     font-size: 14px;
+    //     font-weight: 500;
+    //     margin-right: 25px;
+    //     padding: 10px 42px;
+    //     border: 1px solid #a0a0a0;
+    //     transition: all 0.2s ease 0s;
+    //     &:hover {
+    //       background-color: #07610e;
+    //       color: #fff;
+    //     }
+    //     &.added {
+    //       color: #a10000;
+    //       &:hover {
+    //         color: #fff;
+    //         background-color: #a10000;
+    //       }
+    //     }
+    //   }
+    //   &-bookmark {
+    //     padding: 10px auto;
+    //     border: 1px solid #a0a0a0;
+    //     transition: all 0.2s ease 0s;
+    //     padding: 0 10px;
+    //     svg {
+    //       fill: transparent;
+    //       stroke: #a0a0a0;
+    //       width: 25px;
+    //       transition: all 0.2s ease 0s;
+    //     }
+    //     &:hover {
+    //       background-color: #000;
+    //       svg {
+    //         stroke: #fff;
+    //       }
+    //     }
+    //     &.active {
+    //       svg {
+    //         fill: #000;
+    //         stroke: #000;
+    //       }
+    //       &:hover {
+    //         background-color: #000;
+    //         svg {
+    //           fill: #fff;
+    //           stroke: #fff;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   // SLIDER -------------------------------------

@@ -3,12 +3,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import './css/productItem.css'
 import Icon from '../icon'
 import useStore from '../../../store/createStore'
+import cartStore from '../../../store/cartStore'
 
-const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToCart }) => {
+const ProductItem = ({ item, setModalState, setModalItem }) => {
   const { _id: id, name, preview, title, price, type } = item
   const navigate = useNavigate()
-  const { authedUser, localUser, setCartItemDataIsChanged } = useStore()
   const [cartHover, setCartHover] = useState(false)
+
+  //todo
+  const { authedUser, localUser, updAuthedUser, updLocalUserCart, updLocalUserBookmarks } = useStore()
+  const { addToCart, toggleBookmark } = cartStore()
 
   const isBookmarked = authedUser
     ? authedUser.bookmarks.includes(id)
@@ -26,8 +30,8 @@ const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToC
     e.stopPropagation()
     setModalState(true)
     setModalItem(item)
-    //todo, теперь это вызывается из стора
-    setCartItemDataIsChanged(true)
+    //todo, теперь это будет вызыватся из стора
+    // setCartItemDataIsChanged(true)
 
     // open modal window animation
     const target = e.target
@@ -50,7 +54,7 @@ const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToC
             <Icon id='view' data-modal='1'/>
           </button>
           <button
-            onClick={(e) => addToCart(e, item._id, isInCart, item)}
+            onClick={(e) => addToCart(e, authedUser, updAuthedUser, updLocalUserCart, item, isInCart )}
             onMouseEnter={() => setCartHover(true)}
             onMouseLeave={() => setCartHover(false)}
           >
@@ -66,7 +70,7 @@ const ProductItem = ({ item, setModalState, setModalItem, toggleBookmark, addToC
         <div className="popular-item__title">
           <Link to={`/category/${item.type}/${item._id}`}>{name}</Link>
           <button
-            onClick={(e) => toggleBookmark(e, item._id)}
+            onClick={(e) => toggleBookmark(e, item._id, authedUser, updAuthedUser, updLocalUserBookmarks)}
             className={'w-[24px] h-[24px] z-10' + (isBookmarked ? ' active' : '')}
           >
             <Icon id='heart'/>

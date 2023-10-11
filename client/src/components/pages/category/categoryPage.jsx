@@ -11,7 +11,7 @@ const CategoryPage = () => {
   return (
     <div>
       <CategoryNav />
-      <ProductsList />
+      <ProductsList role='category'/>
     </div>
   )
 }

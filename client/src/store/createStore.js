@@ -19,41 +19,7 @@ const useStore = create((set) => ({
   productsEntity: null,
   productsLoadingStatus: true,
 
-  //todo cart state
-  cartItemData: initialCartData,
-  cartItemDataWasChanged: false,
-  setCartItemDataIsChanged: (param) => set((state) => ({ cartWasChanged: param})),
-  setCartItemData: (role, data) => set((state) => {
-    if (role === 'closeModal') {
-      console.log('closeModal')
-      set((state) => ({ cartItemDataWasChanged: false}))
-    } else if (role === 'increment' && state.cartItemData.count < 10) {
-      set((state) => ({ cartItemDataWasChanged: true}))
-      return { cartItemData: {...state.cartItemData, count: state.cartItemData.count + 1 }}
-    } else if (role === 'decrement' && state.cartItemData.count > 0) {
-      set((state) => ({ cartItemDataWasChanged: true}))
-      return { cartItemData: {...state.cartItemData, count: state.cartItemData.count - 1 }}
-    } else if (role === 'option') {
-      console.log('option', data)
-      if (state.cartItemDataWasChanged) {
-        return {
-          cartItemData: {
-            ...state.cartItemData,
-            [data.type]: data.value 
-          }
-        }
-      } else {
-        return {
-          cartItemData: {
-            ...state.cartItemData,
-            count: 1,
-            [data.type]: data.value 
-          }
-        }
-      }
-    }
-    return { cartItemData: state.cartItemData}
-  }),
+  
 
   loadProductsList: async () => {
     const { content } = await productService.get()

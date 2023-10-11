@@ -415,6 +415,24 @@
 	}
 }
 
+//todo
+.cart-helper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+
+	display: none;
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+	&.active {
+		display: block;
+		opacity: 1;
+		transition: all 0.7s linear;
+	}
+}
+
 //====================================================================================================
 /*
 .burger {

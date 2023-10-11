@@ -7,6 +7,7 @@ import './css/header.css'
 import Icon from '../common/icon'
 import useStore from '../../store/createStore'
 import userService from '../../service/user.service'
+import { cartAnimation } from '../../utils/cartAnimation'
 
 const Header = () => {
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.jpg'  
@@ -17,7 +18,7 @@ const Header = () => {
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
   const [searchInputState, setSearchInputState] = useState(false)
-  
+
   if (!globalLoading) {
     const header = document.querySelector('.header')
     const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
@@ -37,7 +38,8 @@ const Header = () => {
     setSearchInputState(Boolean(searchInputRef.current.className))
   }
 
-  const removeFromCart = async (item) => {
+  const removeFromCart = async (e, item) => {
+    cartAnimation(e.target, true)
     if (authedUser) {
       try {
         const newUserData = {
@@ -50,7 +52,6 @@ const Header = () => {
         console.log('e :>> ', e)
       }
     } else {
-      //todo удалять из локал стор
       updLocalUserCart(item)
     }
     
@@ -62,6 +63,9 @@ const Header = () => {
 
   return (
     <header className='header'>
+      <div className='cart-helper'>
+        <Icon id='cart'/>
+      </div>
       <div className="my-container header__inner">
 
         <div className='header-logo'>
@@ -170,7 +174,7 @@ const Header = () => {
                           </NavLink>
                           <p>{item.price} x {item.count} = <span className='total-price'>{item.totalPrice}</span></p>
                         </div>
-                        <button onClick={() => removeFromCart(item)}><Icon id='close'/></button>
+                        <button onClick={(e) => removeFromCart(e, item)}><Icon id='close'/></button>
                       </div>
                       ))
                     )}
@@ -180,7 +184,7 @@ const Header = () => {
                       </NavLink>
                     </div>
                   </div>
-                  : <p>cart is empty</p>
+                  : <p className='cart-is-empty'>cart is empty</p>
                 }
                    {/* (authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null)
                    || (localUser && localUser?.cart.length > 0 ? localUser.cart.length : null) */}

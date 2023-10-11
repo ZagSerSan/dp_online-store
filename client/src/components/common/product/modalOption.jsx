@@ -1,29 +1,18 @@
 import React, { useEffect } from 'react'
 import './css/modalOption.css'
-import useStore from '../../../store/createStore'
+import cartStore from '../../../store/cartStore'
 
-const ModalOption = ({ name, type, options }) => {
-  const { cartItemData, setCartItemData, cartItemDataWasChanged, setCartItemDataIsChanged } = useStore()
+const ModalOption = ({ name, options }) => {
+  const { cartItemData, setCartItemData, setCartItemDataIsChanged } = cartStore()
 
   useEffect(() => {
-    options.filter(option => option.selected === true).forEach(option => {
-      setCartItemData('option', option)
-    })
+    setCartItemData('setInitialOption', options)
   }, [])
 
-
-  const toggleOptions = (e, value) => {
+  const toggleOptions = (e, option) => {
     e.stopPropagation()
-    //todo, теперь это вызывается из стора
     setCartItemDataIsChanged(true)
-
-    // setCartItemData(prev => (
-    //   {
-    //     ...prev,
-    //     [type]: value
-    //   }
-    // ))
-    return null
+    setCartItemData('toggleOption', option)
   }
 
   return (
@@ -34,9 +23,13 @@ const ModalOption = ({ name, type, options }) => {
           <button
             key={option.value}
             className={'modal-option__button ' + 
-              (cartItemData.size === option.value || cartItemData.color === option.value ? ' selected' : '')
+              (
+                cartItemData[option.type] === option.value ||
+                cartItemData[option.type] === option.value 
+                  ? ' selected' : ''
+              )
             }
-            onClick={(e) => toggleOptions(e, option.value)}
+            onClick={(e) => toggleOptions(e, option)}
           >
             {option.value}
           </button>

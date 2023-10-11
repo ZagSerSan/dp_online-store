@@ -1,29 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Slider from 'react-slick'
 import Icon from '../icon'
 import './css/productModal.css'
 import { settings } from '../../../utils/sliderSettings'
 import ModalOption from './modalOption'
-import useStore from '../../../store/createStore'
+import cartStore from '../../../store/cartStore'
+import ProductActions from './productActions'
 
-const ProductModal = ({
-  item, modalState, onToggleState, 
-  toggleBookmark, addToCart, changeCount,
-  cartData, setCartData, initialCartData
-  // setCartItemDataIsChanged 
-}) => {
-  const { authedUser, localUser, cartItemData, setCartItemData, setCartItemDataIsChanged } = useStore()
-
-  let isBookmarked
-  let isInCart
-  if (item) {
-    isBookmarked = authedUser
-      ? authedUser.bookmarks.includes(item._id)
-      : (localUser ? localUser.bookmarks?.includes(item._id) : false)
-    isInCart = authedUser
-      ? authedUser.cart.find(cartItem => cartItem._id === item._id)
-      : (localUser ? localUser.cart.find(cartItem => cartItem._id === item._id) : false)
-  }
+const ProductModal = ({ item, modalState, onToggleState }) => {
+  const { setCartItemData } = cartStore()
   
   // modal close func
   const closeModal = () => {
@@ -32,9 +17,6 @@ const ProductModal = ({
     setTimeout(() => {
       onToggleState(false)
     }, 400)
-    // setCartData(initialCartData)
-    //todo, теперь это из стора
-    setCartItemDataIsChanged(false)
     setCartItemData('closeModal')
   }
 
@@ -88,32 +70,13 @@ const ProductModal = ({
                 <div className="product-modal-content-options">
                 {item.modalOptionTypes.map(item => (
                   <ModalOption
-                    key={item.type} 
-                    type={item.type} 
+                    key={item.name}
                     name={item.name} 
                     options={item.options}
                   />
                 ))}
                 </div>
-                <div className="product-modal-content-actions">
-                  <div className="product-modal-content-actions-counter">
-                    <button onClick={() => setCartItemData('decrement')}>-</button>
-                    <p>{cartItemData.count}</p>
-                    <button onClick={() => setCartItemData('increment')}>+</button>
-                  </div>
-                  <button
-                    className={"product-modal-content-actions-cartadd" + (isInCart ? ' added' : '')}
-                    onClick={(e) => addToCart(e, item._id, isInCart, item)}
-                  >
-                    {isInCart ? 'REMOVE WITH CART' : 'ADD TO CART'}
-                  </button>
-                  <button
-                    className={"product-modal-content-actions-bookmark" + (isBookmarked ? ' active' : '')}
-                    onClick={(e) => toggleBookmark(e, item._id)}
-                  >
-                    <Icon id='heart'/>
-                  </button>
-                </div>
+                <ProductActions {...{item}}/>
               </div>
             </>
           )}
