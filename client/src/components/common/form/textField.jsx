@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const TextField = ({ name, label, value, type, errors, onChange }) => {
+const TextField = ({ name, label, value, type, placeholder, errors, onChange }) => {
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
@@ -22,34 +22,35 @@ const TextField = ({ name, label, value, type, errors, onChange }) => {
   // }
 
   return (
-    <div className="">
-      <div className="text-field">
+    <div className="text-field">
+      {label && (
         <label htmlFor={name}>
           {label}
         </label>
-        <input
-          type={showPassword ? 'text' : type}
-          className={
-            'form-control ' +
-            (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
-          }
-          id={name}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          // onBlur={toogleBluredState}
-        />
-        {/* {type === 'password' && (
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            onClick={toggleShowPassword}
-          >
-            <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
-          </button>
-        )} */}
-        {errors && isBlured && <div className="error-msg">{errors[name]}</div>}
-      </div>
+      )}
+      <input
+        placeholder={placeholder}
+        type={showPassword ? 'text' : type}
+        className={
+          'form-control ' +
+          (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
+        }
+        id={name}
+        name={name}
+        value={value}
+        onChange={handleChange}
+        // onBlur={toogleBluredState}
+      />
+      {/* {type === 'password' && (
+        <button
+          type="button"
+          className="btn btn-outline-secondary"
+          onClick={toggleShowPassword}
+        >
+          <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
+        </button>
+      )} */}
+      {errors && isBlured && <div className="error-msg">{errors[name]}</div>}
     </div>
   )
 }
@@ -58,9 +59,10 @@ TextField.defaultValues = {
 }
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   value: PropTypes.string,
   type: PropTypes.string,
+  placeholder: PropTypes.string,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired
 }

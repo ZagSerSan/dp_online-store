@@ -40,11 +40,6 @@ export const validatorConfig = {
       minValue: 8
     }
   },
-  // profession: {
-  //   isRequired: {
-  //     message: 'Profesion is required!'
-  //   }
-  // },
   licence: {
     isRequired: {
       message: 'The license agreement is required!'
@@ -53,6 +48,11 @@ export const validatorConfig = {
   content: {
     isRequired: {
       message: 'content is required!'
+    }
+  },
+  comment: {
+    isRequired: {
+      message: 'Comment is required!'
     }
   }
 }

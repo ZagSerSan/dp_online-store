@@ -6,15 +6,15 @@ const ProductInfoReviews = () => {
 
   //todo - test reviews array
   const testReviews = [
-    {test: 'test'},
-    {test: 'test'}
+    {key: '1'},
+    {key: '2'}
   ]
   
   return (
     <div className='more-info-content__reviews'>
       <div>
         {testReviews && testReviews.map(review => (
-          <div className="product-reviews-item">
+          <div key={review.key} className="product-reviews-item">
             <div className="product-reviews-item__col">
               <div className='product-reviews-item__ratting'>
                 <Icon id='rate-star-full'/>
