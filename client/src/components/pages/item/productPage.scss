@@ -113,9 +113,12 @@
               margin-bottom: 20px;
               svg {
                 fill: transparent;
-                stroke: #4d2e30;
+                stroke: #838383;
                 height: 16px;
                 margin-right: 8px;
+                &.active {
+                  stroke: #4d2e30;
+                }
               }
             }
             &__name-data {

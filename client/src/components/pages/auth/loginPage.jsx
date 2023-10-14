@@ -61,7 +61,7 @@ const LoginPage = () => {
   }
   
   return (
-    <div className="my-container form-container pt-[80px]">
+    <div className="my-container form-container">
       <h2 className='mb-[20px] text-[34px]'>Authorization</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField

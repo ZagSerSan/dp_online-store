@@ -58,7 +58,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="my-container form-container pt-[80px]">
+    <div className="my-container form-container">
       <h2 className='mb-[20px] text-[34px]'>Registration</h2>
       {/* <div className="form-container"> */}
         <form className="form" onSubmit={handleSubmit}>

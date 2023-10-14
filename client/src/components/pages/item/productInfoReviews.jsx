@@ -1,39 +1,71 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import commentStore from '../../../store/commentStore'
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
+import { useParams } from 'react-router-dom'
 
 const ProductInfoReviews = () => {
+  const { itemId } = useParams()
+  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded, deleteComment } = commentStore()
 
-  //todo - test reviews array
-  const testReviews = [
-    {key: '1'},
-    {key: '2'}
-  ]
-  
+  useEffect(() => {
+    setCommentsIsLoaded(false)
+    if (!commentsIsLoaded) {
+      loadCommentsList(itemId)
+    }
+  }, [commentsEntity])
+
+  for (let i = 0; i < commentsEntity.length; i++) {
+    console.log('commentsEntity[i].rate :>> ', commentsEntity[i].rate)
+    //todo посчитать тут среднее арефм всех кмментарием и показать
+    // можно сделать функицю в утилс по вычислению ср числа
+    // и отсюда передваать в неё массив чисел рейтингов комментариев этого продукта
+    // а можно просто передавать в функцию в утилс массив комментариев
+    // и там уже сделать преобразование.. чтобы лишний раз не писать
+    // цикл в компонентах, так он будет в одном месте в утилс
+  }
+
+  const test = (rateCount) => {
+    rateCount = Number(rateCount)
+    let testArray = []
+    for (let i = 0; i < 5; i++) {
+      testArray.push(i)
+    }
+    return testArray
+  }
+
   return (
     <div className='more-info-content__reviews'>
       <div>
-        {testReviews && testReviews.map(review => (
-          <div key={review.key} className="product-reviews-item">
-            <div className="product-reviews-item__col">
-              <div className='product-reviews-item__ratting'>
-                <Icon id='rate-star-full'/>
-                <Icon id='rate-star-full'/>
-                <Icon id='rate-star-full'/>
-                <Icon id='rate-star-full'/>
-                (4)
+        {commentsEntity
+          ? (
+            commentsEntity.length !== 0
+              ? commentsEntity.map(review => (
+              <div key={review._id} className="product-reviews-item">
+                <div className="product-reviews-item__col">
+                  <div className='product-reviews-item__ratting'>
+                    {test(review.rate).map(rateItem => (
+                      <Icon
+                        id='rate-star-full'
+                        strokeWidth='2' 
+                        className={(rateItem < review.rate ? ' active' : '')}
+                      />
+                    ))}
+                    ({review.rate})
+                  </div>
+                  <p className='product-reviews-item__name-data'>
+                    <span>{review.name}</span>
+                    <span>{review.created_at}</span>
+                    <button className='text-[red]' onClick={() => deleteComment(review._id)}>X</button>
+                  </p>
+                </div>
+                <div className="product-reviews-item__col">
+                  <p className='product-reviews-item__description'>{review.content}</p>
+                </div>
               </div>
-              <p className='product-reviews-item__name-data'>
-                <span>Tayeb Rayed</span>
-                <span>12:24</span>
-                <span>March 2018</span>
-              </p>
-            </div>
-            <div className="product-reviews-item__col">
-              <p className='product-reviews-item__description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
-            </div>
-          </div>
-        ))}
+            )) : <p>no comments</p>
+          ) : 'loading...'
+      }
       </div>
       <AddReviewForm/>
     </div>

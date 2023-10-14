@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import productService from '../service/product.service'
+import ProductService from '../service/product.service'
 import userService from '../service/user.service'
 import localStorageService from '../service/localStorage.service'
 
@@ -19,10 +19,8 @@ const useStore = create((set) => ({
   productsEntity: null,
   productsLoadingStatus: true,
 
-  
-
   loadProductsList: async () => {
-    const { content } = await productService.get()
+    const { content } = await ProductService.get()
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoadingStatus: false}))
   },

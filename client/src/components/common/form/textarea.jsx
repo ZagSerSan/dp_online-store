@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Textarea = ({ name, label, value, type, errors, onChange }) => {
+const Textarea = ({ name, label, value, errors, onChange }) => {
   const [isBlured, setIsBlured] = useState(false)
-
+  
   const handleChange = ({ target }) => {
     onChange({ name: target.name, value: target.value })
     setIsBlured(true)

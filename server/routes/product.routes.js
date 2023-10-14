@@ -16,26 +16,28 @@ router.get('/', async (req, res) => {
   }
 })
 
-//* больше нету обновления продукта по избранным
-// router.put('/:productId', async (req, res) => {
-//   try {
-//     const { productId } = req.params    
-//     console.log('req.body', req.body)
+//* обновлениe продукта по рейтингу
+router.put('/:productId', async (req, res) => {
+  try {
+    const { productId } = req.params    
+    console.log('req.body', req.body)
+    // console.log('req.params', req.params)
 
-//     // if (productId === req.product._id) {
-//       const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
-//       res.send(updatedProduct)
-//     // } else {
-//     //   res.status(401).json({
-//     //     message: 'На сервере проихошла ошибка, попробуйте позже.',
-//     //     errors: errors.array()
-//     //   })
-//     // }
+    // if (productId === req.product._id) {
+      //todo
+      const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
+      res.send(updatedProduct)
+    // } else {
+    //   res.status(401).json({
+    //     message: 'На сервере проихошла ошибка, попробуйте позже.',
+    //     errors: errors.array()
+    //   })
+    // }
 
-//   } catch (e) {
-//     console.log(chalk.red('error'), e)
-//     res.status(401).json({message: 'Unauthorized'})
-//   }
-// })
+  } catch (e) {
+    console.log(chalk.red('error'), e)
+    res.status(401).json({message: 'Unauthorized'})
+  }
+})
 
 module.exports = router

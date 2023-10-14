@@ -2,17 +2,16 @@ import httpService from './http.service'
 
 const productEndpoint = 'product/'
 
-const productService = {
+const ProductService = {
   get: async () => {
     const { data } = await httpService.get(productEndpoint)
     return data
   },
-  toggleBookmark: async (updProductData) => {
-    // console.log('updProductData :>> ', updProductData)
-    // console.log('updProductData._id :>> ', updProductData._id)
-    const { data } = await httpService.put(productEndpoint + updProductData._id, updProductData)
+  updateProductRate: async (commentData) => {
+    // console.log('commentData :>> ', commentData)
+    const { data } = await httpService.put(productEndpoint + commentData.productId, {rate: commentData.rate})
     return data
   }
 }
 
-export default productService
+export default ProductService

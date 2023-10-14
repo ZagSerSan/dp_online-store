@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import Icon from '../../common/icon'
-import TextField from '../../common/form/textField'
+import { useParams } from 'react-router-dom'
+import { nanoid } from 'nanoid'
+// utils, state, ect
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
-import Textarea from '../../common/form/textarea'
 import useStore from '../../../store/createStore'
+// components
+import Icon from '../../common/icon'
+import TextField from '../../common/form/textField'
+import Textarea from '../../common/form/textarea'
+// import CommentService from '../../../service/comment.service'
+import commentStore from '../../../store/commentStore'
 
 const AddReviewForm = () => {
+  const { itemId } = useParams()
   const { authedUser } = useStore()
+  const { addComment } = commentStore()
   const [errors, setErrors] = useState({})
   // значение полей формы
-  const [data, setData] = useState({
+  const initialState = {
+    productId: itemId,
+    userId: authedUser ? authedUser._id : '',
     name: authedUser ? authedUser.name : '',
     email: authedUser ? authedUser.email : '',
-    comment: '',
+    content: '',
     rate: 4
-  })
-
+  }
+  const [data, setData] = useState(initialState)
   const [rattingState, setRattingState] = useState(data.rate)
   const rattingStars = [
     {value: 1},
@@ -44,13 +54,13 @@ const AddReviewForm = () => {
     if (!ifValid) return
 
     try {
-      console.log('data', data)
-      // await authService.register(data)
-      // setAuthedUser()
+      addComment(data)
+      setData(initialState)
     } catch (e) {
       console.log('e', e)
     }
   }
+
   const handleChange = ({ name, value }) => {
     setData(prev => ({
       ...prev,
@@ -110,8 +120,8 @@ const AddReviewForm = () => {
         </div>
         <Textarea
           // label="Comment:"
-          name="comment"
-          value={data.comment}
+          name="content"
+          value={data.content}
           onChange={handleChange}
           errors={errors}
         />

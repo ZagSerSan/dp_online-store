@@ -119,9 +119,12 @@
 }
 .product-page-col.more-info .more-info-content__reviews .product-reviews-item__ratting svg {
   fill: transparent;
-  stroke: #4d2e30;
+  stroke: #838383;
   height: 16px;
   margin-right: 8px;
+}
+.product-page-col.more-info .more-info-content__reviews .product-reviews-item__ratting svg.active {
+  stroke: #4d2e30;
 }
 .product-page-col.more-info .more-info-content__reviews .product-reviews-item__name-data {
   font-family: "Montserrat", sans-serif;

@@ -13,12 +13,12 @@ import ProductsList from '../../ui/productsList'
 import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
+// import commentStore from '../../../store/commentStore'
 
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = useStore((state) => state.productsEntity.find(item => item._id === itemId))
-  // states: description, more, reviews
-  const [contentState, setContentState] = useState('description')
+  const [contentState, setContentState] = useState('reviews')
   const navLinks = [
     {Label: 'DESCRIPTION', state: 'description'},
     {Label: 'MORE INFORMATION', state: 'more'},
