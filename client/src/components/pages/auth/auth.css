@@ -10,44 +10,34 @@
       -ms-flex-align: center;
           align-items: center;
   height: 100vh;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
-h2 {
+.authorization-page__title {
   color: #7e4c4f;
-  font-family: "Pacifico", cursive;
-  font-size: 34px;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: capitalize;
   line-height: 61px;
   margin-bottom: 20px;
 }
 
 form {
-  max-width: 500px;
-  padding: 20px;
-  -webkit-box-shadow: 0 0 5px 0px #525252;
-          box-shadow: 0 0 5px 0px #525252;
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #fff;
-  border-radius: 10px;
-}
-form label {
-  color: #7e4c4f;
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
-  margin-right: 10px;
-  cursor: pointer;
 }
 form input {
-  color: #f6ab44;
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
-  border: 1px rgba(126, 76, 79, 0.4509803922) solid;
-  border-radius: 3px;
-  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+  color: #333;
+  font-size: 14px;
+  height: 50px;
+  padding: 0 15px;
 }
 form button {
   font-family: "Montserrat", sans-serif;
@@ -80,35 +70,48 @@ form a:hover {
   color: #f6ab44;
 }
 form .text-field {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+}
+form .text-field input {
+  width: 100%;
 }
 form .text-field input:focus {
   outline: 1px #7e4c4f solid;
 }
-form .radio-field {
+form .checkbox-field {
+  margin-bottom: 20px;
+}
+form .checkbox-field div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin: 15px 0 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-form .checkbox-field {
-  margin: 20px 0 15px;
+form .checkbox-field input {
+  margin-right: 10px;
+  width: 16px;
+  cursor: pointer;
 }
 form .relocate-msg {
   font-family: "Montserrat", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  margin-top: 10px;
+  margin-top: 15px;
   color: #7e4c4f;
+}
+form .license-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  color: #454545;
 }
 form .error-msg {
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
   font-weight: 400;
-  margin-top: 5px;
   color: red;
 }

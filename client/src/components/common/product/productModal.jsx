@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slider from 'react-slick'
 import Icon from '../icon'
 import './css/productModal.css'
@@ -6,10 +6,21 @@ import { settings } from '../../../utils/sliderSettings'
 import ModalOption from './modalOption'
 import cartStore from '../../../store/cartStore'
 import ProductActions from './productActions'
+import commentStore from '../../../store/commentStore'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import { calcAverageNumber } from '../../../utils/calcAverageNumber'
 
 const ProductModal = ({ item, modalState, onToggleState }) => {
   const { setCartItemData } = cartStore()
-  
+  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
+
+  useEffect(() => {
+    setCommentsIsLoaded(false)
+    if (item && !commentsIsLoaded ) {
+      loadCommentsList(item._id)
+    }
+  }, [item, commentsEntity])
+
   // modal close func
   const closeModal = () => {
     const modalBg_el = document.querySelector('.product-modal')
@@ -62,9 +73,17 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
                 <h3 className="product-modal-content__name">{item.name}</h3>
                 <p className="product-modal-content__price">${item.price}.00</p>
                 <div className="product-modal-content__rate">
-                  <Icon id='rate-star-full'/>
-                  <Icon id='rate-star-full'/>
-                  {item.rate}
+                  {ratingStarsHelper.map(rateItem => (
+                    <Icon
+                      key={rateItem.value}
+                      id='rate-star-full'
+                      strokeWidth='2' 
+                      className={
+                        (rateItem.value <= calcAverageNumber(commentsEntity) ? ' active' : '')
+                      }
+                    />
+                  ))}
+                  <span>({calcAverageNumber(commentsEntity)})</span>
                 </div>
                 <p className="product-modal-content__description">{item.description}</p>
                 <div className="product-modal-content-options">

@@ -18,6 +18,24 @@
   font-weight: 600;
   margin: 0 0 7px;
 }
+.product-page-col__row .preview-info__rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+.product-page-col__row .preview-info__rate svg {
+  fill: transparent;
+  stroke: #838383;
+  height: 16px;
+  margin-right: 8px;
+}
+.product-page-col__row .preview-info__rate svg.active {
+  stroke: #4d2e30;
+}
 .product-page-col__row .preview-info__price {
   font-family: "Montserrat", sans-serif;
   color: #686868;

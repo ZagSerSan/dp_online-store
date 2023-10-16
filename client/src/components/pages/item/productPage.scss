@@ -21,9 +21,20 @@
           font-weight: 600;
           margin: 0 0 7px;
         }
-        // &__rate {
-        //   //todo
-        // }
+        &__rate {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          svg {
+            fill: transparent;
+            stroke: #838383;
+            height: 16px;
+            margin-right: 8px;
+            &.active {
+              stroke: #4d2e30;
+            }
+          }
+        }
         &__price {
           font-family: "Montserrat", sans-serif;
           color: #686868;

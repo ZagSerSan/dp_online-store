@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useStore from '../../../store/createStore'
 import { settings } from '../../../utils/sliderSettings'
+import { calcAverageNumber } from '../../../utils/calcAverageNumber'
 import './productPage.css'
 // common components
 import Slider from 'react-slick'
@@ -13,16 +14,19 @@ import ProductsList from '../../ui/productsList'
 import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
-// import commentStore from '../../../store/commentStore'
+import commentStore from '../../../store/commentStore'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = useStore((state) => state.productsEntity.find(item => item._id === itemId))
+  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
+
   const [contentState, setContentState] = useState('reviews')
   const navLinks = [
-    {Label: 'DESCRIPTION', state: 'description'},
-    {Label: 'MORE INFORMATION', state: 'more'},
-    {Label: 'REVIEWS (2)', state: 'reviews'}
+    {Label: 'DESCRIPTION', state: 'description', counter: false},
+    {Label: 'MORE INFORMATION', state: 'more', counter: false},
+    {Label: 'REVIEWS', state: 'reviews', counter: true}
   ]
 
   // correcting html slider
@@ -49,6 +53,13 @@ const ItemPage = () => {
     setContentState(newState)
   }
 
+  useEffect(() => {
+    setCommentsIsLoaded(false)
+    if (!commentsIsLoaded) {
+      loadCommentsList(itemId)
+    }
+  }, [commentsEntity])
+
   return (
     <div className="product-page">
 
@@ -68,7 +79,19 @@ const ItemPage = () => {
             </div>
             <div className="product-page-col__row preview-info">
               <p className="preview-info__name">{currentProduct.name}</p>
-              <p className="preview-info__rate">{currentProduct.rate}</p>
+              <p className="preview-info__rate">
+              {ratingStarsHelper.map(rateItem => (
+                <Icon
+                  key={rateItem.value}
+                  id='rate-star-full'
+                  strokeWidth='2' 
+                  className={
+                    (rateItem.value <= calcAverageNumber(commentsEntity) ? ' active' : '')
+                  }
+                />
+              ))}
+              <span>({calcAverageNumber(commentsEntity)})</span>
+              </p>
               <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p>
               <p className="preview-info__in-stock">In stock</p>
               <p className="preview-info__description">{currentProduct.description}</p>
@@ -93,7 +116,7 @@ const ItemPage = () => {
                   className={contentState === link.state ? 'active' : ''}
                   onClick={() => toggleContent(link.state)}
                 >
-                  {link.Label}
+                  {link.Label} {link.counter && <span>({commentsEntity.length})</span>}
                 </button>
               ))}
             </div>

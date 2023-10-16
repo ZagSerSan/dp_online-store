@@ -62,31 +62,24 @@ const LoginPage = () => {
   
   return (
     <div className="my-container form-container">
-      <h2 className='mb-[20px] text-[34px]'>Authorization</h2>
+      <h2 className='authorization-page__title'>Login</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
-            label="Email:"
+            placeholder="Email"
             name="email"
             value={data.email}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            label="Password:"
+            placeholder="Password"
             name="password"
             value={data.password}
             type="password"
             onChange={handleChange}
             errors={errors}
           />
-          {/* <CheckBoxField
-            value={data.licence}
-            onChange={handleChange}
-            name="licence"
-            error={errors.licence}
-          >
-            Confirm the <a href="">license agreement</a>.
-          </CheckBoxField> */}
+
           <button
             type="submit"
             disabled={!isValid}

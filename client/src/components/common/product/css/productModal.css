@@ -201,15 +201,19 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 18px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
 }
 .product-modal-content__rate svg {
-  height: 20px;
   fill: transparent;
-  stroke: #7e4c4f;
+  stroke: #838383;
+  height: 16px;
+  margin-right: 8px;
 }
-.product-modal-content__rate svg:not(:last-child) {
-  margin-right: 5px;
+.product-modal-content__rate svg.active {
+  stroke: #4d2e30;
 }
 .product-modal .slick-slider {
   display: -webkit-box;

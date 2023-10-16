@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '../../common/form/textField'
-import RadioField from '../../common/form/radioField'
 import CheckBoxField from '../../common/form/checkBoxField'
 import './auth.css'
 import authService from '../../../service/auth.service'
@@ -59,40 +58,29 @@ const RegisterPage = () => {
 
   return (
     <div className="my-container form-container">
-      <h2 className='mb-[20px] text-[34px]'>Registration</h2>
-      {/* <div className="form-container"> */}
+      <h2 className='authorization-page__title'>Register</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
-            label="Name:"
+            placeholder="Name"
             name="name"
             value={data.name}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            label="Email:"
+            placeholder="Email"
             name="email"
             value={data.email}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            label="Password:"
+            placeholder="Password"
             name="password"
             value={data.password}
             type="password"
             onChange={handleChange}
             errors={errors}
-          />
-          <RadioField
-            options={[
-              { name: 'Male', value: 'male' },
-              { name: 'Female', value: 'female' },
-              { name: 'Other', value: 'other' }
-            ]}
-            value={data.sex}
-            name="sex"
-            onChange={handleChange}
           />
           <CheckBoxField
             value={data.licence}
@@ -100,7 +88,7 @@ const RegisterPage = () => {
             name="licence"
             error={errors.licence}
           >
-            Confirm the <a href="">license agreement</a>.
+            <p className='license-msg'>Confirm the <a href="">license agreement</a>.</p>
           </CheckBoxField>
           <button
             type="submit"
@@ -113,8 +101,6 @@ const RegisterPage = () => {
             If you have account, please <Link to='/auth/login'>Login</Link>
           </p>
         </form>
-      {/* </div> */}
-
     </div>
   )
 }
