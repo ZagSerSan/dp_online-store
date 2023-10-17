@@ -233,28 +233,26 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.header-panel input {
+.header-panel .text-field {
   position: absolute;
   top: 50%;
   right: 100%;
   z-index: 3;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  width: 150px;
+  height: 30px;
+}
+.header-panel .text-field input {
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: #383838;
-  height: 25px;
+  border: 1px #7e4c4f solid;
   border-radius: 5px;
   outline-color: #f6ab44;
-  opacity: 0;
-  width: 0;
-  -webkit-transition: all 0.2s ease 0s;
-  transition: all 0.2s ease 0s;
-}
-.header-panel input.active {
-  opacity: 1;
-  width: 200px;
+  padding: 5px;
 }
 .header-panel__icon {
   position: relative;

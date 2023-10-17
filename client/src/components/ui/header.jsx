@@ -8,6 +8,7 @@ import Icon from '../common/icon'
 import useStore from '../../store/createStore'
 import userService from '../../service/user.service'
 import { cartAnimation } from '../../utils/cartAnimation'
+import TextField from '../common/form/textField'
 
 const Header = () => {
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.jpg'  
@@ -17,6 +18,9 @@ const Header = () => {
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
+  //todo
+  const [showSearch, setShowSearch] = useState(false)
+
   const [searchInputState, setSearchInputState] = useState(false)
 
   if (!globalLoading) {
@@ -32,10 +36,22 @@ const Header = () => {
     })
   }
 
+  // todo
+  const [searchData, setSearchData] = useState({search: ''})
+
+  const handleChange = ({ name, value }) => {
+    setSearchData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+  console.log('searchData :>> ', searchData)
+
   const handleSearch = () => {
-    searchInputRef.current.classList.toggle('active')
-    searchInputRef.current.focus()
-    setSearchInputState(Boolean(searchInputRef.current.className))
+    setShowSearch(prev => !prev)
+    // searchInputRef.current.classList.toggle('active')
+    // searchInputRef.current.focus()
+    // setSearchInputState(Boolean(searchInputRef.current.className))
   }
 
   const removeFromCart = async (e, item) => {
@@ -100,7 +116,17 @@ const Header = () => {
         </nav>
         
         <div className='header-panel'>
-          <input ref={searchInputRef} type="text" className=''/>
+          {showSearch && (
+            <TextField
+              // ref={searchInputRef}
+              placeholder="write to search.."
+              name="search"
+              value={searchData.search}
+              onChange={handleChange}
+              // errors={errors}
+            />
+          )}
+          {/* <input ref={searchInputRef} type="text"/> */}
           <button className='header-panel__icon' onClick={handleSearch}>
             {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
@@ -186,8 +212,6 @@ const Header = () => {
                   </div>
                   : <p className='cart-is-empty'>cart is empty</p>
                 }
-                   {/* (authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null)
-                   || (localUser && localUser?.cart.length > 0 ? localUser.cart.length : null) */}
               </div>
             }
           </div>

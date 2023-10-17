@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import commentStore from '../../../store/commentStore'
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
-import { useParams } from 'react-router-dom'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import useStore from '../../../store/createStore'
+import { Link } from 'react-router-dom'
 
 const ProductInfoReviews = () => {
-  const { itemId } = useParams()
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded, deleteComment } = commentStore()
-
-  // useEffect(() => {
-  //   setCommentsIsLoaded(false)
-  //   if (!commentsIsLoaded) {
-  //     loadCommentsList(itemId)
-  //   }
-  // }, [commentsEntity])
+  const { commentsEntity, deleteComment } = commentStore()
+  const { authedUser } = useStore()
 
   return (
     <div className='more-info-content__reviews'>
@@ -39,7 +33,11 @@ const ProductInfoReviews = () => {
                   <p className='product-reviews-item__name-data'>
                     <span>{review.name}</span>
                     <span>{review.created_at}</span>
-                    <button className='text-[red]' onClick={() => deleteComment(review._id)}>X</button>
+                    {review?.userId === authedUser?._id &&
+                      <button onClick={() => deleteComment(review._id)}>
+                        <Icon id='close' />
+                      </button>
+                    }
                   </p>
                 </div>
                 <div className="product-reviews-item__col">
@@ -50,7 +48,16 @@ const ProductInfoReviews = () => {
           ) : 'loading...'
       }
       </div>
-      <AddReviewForm/>
+      {authedUser 
+        ? <AddReviewForm/>
+        : <div className='message-about-auth'>
+            To write comments, please
+            {' '}
+            <Link to='/auth/register'>register</Link> or
+            {' '}
+            <Link to='/auth/login'>log in</Link>.
+          </div>
+      }
     </div>
   )
 }

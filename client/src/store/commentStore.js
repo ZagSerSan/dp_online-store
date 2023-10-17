@@ -1,7 +1,5 @@
 import { create } from 'zustand'
 import CommentService from '../service/comment.service'
-import ProductService from '../service/product.service'
-// import localStorageService from '../service/localStorage.service'
 
 const commentStore = create((set) => ({
   commentsEntity: null,
@@ -15,8 +13,6 @@ const commentStore = create((set) => ({
   },
   addComment: async (commentData) => {
     const { content } = await CommentService.createComment(commentData)
-    const { content: updatedProductContent } = await ProductService.updateProductRate(commentData)
-    console.log('updatedProductContent :>> ', updatedProductContent)
     set((state) => ({ commentsEntity: [...state.commentsEntity, content] }))
     set((state) => ({ commentsIsLoaded: false }))
   },

@@ -4,12 +4,9 @@
   }
   &-col {
     display: flex;
-    // border: 2px red solid;
-    // max-height: 300px;
     &__row {
       position: relative;
       width: 50%;
-      // border: 1px #000 solid;
       padding: 0 15px;
 
       // 1й блок предвар просмотра
@@ -142,6 +139,10 @@
               span {
                 margin-right: 15px;
               }
+              svg {
+                fill: red;
+                height: 13px;
+              }
             }
             &__description {
               font-family: "Montserrat", sans-serif;
@@ -253,6 +254,24 @@
                   background: #7e4c4f49;
                   cursor: default;
                 }
+              }
+            }
+          }
+          .message-about-auth {
+            font-family: "Montserrat", sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #242424;
+            line-height: 26px;
+            text-align: center;
+
+            border-top: 1px #626262 solid;
+            padding-top: 30px;
+            a {
+              color: #7e4c4f;
+              text-decoration: underline;
+              &:hover {
+                text-decoration: none;
               }
             }
           }

@@ -54,5 +54,10 @@ export const validatorConfig = {
     isRequired: {
       message: 'Comment is required!'
     }
+  },
+  search: {
+    isRequired: {
+      message: 'Comment is required!'
+    }
   }
 }

@@ -31,10 +31,10 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange }) 
       <input
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
-        className={
-          'form-control ' +
-          (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
-        }
+        // className={
+        //   'form-control ' +
+        //   (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
+        // }
         id={name}
         name={name}
         value={value}

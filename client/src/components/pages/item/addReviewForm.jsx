@@ -11,6 +11,7 @@ import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
 // import CommentService from '../../../service/comment.service'
 import commentStore from '../../../store/commentStore'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const AddReviewForm = () => {
   const { itemId } = useParams()
@@ -18,23 +19,30 @@ const AddReviewForm = () => {
   const { addComment } = commentStore()
   const [errors, setErrors] = useState({})
   // значение полей формы
-  const initialState = {
+  let initialState = {
     productId: itemId,
-    userId: authedUser ? authedUser._id : '',
-    name: authedUser ? authedUser.name : '',
-    email: authedUser ? authedUser.email : '',
+    userId: '',
+    name: '',
+    email: '',
     content: '',
     rate: 4
   }
+
   const [data, setData] = useState(initialState)
   const [rattingState, setRattingState] = useState(data.rate)
-  const rattingStars = [
-    {value: 1},
-    {value: 2},
-    {value: 3},
-    {value: 4},
-    {value: 5}
-  ]
+
+  useEffect(() => {
+    setData(prev => (
+      {
+        ...prev,
+        userId: authedUser ? authedUser._id : '',
+        name: authedUser ? authedUser.name : '',
+        email: authedUser ? authedUser.email : '',
+      }
+    ))
+  }, [authedUser])
+
+
   const rateStarElements = document.querySelectorAll('.interactive-ratting-function')
   rateStarElements.forEach(button => {
     button.addEventListener('mouseenter', (e) => {
@@ -87,7 +95,7 @@ const AddReviewForm = () => {
       <div className="subtitle interactive-ratting-function">
         <p>Rating:</p>
         <div>
-          {rattingStars.map(star => (
+          {ratingStarsHelper.map(star => (
             <button
               id={star.value}
               key={star.value}

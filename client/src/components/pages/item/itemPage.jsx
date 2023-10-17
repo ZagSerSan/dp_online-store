@@ -116,7 +116,7 @@ const ItemPage = () => {
                   className={contentState === link.state ? 'active' : ''}
                   onClick={() => toggleContent(link.state)}
                 >
-                  {link.Label} {link.counter && <span>({commentsEntity.length})</span>}
+                  {link.Label} {link.counter && <span>({commentsEntity?.length})</span>}
                 </button>
               ))}
             </div>
