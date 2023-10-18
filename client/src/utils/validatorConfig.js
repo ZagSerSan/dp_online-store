@@ -40,11 +40,6 @@ export const validatorConfig = {
       minValue: 8
     }
   },
-  // licence: {
-  //   isRequired: {
-  //     message: 'The license agreement is required!'
-  //   }
-  // },
   content: {
     isRequired: {
       message: 'content is required!'

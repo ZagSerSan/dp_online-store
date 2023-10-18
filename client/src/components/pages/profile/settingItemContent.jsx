@@ -52,6 +52,7 @@ const SettingItemContent = ({ contentType }) => {
       ...prev,
       [name]: value
     }))
+    
   }
 
   useEffect(() => {
@@ -59,6 +60,12 @@ const SettingItemContent = ({ contentType }) => {
   }, [data])
   const validate = () => {
     const errors = validator(data, validatorConfig)
+    
+    if (data.password !== data.passwordConfirm) {
+      errors.passwordConfirm = "Passwords don't match"
+    } else {
+      delete errors.passwordConfirm
+    }
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -75,7 +82,7 @@ const SettingItemContent = ({ contentType }) => {
         <div>
           <div className="setting-item-content__title">CHANGE PASSWORD</div>
           <div className="setting-item-content__subtitle">Your Password</div>
-          <div className="setting-item-content-form-container">
+          <form className="setting-item-content-form-container" onSubmit={handleSubmit}>
             <div className="setting-item-content-form-container__col">
               <div className="setting-item-content-form-container__row">
                 <TextField
@@ -91,7 +98,7 @@ const SettingItemContent = ({ contentType }) => {
                 <TextField
                   label='Password Confirm:'
                   placeholder="Confirm new password"
-                  name="password"
+                  name="passwordConfirm"
                   value={data.passwordConfirm}
                   onChange={handleChange}
                   errors={errors}
@@ -99,10 +106,15 @@ const SettingItemContent = ({ contentType }) => {
               </div>
             </div>
             <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row"></div>
-              <div className="setting-item-content-form-container__row"></div>
+            <button
+              type="submit"
+              // disabled={!isValid}
+              className="submit"
+            >
+              Save data
+            </button>
             </div>
-          </div>
+          </form>
         </div>
         )
       : contentType === 'address'
@@ -110,7 +122,7 @@ const SettingItemContent = ({ contentType }) => {
         <div>
           <div className="setting-item-content__title">Address Book Entries</div>
           <div className="setting-item-content__subtitle">Change default address or add new</div>
-          <div className="setting-item-content-form-container">
+          <form className="setting-item-content-form-container" onSubmit={handleSubmit}>
             <div className="setting-item-content-form-container__col">
               <div className="setting-item-content-form-container__row">
                 <TextField
@@ -155,14 +167,21 @@ const SettingItemContent = ({ contentType }) => {
                 />
               </div>
             </div>
-          </div>
+            <button
+              type="submit"
+              // disabled={!isValid}
+              className="submit"
+            >
+              Save data
+            </button>
+          </form>
         </div>
       )
       : (
         <div>
           <div className="setting-item-content__title">My Account Information</div>
           <div className="setting-item-content__subtitle">Your Personal Details</div>
-          <div className="setting-item-content-form-container">
+          <form className="setting-item-content-form-container" onSubmit={handleSubmit}>
             <div className="setting-item-content-form-container__col">
               <div className="setting-item-content-form-container__row">
                 <TextField
@@ -185,11 +204,18 @@ const SettingItemContent = ({ contentType }) => {
                 />
               </div>
             </div>
-            <div className="setting-item-content-form-container__col">
+            <button
+              type="submit"
+              // disabled={!isValid}
+              className="submit"
+            >
+              Save data
+            </button>
+            {/* <div className="setting-item-content-form-container__col">
               <div className="setting-item-content-form-container__row"></div>
               <div className="setting-item-content-form-container__row"></div>
-            </div>
-          </div>
+            </div> */}
+          </form>
         </div>
       )
     }
