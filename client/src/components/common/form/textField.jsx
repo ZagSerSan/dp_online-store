@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const TextField = ({ name, label, value, type, placeholder, errors, onChange }) => {
+const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType }) => {
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
   const [isBlured, setIsBlured] = useState(false)
 
   const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value })
+    onChange({ name: target.name, value: target.value }, submitType)
     setIsBlured(true)
   }
 

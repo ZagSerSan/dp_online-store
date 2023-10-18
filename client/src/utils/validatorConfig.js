@@ -50,6 +50,38 @@ export const validatorConfig = {
       message: 'Comment is required!'
     }
   },
+  сountry: {
+    isRequired: {
+      message: 'Comment is required!'
+    },
+    isMinLenght: {
+      message: 'Name must have 3 symbols!',
+      minValue: 3
+    }
+  },
+  city: {
+    isRequired: {
+      message: 'Comment is required!'
+    },
+    isMinLenght: {
+      message: 'Name must have 3 symbols!',
+      minValue: 3
+    }
+  },
+  street: {
+    isRequired: {
+      message: 'Comment is required!'
+    },
+    isMinLenght: {
+      message: 'Name must have 3 symbols!',
+      minValue: 3
+    }
+  },
+  houseNumber: {
+    isRequired: {
+      message: 'Comment is required!'
+    }
+  },
   // search: {
   //   isRequired: {
   //     message: 'Comment is required!'

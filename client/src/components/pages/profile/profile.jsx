@@ -11,7 +11,7 @@ const Profile = () => {
   //todo setting items
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
-    {number: 1, contentType: 'information', title: 'Edit your account information'},
+    {number: 1, contentType: 'account', title: 'Edit your account information'},
     {number: 2, contentType: 'password', title: 'Change your password'},
     {number: 3, contentType: 'address', title: 'Modify your address book entries'}
   ]
