@@ -45,7 +45,6 @@ const Header = () => {
       [name]: value
     }))
   }
-  console.log('searchData :>> ', searchData)
 
   const handleSearch = () => {
     setShowSearch(prev => !prev)
@@ -112,6 +111,10 @@ const Header = () => {
             <li className='header-nav__link'><Link to="/delivery">Delivery</Link></li>
             <li className='header-nav__link'><Link to="/about">About us</Link></li>
             <li className='header-nav__link'><Link to="/contacts">Contacts</Link></li>
+            {
+              (authedUser && authedUser.admin) &&
+              <li className='header-nav__link'><Link to="/admin">Admin</Link></li>
+            }
           </ul>
         </nav>
         

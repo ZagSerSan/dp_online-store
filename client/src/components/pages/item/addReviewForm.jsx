@@ -21,9 +21,9 @@ const AddReviewForm = () => {
   // значение полей формы
   let initialState = {
     productId: itemId,
-    userId: '',
-    name: '',
-    email: '',
+    userId: authedUser ? authedUser._id : '',
+    name: authedUser ? authedUser.name : '',
+    email: authedUser ? authedUser.email : '',
     content: '',
     rate: 4
   }

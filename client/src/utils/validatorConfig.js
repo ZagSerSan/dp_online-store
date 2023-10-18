@@ -40,11 +40,11 @@ export const validatorConfig = {
       minValue: 8
     }
   },
-  licence: {
-    isRequired: {
-      message: 'The license agreement is required!'
-    }
-  },
+  // licence: {
+  //   isRequired: {
+  //     message: 'The license agreement is required!'
+  //   }
+  // },
   content: {
     isRequired: {
       message: 'content is required!'
@@ -55,9 +55,9 @@ export const validatorConfig = {
       message: 'Comment is required!'
     }
   },
-  search: {
-    isRequired: {
-      message: 'Comment is required!'
-    }
-  }
+  // search: {
+  //   isRequired: {
+  //     message: 'Comment is required!'
+  //   }
+  // }
 }

@@ -16,8 +16,8 @@ const RegisterPage = () => {
     name: '',
     email: '',
     password: '',
-    sex: 'male',
-    licence: false,
+    // sex: 'male',
+    admin: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
   const { setAuthedUser, authorizated } = useStore()
@@ -83,12 +83,12 @@ const RegisterPage = () => {
             errors={errors}
           />
           <CheckBoxField
-            value={data.licence}
+            value={data.admin}
             onChange={handleChange}
-            name="licence"
-            error={errors.licence}
+            name="admin"
+            // error={errors.admin}
           >
-            <p className='license-msg'>Confirm the <a href="">license agreement</a>.</p>
+            <p className='license-msg'>As an admin.</p>
           </CheckBoxField>
           <button
             type="submit"

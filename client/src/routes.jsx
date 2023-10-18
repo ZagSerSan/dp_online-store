@@ -13,6 +13,7 @@ import ContactPage from "./components/pages/contact"
 import ItemPage from "./components/pages/item/itemPage"
 import FavouritesPage from "./components/pages/favourites/favouritesPage"
 import Cart from "./components/pages/cart/cart"
+import AdminPage from "./components/pages/admin/adminPage"
 
 const routes = [
   {path: '/', element: <Home/>},
@@ -51,6 +52,10 @@ const routes = [
   {
     path: 'contacts',
     element: <ContactPage />,
+  },
+  {
+    path: 'admin',
+    element: <AdminPage />,
   },
   {path: '*', element: <Navigate to='/'/>}
 ]

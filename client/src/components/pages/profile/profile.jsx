@@ -1,40 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import useStore from '../../../store/createStore'
 import Icon from '../../common/icon'
 import './profile.css'
+import SettingItemContent from './settingItemContent'
 
 const Profile = () => {
   const { authedUser, logOut} = useStore()
 
+  //todo setting items
+  const [settingItemState, setSettingItemState] = useState(1)
+  const settingItems = [
+    {number: 1, contentType: 'information', title: 'Edit your account information'},
+    {number: 2, contentType: 'password', title: 'Change your password'},
+    {number: 3, contentType: 'address', title: 'Modify your address book entries'}
+  ]
+
+  const toggleSettingItem = (settingItemId) => {
+    setSettingItemState(settingItemId)
+  }
+
   return (
-    <div className="my-container flex flex-col items-center">
+    <div className="my-container">
       {authedUser
-        ? (<>
-          <h1 className='text-[50px] font-normal mb-[40px]'>Profile</h1>
-          <div className="wrapper flex flex-row h-[190px]">
-            <img 
-              src={authedUser.image}
-              className='rounded-[10px] w-[150px]' 
-              alt=""
-            />
-            <div className='ml-[20px] flex flex-col justify-between'>
-              <div>
-                <p className='text-[#7e4c4f] text-[20px] mb-[10px]'>
-                  Name:
-                  <span className='text-[#f6ab44]'> {authedUser.name}</span>
-                </p>
-                <p className='text-[#7e4c4f] text-[20px]'>
-                  Email:
-                  <span className='text-[#f6ab44]'> {authedUser.email}</span>
-                </p>
+        ? (
+        <>
+        <div className='user-page'>
+
+          {settingItems.map(settingItem => (
+            <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
+              <div className="setting-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
+                <div className='setting-item-clicker__number'>{settingItem.number}</div>
+                <div className='setting-item-clicker__title'>{settingItem.title}</div>
               </div>
-              <div className='mt-[15px]'>
-                <NavLink to='/auth/login' onClick={logOut} className='text-[red] text-[20px] mt-[20px]'>LogOut</NavLink>
+              <div className="setting-item-content">
+                <SettingItemContent contentType={settingItem.contentType}/>
               </div>
             </div>
-            
-          </div>
+          ))}
+        </div>
         </>)
         : <Icon id='loader'/>
       }

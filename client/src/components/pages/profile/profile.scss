@@ -1,15 +1,122 @@
-.wrapper {
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
+.user-page {
+  padding-top: 30px;
 
-  max-width: 500px;
-  padding: 20px;
-  box-shadow: 0 0 5px 0px #525252;
-  background-color: #fff;
-  border-radius: 10px;
-}
+  .setting-item {
+    position: relative;
 
-h1 {
-  margin: 0px auto;
+    // активно = открыт аккардион-айтем
+    &.active {
+      .setting-item-content {
+        height: 240px;
+        padding: 30px 20px;
+        margin: 0 0 30px;
+
+        border: 1px solid #eaeaea;
+      }
+    }
+
+    // кнопка аккардиона
+    &-clicker {
+      display: flex;
+      margin: 0 0 30px;
+      cursor: pointer;
+
+      &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 42px;
+        width: 42px;
+
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        background-color: #7e4c4f;
+        color: #fff;
+      }
+      &__title {
+        display: flex;
+        align-items: center;
+
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+
+        padding-left: 10px;
+        width: 100%;
+        border: 1px solid #e7e7e7;
+        text-transform: uppercase;
+      }
+    }
+
+    // контент аккардиона
+    &-content {
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+
+      background-color: #fff;
+      transition: all 0.3s linear;
+
+      &__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: #444444;
+        text-transform: uppercase;
+      }
+      &__subtitle {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #444444;
+
+        letter-spacing: 0.2px;
+      }
+      &-form-container {
+        padding-top: 28px;
+        margin-top: 30px;
+        border-top: 1px solid #eaeaea;
+
+        &__col {
+          display: flex;
+          width: 100%;
+        }
+        &__row {
+          width: 50%;
+          &:last-child {
+            padding-left: 15px;
+          }
+          &:first-child {
+            padding-right: 15px;
+          }
+        }
+        .text-field {
+          display: flex;
+          flex-direction: column;
+          label {
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #242424;
+            margin-bottom: 8px;
+          }
+          input {
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #555;
+
+            height: 40px;
+            padding: 0 15px;
+            background-color: transparent;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
 }

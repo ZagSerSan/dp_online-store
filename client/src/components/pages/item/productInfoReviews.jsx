@@ -33,7 +33,8 @@ const ProductInfoReviews = () => {
                   <p className='product-reviews-item__name-data'>
                     <span>{review.name}</span>
                     <span>{review.created_at}</span>
-                    {review?.userId === authedUser?._id &&
+                    {
+                      (review?.userId === authedUser?._id || authedUser.admin) &&
                       <button onClick={() => deleteComment(review._id)}>
                         <Icon id='close' />
                       </button>
