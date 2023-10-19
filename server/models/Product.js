@@ -5,12 +5,12 @@ const schema = new Schema({
   type: {type: String, required: true},
   title: {type: String, required: true},
   price: {type: Number, required: true},
-  rate: {type: Number, required: true},
+  rate: {type: Number},
   description: {type: String, required: true},
   modalOptionTypes: {type: Array, required: true},
-  introSlider: {type: Object, required: false},
+  introSlider: {type: Object},
   preview: {type: String, required: true},
-  slider_dots: {type: Array, required: true},
+  slider_dots: {type: Array},
   slider: {type: Array, required: true},
 }, {
   timestamps: true

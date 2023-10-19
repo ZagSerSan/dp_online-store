@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import useStore from '../../../store/createStore'
 import Icon from '../../common/icon'
 import './profile.css'
+import userStore from '../../../store/userStore'
 
 const Profile = () => {
-  const { authedUser, logOut} = useStore()
+  const { authedUser, logOut} = userStore()
 
   return (
     <div className="my-container flex flex-col items-center">

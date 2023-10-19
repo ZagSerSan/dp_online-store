@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './css/productItem.css'
 import Icon from '../icon'
-import useStore from '../../../store/createStore'
 import cartStore from '../../../store/cartStore'
+import userStore from '../../../store/userStore'
 
 const ProductItem = ({ item, setModalState, setModalItem }) => {
   const { _id: id, name, preview, title, price, type } = item
@@ -11,7 +11,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
   const [cartHover, setCartHover] = useState(false)
 
   //todo
-  const { authedUser, localUser, updAuthedUser, updLocalUserCart, updLocalUserBookmarks } = useStore()
+  const { authedUser, localUser, updAuthedUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { addToCart, toggleBookmark } = cartStore()
 
   const isBookmarked = authedUser

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import useStore from '../../../store/createStore'
 import Icon from '../../common/icon'
 import './profile.css'
 import SettingItemContent from './settingItemContent'
+import userStore from '../../../store/userStore'
 
 const Profile = () => {
-  const { authedUser, logOut} = useStore()
+  const { authedUser, logOut} = userStore()
 
   //todo setting items
   const [settingItemState, setSettingItemState] = useState(1)

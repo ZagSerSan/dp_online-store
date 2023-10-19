@@ -2,24 +2,27 @@ import React, { useEffect, useState } from 'react'
 import TextField from '../../common/form/textField'
 import { validatorConfig } from '../../../utils/validatorConfig'
 import { validator } from '../../../utils/validator'
-import useStore from '../../../store/createStore'
 import { Navigate } from 'react-router-dom'
+import userStore from '../../../store/userStore'
 
 const SettingItemContent = ({ contentType }) => {
   const [errors, setErrors] = useState({})
-  const { authedUser, authorizated } = useStore()
+  const { authedUser, authorizated, updAuthedUser } = userStore()
 
   // значение полей формы
   const dataPasswordInitState = {
+    _id: authedUser._id,
     password: '',
     passwordConfirm: '',
   }
 
   const [dataAccount, setDataAccount] = useState({
+    _id: authedUser._id,
     name: authedUser ? authedUser.name : '',
     email: authedUser ? authedUser.email : '',
   })
   const [dataPassword, setDataPassword] = useState({
+    _id: authedUser._id,
     password: '',
     passwordConfirm: '',
   })
@@ -30,7 +33,6 @@ const SettingItemContent = ({ contentType }) => {
     houseNumber: '',
   })
 
-
   useEffect(() => {
     setDataAccount(prev => (
       {
@@ -39,36 +41,39 @@ const SettingItemContent = ({ contentType }) => {
         email: authedUser ? authedUser.email : '',
       }
     ))
+    setDataAddress({
+      сountry: authedUser.address ? authedUser.address.сountry : '',
+      city: authedUser.address ? authedUser.address.city : '',
+      street: authedUser.address ? authedUser.address.street : '',
+      houseNumber: authedUser.address ? authedUser.address.houseNumber : ''
+    })
   }, [authedUser])
 
   const handleSubmit = async (e, submitType) => {
-
     e.preventDefault()
     const ifValid = validate(submitType)
     if (!ifValid) return
 
     switch (submitType) {
       case 'account':
-        console.log('dataAccount :>> ', dataAccount)
+        updAuthedUser(dataAccount)
         break;
       case 'password':
+        updAuthedUser(dataPassword)
         setDataPassword(dataPasswordInitState)
-        console.log('dataPassword :>> ', dataPassword)
         break;
       case 'address':
-        console.log('dataAddress :>> ', dataAddress)
+        const newObjAddress = {
+          _id: authedUser._id,
+          address: dataAddress
+        }
+        updAuthedUser(newObjAddress)
         break;
       default:
         break;
     }
-    // try {
-      //todo обновлять юсера
-    //   await authService.register(data)
-    //   setAuthedUser()
-    // } catch (e) {
-    //   console.log('e', e)
-    // }
   }
+
   const handleChange = (payload, submitType) => {
     const { name, value } = payload
     switch (submitType) {
@@ -104,6 +109,7 @@ const SettingItemContent = ({ contentType }) => {
   useEffect(() => {
     validate(contentType)
   }, [dataAccount, dataPassword, dataAddress])
+
   const validate = (contentType) => {
     let errors
 

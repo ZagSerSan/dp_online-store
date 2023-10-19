@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './auth.css'
 import TextField from '../../common/form/textField'
 import authService from '../../../service/auth.service'
-import useStore from '../../../store/createStore'
 import { useNavigate, Navigate, Link } from "react-router-dom"
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+import userStore from '../../../store/userStore'
 
 const LoginPage = () => {
   const [errors, setErrors] = useState({})
@@ -15,7 +15,7 @@ const LoginPage = () => {
     password: '',
   })
 
-  const { setAuthedUser, authorizated } = useStore()
+  const { setAuthedUser, authorizated } = userStore()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {

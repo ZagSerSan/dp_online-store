@@ -3,12 +3,12 @@ import commentStore from '../../../store/commentStore'
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
-import useStore from '../../../store/createStore'
 import { Link } from 'react-router-dom'
+import userStore from '../../../store/userStore'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
-  const { authedUser } = useStore()
+  const { authedUser } = userStore()
 
   return (
     <div className='more-info-content__reviews'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { useRef } from 'react'
+// import { useRef } from 'react'
 // css
 import './css/header.css'
 // components
@@ -9,11 +9,13 @@ import useStore from '../../store/createStore'
 import userService from '../../service/user.service'
 import { cartAnimation } from '../../utils/cartAnimation'
 import TextField from '../common/form/textField'
+import userStore from '../../store/userStore'
 
 const Header = () => {
-  const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.jpg'  
-  const searchInputRef = useRef()
-  const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut, globalLoading } = useStore()
+  const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
+  // const searchInputRef = useRef()
+  const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut } = userStore()
+  const { globalLoading } = useStore()
 
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)

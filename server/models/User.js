@@ -8,7 +8,8 @@ const schema = new Schema({
 	// sex: {type: String, enum: ['male', 'female', 'other']},
 	admin: {type: Boolean},
 	bookmarks: {type: Schema.Types.Array},
-	cart: {type: Schema.Types.Array}
+	cart: {type: Schema.Types.Array},
+  address: {type: Object},
 }, {
   timestamps: true
 })

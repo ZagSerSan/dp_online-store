@@ -1,11 +1,11 @@
 import React from 'react'
-import useStore from '../../../store/createStore'
 import cartStore from '../../../store/cartStore'
 import Icon from '../icon'
 import './css/productActions.css'
+import userStore from '../../../store/userStore'
 
 const ProductActions = ({ item }) => {
-  const { authedUser, updAuthedUser, localUser, updLocalUserCart, updLocalUserBookmarks } = useStore()
+  const { authedUser, updAuthedUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { cartItemData, setCartItemData, addToCart, toggleBookmark } = cartStore()
             
   let isBookmarked

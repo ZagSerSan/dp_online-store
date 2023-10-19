@@ -1,8 +1,8 @@
 import React from 'react'
-import useStore from '../../../store/createStore'
+import userStore from '../../../store/userStore'
 
 const FavouritesPage = () => {
-  const { authedUser } = useStore()
+  const { authedUser } = userStore()
   return (
     <div className="my-container text-center pt-[80px]">
       <div className="my-container text-[40px]">Favourites Page</div>

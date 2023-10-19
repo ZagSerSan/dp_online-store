@@ -4,10 +4,10 @@ import CheckBoxField from '../../common/form/checkBoxField'
 import './auth.css'
 import authService from '../../../service/auth.service'
 import { getRandomInt } from '../../../utils/helper'
-import useStore from '../../../store/createStore'
 import { Navigate, Link } from 'react-router-dom'
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+import userStore from '../../../store/userStore'
 
 const RegisterPage = () => {
   const [errors, setErrors] = useState({})
@@ -20,7 +20,7 @@ const RegisterPage = () => {
     admin: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
-  const { setAuthedUser, authorizated } = useStore()
+  const { setAuthedUser, authorizated } = userStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()

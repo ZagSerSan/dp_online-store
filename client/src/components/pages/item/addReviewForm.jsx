@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 // utils, state, ect
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
-import useStore from '../../../store/createStore'
+import userStore from '../../../store/userStore'
 // components
 import Icon from '../../common/icon'
 import TextField from '../../common/form/textField'
@@ -15,7 +15,7 @@ import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const AddReviewForm = () => {
   const { itemId } = useParams()
-  const { authedUser } = useStore()
+  const { authedUser } = userStore()
   const { addComment } = commentStore()
   const [errors, setErrors] = useState({})
   // значение полей формы

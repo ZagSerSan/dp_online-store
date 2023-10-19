@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import useStore from '../../../store/createStore'
 import PropTypes from 'prop-types'
-import Icon from '../../common/icon'
+import useStore from '../../../store/createStore'
+import userStore from '../../../store/userStore'
 import localStorageService from '../../../service/localStorage.service'
 import ErrorPage from '../../pages/error'
+import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
-  const { loadProductsList, productsLoadingStatus, setAuthedUser, setGlobalLoading } = useStore()
+  const { loadProductsList, productsLoadingStatus, setGlobalLoading } = useStore()
+  const { setAuthedUser } = userStore()
   const [error, setError] = useState(false)
   
   const test = async () => {
