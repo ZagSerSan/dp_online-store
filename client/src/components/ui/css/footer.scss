@@ -1,13 +1,11 @@
 .footer {
   background-color: #f3f3f3;
   padding: 50px 0;
-  border: 1px red solid;
 
   &__inner {
     display: flex;
   }
   &__col {
-    border: 1px #000 solid;
     width: 25%;
 
     .footer-firstcol {
@@ -39,6 +37,8 @@
     }
     &.footer-useful,
     &.footer-help {
+      display: flex;
+      flex-direction: column;
       padding-left: 50px;
       p {
         font-family: "Montserrat", sans-serif;
@@ -48,15 +48,82 @@
         margin-bottom: 35px;
       }
       a {
-        display: block;
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
         font-size: 14px;
         color: #6c6c6c;
-        margin-bottom: 13px;
+        margin: 0 auto 13px 0;
+        transition: all 0.2s ease 0s;
+
+        &:hover {
+          color: #7e4c4f;
+          padding-left: 5px;
+        }
       }
     }
     &.subscribe {
+      p {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: #6c6c6c;
+
+        line-height: 26px;
+        margin-bottom: 26px;
+      }
+      form {
+        padding: 3px 0;
+        box-shadow: none;
+
+        display: flex;
+        align-items: center;
+        height: 45px;
+        border-radius: 50px;
+
+        .text-field {
+          width: 100%;
+          margin-bottom: 0;
+          height: 100%;
+          margin-right: 5px;
+
+          input {
+            border: 0;
+            height: 100%;
+
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            color: #c3c3c3;
+            font-size: 14px;
+            border-radius: 50px;
+            &.is-invalid {
+              &:focus {
+                outline: 1px solid red;
+              }
+            }
+            &.is-valid {
+              &:focus {
+                outline: 1px solid green;
+              }
+            }
+          }
+        }
+        button {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+
+          height: 100%;
+          line-height: 0;
+          color: #fff;
+          border-radius: 50px;
+          cursor: pointer;
+          padding: 0px 25px;
+          transition: background-color 0.2s ease 0s;
+          &.disabled {
+            cursor: default;
+          }
+        }
+      }
     }
   }
 }

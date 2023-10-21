@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType }) => {
+const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, switchErrMsg = true }) => {
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
@@ -31,15 +31,11 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
       <input
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
-        // className={
-        //   'form-control ' +
-        //   (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')
-        // }
+        className={(!isBlured ? '' : errors[name] ? 'is-invalid' : 'is-valid')}
         id={name}
         name={name}
         value={value}
         onChange={handleChange}
-        // onBlur={toogleBluredState}
       />
       {/* {type === 'password' && (
         <button
@@ -50,7 +46,9 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
           <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
         </button>
       )} */}
-      {errors && isBlured && <div className="error-msg">{errors[name]}</div>}
+      {switchErrMsg && (
+        errors && isBlured && <div className="error-msg">{errors[name]}</div>
+      )}
     </div>
   )
 }
@@ -62,7 +60,9 @@ TextField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   type: PropTypes.string,
+  submitType: PropTypes.string,
   placeholder: PropTypes.string,
+  switchErrMsg: PropTypes.bool,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired
 }

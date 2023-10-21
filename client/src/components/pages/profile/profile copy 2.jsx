@@ -3,7 +3,6 @@ import Icon from '../../common/icon'
 import './profile.css'
 import SettingItemContent from './settingItemContent'
 import userStore from '../../../store/userStore'
-import EditFormList from './editFormList'
 
 const Profile = () => {
   const { authedUser, logOut} = userStore()
@@ -26,7 +25,7 @@ const Profile = () => {
         ? (
         <>
         <div className='user-page'>
-          {/* <EditFormList /> */}
+
           {settingItems.map(settingItem => (
             <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
               <div className="setting-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
