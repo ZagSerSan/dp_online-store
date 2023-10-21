@@ -91,12 +91,6 @@ const Footer = () => {
               SEND
             </button>
           </form>
-          {/* <div className="payment-methods">
-            <div className="payment-methods-item">item </div>
-            <div className="payment-methods-item">item </div>
-            <div className="payment-methods-item">item </div>
-            <div className="payment-methods-item">item </div>
-          </div> */}
         </div>
       </div>
     </footer>

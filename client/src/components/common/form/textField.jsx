@@ -31,7 +31,7 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
       <input
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
-        className={(!isBlured ? '' : errors[name] ? 'is-invalid' : 'is-valid')}
+        className={(!isBlured ? '' : errors?.[name] ? 'is-invalid' : 'is-valid')}
         id={name}
         name={name}
         value={value}

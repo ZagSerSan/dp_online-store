@@ -15,16 +15,16 @@ const Header = () => {
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
   // const searchInputRef = useRef()
   const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut } = userStore()
-  const { globalLoading } = useStore()
+  const { globalLoading, productsEntity } = useStore()
 
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
   //todo
   const [showSearch, setShowSearch] = useState(false)
-
   const [searchInputState, setSearchInputState] = useState(false)
-
+  const [filteredProducts, setFilteredProducts] = useState()
+  
   if (!globalLoading) {
     const header = document.querySelector('.header')
     const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
@@ -42,17 +42,30 @@ const Header = () => {
   const [searchData, setSearchData] = useState({search: ''})
 
   const handleChange = ({ name, value }) => {
+    console.log('value :>> ', value);
     setSearchData(prev => ({
       ...prev,
       [name]: value
     }))
+    setFilteredProducts(value
+      ? productsEntity.filter(entity => entity.name.toLowerCase().includes(value.toLowerCase())).splice(0, 4)
+      : []
+    )
+  }
+  
+  const closeSearch = () => {
+    setShowSearch(false)
+    setSearchData({search: ''})
+    setFilteredProducts([])
   }
 
   const handleSearch = () => {
-    setShowSearch(prev => !prev)
-    // searchInputRef.current.classList.toggle('active')
-    // searchInputRef.current.focus()
-    // setSearchInputState(Boolean(searchInputRef.current.className))
+    if (showSearch) {
+      setShowSearch(false)
+      closeSearch()
+    } else {
+      setShowSearch(true)
+    }
   }
 
   const removeFromCart = async (e, item) => {
@@ -77,6 +90,8 @@ const Header = () => {
   const cartItemsForDropMenu = authedUser
     ? authedUser.cart
     : localUser ? localUser.cart : null
+
+  
 
   return (
     <header className='header'>
@@ -121,17 +136,47 @@ const Header = () => {
         </nav>
         
         <div className='header-panel'>
-          {showSearch && (
-            <TextField
-              // ref={searchInputRef}
-              placeholder="write to search.."
-              name="search"
-              value={searchData.search}
-              onChange={handleChange}
-              // errors={errors}
-            />
-          )}
-          {/* <input ref={searchInputRef} type="text"/> */}
+          {showSearch &&
+            <div
+              // onMouseEnter={() => setCartMenu(true)}
+              // onMouseLeave={() => setCartMenu(false)}
+              className='drop-menu search'
+            >
+              <TextField
+                placeholder="write to search.."
+                name="search"
+                value={searchData.search}
+                onChange={handleChange}
+                // errors={errors}
+              />
+              {(filteredProducts && filteredProducts.length > 0)
+                ? <div className='search-wrapper'>
+                  {(filteredProducts.map(item => (
+                    <div key={item._id} className='search-wrapper__col'>
+                      <div className="search-wrapper__row">
+                        <NavLink onClick={closeSearch} to={`/category/${item.type}/${item._id}`}>
+                          <img src={item.preview} alt={item.name} />
+                        </NavLink>
+                      </div>
+                      <div className="search-wrapper__row">
+                        <NavLink onClick={closeSearch} to={`/category/${item.type}/${item._id}`}>
+                          {item.name}
+                        </NavLink>
+                        <p>${item.price}</p>
+                      </div>
+                    </div>
+                    ))
+                  )}
+                  <div className='to-search-btn'>
+                    <NavLink className='drop-menu__link to-search-btn' to='/cart'>
+                      Wiew more
+                    </NavLink>
+                  </div>
+                </div>
+                : searchData.search ? <p className='not-found'>not found</p> : null
+              }
+            </div>
+            }
           <button className='header-panel__icon' onClick={handleSearch}>
             {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
