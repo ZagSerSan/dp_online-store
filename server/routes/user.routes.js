@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const router = express.Router({mergeParams: true})
 const User = require('../models/User')
 const auth = require('../middleware/auth.middleware')
+const Token = require('../models/Token')
 
 // было router.//!patch(...
 router.put('/:userId', async (req, res) => {
@@ -65,6 +66,29 @@ router.get('/:userId', async (req, res) => {
     res.status(401).json({message: 'Unauthorized'})
   }
 })
+router.delete('/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params
+    const removedUser = await User.findById(userId)
+    //todo
+    const removedToken = await Token.findBy(userId)
 
+    // if (removedUser.userId.toString() === req.user._id) {
+      await removedUser.deleteOne()
+      //todo
+      await removedToken.deleteOne()
+
+      return res.send(null)
+    // } else {
+    //   return res.status(401).json({message: 'Unauthorized'})
+    // }
+  } catch (e) {
+    console.log(chalk.red('error'), e)
+    res.status(500).json({
+      message: 'На сервере проихошла ошибка, попробуйте позже.'
+      // errors: errors.array()
+    })
+  }
+})
 
 module.exports = router
