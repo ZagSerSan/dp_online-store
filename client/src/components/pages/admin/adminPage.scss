@@ -1,0 +1,45 @@
+.admin-page {
+  padding: 40px 0;
+  background: linear-gradient(#f3f3f3, #fff);
+
+  &__tabs-wrapper {
+    height: 50px;
+  }
+  &-tabs {
+    button {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+      min-width: 150px;
+      background-color: #7e4c4f4f;
+      padding: 5px 0;
+      &.active {
+        color: #fff;
+        background-color: #7e4c4f;
+      }
+    }
+  }
+  &-content {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    background-color: #7e4c4f;
+  }
+}
+
+.user-tab-page {
+  button.add-user {
+    background-color: green;
+    color: #fff;
+  }
+  .user-list {
+    p {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+    }
+  }
+}

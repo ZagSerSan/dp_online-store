@@ -14,12 +14,22 @@ import ItemPage from "./components/pages/item/itemPage"
 import FavouritesPage from "./components/pages/favourites/favouritesPage"
 import Cart from "./components/pages/cart/cart"
 import AdminPage from "./components/pages/admin/adminPage"
+import CreateUser from "./components/pages/admin/createPages/createUser"
+import CreateProduct from "./components/pages/admin/createPages/createProduct"
 
 const routes = [
   {path: '/', element: <Home/>},
   {path: 'favourites', element: <FavouritesPage />},
   {path: 'profile', element: <Profile />},
   {path: 'cart', element: <Cart />},
+  {
+    path: 'admin',
+    children: [
+      {path: '', element: <AdminPage />},
+      {path: 'create-user', element: <CreateUser/>},
+      {path: 'create-product', element: <CreateProduct/>},
+    ]
+  },
   {
     path: 'auth',
     children: [
@@ -52,10 +62,6 @@ const routes = [
   {
     path: 'contacts',
     element: <ContactPage />,
-  },
-  {
-    path: 'admin',
-    element: <AdminPage />,
   },
   {path: '*', element: <Navigate to='/'/>}
 ]

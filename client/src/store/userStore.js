@@ -3,10 +3,29 @@ import localStorageService from '../service/localStorage.service'
 import userService from '../service/user.service'
 
 const userStore = create((set) => ({
+  usersEntity: null,
   authedUser: null,
   localUser: null,
   authorizated: false,
+  usersLoaded: false,
 
+  //todo
+  setUsersLoaded: () => set((state) => ({ usersLoaded: false})),
+  removeUser: async (payload) => {
+    set((state) => ({ usersLoaded: false}))
+    const { data } = await userService.deleteUser(payload)
+    return data
+  },
+  createUser: async (payload) => {
+    const { data } = await userService.create(payload)
+    localStorageService.setTokens(data)
+    return data
+  },
+  loadUsersList: async () => {
+    const { content } = await userService.get()
+    set((state) => ({ usersEntity: content}))
+    set((state) => ({ usersLoaded: true}))
+  },
   updLocalUserCart: (cartItem) => set((state) => {
     if (state.localUser?.cart) {
       const newLocalUserData = {

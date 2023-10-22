@@ -13,10 +13,12 @@ const httpAuth = axios.create({
 // const userEndpoint = 'user/'
 
 const authService = {
-  register: async (payload) => {
+  register: async (payload, role = 'register') => {
     const url = 'signUp'
     const { data } = await httpAuth.post(url, payload)
-    localStorageService.setTokens(data)
+    if (role === 'register') {
+      localStorageService.setTokens(data)
+    }
     return data
   },
   login: async ({ email, password }) => {
@@ -37,12 +39,6 @@ const authService = {
   //   })
   //   return data
   // },
-  // updateEmail: async (email) => {
-  //   const url = `accounts:update?key=${process.env.REACT_APP_FIREBASE_KEY}`
-  //   const idToken = localStorageService.getAccessToken()
-  //   const { data } = await httpAuth.post(url, {idToken, email, returnSecureToken: true})
-  //   return data
-  // }
 }
 
 export default authService

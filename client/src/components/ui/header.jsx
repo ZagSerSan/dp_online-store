@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-// import { useRef } from 'react'
 // css
 import './css/header.css'
 // components
@@ -13,16 +12,14 @@ import userStore from '../../store/userStore'
 
 const Header = () => {
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
-  // const searchInputRef = useRef()
   const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut } = userStore()
   const { globalLoading, productsEntity } = useStore()
 
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
-  //todo
   const [showSearch, setShowSearch] = useState(false)
-  const [searchInputState, setSearchInputState] = useState(false)
+  const [searchData, setSearchData] = useState({search: ''})
   const [filteredProducts, setFilteredProducts] = useState()
   
   if (!globalLoading) {
@@ -38,11 +35,8 @@ const Header = () => {
     })
   }
 
-  // todo
-  const [searchData, setSearchData] = useState({search: ''})
 
   const handleChange = ({ name, value }) => {
-    console.log('value :>> ', value);
     setSearchData(prev => ({
       ...prev,
       [name]: value
@@ -91,8 +85,6 @@ const Header = () => {
     ? authedUser.cart
     : localUser ? localUser.cart : null
 
-  
-
   return (
     <header className='header'>
       <div className='cart-helper'>
@@ -138,8 +130,6 @@ const Header = () => {
         <div className='header-panel'>
           {showSearch &&
             <div
-              // onMouseEnter={() => setCartMenu(true)}
-              // onMouseLeave={() => setCartMenu(false)}
               className='drop-menu search'
             >
               <TextField
@@ -147,7 +137,6 @@ const Header = () => {
                 name="search"
                 value={searchData.search}
                 onChange={handleChange}
-                // errors={errors}
               />
               {(filteredProducts && filteredProducts.length > 0)
                 ? <div className='search-wrapper'>
@@ -178,7 +167,7 @@ const Header = () => {
             </div>
             }
           <button className='header-panel__icon' onClick={handleSearch}>
-            {searchInputState ? <Icon id='close'/> : <Icon id='search'/>}
+            {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
           <div className='header-panel__user-container'>
             <button

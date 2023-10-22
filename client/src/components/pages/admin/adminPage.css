@@ -1,0 +1,39 @@
+.admin-page {
+  padding: 40px 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#fff));
+  background: linear-gradient(#f3f3f3, #fff);
+}
+.admin-page__tabs-wrapper {
+  height: 50px;
+}
+.admin-page-tabs button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  min-width: 150px;
+  background-color: rgba(126, 76, 79, 0.3098039216);
+  padding: 5px 0;
+}
+.admin-page-tabs button.active {
+  color: #fff;
+  background-color: #7e4c4f;
+}
+.admin-page-content {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  background-color: #7e4c4f;
+}
+
+.user-tab-page button.add-user {
+  background-color: green;
+  color: #fff;
+}
+.user-tab-page .user-list p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
