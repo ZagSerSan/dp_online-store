@@ -43,7 +43,7 @@ const cartStore = create((set) => ({
     console.log('last return')
     return { cartItemDataWasChanged: false }
   }),
-  addToCart:  (e, authedUser, updAuthedUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
+  addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
     e.stopPropagation()
     cartAnimation(e.target, isInCart)
 
@@ -80,7 +80,7 @@ const cartStore = create((set) => ({
             : [...authedUser.cart, newCartItemData]
         }
         const { content } = await userService.updateUser(newUserData)
-        updAuthedUser(content)
+        updateUser(content)
       } catch (e) {
         console.log('e :>> ', e)
       }
@@ -90,7 +90,7 @@ const cartStore = create((set) => ({
   }),
 
   //* bookmark
-  toggleBookmark: async (e, id, authedUser, updAuthedUser, updLocalUserBookmarks) => {
+  toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
     e.stopPropagation()
     if (authedUser) {
       try {
@@ -101,7 +101,7 @@ const cartStore = create((set) => ({
             : [...authedUser.bookmarks, id]
         }
         const { content } = await userService.updateUser(newUserData)
-        updAuthedUser(content)
+        updateUser(content)
       } catch (e) {
         console.log('e :>> ', e)
       }

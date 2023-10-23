@@ -72,6 +72,8 @@ const userStore = create((set) => ({
   updateUser: (newUserData) => set(async (state) => {
     try {
       const { content } = await userService.updateUser(newUserData)
+      set((state) => ({ authedUser: content }))
+
       const newUsersArray = state.usersEntity.filter(
         user => user._id !== newUserData._id
       )
@@ -82,12 +84,20 @@ const userStore = create((set) => ({
       console.log('e', e)
     }
   }),
-  // updAuthedUser: async (newUserData) => {
+  // updateUser: async (newUserData) => {
   //   try {
   //     const { content } = await userService.updateUser(newUserData)
       
   //     console.log('content :>> ', content)
   //     // set((state) => ({ authedUser: content }))
+  //   } catch (e) {
+  //     console.log('e', e)
+  //   }
+  // },
+  // updateUser: async (newUserData) => {
+  //   try {
+  //     const { content } = await userService.updateUser(newUserData)
+  //     set((state) => ({ authedUser: content }))
   //   } catch (e) {
   //     console.log('e', e)
   //   }

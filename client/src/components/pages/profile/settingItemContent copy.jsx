@@ -7,7 +7,7 @@ import userStore from '../../../store/userStore'
 
 const SettingItemContent = ({ contentType }) => {
   const [errors, setErrors] = useState({})
-  const { authedUser, authorizated, updAuthedUser } = userStore()
+  const { authedUser, authorizated, updateUser } = userStore()
 
   // значение полей формы
   const dataPasswordInitState = {
@@ -56,10 +56,10 @@ const SettingItemContent = ({ contentType }) => {
 
     switch (submitType) {
       case 'account':
-        updAuthedUser(dataAccount)
+        updateUser(dataAccount)
         break;
       case 'password':
-        updAuthedUser(dataPassword)
+        updateUser(dataPassword)
         setDataPassword(dataPasswordInitState)
         break;
       case 'address':
@@ -67,7 +67,7 @@ const SettingItemContent = ({ contentType }) => {
           _id: authedUser._id,
           address: dataAddress
         }
-        updAuthedUser(newObjAddress)
+        updateUser(newObjAddress)
         break;
       default:
         break;
