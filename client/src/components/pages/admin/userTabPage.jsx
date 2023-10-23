@@ -11,10 +11,9 @@ const UserTabPage = () => {
 
   useEffect(() => {
     if (!usersLoaded) {
-      // setUsersLoaded()
       loadUsersList()
     }
-  }, [usersEntity, usersLoaded])
+  }, [usersLoaded])
 
   const deleteUser = (userId) => {
     removeUser(userId)

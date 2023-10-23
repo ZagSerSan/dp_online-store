@@ -35,6 +35,10 @@ const Header = () => {
     })
   }
 
+  const logout = () => {
+    logOut()
+    setAuthDropMenu(false)
+  }
 
   const handleChange = ({ name, value }) => {
     setSearchData(prev => ({
@@ -187,10 +191,10 @@ const Header = () => {
                     onMouseLeave={() => setAuthDropMenu(false)}
                     className='drop-menu user'
                   >
-                    <NavLink className='drop-menu__link' to='/profile'>Profile</NavLink>
-                    <NavLink className='drop-menu__link' to='/favourites'>Favourites</NavLink>
-                    <NavLink className='drop-menu__link' to='/cart'>My cart</NavLink>
-                    <NavLink className='drop-menu__link' to='/auth/login' onClick={logOut} style={{color: 'red'}}>LogOut</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/profile'>Profile</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>Favourites</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>My cart</NavLink>
+                    <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>LogOut</NavLink>
                   </div>
               )
               : (authDropMenu &&

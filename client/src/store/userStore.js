@@ -10,12 +10,12 @@ const userStore = create((set) => ({
   usersLoaded: false,
 
   //todo
-  setUsersLoaded: () => set((state) => ({ usersLoaded: false})),
-  removeUser: async (payload) => {
+  removeUser: (userId) => set(async (state) => {
     set((state) => ({ usersLoaded: false}))
-    const { data } = await userService.deleteUser(payload)
-    return data
-  },
+    const { data } = await userService.deleteUser(userId)
+    const updatedArray = state.usersEntity.filter(user => user._id !== userId)
+    return { usersEntity: updatedArray }
+  }),
   createUser: async (payload) => {
     const { data } = await userService.create(payload)
     localStorageService.setTokens(data)

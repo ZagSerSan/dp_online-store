@@ -29,6 +29,7 @@ const CreateUser = () => {
     try {
       const role = 'create'
       await authService.register(data, role)
+      return <Navigate to='/admin'/>
     } catch (e) {
       console.log('e', e)
     }
@@ -90,7 +91,7 @@ const CreateUser = () => {
           disabled={!isValid}
           className="submit"
         >
-          Register
+          Create
         </button>
         <p className='relocate-msg'>
           If you have account, please <Link to='/auth/login'>Login</Link>

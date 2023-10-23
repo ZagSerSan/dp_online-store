@@ -27,7 +27,12 @@
   background-color: #7e4c4f;
 }
 
-.user-tab-page button.add-user {
+.user-tab-page {
+  padding: 15px;
+}
+.user-tab-page a.add-user {
+  padding: 5px 15px;
+  border-radius: 10px;
   background-color: green;
   color: #fff;
 }
