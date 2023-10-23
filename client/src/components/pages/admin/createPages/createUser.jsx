@@ -4,7 +4,6 @@ import { Link, Navigate } from 'react-router-dom'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import { getRandomInt } from '../../../../utils/helper'
-import authService from '../../../../service/auth.service'
 import userStore from '../../../../store/userStore'
 import TextField from '../../../common/form/textField'
 import CheckBoxField from '../../../common/form/checkBoxField'
@@ -19,20 +18,14 @@ const CreateUser = () => {
     admin: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
-  const { setAuthedUser, authorizated } = userStore()
+  const { createUser } = userStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const ifValid = validate()
     if (!ifValid) return
 
-    try {
-      const role = 'create'
-      await authService.register(data, role)
-      return <Navigate to='/admin'/>
-    } catch (e) {
-      console.log('e', e)
-    }
+    createUser(data)
   }
   const handleChange = ({ name, value }) => {
     setData(prev => ({
@@ -54,50 +47,49 @@ const CreateUser = () => {
 
   return (
     <div className="my-container form-container">
-      <h2 className='authorization-page__title'>Create User</h2>
-      <form className="form" onSubmit={handleSubmit}>
-        <TextField
-          placeholder="Name"
-          name="name"
-          value={data.name}
-          onChange={handleChange}
-          errors={errors}
-        />
-        <TextField
-          placeholder="Email"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-          errors={errors}
-        />
-        <TextField
-          placeholder="Password"
-          name="password"
-          value={data.password}
-          type="password"
-          onChange={handleChange}
-          errors={errors}
-        />
-        <CheckBoxField
-          value={data.admin}
-          onChange={handleChange}
-          name="admin"
-          // error={errors.admin}
-        >
-          <p className='license-msg'>As an admin.</p>
-        </CheckBoxField>
-        <button
-          type="submit"
-          disabled={!isValid}
-          className="submit"
-        >
-          Create
-        </button>
-        <p className='relocate-msg'>
-          If you have account, please <Link to='/auth/login'>Login</Link>
-        </p>
-      </form>
-      <Link to='/admin'>back</Link>
+      <div className="authorization-page">
+        <h2 className='authorization-page__title'>Create User</h2>
+        <form className="form" onSubmit={handleSubmit}>
+          <TextField
+            placeholder="Name"
+            name="name"
+            value={data.name}
+            onChange={handleChange}
+            errors={errors}
+          />
+          <TextField
+            placeholder="Email"
+            name="email"
+            value={data.email}
+            onChange={handleChange}
+            errors={errors}
+          />
+          <TextField
+            placeholder="Password"
+            name="password"
+            value={data.password}
+            type="password"
+            onChange={handleChange}
+            errors={errors}
+          />
+          <CheckBoxField
+            value={data.admin}
+            onChange={handleChange}
+            name="admin"
+            // error={errors.admin}
+          >
+            <p className='license-msg'>As an admin.</p>
+          </CheckBoxField>
+          <button
+            type="submit"
+            disabled={!isValid}
+            className="submit"
+          >
+            Create
+          </button>
+          <Link className='back-btn' to='/admin'>back</Link>
+        </form>
+      </div>
     </div>
   )
 }

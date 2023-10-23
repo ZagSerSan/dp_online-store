@@ -12,14 +12,12 @@ const userService = {
     const {data} = await httpService.get(userEndpoint + localStorageService.getUserId())
     return data
   },
-  create: async (payload) => {
-    const {data} = await httpService.put(userEndpoint + payload._id, payload)
-    return data
-  },
+  // create: async (payload) => {
+  //   const {data} = await httpService.put(userEndpoint + payload._id, payload)
+  //   return data
+  // },
   updateUser: async (updUserData) => {
-    // console.log('put')
     const { data } = await httpService.put(userEndpoint + updUserData._id, updUserData)
-    // console.log('data :>> ', data)
     return data
   },
   deleteUser: async (userId) => {

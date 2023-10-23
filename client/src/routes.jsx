@@ -20,8 +20,15 @@ import CreateProduct from "./components/pages/admin/createPages/createProduct"
 const routes = [
   {path: '/', element: <Home/>},
   {path: 'favourites', element: <FavouritesPage />},
-  {path: 'profile', element: <Profile />},
   {path: 'cart', element: <Cart />},
+  // {path: 'profile', element: <Profile />},
+  {
+    path: 'profile',
+    children: [
+      {path: '', element: <Profile />},
+      {path: ':userId', element: <Profile />},
+    ]
+  },
   {
     path: 'admin',
     children: [

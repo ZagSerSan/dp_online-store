@@ -12,6 +12,20 @@
   padding-top: 20px;
 }
 
+.authorization-page {
+  padding: 0px 0 70px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .authorization-page__title {
   color: #7e4c4f;
   font-family: "Montserrat", sans-serif;
@@ -67,6 +81,22 @@ form a {
 }
 form a:hover {
   color: #f6ab44;
+}
+form a.back-btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #db1d2a;
+  padding: 12px;
+  margin-left: 20px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+form a.back-btn:hover {
+  background-color: #ac000b;
 }
 form .text-field {
   margin-bottom: 30px;

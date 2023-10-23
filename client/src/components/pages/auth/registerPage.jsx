@@ -58,7 +58,8 @@ const RegisterPage = () => {
 
   return (
     <div className="my-container form-container">
-      <h2 className='authorization-page__title'>Register</h2>
+      <div className="authorization-page">
+        <h2 className='authorization-page__title'>Register</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
             placeholder="Name"
@@ -101,6 +102,7 @@ const RegisterPage = () => {
             If you have account, please <Link to='/auth/login'>Login</Link>
           </p>
         </form>
+      </div>
     </div>
   )
 }

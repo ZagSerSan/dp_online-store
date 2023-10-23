@@ -5,24 +5,24 @@ import { validator } from '../../../utils/validator'
 import { Navigate } from 'react-router-dom'
 import userStore from '../../../store/userStore'
 
-const SettingItemContent = ({ contentType, user }) => {
+const SettingItemContent = ({ contentType }) => {
   const [errors, setErrors] = useState({})
-  const { authedUser, authorizated, updateUser } = userStore()
+  const { authedUser, authorizated, updAuthedUser } = userStore()
 
   // значение полей формы
   const dataPasswordInitState = {
-    _id: user._id,
+    _id: authedUser._id,
     password: '',
     passwordConfirm: '',
   }
 
   const [dataAccount, setDataAccount] = useState({
-    _id: user._id,
-    name: user ? user.name : '',
-    email: user ? user.email : '',
+    _id: authedUser._id,
+    name: authedUser ? authedUser.name : '',
+    email: authedUser ? authedUser.email : '',
   })
   const [dataPassword, setDataPassword] = useState({
-    _id: user._id,
+    _id: authedUser._id,
     password: '',
     passwordConfirm: '',
   })
@@ -37,17 +37,17 @@ const SettingItemContent = ({ contentType, user }) => {
     setDataAccount(prev => (
       {
         ...prev,
-        name: user ? user.name : '',
-        email: user ? user.email : '',
+        name: authedUser ? authedUser.name : '',
+        email: authedUser ? authedUser.email : '',
       }
     ))
     setDataAddress({
-      сountry: user.address ? user.address.сountry : '',
-      city: user.address ? user.address.city : '',
-      street: user.address ? user.address.street : '',
-      houseNumber: user.address ? user.address.houseNumber : ''
+      сountry: authedUser.address ? authedUser.address.сountry : '',
+      city: authedUser.address ? authedUser.address.city : '',
+      street: authedUser.address ? authedUser.address.street : '',
+      houseNumber: authedUser.address ? authedUser.address.houseNumber : ''
     })
-  }, [user])
+  }, [authedUser])
 
   const handleSubmit = async (e, submitType) => {
     e.preventDefault()
@@ -56,18 +56,18 @@ const SettingItemContent = ({ contentType, user }) => {
 
     switch (submitType) {
       case 'account':
-        updateUser(dataAccount)
+        updAuthedUser(dataAccount)
         break;
       case 'password':
-        updateUser(dataPassword)
+        updAuthedUser(dataPassword)
         setDataPassword(dataPasswordInitState)
         break;
       case 'address':
         const newObjAddress = {
-          _id: user._id,
+          _id: authedUser._id,
           address: dataAddress
         }
-        updateUser(newObjAddress)
+        updAuthedUser(newObjAddress)
         break;
       default:
         break;
@@ -136,6 +136,10 @@ const SettingItemContent = ({ contentType, user }) => {
   }
   // блокировка кнопки
   const isValid = Object.keys(errors).length === 0
+
+  if (!authorizated) {
+    return <Navigate to='/home'/>
+  }
 
   return (<>
     {contentType === 'password'

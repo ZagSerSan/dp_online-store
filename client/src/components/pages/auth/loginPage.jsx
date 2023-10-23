@@ -62,7 +62,8 @@ const LoginPage = () => {
   
   return (
     <div className="my-container form-container">
-      <h2 className='authorization-page__title'>Login</h2>
+      <div className="authorization-page">
+        <h2 className='authorization-page__title'>Login</h2>
         <form className="form" onSubmit={handleSubmit}>
           <TextField
             placeholder="Email"
@@ -91,6 +92,7 @@ const LoginPage = () => {
             If you does not have account, please <Link to='/auth/register'>Register</Link>
           </p>
         </form>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import localStorageService from '../service/localStorage.service'
 import userService from '../service/user.service'
+import authService from '../service/auth.service'
 
 const userStore = create((set) => ({
   usersEntity: null,
@@ -9,17 +10,20 @@ const userStore = create((set) => ({
   authorizated: false,
   usersLoaded: false,
 
-  //todo
   removeUser: (userId) => set(async (state) => {
-    set((state) => ({ usersLoaded: false}))
-    const { data } = await userService.deleteUser(userId)
-    const updatedArray = state.usersEntity.filter(user => user._id !== userId)
-    return { usersEntity: updatedArray }
+    try {
+      const { data } = await userService.deleteUser(userId)
+      const updatedArray = state.usersEntity.filter(user => user._id !== userId)
+      set((state) => ({ usersLoaded: false}))
+      return { usersEntity: updatedArray }
+    } catch (e) {
+      console.log('e', e)
+    }
   }),
   createUser: async (payload) => {
-    const { data } = await userService.create(payload)
-    localStorageService.setTokens(data)
-    return data
+    const role = 'create'
+    await authService.register(payload, role)
+    set((state) => ({ usersLoaded: false}))
   },
   loadUsersList: async () => {
     const { content } = await userService.get()
@@ -64,14 +68,30 @@ const userStore = create((set) => ({
       return { localUser: newLocalUserData }
     }
   }),
-  updAuthedUser: async (newUserData) => {
+  //todo
+  updateUser: (newUserData) => set(async (state) => {
     try {
       const { content } = await userService.updateUser(newUserData)
-      set((state) => ({ authedUser: content }))
+      const newUsersArray = state.usersEntity.filter(
+        user => user._id !== newUserData._id
+      )
+      newUsersArray.push(content)
+      set((state) => ({ usersLoaded: false}))
+      return { usersEntity: newUsersArray }
     } catch (e) {
       console.log('e', e)
     }
-  },
+  }),
+  // updAuthedUser: async (newUserData) => {
+  //   try {
+  //     const { content } = await userService.updateUser(newUserData)
+      
+  //     console.log('content :>> ', content)
+  //     // set((state) => ({ authedUser: content }))
+  //   } catch (e) {
+  //     console.log('e', e)
+  //   }
+  // },
   setAuthedUser: async () => {
     const { content } = await userService.getCurrentUser()
     localStorageService.removeLocalUser()

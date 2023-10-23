@@ -11,7 +11,7 @@ const AppLoader = ({ children }) => {
   const { setAuthedUser } = userStore()
   const [error, setError] = useState(false)
   
-  const test = async () => {
+  const loadEntities = async () => {
     try {
       await loadProductsList()
       if (localStorageService.getAccessToken()) {
@@ -25,7 +25,7 @@ const AppLoader = ({ children }) => {
   }
 
   useEffect(() => {
-    test()
+    loadEntities()
   }, [])
 
   if (productsLoadingStatus && !error) {

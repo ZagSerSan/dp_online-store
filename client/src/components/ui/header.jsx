@@ -191,7 +191,7 @@ const Header = () => {
                     onMouseLeave={() => setAuthDropMenu(false)}
                     className='drop-menu user'
                   >
-                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/profile'>Profile</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>Profile</NavLink>
                     <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>Favourites</NavLink>
                     <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>My cart</NavLink>
                     <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>LogOut</NavLink>

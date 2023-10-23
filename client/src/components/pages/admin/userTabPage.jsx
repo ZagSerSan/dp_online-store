@@ -6,14 +6,13 @@ const UserTabPage = () => {
   const { usersEntity, loadUsersList, removeUser, usersLoaded, setUsersLoaded } = userStore()
   const usersWithoutAdmin = usersEntity
     ? usersEntity.filter(user => user.admin === false)
-    : usersEntity
-  console.log('usersEntity :>> ', usersEntity)
+    : []
 
   useEffect(() => {
     if (!usersLoaded) {
       loadUsersList()
     }
-  }, [usersLoaded])
+  }, [usersEntity, usersLoaded])
 
   const deleteUser = (userId) => {
     removeUser(userId)
@@ -26,9 +25,27 @@ const UserTabPage = () => {
             <Link to='/admin/create-user' className='add-user'>create user</Link>
             <div className="user-list">
               {usersWithoutAdmin.map((user, index) => (
-                <div key={index} className='flex'>
-                  <p>{index + 1 + ') ' + user.name}</p>
-                  <button onClick={() => deleteUser(user._id)} className='text-[red] ml-[20px]'>X</button>
+                <div key={index} className='user-list-item'>
+                  <div className='user-list-item__info'>
+                    <img src={user.image} alt="avatar" />
+                    <div>
+                      <p>
+                        {user.name}
+                        <span> - </span>
+                        <a className='email' href={`mailto:${user.email}`}>{user.email}</a>
+                      </p>
+                      <p className='address'>
+                        {user.address
+                          ? `${user.address.сountry}, ${user.address.city}, ${user.address.street}, ${user.address.houseNumber}`
+                          : ''
+                        }
+                      </p>
+                    </div>
+                  </div>
+                  <div className='user-list-item__buttons'>
+                    <Link to={`/profile/${user._id}`}>edit</Link>
+                    <button onClick={() => deleteUser(user._id)}>remove</button>
+                  </div>
                 </div>
               ))}
             </div>
