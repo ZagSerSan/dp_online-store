@@ -5,6 +5,7 @@ const router = express.Router({mergeParams: true})
 const User = require('../models/User')
 const auth = require('../middleware/auth.middleware')
 const Token = require('../models/Token')
+const tokenService = require('../services/token.service')
 
 // было router.//!patch(...
 router.put('/:userId', async (req, res) => {
@@ -70,13 +71,10 @@ router.delete('/:userId', async (req, res) => {
   try {
     const { userId } = req.params
     const removedUser = await User.findById(userId)
-    //todo
-    const removedToken = await Token.findBy(userId)
 
     // if (removedUser.userId.toString() === req.user._id) {
       await removedUser.deleteOne()
-      //todo
-      await removedToken.deleteOne()
+      await tokenService.delete(removedUser._id)
 
       return res.send(null)
     // } else {

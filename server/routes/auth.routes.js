@@ -62,7 +62,7 @@ router.post('/signUp', [
       console.log(e)
       res.status(500).json({
         message: 'На сервере проихошла ошибка, попробуйте позже.',
-        errors: errors.array()
+        // errors: errors.array()
       })
     }
   }
@@ -103,7 +103,7 @@ router.post('/signInWithPassword', [
       }
 
       // 3
-      const isPasswordEqual = await bcrypt.compare(password, existUser.password)
+      const isPasswordEqual = bcrypt.compare(password, existUser.password)
       if (!isPasswordEqual) {
         return res.status(400).send({
           error: {

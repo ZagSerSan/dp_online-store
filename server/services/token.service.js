@@ -26,6 +26,13 @@ class TokenService {
     return token
   }
 
+  async delete(user) {
+    const data = await Token.findOne({ user })
+    await data.deleteOne()
+    return null
+  }
+
+
   validateRefresh(refreshToken) {
     try {
       return jwt.verify(refreshToken, config.get('refreshSecretKey'))
