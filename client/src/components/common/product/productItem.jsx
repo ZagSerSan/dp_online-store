@@ -11,7 +11,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
   const [cartHover, setCartHover] = useState(false)
 
   //todo
-  const { authedUser, localUser, updAuthedUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
+  const { authedUser, localUser, updateUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { addToCart, toggleBookmark } = cartStore()
 
   const isBookmarked = authedUser
@@ -54,7 +54,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
             <Icon id='view' data-modal='1'/>
           </button>
           <button
-            onClick={(e) => addToCart(e, authedUser, updAuthedUser, updLocalUserCart, item, isInCart )}
+            onClick={(e) => addToCart(e, authedUser, updateUser, updLocalUserCart, item, isInCart )}
             onMouseEnter={() => setCartHover(true)}
             onMouseLeave={() => setCartHover(false)}
           >
@@ -70,7 +70,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
         <div className="popular-item__title">
           <Link to={`/category/${item.type}/${item._id}`}>{name}</Link>
           <button
-            onClick={(e) => toggleBookmark(e, item._id, authedUser, updAuthedUser, updLocalUserBookmarks)}
+            onClick={(e) => toggleBookmark(e, item._id, authedUser, updateUser, updLocalUserBookmarks)}
             className={'w-[24px] h-[24px] z-10' + (isBookmarked ? ' active' : '')}
           >
             <Icon id='heart'/>

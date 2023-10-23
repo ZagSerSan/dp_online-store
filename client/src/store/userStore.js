@@ -69,20 +69,24 @@ const userStore = create((set) => ({
     }
   }),
   //todo
-  updateUser: (newUserData) => set(async (state) => {
+  updateUser: (newUserData, admin = false) => set(async (state) => {
     try {
       const { content } = await userService.updateUser(newUserData)
-      const newUsersArray = state.usersEntity.filter(
-        user => user._id !== newUserData._id
-      )
-      newUsersArray.push(content)
-      set((state) => ({ usersLoaded: false}))
-      return { usersEntity: newUsersArray }
+      set((state) => ({ authedUser: content }))
+      // if (admin) {
+        const newUsersArray = state.usersEntity.filter(
+          user => user._id !== newUserData._id
+        )
+        newUsersArray.push(content)
+        set((state) => ({ usersLoaded: false}))
+        return { usersEntity: newUsersArray }
+      // } else {
+      // }
     } catch (e) {
       console.log('e', e)
     }
   }),
-  // updAuthedUser: async (newUserData) => {
+  // updateUser: async (newUserData) => {
   //   try {
   //     const { content } = await userService.updateUser(newUserData)
       

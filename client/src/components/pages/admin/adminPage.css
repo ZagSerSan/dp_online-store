@@ -17,6 +17,13 @@
   padding: 5px 0;
   -webkit-transition: all 0.2s ease 0;
   transition: all 0.2s ease 0;
+  border-top: 1px #c5c5c5 solid;
+}
+.admin-page-tabs button:first-child {
+  border-left: 1px #c5c5c5 solid;
+}
+.admin-page-tabs button:last-child {
+  border-right: 1px #c5c5c5 solid;
 }
 .admin-page-tabs button:hover {
   color: #7e4c4f;
@@ -24,6 +31,8 @@
 .admin-page-tabs button.active {
   color: #7e4c4f;
   background-color: #fff;
+  border: 1px #7e4c4f solid;
+  border-bottom: 0;
 }
 .admin-page-content {
   font-family: "Montserrat", sans-serif;
@@ -35,7 +44,9 @@
 }
 
 .user-tab-page {
-  padding: 25px 15px 15px;
+  padding: 25px 15px 25px;
+  margin-top: -1px;
+  border: 1px #7e4c4f solid;
 }
 .user-tab-page a.add-user {
   color: #fff;
@@ -59,14 +70,13 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-top: 1px #7e4c4f solid;
-  padding-top: 10px;
+  padding: 15px 6px 0;
   margin-top: 15px;
 }
 .user-tab-page .user-list-item__info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-left: 5px;
 }
 .user-tab-page .user-list-item__info img {
   height: 50px;

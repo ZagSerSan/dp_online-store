@@ -26,7 +26,8 @@ const AdminPage = () => {
         {tabState === 'users'
           ? <UserTabPage />
           // : <ProductsTabPage />
-          : <p>Products Tab Page</p>
+          : <UserTabPage />
+          // : <p>Products Tab Page</p>
         }
       </div>
     </div>

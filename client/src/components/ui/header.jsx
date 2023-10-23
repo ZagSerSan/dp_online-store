@@ -12,7 +12,7 @@ import userStore from '../../store/userStore'
 
 const Header = () => {
   const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
-  const { authedUser, updAuthedUser, updLocalUserCart, localUser, logOut } = userStore()
+  const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { globalLoading, productsEntity } = useStore()
 
   const [dropMenu, setDropMenu] = useState(false)
@@ -75,7 +75,7 @@ const Header = () => {
           cart: authedUser.cart.filter(cartItem => cartItem._id !== item._id)
         }
         const { content } = await userService.updateUser(newUserData)
-        updAuthedUser(content)
+        updateUser(content)
       } catch (e) {
         console.log('e :>> ', e)
       }

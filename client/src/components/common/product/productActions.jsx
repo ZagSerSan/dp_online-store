@@ -5,7 +5,7 @@ import './css/productActions.css'
 import userStore from '../../../store/userStore'
 
 const ProductActions = ({ item }) => {
-  const { authedUser, updAuthedUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
+  const { authedUser, updateUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { cartItemData, setCartItemData, addToCart, toggleBookmark } = cartStore()
             
   let isBookmarked
@@ -28,13 +28,13 @@ const ProductActions = ({ item }) => {
       </div>
       <button
         className={"product-actions-cartadd" + (isInCart ? ' added' : '')}
-        onClick={(e) => addToCart(e, authedUser, updAuthedUser, updLocalUserCart, item, isInCart )}
+        onClick={(e) => addToCart(e, authedUser, updateUser, updLocalUserCart, item, isInCart )}
       >
         {isInCart ? 'REMOVE WITH CART' : 'ADD TO CART'}
       </button>
       <button
         className={"product-actions-bookmark" + (isBookmarked ? ' active' : '')}
-        onClick={(e) => toggleBookmark(e, item._id, authedUser, updAuthedUser, updLocalUserBookmarks)}
+        onClick={(e) => toggleBookmark(e, item._id, authedUser, updateUser, updLocalUserBookmarks)}
       >
         <Icon id='heart'/>
       </button>
