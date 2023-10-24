@@ -22,7 +22,7 @@ const UserTabPage = () => {
     <div className='user-tab-page'>
       {usersWithoutAdmin
         ? <div>
-            <Link to='/admin/create-user' className='add-user'>create user</Link>
+            <Link to='/admin/users/create-user' className='add-user'>create user</Link>
             <div className="user-list">
               {usersWithoutAdmin.map((user, index) => (
                 <div key={index} className='user-list-item'>

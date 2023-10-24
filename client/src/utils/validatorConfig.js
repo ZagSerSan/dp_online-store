@@ -40,6 +40,11 @@ export const validatorConfig = {
       minValue: 8
     }
   },
+  type: {
+    isRequired: {
+      message: 'type is required!'
+    }
+  },
   content: {
     isRequired: {
       message: 'content is required!'
@@ -82,9 +87,14 @@ export const validatorConfig = {
       message: 'Comment is required!'
     }
   },
-  // search: {
-  //   isRequired: {
-  //     message: 'Comment is required!'
-  //   }
-  // }
+  description: {
+    isRequired: {
+      message: 'Description is required!'
+    }
+  },
+  price: {
+    isRequired: {
+      message: 'Price is required!'
+    }
+  },
 }

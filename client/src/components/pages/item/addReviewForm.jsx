@@ -13,14 +13,14 @@ import Textarea from '../../common/form/textarea'
 import commentStore from '../../../store/commentStore'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
-const AddReviewForm = () => {
+const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
   const { authedUser } = userStore()
   const { addComment } = commentStore()
   const [errors, setErrors] = useState({})
   // значение полей формы
   let initialState = {
-    productId: itemId,
+    productId: productId ? productId : itemId,
     userId: authedUser ? authedUser._id : '',
     name: authedUser ? authedUser.name : '',
     email: authedUser ? authedUser.email : '',
@@ -62,6 +62,10 @@ const AddReviewForm = () => {
     if (!ifValid) return
 
     try {
+      data.rate = Number(data.rate)
+
+      console.log('data :>> ', data)
+
       addComment(data)
       setData(initialState)
     } catch (e) {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import localStorageService from './localStorage.service'
 // import userService from './users.service'
+import { toast } from 'react-toastify'
 import config from '../config.json'
 import localStorageService from './localStorage.service'
 
@@ -14,12 +15,23 @@ const httpAuth = axios.create({
 
 const authService = {
   register: async (payload, role = 'register') => {
-    const url = 'signUp'
-    const { data } = await httpAuth.post(url, payload)
-    if (role === 'register') {
-      localStorageService.setTokens(data)
+    try {
+      const url = 'signUp'
+      const { data } = await httpAuth.post(url, payload)
+      if (role === 'register') {
+        localStorageService.setTokens(data)
+      }
+      toast.success("User has been created!")
+      return data
+    } catch (error) {
+      const errorType = error.response.data.error.message
+      console.log('err', error)
+      if (errorType === "EMAIL_EXISTS") {
+        toast.error("Email exists!")
+      } else {
+        toast.error("User not created..")
+      }
     }
-    return data
   },
   login: async ({ email, password }) => {
     // const url = 'accounts:signInWithPassword'

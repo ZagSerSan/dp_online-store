@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react'
 import TextField from '../../common/form/textField'
 import { validatorConfig } from '../../../utils/validatorConfig'
 import { validator } from '../../../utils/validator'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import userStore from '../../../store/userStore'
 
 const SettingItemContent = ({ contentType, user }) => {
+  const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const { authedUser, authorizated, updateUser } = userStore()
+  const { updateUser } = userStore()
 
-  // значение полей формы
+  // значение полей формы по умолчанию
   const dataPasswordInitState = {
     _id: user._id,
     password: '',
     passwordConfirm: '',
   }
-
+  // стандартные значения полей формы
   const [dataAccount, setDataAccount] = useState({
     _id: user._id,
     name: user ? user.name : '',
@@ -33,6 +34,7 @@ const SettingItemContent = ({ contentType, user }) => {
     houseNumber: '',
   })
 
+  // update data by renders
   useEffect(() => {
     setDataAccount(prev => (
       {
@@ -72,6 +74,7 @@ const SettingItemContent = ({ contentType, user }) => {
       default:
         break;
     }
+    navigate('/admin/users')
   }
 
   const handleChange = (payload, submitType) => {
@@ -98,12 +101,6 @@ const SettingItemContent = ({ contentType, user }) => {
       default:
         break;
     }
-    
-    // setData(prev => ({
-    //   ...prev,
-    //   [name]: value
-    // }))
-    
   }
 
   useEffect(() => {
@@ -112,7 +109,6 @@ const SettingItemContent = ({ contentType, user }) => {
 
   const validate = (contentType) => {
     let errors
-
     switch (contentType) {
       case 'account':
         errors = validator(dataAccount, validatorConfig)
@@ -134,6 +130,7 @@ const SettingItemContent = ({ contentType, user }) => {
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
+
   // блокировка кнопки
   const isValid = Object.keys(errors).length === 0
 
@@ -169,13 +166,13 @@ const SettingItemContent = ({ contentType, user }) => {
               </div>
             </div>
             <div className="setting-item-content-form-container__col">
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="submit"
-            >
-              Save data
-            </button>
+              <button
+                type="submit"
+                disabled={!isValid}
+                className="submit"
+              >
+                Save data
+              </button>
             </div>
           </form>
         </div>

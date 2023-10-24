@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../icon'
 
 const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, switchErrMsg = true }) => {
   // Добавляем состояние показывать/не показывать пароль
@@ -13,9 +14,9 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
   }
 
   // Метод для изменения состояния
-  // const toggleShowPassword = () => {
-  //   setShowPassword((prevState) => !prevState)
-  // }
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState)
+  }
 
   // const toogleBluredState = () => {
   //   setIsBlured(true)
@@ -32,20 +33,20 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
         className={(!isBlured ? '' : errors?.[name] ? 'is-invalid' : 'is-valid')}
-        id={name}
+        // id={name}
         name={name}
         value={value}
         onChange={handleChange}
       />
-      {/* {type === 'password' && (
+      {type === 'password' && (
         <button
           type="button"
-          className="btn btn-outline-secondary"
+          className="show-password"
           onClick={toggleShowPassword}
         >
-          <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
+          {showPassword ? <Icon id='eye-off'/> : <Icon id='eye'/>}
         </button>
-      )} */}
+      )}
       {switchErrMsg && (
         errors && isBlured && <div className="error-msg">{errors[name]}</div>
       )}
@@ -58,7 +59,10 @@ TextField.defaultValues = {
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   type: PropTypes.string,
   submitType: PropTypes.string,
   placeholder: PropTypes.string,

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import userStore from '../../../store/userStore'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useStore from '../../../store/createStore'
 
 const ProductsTabPage = () => {
-  //todo
-  const { productsEntity } = useStore()
-  const { usersEntity, loadUsersList, removeUser, usersLoaded, setUsersLoaded } = userStore()
-
+  const { productsEntity, removeProduct } = useStore()
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
+
   const pages = productsEntity.length / countOnPage
 
   const pagesHeler = (numberOfPages) => {
@@ -24,21 +21,22 @@ const ProductsTabPage = () => {
     ? productsEntity.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
     : []
 
-  useEffect(() => {
-    if (!usersLoaded) {
-      loadUsersList()
-    }
-  }, [usersEntity, usersLoaded])
+  // useEffect(() => {
+  //   if (!usersLoaded) {
+  //     loadUsersList()
+  //   }
+  // }, [usersEntity, usersLoaded])
 
-  const deleteUser = (userId) => {
-    removeUser(userId)
+  const deleteProduct = (productId) => {
+    removeProduct(productId)
   }
 
   return (
     <div className='user-tab-page'>
       {productsEntity
         ? <div>
-            <Link to='/admin/create-user' className='add-user'>create user</Link>
+            <Link to='/admin/products/create-product' className='add-user'>create product</Link>
+
             <div className="user-list">
               {splicedEntity.map((product, index) => (
                 <div key={index} className='user-list-item'>
@@ -59,12 +57,13 @@ const ProductsTabPage = () => {
                     </div>
                   </div>
                   <div className='user-list-item__buttons'>
-                    <Link to={`/profile/${product._id}`}>edit</Link>
-                    <button onClick={() => deleteUser(product._id)}>remove</button>
+                    <Link to={`/admin/edit-product/${product._id}`}>edit</Link>
+                    <button onClick={() => deleteProduct(product._id)}>remove</button>
                   </div>
                 </div>
               ))}
             </div>
+
             <div className="user-tab-page-pagination">
               {pagesHeler(pages).map(item => (
                 <button
@@ -76,6 +75,7 @@ const ProductsTabPage = () => {
                 </button>
               ))}
             </div>
+
           </div>
         : <p>users not loaded..</p>
       }

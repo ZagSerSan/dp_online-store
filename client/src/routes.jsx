@@ -15,14 +15,14 @@ import ItemPage from "./components/pages/item/itemPage"
 import FavouritesPage from "./components/pages/favourites/favouritesPage"
 import Cart from "./components/pages/cart/cart"
 import AdminPage from "./components/pages/admin/adminPage"
-import CreateUser from "./components/pages/admin/createPages/createUser"
-import CreateProduct from "./components/pages/admin/createPages/createProduct"
+import CreateUser from "./components/pages/admin/createAndEditPages/createUser"
+import CreateProduct from "./components/pages/admin/createAndEditPages/createProduct"
+import EditProduct from './components/pages/admin/createAndEditPages/editProduct'
 
 const routes = [
   {path: '/', element: <Home/>},
   {path: 'favourites', element: <FavouritesPage />},
   {path: 'cart', element: <Cart />},
-  // {path: 'profile', element: <Profile />},
   {
     path: 'profile',
     children: [
@@ -33,10 +33,41 @@ const routes = [
   {
     path: 'admin',
     children: [
-      {path: '', element: <AdminPage />},
-      {path: 'create-user', element: <CreateUser/>},
-      {path: 'create-product', element: <CreateProduct/>},
+      {path: '', element: <Navigate to='users'/>},
+      {
+        path: 'users',
+        children: [
+          {path: '', element: <AdminPage tabState='users'/>},
+          {path: 'create-user', element: <CreateUser/>},
+        ]
+      },
+      {
+        path: 'products',
+        children: [
+          {path: '', element: <AdminPage tabState='products'/>},
+          {path: 'create-product', element: <CreateProduct/>},
+        ]
+      },
+      {
+        path: 'edit-product',
+        children: [
+          {path: '', element: <AdminPage/>},
+          {path: ':productId', element: <EditProduct/>},
+        ]
+      },
     ]
+    // children: [
+    //   {path: '', element: <AdminPage />},
+    //   {path: 'create-user', element: <CreateUser/>},
+    //   {path: 'create-product', element: <CreateProduct/>},
+    //   {
+    //     path: 'edit-product',
+    //     children: [
+    //       {path: '', element: <AdminPage/>},
+    //       {path: ':productId', element: <EditProduct/>},
+    //     ]
+    //   },
+    // ]
   },
   {
     path: 'auth',
@@ -54,7 +85,13 @@ const routes = [
         path: ":type",
         children: [
           {path: '', element: <CategoryPage />},
-          {path: ':itemId', element: <ItemPage />},
+          {
+            path: ':itemId', element: <ItemPage />
+            // children: [
+            //   {path: '', element: <ItemPage />},
+            //   {path: 'edit', element: <EditProduct />},
+            // ]
+          },
         ]
       },
     ]

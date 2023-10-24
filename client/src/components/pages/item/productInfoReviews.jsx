@@ -5,6 +5,7 @@ import AddReviewForm from './addReviewForm'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { Link } from 'react-router-dom'
 import userStore from '../../../store/userStore'
+import { formatDate } from '../../../utils/formatDate'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
@@ -32,9 +33,10 @@ const ProductInfoReviews = () => {
                   </div>
                   <p className='product-reviews-item__name-data'>
                     <span>{review.name}</span>
-                    <span>{review.created_at}</span>
+                    <span>{formatDate(review.created_at, 'hours')}</span>
+                    <span>{formatDate(review.created_at, 'year')}</span>
                     {
-                      (review?.userId === authedUser?._id || authedUser.admin) &&
+                      (review?.userId === authedUser?._id || authedUser?.admin) &&
                       <button onClick={() => deleteComment(review._id)}>
                         <Icon id='close' />
                       </button>

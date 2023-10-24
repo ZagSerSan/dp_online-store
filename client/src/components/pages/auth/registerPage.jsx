@@ -60,7 +60,7 @@ const RegisterPage = () => {
     <div className="my-container form-container">
       <div className="authorization-page">
         <h2 className='authorization-page__title'>Register</h2>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="authorization-page-form" onSubmit={handleSubmit}>
           <TextField
             placeholder="Name"
             name="name"
