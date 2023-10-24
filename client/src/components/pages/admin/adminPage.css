@@ -129,3 +129,25 @@
 .user-tab-page .user-list-item__buttons a:last-child:hover {
   color: #b30000;
 }
+.user-tab-page-pagination {
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.user-tab-page-pagination button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(126, 76, 79, 0.5607843137);
+  margin-right: 10px;
+}
+.user-tab-page-pagination button.active {
+  background-color: #7e4c4f;
+}

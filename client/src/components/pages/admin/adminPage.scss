@@ -124,4 +124,24 @@
       }
     }
   }
+  &-pagination {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    button {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+
+      width: 30px;
+      height: 30px;
+      background-color: #7e4c4f8f;
+      margin-right: 10px;
+
+      &.active {
+        background-color: #7e4c4f;
+      }
+    }
+  }
 }

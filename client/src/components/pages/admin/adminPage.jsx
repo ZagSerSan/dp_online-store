@@ -25,9 +25,7 @@ const AdminPage = () => {
       <div className="admin-page-content">
         {tabState === 'users'
           ? <UserTabPage />
-          // : <ProductsTabPage />
-          : <UserTabPage />
-          // : <p>Products Tab Page</p>
+          : <ProductsTabPage />
         }
       </div>
     </div>
