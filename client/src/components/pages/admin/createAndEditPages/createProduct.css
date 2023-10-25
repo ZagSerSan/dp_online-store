@@ -22,6 +22,9 @@
   line-height: 61px;
   margin-bottom: 20px;
 }
+.create-product-page__buttons {
+  margin-top: 30px;
+}
 .create-product-page input {
   background-color: transparent;
   border: 1px solid #eaeaea;
@@ -82,6 +85,37 @@
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 10px;
+}
+.create-product-page .text-fields.options {
+  display: block;
+}
+.create-product-page .text-fields.options button {
+  height: 40px;
+}
+.create-product-page .text-fields.options button.add:hover {
+  background-color: #f6ab44;
+}
+.create-product-page .text-fields.options button.remove {
+  background-color: #db1d2a;
+  margin-right: 10px;
+}
+.create-product-page .text-fields.options button.remove:hover {
+  background-color: rgba(219, 29, 42, 0.5568627451);
+}
+.create-product-page .text-fields.options .option-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  margin-bottom: 15px;
+}
+.create-product-page .text-fields.options .text-field {
+  width: 15%;
+}
+.create-product-page .text-fields.options .text-field:first-child {
+  margin-right: 40px;
 }
 .create-product-page .text-fields .text-field {
   width: 100%;

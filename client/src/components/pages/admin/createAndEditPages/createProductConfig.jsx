@@ -14,7 +14,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
   // значение полей формы
   const initProductData = {
     name: '',
-    type: '',
+    type: 'man',
     title: '',
     price: 0,
     rate: 0,
@@ -60,6 +60,26 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
     // ]
   }
   const [data, setData] = useState(initProductData)
+  const initOptionsData = {
+    option_1: {
+      name: 'Size',
+      options: [
+        {type: 'size', value: '3ml', selected: true},
+        {type: 'size', value: '6ml', selected: false}
+      ]
+    },
+    option_2: {
+      name: 'Color',
+      options: [
+        {type: 'color', value: 'defaulf', selected: true},
+        {type: 'color', value: 'black', selected: false}
+      ]
+    },
+  }
+  const [optionsData, setOptionsData] = useState()
+  useEffect(() => {
+    setOptionsData(initOptionsData)
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -76,37 +96,87 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
   const handleChange = (payload, submitType) => {
     let { name, value } = payload
 
-    if (submitType === 'price') {
-      value = Number(value)
-      if (!isNaN(value)) {
+    switch (submitType) {
+      case 'info':
+        console.log('submitType :>> ', submitType)
         setData(prev => ({
           ...prev,
           [name]: value
         }))
-      }
-    } else {
-      setData(prev => ({
-        ...prev,
-        [name]: value
-      }))
+        break;
+      case 'price':
+        value = Number(value)
+        if (!isNaN(value)) {
+          setData(prev => ({
+            ...prev,
+            [name]: value
+          }))
+        }
+        break;
+      default:
+        console.log('submitType :>> ', submitType)
+        break;
     }
-    // switch (submitType) {
-    //   case 'info':
-    //     setDataInfo(prev => ({
-    //       ...prev,
-    //       [name]: value
-    //     }))
-    //     break;
-    //   case 'price':
-    //     value = Number(value)
-    //     if (!isNaN(value)) {
-    //       setDataInfo(prev => ({
-    //         ...prev,
-    //         [name]: value
-    //       }))
-    //     }
-    //     break;
-    // }
+  }
+
+  //
+  const addOptionType = (optionsTypeLength) => {
+    const optionTypeName = `option_${optionsTypeLength + 1}`
+    setOptionsData(prev => (
+      {
+        ...prev,
+        [optionTypeName]: {
+          name: 'Color',
+          options: [
+            {type: 'color', value: 'defaulf', selected: true},
+            {type: 'color', value: 'black', selected: false}
+          ]
+        }
+      }
+    ))
+  }
+  const removeOptionType = (optionsTypeLength) => {
+    const optionTypeName = `option_${optionsTypeLength}`
+    console.log('optionTypeName :>> ', optionTypeName)
+    setOptionsData(prev => {
+      delete prev[optionTypeName]
+      return { ...prev }
+    })
+  }
+  const addOption = (optionKey, optionsLength) => {
+    console.log('optionKey :>> ', optionKey)
+    console.log('optionsLength :>> ', optionsLength)
+
+    setOptionsData(prev => {
+      const templateOptionItem = {type: 'color', value: 'defaulf', selected: true}
+      const newOptionsArray = prev[optionKey].options
+      newOptionsArray.push(templateOptionItem)
+
+      return {
+        ...prev,
+        [optionKey]: {
+          ...prev[optionKey],
+          options: newOptionsArray
+        }
+      }
+    })
+  }
+  const removeOption = (optionKey, optionsLength) => {
+    console.log('optionKey :>> ', optionKey)
+    // console.log('optionsLength :>> ', optionsLength)
+
+    setOptionsData(prev => {
+      const newOptionsArray = prev[optionKey].options
+      newOptionsArray.pop()
+
+      return {
+        ...prev,
+        [optionKey]: {
+          ...prev[optionKey],
+          options: newOptionsArray
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -152,6 +222,58 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
           <div className="setting-product-content__title">Product Options</div>
           <div className="setting-product-content__subtitle">Select Product Options</div>
           <div className="create-product-page">
+            <div className="text-fields options">
+              {optionsData && Object.keys(optionsData).map((optionKey, index) => (
+                <div key={index} className='option-item'>
+                  <TextField
+                    label={`Options type:`}
+                    placeholder="Size"
+                    name={optionsData[optionKey].name}
+                    value={optionsData[optionKey].name}
+                    onChange={handleChange}
+                    errors={errors}
+                    submitType='option'
+                  />
+                  {optionsData[optionKey].options.map((option, index) => (
+                    <TextField
+                      key={index}
+                      label={`Option ${index + 1}:`}
+                      placeholder={option.value}
+                      name={option.type}
+                      value={option.value}
+                      onChange={handleChange}
+                      errors={errors}
+                      submitType='option'
+                    />
+                  ))}
+                  
+                  <button
+                    className='remove'
+                    onClick={() => removeOption(optionKey, optionsData[optionKey].options.length)}
+                  >
+                    x
+                  </button>
+                  <button
+                    className='add'
+                    onClick={() => addOption(optionKey, optionsData[optionKey].options.length)}
+                  >
+                    add option
+                  </button>
+                </div>
+              ))}
+              <button
+                className='remove'
+                onClick={() => removeOptionType(Object.keys(optionsData).length)}
+              >
+                X
+              </button>
+              <button
+                className='add'
+                onClick={() => addOptionType(Object.keys(optionsData).length)}
+              >
+                add option type
+              </button>
+            </div>
             <div className='create-product-page__buttons'>
               <button
                 onClick={(e) => toggleSettingItem(e, 3)}
@@ -183,6 +305,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
                 value={data.name}
                 onChange={handleChange}
                 errors={errors}
+                submitType='info'
               />
               <TextField
                 label={`Title: ${data.title}`}
@@ -191,6 +314,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
                 value={data.title}
                 onChange={handleChange}
                 errors={errors}
+                submitType='info'
               />
               <TextField
                 label={`Price: $${data.price}`}
@@ -212,6 +336,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
               value={data.type}
               name="type"
               onChange={handleChange}
+              submitType='info'
             />
             <Textarea
               label="Description:"

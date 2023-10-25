@@ -16,6 +16,9 @@
     line-height: 61px;
     margin-bottom: 20px;
   }
+  &__buttons {
+    margin-top: 30px;
+  }
 
   input {
     background-color: transparent;
@@ -80,6 +83,38 @@
     width: 100%;
     display: flex;
     margin-bottom: 10px;
+
+    &.options {
+      display: block;
+
+      button {
+        height: 40px;
+        &.add {
+          &:hover {
+            background-color: #f6ab44;
+          }
+        }
+        &.remove {
+          background-color: #db1d2a;
+          margin-right: 10px;
+          &:hover {
+            background-color: #db1d2a8e;
+          }
+        }
+      }
+
+      .option-item {
+        display: flex;
+        align-items: end;
+        margin-bottom: 15px;
+      }
+      .text-field {
+        width: 15%;
+        &:first-child {
+          margin-right: 40px;
+        }
+      }
+    }
 
     .text-field {
       width: 100%;
