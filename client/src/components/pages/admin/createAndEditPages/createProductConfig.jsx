@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { validatorConfig } from '../../../../utils/validatorConfig'
 import { validator } from '../../../../utils/validator'
+import { validatorConfig } from '../../../../utils/validatorConfig'
+import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
-import RadioField from '../../../common/form/radioField'
 // import CheckBoxField from '../../../common/form/checkBoxField'
 
-const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
+const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
 
-  // значение полей формы
+  // значение полей формы info
   const initProductData = {
     name: '',
     type: 'man',
@@ -35,6 +35,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
     //     ] 
     //   }
     // ],
+
     // introSlider: {
     //   switched: false,
     //   // slide: manItem1.introSliderPreview
@@ -60,32 +61,41 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
     // ]
   }
   const [data, setData] = useState(initProductData)
+
+  // значение полей формы options
   const initOptionsData = {
     option_1: {
-      name: 'Size',
-      options: [
-        {type: 'size', value: '3ml', selected: true},
-        {type: 'size', value: '6ml', selected: false}
-      ]
+      name: '',
+      placeholder: 'Size',
+      options: {
+        0: {type: 'size', value: '', placeholder: '3ml', selected: true},
+        1: {type: 'size', value: '', placeholder: '6ml', selected: false}
+      }
     },
     option_2: {
-      name: 'Color',
-      options: [
-        {type: 'color', value: 'defaulf', selected: true},
-        {type: 'color', value: 'black', selected: false}
-      ]
+      name: '',
+      placeholder: 'Color',
+      options: {
+        0: {type: 'color', value: '', placeholder: 'defaulf', selected: true},
+        1: {type: 'color', value: '', placeholder: 'black', selected: false}
+      }
     },
   }
-  const [optionsData, setOptionsData] = useState()
-  useEffect(() => {
-    setOptionsData(initOptionsData)
-  }, [])
-
-  const handleSubmit = async (e) => {
+  const [optionsData, setOptionsData] = useState(initOptionsData)
+  
+  const handleNext = async (e, contentType, data, settingItemNumber) => {
     e.preventDefault()
-    const ifValid = validate()
-    console.log('ifValid :>> ', ifValid)
-    if (!ifValid) return
+
+    //? нужно ли это вообще..
+    //? как вариант: ifValid = Object.keys(errors).length
+    // const ifValid = validate()
+    // if (!ifValid) {
+    //   console.log('!ifValid :>> ', !ifValid)
+    //   return
+    // }
+
+    toggleSettingItem(e, settingItemNumber)
+    handleSubmit(e, contentType, data)
 
     console.log('data :>> ', data)
     //todo
@@ -93,12 +103,11 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
     // navigate('/admin/products')
   }
 
-  const handleChange = (payload, submitType) => {
+  const handleChange = (payload, submitType, optionKey, index) => {
     let { name, value } = payload
 
     switch (submitType) {
       case 'info':
-        console.log('submitType :>> ', submitType)
         setData(prev => ({
           ...prev,
           [name]: value
@@ -113,80 +122,134 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
           }))
         }
         break;
+      case 'option-type':
+        setOptionsData(prev => {
+          for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
+            prev[optionKey].options[i].type = value
+          }
+          return {
+            ...prev,
+            [optionKey]: {
+              ...prev[optionKey],
+              name: value,
+            }
+          }
+        })
+        break;
+      case 'option-item':
+        setOptionsData(prev => {
+          return {
+            ...prev,
+            [optionKey]: {
+              ...prev[optionKey],
+              options: {
+                ...prev[optionKey].options,
+                [index]: {
+                  ...prev[optionKey].options[index],
+                  value: value
+                }
+              }
+            }
+          }
+        })
+        break;
       default:
-        console.log('submitType :>> ', submitType)
         break;
     }
   }
-
-  //
+  
   const addOptionType = (optionsTypeLength) => {
     const optionTypeName = `option_${optionsTypeLength + 1}`
-    setOptionsData(prev => (
-      {
-        ...prev,
-        [optionTypeName]: {
-          name: 'Color',
-          options: [
-            {type: 'color', value: 'defaulf', selected: true},
-            {type: 'color', value: 'black', selected: false}
-          ]
-        }
+    const optionTypeTemplate = {
+      name: 'Color',
+      placeholder: 'Color',
+      options: {
+        0: {type: 'color', value: 'defaulf', selected: true},
+        1: {type: 'color', value: 'black', selected: false}
       }
+    }
+    setOptionsData(prev => (
+      { ...prev, [optionTypeName]: optionTypeTemplate}
     ))
   }
   const removeOptionType = (optionsTypeLength) => {
     const optionTypeName = `option_${optionsTypeLength}`
-    console.log('optionTypeName :>> ', optionTypeName)
     setOptionsData(prev => {
       delete prev[optionTypeName]
       return { ...prev }
     })
   }
   const addOption = (optionKey, optionsLength) => {
-    console.log('optionKey :>> ', optionKey)
-    console.log('optionsLength :>> ', optionsLength)
-
     setOptionsData(prev => {
-      const templateOptionItem = {type: 'color', value: 'defaulf', selected: true}
-      const newOptionsArray = prev[optionKey].options
-      newOptionsArray.push(templateOptionItem)
-
+      const templateOptionItem = {
+        placeholder: 'black',
+        type: prev[optionKey].name, 
+        value: '',
+        selected: false
+      }
       return {
         ...prev,
         [optionKey]: {
           ...prev[optionKey],
-          options: newOptionsArray
+          options: {
+            ...prev[optionKey].options,
+            [optionsLength]: templateOptionItem
+          }
         }
       }
     })
   }
   const removeOption = (optionKey, optionsLength) => {
-    console.log('optionKey :>> ', optionKey)
-    // console.log('optionsLength :>> ', optionsLength)
-
     setOptionsData(prev => {
-      const newOptionsArray = prev[optionKey].options
-      newOptionsArray.pop()
+      const copyOptions = prev[optionKey].options
+      delete copyOptions[optionsLength - 1]
+      console.log('optionsLength - 1 :>> ', optionsLength - 1)
 
       return {
         ...prev,
         [optionKey]: {
           ...prev[optionKey],
-          options: newOptionsArray
+          options: copyOptions
         }
       }
     })
   }
 
   useEffect(() => {
-    validate()
-  }, [data])
+    validate(contentType)
+  }, [data, optionsData])
 
-  const validate = () => {
-    const errors = validator(data, validatorConfig)
-    setErrors(errors)
-    return Object.keys(errors).length === 0
+  const validate = (contentType) => {
+    if (contentType === 'options') {
+      let errorsFor
+      
+      // проверка optionType'ов
+      for (let i = 0; i < Object.keys(optionsData).length; i++) {
+        const optionName = `option_${i + 1}`
+        if (errorsFor && Object.keys(errorsFor).length) break
+        errorsFor = validator(Object.values(optionsData)[i], validatorConfig)
+        if (Object.keys(errorsFor).length) {
+          setErrors({ [optionName]: errorsFor.name })
+        }
+        if (Object.keys(errorsFor).length) break
+
+        // проверка optionType параметров
+        for (let y = 0; y < Object.keys(optionsData[optionName].options).length; y++) {
+          errorsFor = validator(Object.values(optionsData[optionName].options)[y], validatorConfig)
+          if (Object.keys(errorsFor).length) {
+            let testName = `${optionName}-param_${y + 1}`
+            errorsFor = { [testName]: errorsFor.value }
+          }
+          setErrors(errorsFor)
+          if (Object.keys(errorsFor).length) break
+        }
+      }
+      // return Object.keys(errors).length === 0
+    } else {
+      const errors = validator(data, validatorConfig)
+      setErrors(errors)
+      // return Object.keys(errors).length === 0
+    }
   }
   // блокировка кнопки
   const isValid = Object.keys(errors).length === 0
@@ -197,11 +260,12 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
         <div>
           <div className="setting-product-content__title">Product Images</div>
           <div className="setting-product-content__subtitle">Edit previews and sliders</div>
-          <form className="create-product-page" onSubmit={(e) => handleSubmit(e, 'images')}>
+          <div className="create-product-page">
             <div className='create-product-page__buttons'>
               <button
-                type='submit'
-                disabled={!isValid}
+                onClick={handleSubmit}
+                // type='submit'
+                // disabled={!isValid}
               >
                 Create
               </button>
@@ -213,7 +277,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
                 Back
               </button>
             </div>
-          </form>
+          </div>
         </div>
       )
       : contentType === 'options'
@@ -227,63 +291,69 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
                 <div key={index} className='option-item'>
                   <TextField
                     label={`Options type:`}
-                    placeholder="Size"
-                    name={optionsData[optionKey].name}
+                    placeholder={optionsData[optionKey].placeholder}
+                    name={optionKey}
                     value={optionsData[optionKey].name}
                     onChange={handleChange}
                     errors={errors}
-                    submitType='option'
+                    submitType='option-type'
+                    optionKey={optionKey}
+                    index={index}
                   />
-                  {optionsData[optionKey].options.map((option, index) => (
+                  {Object.values(optionsData[optionKey].options).map((option, index) => (
                     <TextField
-                      key={index}
                       label={`Option ${index + 1}:`}
-                      placeholder={option.value}
-                      name={option.type}
+                      placeholder={option.placeholder}
+                      name={`${optionKey}-param_${index + 1}`}
                       value={option.value}
                       onChange={handleChange}
                       errors={errors}
-                      submitType='option'
+                      submitType='option-item'
+                      optionKey={optionKey}
+                      index={index}
+                      key={index}
                     />
                   ))}
-                  
                   <button
-                    className='remove'
-                    onClick={() => removeOption(optionKey, optionsData[optionKey].options.length)}
+                    className={'remove' + (Object.keys(optionsData[optionKey].options).length === 1 ? ' disabled' : '')}
+                    onClick={() => removeOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
+                    disabled={Object.keys(optionsData[optionKey].options).length === 1}
                   >
                     x
                   </button>
                   <button
                     className='add'
-                    onClick={() => addOption(optionKey, optionsData[optionKey].options.length)}
+                    onClick={() => addOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
+                    disabled={Object.keys(optionsData[optionKey].options).length > 3}
                   >
                     add option
                   </button>
                 </div>
               ))}
               <button
-                className='remove'
+                className={'remove' + (Object.keys(optionsData).length < 2 ? ' disabled' : '')}
                 onClick={() => removeOptionType(Object.keys(optionsData).length)}
+                disabled={Object.keys(optionsData).length < 2}
               >
-                X
+                remove last
               </button>
               <button
                 className='add'
                 onClick={() => addOptionType(Object.keys(optionsData).length)}
+                disabled={Object.keys(optionsData).length > 1}
               >
                 add option type
               </button>
             </div>
             <div className='create-product-page__buttons'>
               <button
-                onClick={(e) => toggleSettingItem(e, 3)}
-                // disabled={!isValid}
+                onClick={(e) => handleNext(e, contentType, optionsData, 3)}
+                disabled={!isValid}
               >
                 Next
               </button>
               <button
                 onClick={(e) => toggleSettingItem(e, 1)}
-                // disabled={!isValid}
                 className='back-btn'
               >
                 Back
@@ -348,7 +418,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem }) => {
             />
             <div className='create-product-page__buttons'>
               <button
-                onClick={(e) => toggleSettingItem(e, 2)}
+                onClick={(e) => handleNext(e, contentType, data, 2)}
                 disabled={!isValid}
               >
                 Next

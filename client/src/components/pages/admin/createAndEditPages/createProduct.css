@@ -92,12 +92,15 @@
 .create-product-page .text-fields.options button {
   height: 40px;
 }
-.create-product-page .text-fields.options button.add:hover {
-  background-color: #f6ab44;
+.create-product-page .text-fields.options button.add.disabled {
+  background-color: rgba(126, 76, 79, 0.3882352941);
 }
 .create-product-page .text-fields.options button.remove {
   background-color: #db1d2a;
   margin-right: 10px;
+}
+.create-product-page .text-fields.options button.remove.disabled {
+  background-color: rgba(219, 29, 42, 0.5568627451);
 }
 .create-product-page .text-fields.options button.remove:hover {
   background-color: rgba(219, 29, 42, 0.5568627451);
@@ -153,6 +156,12 @@
   background-color: transparent;
   border: 1px solid #eaeaea;
   border-radius: 5px;
+}
+.create-product-page .text-fields .text-field .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: red;
 }
 .create-product-page .radio-field {
   display: -webkit-box;

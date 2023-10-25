@@ -9,6 +9,11 @@ export const validatorConfig = {
       minValue: 3
     }
   },
+  value: {
+    isRequired: {
+      message: 'value is required!'
+    }
+  },
   email: {
     isRequired: {
       message: 'Mail is required!'

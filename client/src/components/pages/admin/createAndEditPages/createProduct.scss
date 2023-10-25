@@ -90,13 +90,16 @@
       button {
         height: 40px;
         &.add {
-          &:hover {
-            background-color: #f6ab44;
+          &.disabled {
+            background-color: #7e4c4f63;
           }
         }
         &.remove {
           background-color: #db1d2a;
           margin-right: 10px;
+          &.disabled {
+            background-color: #db1d2a8e;
+          }
           &:hover {
             background-color: #db1d2a8e;
           }
@@ -148,6 +151,12 @@
         background-color: transparent;
         border: 1px solid #eaeaea;
         border-radius: 5px;
+      }
+      .error-msg {
+        font-family: "Montserrat", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: red;
       }
     }
   }

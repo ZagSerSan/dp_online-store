@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Icon from '../icon'
 
-const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, switchErrMsg = true }) => {
+const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, optionKey, index, switchErrMsg = true }) => {
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
   const [isBlured, setIsBlured] = useState(false)
 
   const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value }, submitType)
+    onChange({ name: target.name, value: target.value }, submitType, optionKey, index)
     setIsBlured(true)
   }
 
