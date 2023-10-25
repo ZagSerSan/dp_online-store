@@ -1,15 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import { formatDate } from '../../../utils/formatDate'
+import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+import userStore from '../../../store/userStore'
 import commentStore from '../../../store/commentStore'
+import useStore from '../../../store/createStore'
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
-import { Link } from 'react-router-dom'
-import userStore from '../../../store/userStore'
-import { formatDate } from '../../../utils/formatDate'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
   const { authedUser } = userStore()
+  const { updateProduct  } = useStore()
+
+  const removeComment = (commentId, productId) => {
+    deleteComment(commentId)
+    updateProduct(getAverageRatingObj(
+      commentsEntity.filter(comment => comment._id !== commentId),
+      productId
+    ))
+  }
 
   return (
     <div className='more-info-content__reviews'>
@@ -37,7 +48,7 @@ const ProductInfoReviews = () => {
                     <span>{formatDate(review.created_at, 'year')}</span>
                     {
                       (review?.userId === authedUser?._id || authedUser?.admin) &&
-                      <button onClick={() => deleteComment(review._id)}>
+                      <button onClick={() => removeComment(review._id, review.productId)}>
                         <Icon id='close' />
                       </button>
                     }

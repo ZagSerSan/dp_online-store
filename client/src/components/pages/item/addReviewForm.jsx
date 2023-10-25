@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { nanoid } from 'nanoid'
 // utils, state, ect
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
@@ -12,11 +11,15 @@ import Textarea from '../../common/form/textarea'
 // import CommentService from '../../../service/comment.service'
 import commentStore from '../../../store/commentStore'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import useStore from '../../../store/createStore'
+import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
 
 const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
   const { authedUser } = userStore()
-  const { addComment } = commentStore()
+  const { addComment, commentsEntity } = commentStore()
+  const { updateProduct } = useStore()
+
   const [errors, setErrors] = useState({})
   // значение полей формы
   let initialState = {
@@ -54,19 +57,20 @@ const AddReviewForm = ({ productId }) => {
         }))
       }
     })
-  })
+  })  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     const ifValid = validate()
     if (!ifValid) return
 
     try {
       data.rate = Number(data.rate)
 
-      console.log('data :>> ', data)
-
       addComment(data)
+      // обновление среднего рейтинга продукта для отобажения на гл странице
+      updateProduct(getAverageRatingObj(commentsEntity, data.productId, data))
       setData(initialState)
     } catch (e) {
       console.log('e', e)
