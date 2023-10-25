@@ -126,6 +126,21 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.product-page-col.more-info .more-info-content__reviews .product-reviews-item__col .left-part {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.product-page-col.more-info .more-info-content__reviews .product-reviews-item__col .left-part img {
+  height: 45px;
+  border-radius: 12px;
+  border: 1px solid #686868;
+  margin-right: 15px;
+}
+.product-page-col.more-info .more-info-content__reviews .product-reviews-item__col .left-part p {
+  padding: 3px 0 0 2px;
+  margin-bottom: 6px;
+}
 .product-page-col.more-info .more-info-content__reviews .product-reviews-item__ratting {
   display: -webkit-box;
   display: -ms-flexbox;

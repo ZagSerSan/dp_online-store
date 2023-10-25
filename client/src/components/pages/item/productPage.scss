@@ -114,6 +114,21 @@
             &__col {
               display: flex;
               justify-content: space-between;
+
+              .left-part {
+                display: flex;
+                img {
+                  height: 45px;
+                  border-radius: 12px;
+                  border: 1px solid #686868;
+
+                  margin-right: 15px;
+                }
+                p {
+                  padding: 3px 0 0 2px;
+                  margin-bottom: 6px;
+                }
+              }
             }
             &__ratting {
               display: flex;

@@ -17,14 +17,21 @@ const userStore = create((set) => ({
       const { content } = await userService.updateUser(newUserData)
       if (newUserData._id === state.authedUser._id) {
         set((state) => ({ authedUser: content }))
+      } else {
+        const newUsersArray = state.usersEntity.filter(
+          user => user._id !== newUserData._id
+        )
+        newUsersArray.push(content)
+        set((state) => ({ usersEntity: newUsersArray }))
       }
-      const newUsersArray = state.usersEntity.filter(
-        user => user._id !== newUserData._id
-      )
-      newUsersArray.push(content)
+      //!
+      // const newUsersArray = state.usersEntity.filter(
+      //   user => user._id !== newUserData._id
+      // )
+      // newUsersArray.push(content)
       set((state) => ({ usersLoaded: false}))
       toast.success("User has been updated!")
-      return { usersEntity: newUsersArray }
+      // return { usersEntity: newUsersArray }
     } catch (error) {
       console.log('err', error)
       toast.error("User not updated.. see logs..")

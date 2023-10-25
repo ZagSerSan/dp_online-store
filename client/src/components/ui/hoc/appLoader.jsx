@@ -8,7 +8,7 @@ import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
   const { loadProductsList, productsLoadingStatus, setGlobalLoading } = useStore()
-  const { setAuthedUser } = userStore()
+  const { setAuthedUser, loadUsersList } = userStore()
   const [error, setError] = useState(false)
   
   const loadEntities = async () => {
@@ -17,6 +17,7 @@ const AppLoader = ({ children }) => {
       if (localStorageService.getAccessToken()) {
         await setAuthedUser()
       }
+      await loadUsersList()
       setGlobalLoading()
     } catch (error) {
       console.log('appLoader log', error)

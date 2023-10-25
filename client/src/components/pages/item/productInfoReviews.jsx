@@ -11,8 +11,9 @@ import AddReviewForm from './addReviewForm'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
-  const { authedUser } = userStore()
+  const { authedUser, usersEntity } = userStore()
   const { updateProduct  } = useStore()
+  console.log('usersEntity :>> ', usersEntity)
 
   const removeComment = (commentId, productId) => {
     deleteComment(commentId)
@@ -31,7 +32,7 @@ const ProductInfoReviews = () => {
               ? commentsEntity.map(review => (
               <div key={review._id} className="product-reviews-item">
                 <div className="product-reviews-item__col">
-                  <div className='product-reviews-item__ratting'>
+                  {/* <div className='product-reviews-item__ratting'>
                     {ratingStarsHelper.map(rateItem => (
                       <Icon
                         key={rateItem.value}
@@ -41,8 +42,8 @@ const ProductInfoReviews = () => {
                       />
                     ))}
                     ({review.rate})
-                  </div>
-                  <p className='product-reviews-item__name-data'>
+                  </div> */}
+                  {/* <p className='product-reviews-item__name-data'>
                     <span>{review.name}</span>
                     <span>{formatDate(review.created_at, 'hours')}</span>
                     <span>{formatDate(review.created_at, 'year')}</span>
@@ -52,7 +53,44 @@ const ProductInfoReviews = () => {
                         <Icon id='close' />
                       </button>
                     }
-                  </p>
+                  </p> */}
+                  <div className='left-part'>
+                    {usersEntity && (
+                      <img
+                        src={usersEntity.find(user => user._id === review.userId).image}
+                        alt="" 
+                      />
+                    )}
+                    <div>
+                      <p className='product-reviews-item__name-data'>
+                        {review.name}
+                      </p>
+                      <div className='product-reviews-item__ratting'>
+                        {ratingStarsHelper.map(rateItem => (
+                          <Icon
+                            key={rateItem.value}
+                            id='rate-star-full'
+                            strokeWidth='2' 
+                            className={(rateItem.value <= review.rate ? ' active' : '')}
+                          />
+                        ))}
+                        ({review.rate})
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className='product-reviews-item__name-data'>
+                      {/* <span>{review.name}</span> */}
+                      <span>{formatDate(review.created_at, 'hours')}</span>
+                      <span>{formatDate(review.created_at, 'year')}</span>
+                      {
+                        (review?.userId === authedUser?._id || authedUser?.admin) &&
+                        <button onClick={() => removeComment(review._id, review.productId)}>
+                          <Icon id='close' />
+                        </button>
+                      }
+                    </p>
+                  </div>
                 </div>
                 <div className="product-reviews-item__col">
                   <p className='product-reviews-item__description'>{review.content}</p>
