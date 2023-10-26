@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-// import './auth.css'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import { getRandomInt } from '../../../../utils/helper'

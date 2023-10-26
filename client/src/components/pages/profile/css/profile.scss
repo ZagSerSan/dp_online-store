@@ -21,6 +21,10 @@
       margin: 0 0 30px;
       cursor: pointer;
 
+      &.no-click {
+        cursor: default;
+      }
+
       &__number {
         display: flex;
         justify-content: center;
@@ -86,8 +90,6 @@
         margin-top: 30px;
         border-top: 1px solid #eaeaea;
 
-        button.submit {
-        }
         &__col {
           display: flex;
           width: 100%;
@@ -99,6 +101,64 @@
           }
           &:first-child {
             padding-right: 15px;
+          }
+        }
+        input {
+          background-color: transparent;
+          border: 1px solid #eaeaea;
+          color: #333;
+          font-size: 14px;
+          height: 50px;
+          padding: 0 15px;
+        }
+        button {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+
+          background-color: #7e4c4f;
+          padding: 10px;
+          border: 0;
+          border-radius: 5px;
+          color: #fff;
+          cursor: pointer;
+
+          &.submit {
+            background-color: #7e4c4f;
+          }
+          &:disabled {
+            background-color: #7e4c4f63;
+            cursor: default;
+            &:hover {
+              background-color: #7e4c4f63;
+            }
+          }
+
+          &:hover {
+            background-color: #f6ab44;
+          }
+        }
+        a {
+          text-decoration: underline;
+          &:hover {
+            color: #f6ab44;
+          }
+        }
+        .back-btn {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: none;
+
+          background-color: #db1d2a;
+          padding: 12px;
+          margin-left: 20px;
+          border: 0;
+          border-radius: 5px;
+          color: #fff;
+          cursor: pointer;
+          &:hover {
+            background-color: #ac000b;
           }
         }
         .text-field {

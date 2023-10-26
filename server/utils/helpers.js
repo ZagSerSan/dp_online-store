@@ -11,56 +11,64 @@ function generateUserData() {
 }
 
 //todo
-function generateProductData() {
-  return {
-    name: 'Man item 1',
-    type: 'man',
-    title: 'Some title',
-    price: 14,
-    rate: 0,
-    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
-    modalOptionTypes: [
-      {
-        name: 'Size',
-        options: [
-          {type: 'size', value: '3ml', selected: true},
-          {type: 'size', value: '6ml', selected: false}
-        ]
-      },
-      {
-        name: 'Color',
-        options: [
-          {type: 'color', value: 'default', selected: true},
-          {type: 'color', value: 'black', selected: false},
-        ] 
-      }
-    ],
+function generateProductData(newProductData) {
+  const IMAGES_URL_API = `http://localhost:8080/images/products/${newProductData.type}/${newProductData._folderNum}/`
+
+  const productImagesPath = {
     introSlider: {
       switched: false,
-      // slide: manItem1.introSliderPreview
+      slide: `${IMAGES_URL_API}introSlide.png`
     },
-    preview: manItem1.list,
-    slider_dots: manItem1.dots,
+    preview: `${IMAGES_URL_API}listItemPreview.png`,
+    slider_dots: [
+      `${IMAGES_URL_API}dot_1.png`,
+      `${IMAGES_URL_API}dot_2.png`,
+      `${IMAGES_URL_API}dot_3.png`,
+    ],
     slider: [
       {
         id: 'slider_1',
-        preview: manItem1.modalPreviews.slide1,
+        preview: `${IMAGES_URL_API}slide_1.png`,
         title: 'Some title'
       },
       {
         id: 'slider_2',
-        preview: manItem1.modalPreviews.slide2,
+        preview: `${IMAGES_URL_API}slide_2.png`,
         title: 'Some title'
       },
       {
         id: 'slider_3',
-        preview: manItem1.modalPreviews.slide3,
+        preview: `${IMAGES_URL_API}slide_3.png`,
         title: 'Some title'
       }
     ]
   }
+
+  return {
+    // тут принимать картинки
+    // 1 сохранять из в папку
+    // 2 генирировать пути как было сделано на клиенте
+    // 3 добавлять в объект ниже
+
+    name: 'Product Name',
+    type: 'man',
+    title: 'Some title',
+    price: 24,
+    rate: 0,
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+
+    ...productImagesPath,
+    ...newProductData,
+
+    // потому что этот параметр был изменён на клиенте
+    introSlider: {
+      ...productImagesPath.introSlider,
+      ...newProductData.introSlider
+    },
+  }
 }
 
 module.exports = {
-  generateUserData
+  generateUserData,
+  generateProductData
 }

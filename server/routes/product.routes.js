@@ -1,8 +1,8 @@
 const express = require('express')
 const chalk = require('chalk')
 const Product = require('../models/Product')
+const { generateProductData } = require('../utils/helpers')
 const router = express.Router({mergeParams: true})
-// const auth = require('../middleware/auth.middleware')
 
 // /api/product
 router.get('/', async (req, res) => {
@@ -16,25 +16,39 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/createProduct', async (req, res) => {
+  try {
+    // const errors = validationResult(req)
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({
+    //     error: {
+    //       message: 'INVALID_DATA',
+    //       code: 400,
+    //       errors: errors.array()
+    //     }
+    //   })
+    // }
+
+    const newProduct = await Product.create({
+      ...generateProductData(req.body),
+    })
+
+    res.status(201).send(newProduct)
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      message: 'На сервере проихошла ошибка, попробуйте позже.',
+    })
+  }
+})
+
 //* обновлениe продукта по рейтингу
 router.put('/:productId', async (req, res) => {
   try {
     const { productId } = req.params    
-    // console.log('req.body', req.body)
-    // console.log('productId :>> ', productId)
-    // console.log('req.params', req.params)
-
-    // if (productId === req.product._id) {
-      //todo
-      const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
-      res.send(updatedProduct)
-    // } else {
-    //   res.status(401).json({
-    //     message: 'На сервере проихошла ошибка, попробуйте позже.',
-    //     errors: errors.array()
-    //   })
-    // }
-
+    const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
+    
+    res.send(updatedProduct)
   } catch (e) {
     console.log(chalk.red('error'), e)
     res.status(401).json({message: 'Unauthorized'})

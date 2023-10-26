@@ -31,7 +31,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem1.introSliderPreview
+      slide: manItem1.introSliderPreview
     },
     preview: manItem1.list,
     slider_dots: manItem1.dots,
@@ -78,7 +78,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: womanItem1.introSliderPreview
+      slide: womanItem1.introSliderPreview
     },
     preview: womanItem1.list,
     slider_dots: womanItem1.dots,
@@ -125,7 +125,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: carItem1.introSliderPreview
+      slide: carItem1.introSliderPreview
     },
     preview: carItem1.list,
     slider_dots: carItem1.dots,
@@ -172,7 +172,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem2.introSliderPreview
+      slide: manItem2.introSliderPreview
     },
     preview: manItem2.list,
     slider_dots: manItem2.dots,
@@ -313,7 +313,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: womanItem3.introSliderPreview
+      slide: womanItem3.introSliderPreview
     },
     preview: womanItem3.list,
     slider_dots: womanItem3.dots,
@@ -360,7 +360,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem3.introSliderPreview
+      slide: manItem3.introSliderPreview
     },
     preview: manItem3.list,
     slider_dots: manItem3.dots,
@@ -407,7 +407,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: carItem3.introSliderPreview
+      slide: carItem3.introSliderPreview
     },
     preview: carItem3.list,
     slider_dots: carItem3.dots,
@@ -454,7 +454,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem4.introSliderPreview
+      slide: manItem4.introSliderPreview
     },
     preview: manItem4.list,
     slider_dots: manItem4.dots,
@@ -501,7 +501,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: womanItem4.introSliderPreview
+      slide: womanItem4.introSliderPreview
     },
     preview: womanItem4.list,
     slider_dots: womanItem4.dots,
@@ -548,7 +548,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: carItem4.introSliderPreview
+      slide: carItem4.introSliderPreview
     },
     preview: carItem4.list,
     slider_dots: carItem4.dots,
@@ -595,7 +595,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem5.introSliderPreview
+      slide: manItem5.introSliderPreview
     },
     preview: manItem5.list,
     slider_dots: manItem5.dots,
@@ -642,7 +642,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: womanItem5.introSliderPreview
+      slide: womanItem5.introSliderPreview
     },
     preview: womanItem5.list,
     slider_dots: womanItem5.dots,
@@ -736,7 +736,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: womanItem6.introSliderPreview
+      slide: womanItem6.introSliderPreview
     },
     preview: womanItem6.list,
     slider_dots: womanItem6.dots,
@@ -783,7 +783,7 @@ const products = [
     ],
     introSlider: {
       switched: false,
-      // slide: manItem6.introSliderPreview
+      slide: manItem6.introSliderPreview
     },
     preview: manItem6.list,
     slider_dots: manItem6.dots,

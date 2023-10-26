@@ -142,12 +142,13 @@
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: #7e4c4f;
   width: 30px;
   height: 30px;
-  background-color: rgba(126, 76, 79, 0.5607843137);
+  border: 1px solid #7e4c4f;
   margin-right: 10px;
 }
-.user-tab-page-pagination button.active {
+.user-tab-page-pagination button:hover, .user-tab-page-pagination button.active {
   background-color: #7e4c4f;
+  color: #fff;
 }

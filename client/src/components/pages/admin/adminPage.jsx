@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import './adminPage.css'
+import React from 'react'
+import './css/adminPage.css'
 import UserTabPage from './userTabPage'
 import ProductsTabPage from './productsTabPage'
 import { useNavigate } from 'react-router-dom'
-// import EditFormList from '../profile/editFormList'
 
 const AdminPage = ({ tabState }) => {
   const navigate = useNavigate()
   // users, products
   const tabs = ['users', 'products']
-  // const [tabState, setTabState] = useState('users')
   console.log('tabState :>> ', tabState)
 
   const toggleTabs = (tab) => {

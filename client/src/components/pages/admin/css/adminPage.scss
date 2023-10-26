@@ -133,15 +133,17 @@
       font-family: "Montserrat", sans-serif;
       font-size: 14px;
       font-weight: 400;
-      color: #fff;
+      color: #7e4c4f;
 
       width: 30px;
       height: 30px;
-      background-color: #7e4c4f8f;
+      border: 1px solid #7e4c4f;
       margin-right: 10px;
 
+      &:hover,
       &.active {
         background-color: #7e4c4f;
+        color: #fff;
       }
     }
   }

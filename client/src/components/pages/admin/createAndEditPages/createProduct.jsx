@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import './createProduct.css'
+import './css/createProduct.css'
 import CreateProductConfig from './createProductConfig'
+import useStore from '../../../../store/createStore'
 
 const CreateProduct = () => {
   const [settingItemState, setSettingItemState] = useState(1)
@@ -10,10 +11,11 @@ const CreateProduct = () => {
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
   const [newProdData, setNewProdData] = useState({})
+  //todo test state: type
+  const { createNewProduct } = useStore()
+  const [productType, setProductType] = useState()
 
-  console.log('settingItemState :>> ', settingItemState)
   const toggleSettingItem = (e, settingItemId) => {
-    console.log('settingItemId :>> ', settingItemId)
     e.stopPropagation()
     setSettingItemState(settingItemId)
   }
@@ -24,12 +26,14 @@ const CreateProduct = () => {
     // if (!ifValid) return
 
     switch (contentType) {
+
       case 'info':
-        // console.log(`${contentType} data:`, data)
         setNewProdData(prev => ({ ...prev, ...data }))
+        setProductType(data.type)
         break;
+
       case 'options':
-        console.log(`${contentType} data:`, data)
+        // console.log(`${contentType} data:`, data)
         for (let i = 0; i < Object.keys(data).length; i++) {
           let index = i + 1
           let optionTypeName = `option_${index}`
@@ -38,19 +42,27 @@ const CreateProduct = () => {
         const modalOptionTypes = Object.values(data)
         setNewProdData(prev => ({...prev, modalOptionTypes}))
         break;
+
       case 'images':
-        console.log(`${contentType} data:`, data)
+        setNewProdData(prev => ({ ...prev, ...data }))
+        //* формируем data для отправки на сервер
+        const newProdData_updated = {
+          ...newProdData,
+          ...data
+        }
+        
+        //* готовая data для отправки на сервер
+        // console.log('newProdData_updated :>> ', newProdData_updated)
+
+        //todo отправка на сервер
+        createNewProduct(newProdData_updated)
+        // navigate('/admin/products')
         break;
+
       default:
         break;
     }
-
-    //todo
-    // createUser(data)
-    // navigate('/admin/products')
   }
-
-  console.log('newProdData', newProdData)
 
   return (
     <div className="my-container">
@@ -58,8 +70,8 @@ const CreateProduct = () => {
         {settingItems.map(settingItem => (
           <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
             <div
-              className="setting-item-clicker"
-              onClick={(e) => toggleSettingItem(e, settingItem.number)}
+              className="setting-item-clicker no-click"
+              // onClick={(e) => toggleSettingItem(e, settingItem.number)}
             >
               <div className='setting-item-clicker__number'>{settingItem.number}</div>
               <div className='setting-item-clicker__title'>{settingItem.title}</div>
@@ -69,6 +81,7 @@ const CreateProduct = () => {
                 contentType={settingItem.contentType}
                 toggleSettingItem={toggleSettingItem}
                 handleSubmit={handleSubmit}
+                productType={productType}
               />
             </div>
           </div>

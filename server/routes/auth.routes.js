@@ -103,7 +103,8 @@ router.post('/signInWithPassword', [
       }
 
       // 3
-      const isPasswordEqual = bcrypt.compare(password, existUser.password)
+      const isPasswordEqual = await bcrypt.compare(password, existUser.password)
+
       if (!isPasswordEqual) {
         return res.status(400).send({
           error: {

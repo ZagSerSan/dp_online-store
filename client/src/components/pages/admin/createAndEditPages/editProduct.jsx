@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Icon from '../../../common/icon'
-import './editProduct.css'
+import './css/editProduct.css'
 import { Navigate, useParams } from 'react-router-dom'
 import useStore from '../../../../store/createStore'
 import SettingProductContent from './settingProductContent'

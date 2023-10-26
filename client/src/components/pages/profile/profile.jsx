@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import Icon from '../../common/icon'
-import './profile.css'
-import SettingItemContent from './settingItemContent'
-import userStore from '../../../store/userStore'
 import { Navigate, useParams } from 'react-router-dom'
+import './css/profile.css'
+import userStore from '../../../store/userStore'
+import SettingItemContent from './settingItemContent'
+import Icon from '../../common/icon'
 
 const Profile = () => {
   const [settingItemState, setSettingItemState] = useState(1)
@@ -24,9 +24,6 @@ const Profile = () => {
       loadUsersList()
     }
   }, [usersEntity, usersLoaded])
-
-  // console.log('usersEntity :>> ', usersEntity)
-  // console.log('editedUser :>> ', editedUser)
 
   const toggleSettingItem = (settingItemId) => {
     setSettingItemState(settingItemId)

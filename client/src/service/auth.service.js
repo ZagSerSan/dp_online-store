@@ -1,6 +1,4 @@
 import axios from 'axios'
-// import localStorageService from './localStorage.service'
-// import userService from './users.service'
 import { toast } from 'react-toastify'
 import config from '../config.json'
 import localStorageService from './localStorage.service'
@@ -11,7 +9,6 @@ const httpAuth = axios.create({
   //   key: process.env.REACT_APP_FIREBASE_KEY
   // }
 })
-// const userEndpoint = 'user/'
 
 const authService = {
   register: async (payload, role = 'register') => {

@@ -5,63 +5,23 @@ import { validatorConfig } from '../../../../utils/validatorConfig'
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
+import useStore from '../../../../store/createStore'
 // import CheckBoxField from '../../../common/form/checkBoxField'
 
-const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
+const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-
+  const { productsEntity } = useStore() 
   // значение полей формы info
-  const initProductData = {
+  const initInfoData = {
     name: '',
     type: 'man',
     title: '',
     price: 0,
     rate: 0,
-    description: '',
-    // modalOptionTypes: [
-    //   {
-    //     name: 'Size',
-    //     options: [
-    //       {type: 'size', value: '3ml', selected: true},
-    //       {type: 'size', value: '6ml', selected: false}
-    //     ]
-    //   },
-    //   {
-    //     name: 'Color',
-    //     options: [
-    //       {type: 'color', value: 'default', selected: true},
-    //       {type: 'color', value: 'black', selected: false},
-    //     ] 
-    //   }
-    // ],
-
-    // introSlider: {
-    //   switched: false,
-    //   // slide: manItem1.introSliderPreview
-    // },
-    // preview: manItem1.list,
-    // slider_dots: manItem1.dots,
-    // slider: [
-    //   {
-    //     id: 'slider_1',
-    //     preview: manItem1.modalPreviews.slide1,
-    //     title: 'Some title'
-    //   },
-    //   {
-    //     id: 'slider_2',
-    //     preview: manItem1.modalPreviews.slide2,
-    //     title: 'Some title'
-    //   },
-    //   {
-    //     id: 'slider_3',
-    //     preview: manItem1.modalPreviews.slide3,
-    //     title: 'Some title'
-    //   }
-    // ]
+    description: ''    
   }
-  const [data, setData] = useState(initProductData)
-
+  const [data, setData] = useState(initInfoData)
   // значение полей формы options
   const initOptionsData = {
     option_1: {
@@ -82,7 +42,36 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
     },
   }
   const [optionsData, setOptionsData] = useState(initOptionsData)
+
+  //todo ====================================================
+  // ImageData
+  const initImagesData = {
+    introSlider: {
+      switched: false,
+    }
+  }
+  const [imageData, setImageData] = useState(initImagesData)
   
+  useEffect(() => {
+    if (productType) {
+      console.log('productType')
+      let num = productsEntity.filter(item => item.type === productType).length + 1
+      setImageData(prev => ({
+        ...prev,
+        _folderNum: num,
+      }))
+    }
+  }, [productType])
+
+  const changeImageData = (e, contentType, data) => {
+    e.preventDefault()
+    
+    console.log('contentType :>> ', contentType)
+    console.log('data :>> ', data)
+  }
+
+  //todo ====================================================
+
   const handleNext = async (e, contentType, data, settingItemNumber) => {
     e.preventDefault()
 
@@ -94,13 +83,18 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
     //   return
     // }
 
-    toggleSettingItem(e, settingItemNumber)
-    handleSubmit(e, contentType, data)
-
-    console.log('data :>> ', data)
-    //todo
-    // createUser(data)
-    // navigate('/admin/products')
+    // if (contentType === 'images') {
+      // console.log('contentType :>> ', contentType)
+      // console.log('data :>> ', data)
+    // } else {
+      if(settingItemNumber) {
+        toggleSettingItem(e, settingItemNumber)
+      }
+      handleSubmit(e, contentType, data)
+      //todo
+      // createUser(data)
+      // navigate('/admin/products')
+    // }
   }
 
   const handleChange = (payload, submitType, optionKey, index) => {
@@ -125,7 +119,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
-            prev[optionKey].options[i].type = value
+            prev[optionKey].options[i].type = value.toLowerCase()
           }
           return {
             ...prev,
@@ -183,7 +177,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
     setOptionsData(prev => {
       const templateOptionItem = {
         placeholder: 'black',
-        type: prev[optionKey].name, 
+        type: prev[optionKey].name.toLowerCase(), 
         value: '',
         selected: false
       }
@@ -262,16 +256,22 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
           <div className="setting-product-content__subtitle">Edit previews and sliders</div>
           <div className="create-product-page">
             <div className='create-product-page__buttons'>
+              {/* тут будет кнопка отправки данных через handleNext */}
               <button
-                onClick={handleSubmit}
-                // type='submit'
+                onClick={(e) => handleNext(e, contentType, imageData)}
                 // disabled={!isValid}
               >
                 Create
               </button>
+              {/* тут кнопка действия изменения данных, напр чекбокс и тд */}
+              <button
+                onClick={(e) => changeImageData(e, contentType, imageData)}
+                // disabled={!isValid}
+              >
+                change
+              </button>
               <button
                 onClick={(e) => toggleSettingItem(e, 2)}
-                // disabled={!isValid}
                 className='back-btn'
               >
                 Back

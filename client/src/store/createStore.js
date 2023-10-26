@@ -7,6 +7,17 @@ const useStore = create((set) => ({
   productsLoadingStatus: true,
   globalLoading: true,
 
+  createNewProduct: (newProductData) => set(async (state) => {
+    try {
+      const { content } = await ProductService.createProduct(newProductData)
+      set((state) => ({ productsEntity: [...state.productsEntity, content] }))
+      set((state) => ({ usersLoaded: false }))
+      toast.success("Product has been created!")
+    } catch (error) {
+      console.log('err', error)
+      toast.error("Product not created.. see logs..")
+    }
+  }),
   updateProduct: (newProductData) => set(async (state) => {
     try {
       const { content } = await ProductService.updateProduct(newProductData)
