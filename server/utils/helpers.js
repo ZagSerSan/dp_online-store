@@ -14,6 +14,8 @@ function generateUserData() {
 function generateProductData(newProductData) {
   const IMAGES_URL_API = `http://localhost:8080/images/products/${newProductData.type}/${newProductData._folderNum}/`
 
+  // todo здесь нужно будет удалять файлы из объекта продукта после их сохранения
+
   const productImagesPath = {
     introSlider: {
       switched: false,
@@ -43,6 +45,9 @@ function generateProductData(newProductData) {
       }
     ]
   }
+
+  delete newProductData.images
+  delete newProductData._folderNum
 
   return {
     // тут принимать картинки

@@ -22,6 +22,29 @@
   line-height: 61px;
   margin-bottom: 20px;
 }
+.create-product-page .form-container {
+  width: auto;
+  max-width: none;
+  padding: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #fff;
+  padding-top: 28px;
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+}
+.create-product-page .form-container__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  border: 1px solid red;
+  padding: 10px;
+}
+.create-product-page .form-container__col {
+  border: 1px solid #333;
+  width: 50%;
+}
 .create-product-page__buttons {
   margin-top: 30px;
 }
@@ -234,13 +257,6 @@
   margin-right: 10px;
   width: 16px;
   cursor: pointer;
-}
-.create-product-page .relocate-msg {
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 15px;
-  color: #7e4c4f;
 }
 .create-product-page .license-msg {
   font-family: "Montserrat", sans-serif;

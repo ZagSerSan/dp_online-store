@@ -3,6 +3,8 @@ const chalk = require('chalk')
 const Product = require('../models/Product')
 const { generateProductData } = require('../utils/helpers')
 const router = express.Router({mergeParams: true})
+const fs = require('fs/promises')
+const path = require('path')
 
 // /api/product
 router.get('/', async (req, res) => {
@@ -12,6 +14,47 @@ router.get('/', async (req, res) => {
   } catch (e) {
     res.status(500).json({
       message: 'На сервере проихошла ошибка, попробуйте позже.'
+    })
+  }
+})
+
+//todo
+router.post('/createProductImages', async (req, res) => {
+  try {
+
+    // todo функция картинок
+    const type = req.body.type
+    const folderNum = req.body.folderNum
+    const files = req.files
+    console.log('folderNum, type :>> ', folderNum, type);
+    console.log('req.body :>> ', req.body)
+
+    let path = `./static/images/products/${type}/${folderNum}`
+    await fs.mkdir(path)
+
+    Object.values(files).forEach(file => {
+      // let path = `../static/images/products/${type}/${folderNum}`
+      let dir = `./static/images/products/${type}/${folderNum}/${file.name}`
+      // const dir = `${__dirname}/${file.name}`
+      // const dir = `${__dirname}/${file.name}`
+      // const dir = `./../images/`
+      fs.writeFile(dir, file.data)
+    })
+
+    // const dir = `${__dirname}/${file.name}`
+    // console.log('dir :>> ', dir)
+    // fs.writeFile(dir, file.data)
+
+    // const createFiles = (imagesData) => {
+    //   // console.log('imagesData :>> ', imagesData)
+    // }
+    // createFiles(req.body.images)
+
+    // res.status(201).send(newProduct)
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      message: 'На сервере проихошла ошибка, попробуйте позже.',
     })
   }
 })
@@ -28,6 +71,16 @@ router.post('/createProduct', async (req, res) => {
     //     }
     //   })
     // }
+
+    // todo функция картинок 
+    // console.log('req.body :>> ', req.body)
+    // console.log('req.files.name :>> ', req.files.name)
+
+    // const createFiles = (imagesData) => {
+    //   // console.log('imagesData :>> ', imagesData)
+      
+    // }
+    // createFiles(req.body.images)
 
     const newProduct = await Product.create({
       ...generateProductData(req.body),

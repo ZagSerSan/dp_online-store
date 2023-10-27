@@ -1,6 +1,9 @@
 const TokenSevise = require('../services/token.service')
 
 module.exports = (req, res, next) => {
+  console.log('req.files :>> ', req.files)
+  console.log('req.data :>> ', req.data)
+
   if (req.method === 'OPTIONS') {
     return next()
   }

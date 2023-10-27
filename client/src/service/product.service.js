@@ -6,27 +6,43 @@ const ProductService = {
     const { data } = await httpService.get(productEndpoint)
     return data
   },
-  createProduct: async (payload) => {
-      const url = 'createProduct'
-      const { data } = await httpService.post(productEndpoint + url, payload)
-      return data
+  createProductImages: async (files, body) => {
+    const url = 'createProductImages'
+    console.log('filess :>> ', files)
+    const { data } = await httpService.post(
+      productEndpoint + url,
+      // { files: {
+      //     preview: files.preview[0],
+      //     // sliders: {...files.sliders},
+      //     // dots: {...files.dots}
+      //   }
+      // },
+      { ...body, ...files},
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
+    return data
+  },
+  createProduct: async (body) => {
+    const url = 'createProduct'
+    const { data } = await httpService.post(
+      productEndpoint + url,
+      body,
+      // {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data"
+      //   }
+      // }
+    )
+    return data
   },
   // createProduct: async (payload) => {
-  //   try {
   //     const url = 'createProduct'
   //     const { data } = await httpService.post(productEndpoint + url, payload)
-  //     console.log('data :>> ', data)
-  //     toast.success("Product has been created!")
   //     return data
-  //   } catch (error) {
-  //     const errorType = error.response.data.error.message
-  //     console.log('err', error)
-  //     if (errorType === "EMAIL_EXISTS") {
-  //       toast.error("Email exists!")
-  //     } else {
-  //       toast.error("User not created..")
-  //     }
-  //   }
   // },
   updateProduct: async (productData) => {
     const { data } = await httpService.put(productEndpoint + productData._id, productData)

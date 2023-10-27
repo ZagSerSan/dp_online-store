@@ -95,6 +95,7 @@ function (error) {
 const httpService = {
   get: http.get,
   post: http.post,
+  patch: http.patch,
   put: http.put,
   delete: http.delete
 }

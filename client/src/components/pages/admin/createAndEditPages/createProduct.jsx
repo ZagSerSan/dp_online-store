@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import './css/createProduct.css'
 import CreateProductConfig from './createProductConfig'
 import useStore from '../../../../store/createStore'
+import ProductService from '../../../../service/product.service'
+import { useNavigate } from 'react-router-dom'
 
 const CreateProduct = () => {
+  const navigate = useNavigate()
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
     {number: 1, contentType: 'info', title: 'Add product information'},
@@ -11,9 +14,12 @@ const CreateProduct = () => {
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
   const [newProdData, setNewProdData] = useState({})
+
   //todo test state: type
-  const { createNewProduct } = useStore()
+  const { productsEntity } = useStore() 
+  const { createNewProduct, createNewProductImages } = useStore()
   const [productType, setProductType] = useState()
+  let _folderNum = productsEntity.filter(item => item.type === productType).length + 1
 
   const toggleSettingItem = (e, settingItemId) => {
     e.stopPropagation()
@@ -46,9 +52,14 @@ const CreateProduct = () => {
       case 'images':
         setNewProdData(prev => ({ ...prev, ...data }))
         //* формируем data для отправки на сервер
+
+        //todo
+
+        ProductService.createProductImages(data, {type: newProdData.type, folderNum: _folderNum})
+
         const newProdData_updated = {
           ...newProdData,
-          ...data
+          _folderNum
         }
         
         //* готовая data для отправки на сервер
@@ -56,7 +67,7 @@ const CreateProduct = () => {
 
         //todo отправка на сервер
         createNewProduct(newProdData_updated)
-        // navigate('/admin/products')
+        navigate('/admin/products')
         break;
 
       default:
@@ -71,7 +82,7 @@ const CreateProduct = () => {
           <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
             <div
               className="setting-item-clicker no-click"
-              // onClick={(e) => toggleSettingItem(e, settingItem.number)}
+              onClick={(e) => toggleSettingItem(e, settingItem.number)}
             >
               <div className='setting-item-clicker__number'>{settingItem.number}</div>
               <div className='setting-item-clicker__title'>{settingItem.title}</div>

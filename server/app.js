@@ -6,11 +6,13 @@ const cors = require('cors')
 const path = require('path')
 const initDatabase = require('./startUp/initDatabase')
 const routes = require('./routes')
+const fileUpload = require('express-fileupload');
 
 const app = express()
 const PORT = config.get('port') ?? 8080
 
 app.use(cors())
+app.use(fileUpload({}))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static('static'))

@@ -6,12 +6,12 @@ import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
 import useStore from '../../../../store/createStore'
+import ProductService from '../../../../service/product.service'
 // import CheckBoxField from '../../../common/form/checkBoxField'
 
 const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const { productsEntity } = useStore() 
   // значение полей формы info
   const initInfoData = {
     name: '',
@@ -46,28 +46,97 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   //todo ====================================================
   // ImageData
   const initImagesData = {
-    introSlider: {
-      switched: false,
-    }
+    // introSlider: {
+    //   switched: false,
+    // },
+    // images: {}
   }
   const [imageData, setImageData] = useState(initImagesData)
   
   useEffect(() => {
     if (productType) {
       console.log('productType')
-      let num = productsEntity.filter(item => item.type === productType).length + 1
       setImageData(prev => ({
         ...prev,
-        _folderNum: num,
       }))
     }
   }, [productType])
 
-  const changeImageData = (e, contentType, data) => {
-    e.preventDefault()
-    
-    console.log('contentType :>> ', contentType)
-    console.log('data :>> ', data)
+  const changeImageData = (e, files, filesType) => {
+    // e.preventDefault()
+    console.log(filesType === 'checkbox')
+
+    switch (filesType) {
+      case 'checkbox':
+        console.log('checkbox func')
+        setImageData(prev => ({
+          ...prev,
+          introSlider: {
+            switched: !prev.introSlider.switched,
+          },
+        }))
+        break
+      case 'preview':
+        console.log('preview func')
+        // setImageData(prev => ({
+          // ...prev,
+        //   images: {
+        //     ...prev.images,
+            // preview: files
+        //   }
+        // }))
+        setImageData(prev => ({
+          ...prev,
+          ...files
+          // preview: {...files}
+        }))
+        // setImageData(files)
+        break
+      case 'sliders':
+        console.log('sliders func')
+        // setImageData(prev => ({
+        //   ...prev,
+        // //   images: {
+        //     // ...prev.images,
+        //     sliders: files
+        // //   }
+        // }))
+        // setImageData(files)
+        console.log(files.length)
+        setImageData(prev => ({
+          ...prev,
+          1: files[0],
+          2: files[1],
+          3: files[2]
+          // sliders: {...files}
+        }))
+        break
+      case 'dots':
+        console.log('dots func')
+        // setImageData(prev => ({
+          // ...prev,
+          // images: {
+            // ...prev.images,
+            // dots: files
+          // }
+        // }))
+        setImageData(prev => ({
+          ...prev,
+          4: files[0],
+          5: files[1],
+          6: files[2]
+          // sliders: {...files}
+        }))
+        break
+      default:
+        break
+    }
+
+    //todo
+    // ProductService.sendFiles()
+
+    // console.log('contentType :>> ', contentType)
+    // console.log('data :>> ', data)
   }
 
   //todo ====================================================
@@ -106,7 +175,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
           ...prev,
           [name]: value
         }))
-        break;
+        break
       case 'price':
         value = Number(value)
         if (!isNaN(value)) {
@@ -115,7 +184,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
             [name]: value
           }))
         }
-        break;
+        break
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
@@ -129,7 +198,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
             }
           }
         })
-        break;
+        break
       case 'option-item':
         setOptionsData(prev => {
           return {
@@ -146,9 +215,9 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
             }
           }
         })
-        break;
+        break
       default:
-        break;
+        break
     }
   }
   
@@ -254,11 +323,51 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
         <div>
           <div className="setting-product-content__title">Product Images</div>
           <div className="setting-product-content__subtitle">Edit previews and sliders</div>
-          <div className="create-product-page">
+          <form className="create-product-page form-container" onSubmit={(e) => handleNext(e, contentType, imageData)}>
+            <div className="form-container__row">
+              <div className="form-container__col">
+                <label htmlFor="select-preview">select-preview</label>
+                <input
+                  id='select-preview'
+                  type='file'
+                  name='preview'
+                  onChange={(e) => changeImageData(e, e.target.files, 'preview')}
+                />
+              </div>
+              <div className="form-container__col">
+                <input
+                  id='checkout-slide'
+                  type='checkbox'
+                  onChange={(e) => changeImageData(e, null, 'checkbox')}
+                />
+                <label htmlFor="checkout-slide">add as intro slider</label>
+              </div>
+            </div>
+            <div className="form-container__row">
+              <label htmlFor="select-sliders">select sliders images</label>
+              <input
+                id='select-sliders'
+                type='file'
+                name='sliders'
+                multiple
+                onChange={(e) => changeImageData(e, e.target.files, 'sliders')}
+              />
+            </div>
+            <div className="form-container__row">
+              <label htmlFor="select-dots">select dots images</label>
+              <input
+                id='select-dots'
+                type='file'
+                name='dots'
+                multiple
+                onChange={(e) => changeImageData(e, e.target.files, 'dots')}
+              />
+            </div>
             <div className='create-product-page__buttons'>
               {/* тут будет кнопка отправки данных через handleNext */}
               <button
-                onClick={(e) => handleNext(e, contentType, imageData)}
+                type='submit'
+                // onClick={(e) => handleNext(e, contentType, imageData)}
                 // disabled={!isValid}
               >
                 Create
@@ -277,7 +386,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
                 Back
               </button>
             </div>
-          </div>
+          </form>
         </div>
       )
       : contentType === 'options'
