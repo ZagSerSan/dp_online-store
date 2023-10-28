@@ -1,10 +1,10 @@
 const express = require('express')
-const chalk = require('chalk')
-const Product = require('../models/Product')
-const { generateProductData } = require('../utils/helpers')
-const router = express.Router({mergeParams: true})
 const fs = require('fs/promises')
 const path = require('path')
+const chalk = require('chalk')
+const Product = require('../models/Product')
+const router = express.Router({mergeParams: true})
+const { generateProductData, splitString } = require('../utils/helpers')
 
 // /api/product
 router.get('/', async (req, res) => {
@@ -18,39 +18,21 @@ router.get('/', async (req, res) => {
   }
 })
 
-//todo
 router.post('/createProductImages', async (req, res) => {
   try {
-
-    // todo функция картинок
-    const type = req.body.type
-    const folderNum = req.body.folderNum
     const files = req.files
-    console.log('folderNum, type :>> ', folderNum, type);
-    console.log('req.body :>> ', req.body)
+    const { productName, type, folderNum } = req.body
 
-    let path = `./static/images/products/${type}/${folderNum}`
+    const folderName = splitString(productName, ' ', '_')
+    let path = `./static/images/products/${type}/${folderName}`
     await fs.mkdir(path)
 
     Object.values(files).forEach(file => {
-      // let path = `../static/images/products/${type}/${folderNum}`
-      let dir = `./static/images/products/${type}/${folderNum}/${file.name}`
-      // const dir = `${__dirname}/${file.name}`
-      // const dir = `${__dirname}/${file.name}`
-      // const dir = `./../images/`
+      let dir = `./static/images/products/${type}/${folderName}/${file.name}`
       fs.writeFile(dir, file.data)
     })
 
-    // const dir = `${__dirname}/${file.name}`
-    // console.log('dir :>> ', dir)
-    // fs.writeFile(dir, file.data)
-
-    // const createFiles = (imagesData) => {
-    //   // console.log('imagesData :>> ', imagesData)
-    // }
-    // createFiles(req.body.images)
-
-    // res.status(201).send(newProduct)
+    res.status(201).send(null)
   } catch (e) {
     console.log(e)
     res.status(500).json({
@@ -67,20 +49,9 @@ router.post('/createProduct', async (req, res) => {
     //     error: {
     //       message: 'INVALID_DATA',
     //       code: 400,
-    //       errors: errors.array()
     //     }
     //   })
     // }
-
-    // todo функция картинок 
-    // console.log('req.body :>> ', req.body)
-    // console.log('req.files.name :>> ', req.files.name)
-
-    // const createFiles = (imagesData) => {
-    //   // console.log('imagesData :>> ', imagesData)
-      
-    // }
-    // createFiles(req.body.images)
 
     const newProduct = await Product.create({
       ...generateProductData(req.body),
@@ -112,6 +83,13 @@ router.delete('/:productId', async (req, res) => {
   try {
     const { productId } = req.params
     const removedProduct = await Product.findById(productId)
+
+    await fs.rmdir(removedProduct.filesPath,
+      { recursive:true }, 
+      (err) => { 
+        console.error(err); 
+      }
+    )
     await removedProduct.deleteOne()
 
     return res.send(null)

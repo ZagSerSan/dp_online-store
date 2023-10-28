@@ -16,10 +16,7 @@ const CreateProduct = () => {
   const [newProdData, setNewProdData] = useState({})
 
   //todo test state: type
-  const { productsEntity } = useStore() 
-  const { createNewProduct, createNewProductImages } = useStore()
   const [productType, setProductType] = useState()
-  let _folderNum = productsEntity.filter(item => item.type === productType).length + 1
 
   const toggleSettingItem = (e, settingItemId) => {
     e.stopPropagation()
@@ -39,7 +36,6 @@ const CreateProduct = () => {
         break;
 
       case 'options':
-        // console.log(`${contentType} data:`, data)
         for (let i = 0; i < Object.keys(data).length; i++) {
           let index = i + 1
           let optionTypeName = `option_${index}`
@@ -50,26 +46,68 @@ const CreateProduct = () => {
         break;
 
       case 'images':
-        setNewProdData(prev => ({ ...prev, ...data }))
+        //todo валидация количества изхобрадений
+        // console.log('data :>> ', data)
+
+        // проверка чекбокса
+        if (!data.introSlider.switched || (data.introSlider.switched && !!data.images.intro)) {
+          // проверка остальных файлов
+          if (!!data.images.preview && !!data.images.sliders && !!data.images.dots) {
+            if (Object.keys(data.images.dots).length === Object.keys(data.images.sliders).length) {
+              console.log('валидно')
+            }
+            return
+          } else {
+            console.log('НЕ валидно по прочим файлам')
+            return
+          }
+        } else {
+          console.log('НЕ валидно по чекбоксу')
+          return
+        }
+
+
         //* формируем data для отправки на сервер
+        //* получения названий файлов
+        const filesName = {
+          preview: [],
+          sliders: [],
+          dots: [],
+          intro: []
+        }
+        const files = {}
+        // индекс для перечня файлов
+        let customIndex = 0
 
-        //todo
+        Object.keys(data.images).forEach((key, index) => {
+          for (let y = 0; y < data.images[key].length; y++) {
+            filesName[key] = [...filesName[key], data.images[key][y].name]
+          }
+        })
 
-        ProductService.createProductImages(data, {type: newProdData.type, folderNum: _folderNum})
+        Object.keys(data.images).forEach((key, index) => {
+          for (let y = 0; y < data.images[key].length; y++) {
+            files[customIndex] = data.images[key][y]
+            customIndex += 1
+          }
+        })
 
         const newProdData_updated = {
           ...newProdData,
-          _folderNum
+          introSlider: data.introSlider,
+          filesName
         }
-        
-        //* готовая data для отправки на сервер
+
         // console.log('newProdData_updated :>> ', newProdData_updated)
-
-        //todo отправка на сервер
-        createNewProduct(newProdData_updated)
-        navigate('/admin/products')
+        // console.log('files :>> ', files)
+        
+        // ProductService.createProductImages(
+        //   files,
+        //   {productName: newProdData.name, type: newProdData.type}
+        // )
+        // createNewProduct(newProdData_updated)
+        // navigate('/admin/products')
         break;
-
       default:
         break;
     }

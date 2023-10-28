@@ -36,7 +36,6 @@ const useStore = create((set) => ({
   removeProduct: (productId) => set(async (state) => {
     try {
       const { data } = await ProductService.deleteProduct(productId)
-      console.log('data :>> ', data)
       const updatedArray = state.productsEntity.filter(product => product._id !== productId)
       set((state) => ({ productsEntity: updatedArray}))
       toast.success("User has been removed!")

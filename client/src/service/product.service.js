@@ -11,12 +11,6 @@ const ProductService = {
     console.log('filess :>> ', files)
     const { data } = await httpService.post(
       productEndpoint + url,
-      // { files: {
-      //     preview: files.preview[0],
-      //     // sliders: {...files.sliders},
-      //     // dots: {...files.dots}
-      //   }
-      // },
       { ...body, ...files},
       {
         headers: {
@@ -30,12 +24,7 @@ const ProductService = {
     const url = 'createProduct'
     const { data } = await httpService.post(
       productEndpoint + url,
-      body,
-      // {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data"
-      //   }
-      // }
+      body
     )
     return data
   },

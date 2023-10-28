@@ -13,6 +13,7 @@ const products = [
     price: 14,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/1`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -60,6 +61,7 @@ const products = [
     price: 16,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/1`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -107,6 +109,7 @@ const products = [
     price: 18,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/1`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -154,6 +157,7 @@ const products = [
     price: 20,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/2`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -201,6 +205,7 @@ const products = [
     price: 22,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/2`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -248,6 +253,7 @@ const products = [
     price: 24,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/2`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -295,6 +301,7 @@ const products = [
     price: 26,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/3`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -342,6 +349,7 @@ const products = [
     price: 28,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/3`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -389,6 +397,7 @@ const products = [
     price: 39,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/3`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -436,6 +445,7 @@ const products = [
     price: 14,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/4`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -483,6 +493,7 @@ const products = [
     price: 16,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/4`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -530,6 +541,7 @@ const products = [
     price: 18,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/4`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -577,6 +589,7 @@ const products = [
     price: 20,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/5`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -624,6 +637,7 @@ const products = [
     price: 22,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/5`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -671,6 +685,7 @@ const products = [
     price: 24,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/5`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -718,6 +733,7 @@ const products = [
     price: 26,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/woman/6`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -765,6 +781,7 @@ const products = [
     price: 28,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/6`,
     modalOptionTypes: [
       {
         name: 'Size',
@@ -812,6 +829,7 @@ const products = [
     price: 39,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/car/6`,
     modalOptionTypes: [
       {
         name: 'Size',

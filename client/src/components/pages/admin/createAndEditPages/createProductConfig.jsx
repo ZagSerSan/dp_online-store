@@ -5,8 +5,6 @@ import { validatorConfig } from '../../../../utils/validatorConfig'
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
-import useStore from '../../../../store/createStore'
-import ProductService from '../../../../service/product.service'
 // import CheckBoxField from '../../../common/form/checkBoxField'
 
 const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
@@ -46,10 +44,10 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   //todo ====================================================
   // ImageData
   const initImagesData = {
-    // introSlider: {
-    //   switched: false,
-    // },
-    // images: {}
+    introSlider: {
+      switched: false,
+    },
+    images: {}
   }
   const [imageData, setImageData] = useState(initImagesData)
   
@@ -68,78 +66,68 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
 
     switch (filesType) {
       case 'checkbox':
-        console.log('checkbox func')
+        if (imageData.introSlider.switched) {
+          const newImagesStateObj = imageData.images
+          delete newImagesStateObj.intro
+          setImageData(prev => ({
+            ...prev,
+            introSlider: {
+              switched: false,
+            },
+            images: {
+              ...prev.images,
+              ...newImagesStateObj
+            }
+          }))
+        } else {
+          setImageData(prev => ({
+            ...prev,
+            introSlider: {
+              switched: true,
+            }
+          }))
+        }
+        break
+      case 'intro':
         setImageData(prev => ({
           ...prev,
-          introSlider: {
-            switched: !prev.introSlider.switched,
-          },
+          images: {
+            ...prev.images,
+            intro: files
+          }
         }))
         break
       case 'preview':
-        console.log('preview func')
-        // setImageData(prev => ({
-          // ...prev,
-        //   images: {
-        //     ...prev.images,
-            // preview: files
-        //   }
-        // }))
         setImageData(prev => ({
           ...prev,
-          ...files
-          // preview: {...files}
+          images: {
+            ...prev.images,
+            preview: files
+          }
         }))
-        // setImageData(files)
         break
       case 'sliders':
-        console.log('sliders func')
-        // setImageData(prev => ({
-        //   ...prev,
-        // //   images: {
-        //     // ...prev.images,
-        //     sliders: files
-        // //   }
-        // }))
-        // setImageData(files)
-        console.log(files.length)
         setImageData(prev => ({
           ...prev,
-          1: files[0],
-          2: files[1],
-          3: files[2]
-          // sliders: {...files}
+          images: {
+            ...prev.images,
+            sliders: files
+          }
         }))
         break
       case 'dots':
-        console.log('dots func')
-        // setImageData(prev => ({
-          // ...prev,
-          // images: {
-            // ...prev.images,
-            // dots: files
-          // }
-        // }))
         setImageData(prev => ({
           ...prev,
-          4: files[0],
-          5: files[1],
-          6: files[2]
-          // sliders: {...files}
+          images: {
+            ...prev.images,
+            dots: files
+          }
         }))
         break
       default:
         break
     }
-
-    //todo
-    // ProductService.sendFiles()
-
-    // console.log('contentType :>> ', contentType)
-    // console.log('data :>> ', data)
   }
-
-  //todo ====================================================
 
   const handleNext = async (e, contentType, data, settingItemNumber) => {
     e.preventDefault()
@@ -335,12 +323,25 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
                 />
               </div>
               <div className="form-container__col">
-                <input
-                  id='checkout-slide'
-                  type='checkbox'
-                  onChange={(e) => changeImageData(e, null, 'checkbox')}
-                />
-                <label htmlFor="checkout-slide">add as intro slider</label>
+                <div className='flex'>
+                  <input
+                    id='checkout-slide'
+                    type='checkbox'
+                    onChange={(e) => changeImageData(e, null, 'checkbox')}
+                  />
+                  <label htmlFor="checkout-slide">add as intro slider</label>
+                </div>
+                {imageData.introSlider.switched &&
+                  <div>
+                    <label htmlFor="select-preview">select-preview</label>
+                    <input
+                      id='select-preview'
+                      type='file'
+                      name='preview'
+                      onChange={(e) => changeImageData(e, e.target.files, 'intro')}
+                    />
+                  </div>
+                }
               </div>
             </div>
             <div className="form-container__row">
@@ -364,20 +365,11 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
               />
             </div>
             <div className='create-product-page__buttons'>
-              {/* тут будет кнопка отправки данных через handleNext */}
               <button
                 type='submit'
-                // onClick={(e) => handleNext(e, contentType, imageData)}
                 // disabled={!isValid}
               >
                 Create
-              </button>
-              {/* тут кнопка действия изменения данных, напр чекбокс и тд */}
-              <button
-                onClick={(e) => changeImageData(e, contentType, imageData)}
-                // disabled={!isValid}
-              >
-                change
               </button>
               <button
                 onClick={(e) => toggleSettingItem(e, 2)}

@@ -2,6 +2,11 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function splitString(stringToSplit, separator, joinString) {
+  var arrayOfStrings = stringToSplit.split(separator)
+  return arrayOfStrings.join(joinString).toLowerCase()
+}
+
 function generateUserData() {
   return {
     bookmarks: [],
@@ -12,49 +17,48 @@ function generateUserData() {
 
 //todo
 function generateProductData(newProductData) {
-  const IMAGES_URL_API = `http://localhost:8080/images/products/${newProductData.type}/${newProductData._folderNum}/`
+  const folderName = splitString(newProductData.name, ' ', '_')
 
-  // todo здесь нужно будет удалять файлы из объекта продукта после их сохранения
+  const IMAGES_URL_API = `http://localhost:8080/images/products/${newProductData.type}/${folderName}`
+  const filesPath = `./static/images/products/${newProductData.type}/${folderName}`
+
+  const { preview, sliders, dots, intro } = newProductData.filesName
+
+  const generateImagePath = (namesArray, imagesType) => {
+    switch (imagesType) {
+      case 'intro':
+        return `${IMAGES_URL_API}/${intro[0]}`
+      case 'preview':
+        return `${IMAGES_URL_API}/${preview[0]}`
+      case 'dots':
+        return namesArray.map(fileName => (
+          `${IMAGES_URL_API}/${fileName}`
+        ))
+      case 'sliders':
+        return namesArray.map((fileName, index) => (
+          {
+            id: `slider_${index + 1}`,
+            preview: `${IMAGES_URL_API}/${fileName}`,
+            title: 'Some title..'
+          }
+        ))
+      default:
+        break;
+    }
+  } 
 
   const productImagesPath = {
+    filesPath: filesPath,
     introSlider: {
       switched: false,
-      slide: `${IMAGES_URL_API}introSlide.png`
+      slide: generateImagePath(intro, 'intro'),
     },
-    preview: `${IMAGES_URL_API}listItemPreview.png`,
-    slider_dots: [
-      `${IMAGES_URL_API}dot_1.png`,
-      `${IMAGES_URL_API}dot_2.png`,
-      `${IMAGES_URL_API}dot_3.png`,
-    ],
-    slider: [
-      {
-        id: 'slider_1',
-        preview: `${IMAGES_URL_API}slide_1.png`,
-        title: 'Some title'
-      },
-      {
-        id: 'slider_2',
-        preview: `${IMAGES_URL_API}slide_2.png`,
-        title: 'Some title'
-      },
-      {
-        id: 'slider_3',
-        preview: `${IMAGES_URL_API}slide_3.png`,
-        title: 'Some title'
-      }
-    ]
+    preview: generateImagePath(preview, 'preview'),
+    slider_dots: generateImagePath(dots, 'dots'),
+    slider: generateImagePath(sliders, 'sliders'),
   }
 
-  delete newProductData.images
-  delete newProductData._folderNum
-
   return {
-    // тут принимать картинки
-    // 1 сохранять из в папку
-    // 2 генирировать пути как было сделано на клиенте
-    // 3 добавлять в объект ниже
-
     name: 'Product Name',
     type: 'man',
     title: 'Some title',
@@ -62,8 +66,8 @@ function generateProductData(newProductData) {
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
 
-    ...productImagesPath,
     ...newProductData,
+    ...productImagesPath,
 
     // потому что этот параметр был изменён на клиенте
     introSlider: {
@@ -75,5 +79,6 @@ function generateProductData(newProductData) {
 
 module.exports = {
   generateUserData,
-  generateProductData
+  generateProductData,
+  splitString
 }
