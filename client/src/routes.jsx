@@ -17,7 +17,7 @@ import Cart from "./components/pages/cart/cart"
 import AdminPage from "./components/pages/admin/adminPage"
 import CreateUser from "./components/pages/admin/createAndEditPages/createUser"
 import CreateProduct from "./components/pages/admin/createAndEditPages/createProduct"
-import EditProduct from './components/pages/admin/createAndEditPages/editProduct'
+import EditProduct from './components/pages/admin/createAndEditPages/editProduct.jsx'
 
 const routes = [
   {path: '/', element: <Home/>},
@@ -33,7 +33,7 @@ const routes = [
   {
     path: 'admin',
     children: [
-      {path: '', element: <Navigate to='users'/>},
+      {path: '', element: <Navigate to='products'/>},
       {
         path: 'users',
         children: [
@@ -46,28 +46,17 @@ const routes = [
         children: [
           {path: '', element: <AdminPage tabState='products'/>},
           {path: 'create-product', element: <CreateProduct/>},
+          {
+            path: 'edit-product',
+            children: [
+              {path: '', element: <AdminPage tabState='products'/>},
+              {path: ':productId', element: <EditProduct/>},
+            ]
+          }
         ]
       },
-      {
-        path: 'edit-product',
-        children: [
-          {path: '', element: <AdminPage/>},
-          {path: ':productId', element: <EditProduct/>},
-        ]
-      },
+      
     ]
-    // children: [
-    //   {path: '', element: <AdminPage />},
-    //   {path: 'create-user', element: <CreateUser/>},
-    //   {path: 'create-product', element: <CreateProduct/>},
-    //   {
-    //     path: 'edit-product',
-    //     children: [
-    //       {path: '', element: <AdminPage/>},
-    //       {path: ':productId', element: <EditProduct/>},
-    //     ]
-    //   },
-    // ]
   },
   {
     path: 'auth',

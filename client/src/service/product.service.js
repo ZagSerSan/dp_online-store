@@ -28,11 +28,6 @@ const ProductService = {
     )
     return data
   },
-  // createProduct: async (payload) => {
-  //     const url = 'createProduct'
-  //     const { data } = await httpService.post(productEndpoint + url, payload)
-  //     return data
-  // },
   updateProduct: async (productData) => {
     const { data } = await httpService.put(productEndpoint + productData._id, productData)
     return data

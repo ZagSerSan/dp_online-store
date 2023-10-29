@@ -4,9 +4,11 @@ import CreateProductConfig from './createProductConfig'
 import useStore from '../../../../store/createStore'
 import ProductService from '../../../../service/product.service'
 import { useNavigate } from 'react-router-dom'
+import { filesValidator } from '../../../../utils/filesValidator'
 
 const CreateProduct = () => {
   const navigate = useNavigate()
+  const { createNewProduct } = useStore()
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
     {number: 1, contentType: 'info', title: 'Add product information'},
@@ -14,8 +16,6 @@ const CreateProduct = () => {
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
   const [newProdData, setNewProdData] = useState({})
-
-  //todo test state: type
   const [productType, setProductType] = useState()
 
   const toggleSettingItem = (e, settingItemId) => {
@@ -25,11 +25,8 @@ const CreateProduct = () => {
 
   const handleSubmit = async (e, contentType, data) => {
     e.preventDefault()
-    // const ifValid = validate()
-    // if (!ifValid) return
 
     switch (contentType) {
-
       case 'info':
         setNewProdData(prev => ({ ...prev, ...data }))
         setProductType(data.type)
@@ -46,29 +43,11 @@ const CreateProduct = () => {
         break;
 
       case 'images':
-        //todo валидация количества изхобрадений
-        // console.log('data :>> ', data)
+        // images validate
+        const isNotValid = filesValidator(data)
+        if (isNotValid) return
 
-        // проверка чекбокса
-        if (!data.introSlider.switched || (data.introSlider.switched && !!data.images.intro)) {
-          // проверка остальных файлов
-          if (!!data.images.preview && !!data.images.sliders && !!data.images.dots) {
-            if (Object.keys(data.images.dots).length === Object.keys(data.images.sliders).length) {
-              console.log('валидно')
-            }
-            return
-          } else {
-            console.log('НЕ валидно по прочим файлам')
-            return
-          }
-        } else {
-          console.log('НЕ валидно по чекбоксу')
-          return
-        }
-
-
-        //* формируем data для отправки на сервер
-        //* получения названий файлов
+        // формируем data для отправки на сервер
         const filesName = {
           preview: [],
           sliders: [],
@@ -79,12 +58,13 @@ const CreateProduct = () => {
         // индекс для перечня файлов
         let customIndex = 0
 
+        // получения названий файлов
         Object.keys(data.images).forEach((key, index) => {
           for (let y = 0; y < data.images[key].length; y++) {
             filesName[key] = [...filesName[key], data.images[key][y].name]
           }
         })
-
+        // получения файлов отдельно
         Object.keys(data.images).forEach((key, index) => {
           for (let y = 0; y < data.images[key].length; y++) {
             files[customIndex] = data.images[key][y]
@@ -98,15 +78,16 @@ const CreateProduct = () => {
           filesName
         }
 
-        // console.log('newProdData_updated :>> ', newProdData_updated)
-        // console.log('files :>> ', files)
+        console.log('filesName :>> ', filesName)
+
+        // send to server
+        ProductService.createProductImages(
+          files,
+          {productName: newProdData.name, type: newProdData.type}
+        )
+        createNewProduct(newProdData_updated)
         
-        // ProductService.createProductImages(
-        //   files,
-        //   {productName: newProdData.name, type: newProdData.type}
-        // )
-        // createNewProduct(newProdData_updated)
-        // navigate('/admin/products')
+        navigate('/admin/products')
         break;
       default:
         break;
@@ -120,7 +101,6 @@ const CreateProduct = () => {
           <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
             <div
               className="setting-item-clicker no-click"
-              onClick={(e) => toggleSettingItem(e, settingItem.number)}
             >
               <div className='setting-item-clicker__number'>{settingItem.number}</div>
               <div className='setting-item-clicker__title'>{settingItem.title}</div>

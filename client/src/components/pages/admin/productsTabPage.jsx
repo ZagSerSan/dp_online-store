@@ -57,7 +57,7 @@ const ProductsTabPage = () => {
                     </div>
                   </div>
                   <div className='user-list-item__buttons'>
-                    <Link to={`/admin/edit-product/${product._id}`}>edit</Link>
+                    <Link to={`/admin/products/edit-product/${product._id}`}>edit</Link>
                     <button onClick={() => deleteProduct(product._id)}>remove</button>
                   </div>
                 </div>

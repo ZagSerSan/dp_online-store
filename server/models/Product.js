@@ -8,6 +8,7 @@ const schema = new Schema({
   rate: {type: Number},
   description: {type: String, required: true},
   filesPath: {type: String, required: false},
+  filesName: {type: Object},
   modalOptionTypes: {type: Array, required: true},
   introSlider: {type: Object},
   preview: {type: String, required: true},

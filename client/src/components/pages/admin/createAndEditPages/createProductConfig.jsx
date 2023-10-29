@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
+import { filesValidator } from '../../../../utils/filesValidator'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import RadioField from '../../../common/form/radioField'
@@ -10,6 +12,7 @@ import Textarea from '../../../common/form/textarea'
 const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
+  const [imagesDataError, setImagesDataError] = useState()
   // значение полей формы info
   const initInfoData = {
     name: '',
@@ -41,7 +44,6 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   }
   const [optionsData, setOptionsData] = useState(initOptionsData)
 
-  //todo ====================================================
   // ImageData
   const initImagesData = {
     introSlider: {
@@ -62,7 +64,6 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
 
   const changeImageData = (e, files, filesType) => {
     // e.preventDefault()
-    console.log(filesType === 'checkbox')
 
     switch (filesType) {
       case 'checkbox':
@@ -132,26 +133,13 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   const handleNext = async (e, contentType, data, settingItemNumber) => {
     e.preventDefault()
 
-    //? нужно ли это вообще..
-    //? как вариант: ifValid = Object.keys(errors).length
-    // const ifValid = validate()
-    // if (!ifValid) {
-    //   console.log('!ifValid :>> ', !ifValid)
-    //   return
-    // }
+    // const ifValid = Object.keys(errors).length
+    // if (!ifValid) return
 
-    // if (contentType === 'images') {
-      // console.log('contentType :>> ', contentType)
-      // console.log('data :>> ', data)
-    // } else {
-      if(settingItemNumber) {
-        toggleSettingItem(e, settingItemNumber)
-      }
-      handleSubmit(e, contentType, data)
-      //todo
-      // createUser(data)
-      // navigate('/admin/products')
-    // }
+    if(settingItemNumber) {
+      toggleSettingItem(e, settingItemNumber)
+    }
+    handleSubmit(e, contentType, data)
   }
 
   const handleChange = (payload, submitType, optionKey, index) => {
@@ -268,7 +256,8 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
 
   useEffect(() => {
     validate(contentType)
-  }, [data, optionsData])
+    setImagesDataError(filesValidator(imageData))
+  }, [data, optionsData, imageData])
 
   const validate = (contentType) => {
     if (contentType === 'options') {
@@ -364,10 +353,11 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
                 onChange={(e) => changeImageData(e, e.target.files, 'dots')}
               />
             </div>
+            {imagesDataError && <p className='error-msg'>*{imagesDataError}</p>}
             <div className='create-product-page__buttons'>
               <button
                 type='submit'
-                // disabled={!isValid}
+                disabled={!!imagesDataError}
               >
                 Create
               </button>

@@ -3,7 +3,7 @@ function getRandomInt(min, max) {
 }
 
 function splitString(stringToSplit, separator, joinString) {
-  var arrayOfStrings = stringToSplit.split(separator)
+  let arrayOfStrings = stringToSplit.split(separator)
   return arrayOfStrings.join(joinString).toLowerCase()
 }
 
@@ -23,6 +23,7 @@ function generateProductData(newProductData) {
   const filesPath = `./static/images/products/${newProductData.type}/${folderName}`
 
   const { preview, sliders, dots, intro } = newProductData.filesName
+  console.log('newProductData.filesName :>> ', newProductData.filesName);
 
   const generateImagePath = (namesArray, imagesType) => {
     switch (imagesType) {
@@ -45,7 +46,7 @@ function generateProductData(newProductData) {
       default:
         break;
     }
-  } 
+  }
 
   const productImagesPath = {
     filesPath: filesPath,

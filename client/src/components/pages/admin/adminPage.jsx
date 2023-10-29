@@ -8,7 +8,6 @@ const AdminPage = ({ tabState }) => {
   const navigate = useNavigate()
   // users, products
   const tabs = ['users', 'products']
-  console.log('tabState :>> ', tabState)
 
   const toggleTabs = (tab) => {
     navigate(`/admin/${tab}`)
