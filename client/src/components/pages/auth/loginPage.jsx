@@ -61,7 +61,7 @@ const LoginPage = () => {
   }
   
   return (
-    <div className="my-container form-container">
+    <div className="my-container auth-form-container">
       <div className="authorization-page">
         <h2 className='authorization-page__title'>Login</h2>
         <form className="authorization-page-form" onSubmit={handleSubmit}>

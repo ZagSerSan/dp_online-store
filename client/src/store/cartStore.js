@@ -3,7 +3,8 @@ import { cartAnimation } from '../utils/cartAnimation'
 import userService from '../service/user.service'
 
 const initialCartItemData = {
-  count: 1
+  count: 1,
+  optionTypes: {}
 }
 
 const cartStore = create((set) => ({
@@ -26,7 +27,10 @@ const cartStore = create((set) => ({
       return {
         cartItemData: {
           ...state.cartItemData,
-          [data.type]: data.value 
+          optionTypes: {
+            ...state.cartItemData.optionTypes,
+            [data.type]: data.value
+          }
         }
       }
     }
@@ -36,7 +40,10 @@ const cartStore = create((set) => ({
         cartItemData: {
           ...state.cartItemData,
           ...initialCartItemData,
-          [filteredOption[0].type]: filteredOption[0].value 
+          optionTypes: {
+            ...state.cartItemData.optionTypes,
+            [filteredOption[0].type]: filteredOption[0].value 
+          }
         }
       }
     } 
@@ -55,18 +62,23 @@ const cartStore = create((set) => ({
       type: item.type,
       price: `$${item.price}`,
       totalPrice: `$${item.price * state.cartItemData.count}`,
-      image: item.preview
+      image: item.preview,
     }
 
     // if default options is was not changed
     if (!state.cartItemDataWasChanged) {
       const itemOptions = item.modalOptionTypes
+
       itemOptions.forEach(optionItem => {
         const { options } = optionItem
+        // получаем только "выбранные по умолчанию"
         const filteredOption = options.filter(item => item.selected === true)
         newCartItemData = {
           ...newCartItemData,
-          [filteredOption[0].type]: filteredOption[0].value
+          optionTypes: {
+            ...newCartItemData.optionTypes,
+            [filteredOption[0].type]: filteredOption[0].value
+          }
         }
       })
     }

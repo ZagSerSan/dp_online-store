@@ -1,11 +1,21 @@
 .admin-page {
-  padding: 30px 0 40px;
+  padding: 30px 15px 40px;
   background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#fff));
   background: linear-gradient(#f0f0f0, #fff);
   min-height: 300px;
 }
 .admin-page__tabs-wrapper {
   height: 50px;
+}
+@media (max-width: 580px) {
+  .admin-page-tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 .admin-page-tabs button {
   font-family: "Montserrat", sans-serif;
@@ -33,6 +43,11 @@
   background-color: #fff;
   border: 1px #7e4c4f solid;
   border-bottom: 0;
+}
+@media (max-width: 580px) {
+  .admin-page-tabs button {
+    min-width: 100px;
+  }
 }
 .admin-page-content {
   font-family: "Montserrat", sans-serif;
@@ -73,6 +88,14 @@
   padding: 15px 6px 0;
   margin-top: 15px;
 }
+@media (max-width: 580px) {
+  .user-tab-page .user-list-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 .user-tab-page .user-list-item__info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,6 +128,11 @@
 }
 .user-tab-page .user-list-item__info a:hover {
   text-decoration: underline;
+}
+@media (max-width: 580px) {
+  .user-tab-page .user-list-item__buttons {
+    margin-top: 15px;
+  }
 }
 .user-tab-page .user-list-item__buttons button,
 .user-tab-page .user-list-item__buttons a {

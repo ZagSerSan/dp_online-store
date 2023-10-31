@@ -61,14 +61,11 @@ router.post('/createProduct', async (req, res) => {
 router.put('/:productId', async (req, res) => {
   try {
     const { productId } = req.params    
-
     const editedProduct = await Product.findById(productId)
     const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
-    console.log('req.body :>> ', req.body)
     
     // переименовывать папку если изменилось название продукта
     if (editedProduct.name !== updatedProduct.name) {
-
       let oldFolderName = `./static/images/products/${editedProduct.type}/${splitString(editedProduct.name, ' ', '_')}`
       let newFolderName = `./static/images/products/${editedProduct.type}/${splitString(updatedProduct.name, ' ', '_')}`
   
@@ -77,7 +74,7 @@ router.put('/:productId', async (req, res) => {
         console.log('Файлы успешно перенесены');
       })
 
-      // 
+      // менять пути к картинкам
       const folderName = splitString(updatedProduct.name, ' ', '_')
       const IMAGES_URL_API = `http://localhost:8080/images/products/${updatedProduct.type}/${folderName}`
       const { preview, sliders, dots, intro } = updatedProduct.filesName
@@ -167,7 +164,7 @@ router.delete('/:productId', async (req, res) => {
     const { productId } = req.params
     const removedProduct = await Product.findById(productId)
 
-    await fs.rmdir(removedProduct.filesPath,
+    await fs.rm(removedProduct.filesPath,
       { recursive:true }, 
       (err) => { 
         console.error(err); 

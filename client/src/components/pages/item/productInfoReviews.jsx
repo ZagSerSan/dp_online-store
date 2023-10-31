@@ -13,7 +13,6 @@ const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
   const { authedUser, usersEntity } = userStore()
   const { updateProduct  } = useStore()
-  console.log('usersEntity :>> ', usersEntity)
 
   const removeComment = (commentId, productId) => {
     deleteComment(commentId)

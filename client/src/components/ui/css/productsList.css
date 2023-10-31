@@ -3,6 +3,11 @@
   text-align: center;
   background-color: #fff;
 }
+@media (max-width: 900px) {
+  .products-list {
+    padding: 40px 0;
+  }
+}
 .products-list.litle-padding {
   padding: 0px 0;
 }

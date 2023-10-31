@@ -1,0 +1,12 @@
+.cart-page {
+  min-height: 550px;
+}
+.cart-page__title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #444444;
+  font-size: 22px;
+  margin: 40px 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}

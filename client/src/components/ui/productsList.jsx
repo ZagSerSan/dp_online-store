@@ -8,9 +8,8 @@ import useStore from '../../store/createStore'
 import ProductItem from '../common/product/productItem'
 import ProductModal from '../common/product/productModal'
 
-const ProductsList = ({role = ''}) => {
+const ProductsList = ({role = '', bookmarks}) => {
   const { type } = useParams()
-
   const { productsEntity } = useStore()
 
   // product modal state and body scroll
@@ -31,17 +30,25 @@ const ProductsList = ({role = ''}) => {
   } else if (role === 'productItem') {
     sortedProducts = _.orderBy(sortedProducts, ['rate'], ['desc'])
     sortedProducts.splice(4, sortedProducts.length)
+  } else if (role === 'favourites') {
+    let bookmarksproducts = []
+    bookmarks.map(bookId => {
+      let filteredProduct = productsEntity.find(item => item._id === bookId)
+      bookmarksproducts.push(filteredProduct)
+    })
+    sortedProducts = bookmarksproducts
+    console.log('sortedProducts :>> ', sortedProducts)
   }
 
   return (
-    <div className={'products-list' + (type ? ' litle-padding' : '')}>
+    <div className={'products-list' + (type || role === 'favourites' ? ' litle-padding' : '')}>
       <ProductModal
         item={modalItem}
         modalState={modalState}
         onToggleState={setModalState}
       />
       <div className="my-container">
-        {role !== 'category' &&
+        {role !== 'category' && role !== 'favourites' &&
           <>
             <h3 className="products-list__toptitle">Most Populer</h3>
             <h2 className="products-list__bottomtitle">Recent Products</h2>

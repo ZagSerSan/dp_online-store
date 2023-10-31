@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './../../auth/auth.css'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
@@ -49,10 +50,10 @@ const CreateUser = () => {
   const isValid = Object.keys(errors).length === 0
 
   return (
-    <div className="my-container form-container">
+    <div className="my-container auth-form-container">
       <div className="authorization-page">
         <h2 className='authorization-page__title'>Create User</h2>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="authorization-page-form" onSubmit={handleSubmit}>
           <TextField
             placeholder="Name"
             name="name"

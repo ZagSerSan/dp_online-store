@@ -7,12 +7,6 @@ const { check, validationResult } = require('express-validator')
 const { generateUserData } = require('../utils/helpers')
 const TokenService = require('../services/token.service')
 
-//todo что нужно сделать в signUp
-// 1. получить data из запроза, req: (email, password, ...)
-// 2. проверить, существует ли такой пользователь, чтобы не создать два одинаковых
-// 3. создать захешированный пароль, чтобы не хранить прямой пароль
-// 4. создать пользователя
-// 5. создать токены в локал стор для авторизации
 router.post('/signUp', [
   // правила валидации
   check('email', 'Некорректный email').isEmail(),
@@ -43,18 +37,13 @@ router.post('/signUp', [
         })
       }
 
-      // если предыдущий if не выполнился, знач всё нормально и продолжаем процесс регистрации
-      // 3. шифровка пароля (пароль, число-сложность шифрования)
       const hashedPassword = await bcrypt.hash(password, 12)
-      // 4
       const newUser = await User.create({
         ...generateUserData(),
         ...req.body,
         password: hashedPassword
       })
-      // 5
       const tokens = TokenService.generate({ _id: newUser._id })
-      // подождать пока сохраним токен для пользователя
       await TokenService.save(newUser._id, tokens.refreshToken)
       res.status(201).send({...tokens, userId: newUser._id})
 
@@ -62,18 +51,11 @@ router.post('/signUp', [
       console.log(e)
       res.status(500).json({
         message: 'На сервере проихошла ошибка, попробуйте позже.',
-        // errors: errors.array()
       })
     }
   }
 ])
 
-//todo что нужно сделать в signInWithPassword
-// 1. validate
-// 2. найти пользователя
-// 3. сравнить шифрованный парол
-// 4. сделать токены
-// 5. return data
 router.post('/signInWithPassword', [
   check('email', 'Email некорректный').normalizeEmail().isEmail(),
   check('password', 'Пароль отсутствует').exists(),
@@ -102,9 +84,7 @@ router.post('/signInWithPassword', [
         })
       }
 
-      // 3
       const isPasswordEqual = await bcrypt.compare(password, existUser.password)
-
       if (!isPasswordEqual) {
         return res.status(400).send({
           error: {
@@ -114,7 +94,6 @@ router.post('/signInWithPassword', [
         })
       }
 
-      // 4
       const tokens = TokenService.generate({ _id: existUser._id })
       await TokenService.save(existUser._id, tokens.refreshToken)
 

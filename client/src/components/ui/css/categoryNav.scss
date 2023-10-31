@@ -2,8 +2,19 @@
 .category-nav_HW {
   background-color: #f6f6f6;
   padding: 40px 0 60px;
+
+  @media (max-width: 1150px) {
+    padding: 40px 0 40px;
+  }
+  @media (max-width: 750px) {
+    padding: 20px 0 20px;
+  }
+
   &.litle-padding {
-    padding: 100px 0 20px;
+    padding: 20px 0;
+    @media (max-width: 500px) {
+      padding: 0px 0 15px;
+    }
   }
 
   h2 {
@@ -23,6 +34,30 @@
   display: flex;
   transition: all 0.3s ease 0s;
   animation: 0.4s alternate forwards categoryToNormal;
+
+  @media (max-width: 1150px) {
+    animation: 0.1s alternate forwards changeHeight;
+    @keyframes changeHeight {
+      from {
+        height: 277px;
+      }
+      to {
+        height: 170px;
+      }
+    }
+  }
+  @media (max-width: 750px) {
+    animation: 0.1s alternate forwards changeHeight;
+    @keyframes changeHeight {
+      from {
+        height: 170px;
+      }
+      to {
+        height: 70px;
+      }
+    }
+  }
+
   @keyframes categoryToNormal {
     from {
       overflow: hidden;
@@ -38,6 +73,12 @@
     justify-content: center;
     border-radius: 10px;
     animation: 0.4s alternate forwards categoryToSmall;
+    @media (max-width: 1150px) {
+      h3 {
+        top: 0;
+      }
+    }
+
     @keyframes categoryToSmall {
       from {
         height: 277px;
@@ -56,6 +97,15 @@
         font-size: 25px;
         padding: 15px 0;
         width: 80%;
+
+        @media (max-width: 1150px) {
+          top: 0px;
+          margin: -8px 0;
+        }
+        @media (max-width: 750px) {
+          width: 100%;
+          font-size: 18px;
+        }
       }
       img {
         display: none;
@@ -77,9 +127,16 @@
   margin: 0 15px;
   cursor: pointer;
 
+  @media (max-width: 420px) {
+    margin: 0 5px;
+  }
+
   img {
     display: block;
     width: 100%;
+    @media (max-width: 750px) {
+      display: none;
+    }
   }
   h3 {
     position: absolute;
@@ -102,6 +159,21 @@
     border-radius: 50px;
     box-shadow: 0 0.3px 7px rgb(0 0 0 / 20%);
     transition: all 0.3s ease 0s;
+
+    @media (max-width: 1150px) {
+      bottom: auto;
+      top: 50%;
+      transform: translate3d(-50%, 0%, 0);
+    }
+    @media (max-width: 950px) {
+      top: 40%;
+      padding: 10px 0px;
+    }
+    @media (max-width: 750px) {
+      top: 20%;
+      font-size: 20px;
+      width: 100%;
+    }
   }
   &:after {
     content: "";

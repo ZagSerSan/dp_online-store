@@ -53,9 +53,12 @@ const BestProduct = () => {
                   <p className="best-product-content-counter-item__name">Sec</p>
                 </div>
               </div>
-              <a href="" className="best-product-content__shop-btn">
+              <Link
+                className="best-product-content__shop-btn"
+                to={`/category/${maxRatingProduct.type}/${maxRatingProduct._id}`}
+              >
                 shop now
-              </a>
+              </Link>
             </div>
           </div>
         </div>

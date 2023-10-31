@@ -8,21 +8,19 @@ import CategoryPage from "./components/pages/category"
 import LoginPage from "./components/pages/auth/loginPage"
 import RegisterPage from "./components/pages/auth/registerPage"
 import Profile from "./components/pages/profile/profile"
-import DeliveryPage from "./components/pages/delivery"
-import AboutPage from "./components/pages/about"
-import ContactPage from "./components/pages/contact"
 import ItemPage from "./components/pages/item/itemPage"
 import FavouritesPage from "./components/pages/favourites/favouritesPage"
-import Cart from "./components/pages/cart/cart"
 import AdminPage from "./components/pages/admin/adminPage"
 import CreateUser from "./components/pages/admin/createAndEditPages/createUser"
 import CreateProduct from "./components/pages/admin/createAndEditPages/createProduct"
 import EditProduct from './components/pages/admin/createAndEditPages/editProduct.jsx'
+import InformationPage from './components/pages/information/informationPage'
+import CartPage from './components/pages/cart/cartPage'
 
 const routes = [
   {path: '/', element: <Home/>},
   {path: 'favourites', element: <FavouritesPage />},
-  {path: 'cart', element: <Cart />},
+  {path: 'cart', element: <CartPage />},
   {
     path: 'profile',
     children: [
@@ -74,28 +72,14 @@ const routes = [
         path: ":type",
         children: [
           {path: '', element: <CategoryPage />},
-          {
-            path: ':itemId', element: <ItemPage />
-            // children: [
-            //   {path: '', element: <ItemPage />},
-            //   {path: 'edit', element: <EditProduct />},
-            // ]
-          },
+          {path: ':itemId', element: <ItemPage />},
         ]
       },
     ]
   },
   {
-    path: 'delivery',
-    element: <DeliveryPage />,
-  },
-  {
-    path: 'about',
-    element: <AboutPage/>,
-  },
-  {
-    path: 'contacts',
-    element: <ContactPage />,
+    path: 'information',
+    element: <InformationPage />,
   },
   {path: '*', element: <Navigate to='/'/>}
 ]

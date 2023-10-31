@@ -19,13 +19,6 @@ const Footer = () => {
     if (!ifValid) return
 
     console.log('data :>> ', data)
-
-    // try {
-    //   await authService.register(data)
-    //   setAuthedUser()
-    // } catch (e) {
-    //   console.log('e', e)
-    // }
   }
   const handleChange = ({ name, value }) => {
     setData(prev => ({

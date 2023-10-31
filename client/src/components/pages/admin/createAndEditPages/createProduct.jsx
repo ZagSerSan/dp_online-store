@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './css/createProduct.css'
+// import './css/createProduct.css'
 import CreateProductConfig from './createProductConfig'
 import useStore from '../../../../store/createStore'
 import ProductService from '../../../../service/product.service'
@@ -78,8 +78,6 @@ const CreateProduct = () => {
           filesName
         }
 
-        console.log('filesName :>> ', filesName)
-
         // send to server
         ProductService.createProductImages(
           files,
@@ -96,16 +94,16 @@ const CreateProduct = () => {
 
   return (
     <div className="my-container">
-      <div className='user-page'>
+      <div className='accordion-page'>
         {settingItems.map(settingItem => (
-          <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
+          <div key={settingItem.number} className={"accordion-page-item" + (settingItemState === settingItem.number ? ' active' : '')}>
             <div
-              className="setting-item-clicker no-click"
+              className="accordion-page-item-clicker no-click"
             >
-              <div className='setting-item-clicker__number'>{settingItem.number}</div>
-              <div className='setting-item-clicker__title'>{settingItem.title}</div>
+              <div className='accordion-page-item-clicker__number'>{settingItem.number}</div>
+              <div className='accordion-page-item-clicker__title'>{settingItem.title}</div>
             </div>
-            <div className="setting-item-content">
+            <div className="accordion-page-item-content">
               <CreateProductConfig
                 contentType={settingItem.contentType}
                 toggleSettingItem={toggleSettingItem}

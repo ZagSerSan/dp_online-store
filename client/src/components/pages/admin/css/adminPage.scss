@@ -1,5 +1,5 @@
 .admin-page {
-  padding: 30px 0 40px;
+  padding: 30px 15px 40px;
   // background-color: #f0f0f0;
   background: linear-gradient(#f0f0f0, #fff);
   min-height: 300px;
@@ -8,6 +8,10 @@
     height: 50px;
   }
   &-tabs {
+    @media (max-width: 580px) {
+      display: flex;
+      justify-content: center;
+    }
     button {
       font-family: "Montserrat", sans-serif;
       font-size: 16px;
@@ -34,6 +38,9 @@
         background-color: #fff;
         border: 1px #7e4c4f solid;
         border-bottom: 0;
+      }
+      @media (max-width: 580px) {
+        min-width: 100px;
       }
     }
   }
@@ -63,12 +70,17 @@
   }
   .user-list {
     padding-top: 10px;
+
     &-item {
       display: flex;
       justify-content: space-between;
       border-top: 1px #7e4c4f solid;
       padding: 15px 6px 0;
       margin-top: 15px;
+      @media (max-width: 580px) {
+        flex-direction: column;
+      }
+
       &__info {
         display: flex;
         img {
@@ -102,6 +114,9 @@
         }
       }
       &__buttons {
+        @media (max-width: 580px) {
+          margin-top: 15px;
+        }
         button,
         a {
           font-family: "Montserrat", sans-serif;

@@ -24,8 +24,8 @@ const ModalOption = ({ name, options }) => {
             key={option.value}
             className={'modal-option__button ' + 
               (
-                cartItemData[option.type] === option.value ||
-                cartItemData[option.type] === option.value 
+                cartItemData.optionTypes[option.type] === option.value ||
+                cartItemData.optionTypes[option.type] === option.value 
                   ? ' selected' : ''
               )
             }

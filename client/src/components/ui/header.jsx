@@ -15,13 +15,14 @@ const Header = () => {
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { globalLoading, productsEntity } = useStore()
 
+  const [filteredProducts, setFilteredProducts] = useState()
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [searchData, setSearchData] = useState({search: ''})
-  const [filteredProducts, setFilteredProducts] = useState()
-  
+  const [burgerMenu, setBurgerMenu] = useState(false)
+
   if (!globalLoading) {
     const header = document.querySelector('.header')
     const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
@@ -35,11 +36,13 @@ const Header = () => {
     })
   }
 
+  const toggleBurger = () => {
+    setBurgerMenu(prev => !prev)
+  }
   const logout = () => {
     logOut()
     setAuthDropMenu(false)
   }
-
   const handleChange = ({ name, value }) => {
     setSearchData(prev => ({
       ...prev,
@@ -50,13 +53,11 @@ const Header = () => {
       : []
     )
   }
-  
   const closeSearch = () => {
     setShowSearch(false)
     setSearchData({search: ''})
     setFilteredProducts([])
   }
-
   const handleSearch = () => {
     if (showSearch) {
       setShowSearch(false)
@@ -65,7 +66,6 @@ const Header = () => {
       setShowSearch(true)
     }
   }
-
   const removeFromCart = async (e, item) => {
     cartAnimation(e.target, true)
     if (authedUser) {
@@ -121,9 +121,7 @@ const Header = () => {
                 <Link className='drop-menu__link' to='/category/car'>For Car</Link>
               </div>}
             </li>
-            <li className='header-nav__link'><Link to="/delivery">Delivery</Link></li>
-            <li className='header-nav__link'><Link to="/about">About us</Link></li>
-            <li className='header-nav__link'><Link to="/contacts">Contacts</Link></li>
+            <li className='header-nav__link'><Link to="/information">Information</Link></li>
             {
               (authedUser && authedUser.admin) &&
               <li className='header-nav__link'><Link to="/admin">Admin</Link></li>
@@ -257,6 +255,22 @@ const Header = () => {
                 }
               </div>
             }
+          </div>
+          <div className="burger" onClick={toggleBurger}>
+            <button className={"burger-button" + (burgerMenu ? " active" : '')}>
+	            <div className="burger-button__icon"></div>
+            </button>
+            {burgerMenu && (
+              <div className="burger-menu">
+                <Link className='burger-menu__link' to="/">Home</Link>
+                <Link className='burger-menu__link' to="/category">Category</Link>
+                <Link className='burger-menu__link' to="/information">Information</Link>
+                {
+                  (authedUser && authedUser.admin) &&
+                  <Link className='burger-menu__link' to="/admin">Admin</Link>
+                }
+              </div>
+            )}
           </div>
         </div>
       </div>

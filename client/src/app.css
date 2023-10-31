@@ -12,6 +12,11 @@ body {
   margin: 0 auto;
   padding-top: 80px;
 }
+@media (max-width: 770px) {
+  .app-wrapper {
+    padding-top: 60px;
+  }
+}
 
 .my-container {
   max-width: 1200px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import './css/createProduct.css'
+// import './css/createProduct.css'
 import { filesValidator } from '../../../../utils/filesValidator'
 import ProductService from '../../../../service/product.service'
 import useStore from '../../../../store/createStore'
@@ -28,9 +28,6 @@ const EditProduct = () => {
 
     switch (contentType) {
       case 'info':
-        //? setProductType(data.type)
-        //? setNewProdData(prev => ({ ...prev, ...data }))
-
         const editedProduct = productsEntity.find(product => product._id === productId)
         // проверять название для формирования папок на сервере
         if (editedProduct.type !== data.type) {
@@ -38,19 +35,13 @@ const EditProduct = () => {
           const existedProduct = productsEntity.find(product => product.name.toLowerCase() === data.name.toLowerCase())
           // если такое название уже есть в таком типе продуктов
           if (existedProduct && existedProduct.type === data.type) {
-            console.log('Такой продукт уже есть, ничё не делать')
-
+            return
           } else {
-            console.log('Такого продукта нету, можно менять папку, update')
             updateProduct({_id: productId, ...data})
           }
         } else {
-          console.log('тип не менялся, просто update')
           updateProduct({_id: productId, ...data})
         }
-        
-        // отправка на сервер и обновление продукта
-        // updateProduct({_id: productId, ...data})
         break;
 
       case 'options':
@@ -58,9 +49,11 @@ const EditProduct = () => {
           let index = i + 1
           let optionTypeName = `option_${index}`
           data[optionTypeName].options = Object.values(data[optionTypeName].options)
+          data[optionTypeName].placeholder = data[optionTypeName].name
         }
         const modalOptionTypes = Object.values(data)
-        setNewProdData(prev => ({...prev, modalOptionTypes}))
+
+        updateProduct({_id: productId, modalOptionTypes: modalOptionTypes})
         break;
 
       case 'images':
@@ -99,9 +92,6 @@ const EditProduct = () => {
           filesName
         }
 
-        // console.log('newProdData_updated :>> ', newProdData_updated)
-        // console.log('files :>> ', files)
-        
         ProductService.createProductImages(
           files,
           {productName: newProdData.name, type: newProdData.type}
@@ -116,17 +106,17 @@ const EditProduct = () => {
 
   return (
     <div className="my-container">
-      <div className='user-page'>
+      <div className='accordion-page'>
         {settingItems.map(settingItem => (
-          <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
+          <div key={settingItem.number} className={"accordion-page-item" + (settingItemState === settingItem.number ? ' active' : '')}>
             <div
-              className="setting-item-clicker"
+              className="accordion-page-item-clicker"
               onClick={(e) => toggleSettingItem(e, settingItem.number)}
             >
-              <div className='setting-item-clicker__number'>{settingItem.number}</div>
-              <div className='setting-item-clicker__title'>{settingItem.title}</div>
+              <div className='accordion-page-item-clicker__number'>{settingItem.number}</div>
+              <div className='accordion-page-item-clicker__title'>{settingItem.title}</div>
             </div>
-            <div className="setting-item-content">
+            <div className="accordion-page-item-content">
               <EditProductConfig
                 contentType={settingItem.contentType}
                 toggleSettingItem={toggleSettingItem}

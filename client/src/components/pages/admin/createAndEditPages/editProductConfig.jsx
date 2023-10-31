@@ -21,8 +21,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
     ? productsEntity.find(product => product._id === productId)
     : null
 
-// console.log('currentProduct :>> ', currentProduct)
-
   // значение полей формы info
   const initInfoData = {
     _id: productId,
@@ -65,6 +63,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
     },
     images: {}
   }
+
   const [imageData, setImageData] = useState(initImagesData)
   
   const changeImageData = (e, files, filesType) => {
@@ -137,14 +136,9 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
 
   const handleUpdate = async (e, contentType, data, settingItemNumber) => {
     e.preventDefault()
-
-    // const ifValid = Object.keys(errors).length
-    // if (!ifValid) return
-
-    // if(settingItemNumber) {
-    //   toggleSettingItem(e, settingItemNumber)
-    // }
-
+    if(settingItemNumber) {
+      toggleSettingItem(e, settingItemNumber)
+    }
     handleSubmit(e, contentType, data)
   }
 
@@ -300,223 +294,294 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
   // блокировка кнопки
   const isValid = Object.keys(errors).length === 0
 
-  return (<>
-    {contentType === 'images'
-      ? (
-        <div>
-          <div className="setting-product-content__title">Product Images</div>
-          <div className="setting-product-content__subtitle">Edit previews and sliders</div>
-          <form className="create-product-page form-container" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
-            <div className="form-container__row">
-              <div className="form-container__col">
-                <label htmlFor="select-preview">select-preview</label>
-                <input
-                  id='select-preview'
-                  type='file'
-                  name='preview'
-                  onChange={(e) => changeImageData(e, e.target.files, 'preview')}
-                />
-              </div>
-              <div className="form-container__col">
-                <div className='flex'>
-                  <input
-                    id='checkout-slide'
-                    type='checkbox'
-                    onChange={(e) => changeImageData(e, null, 'checkbox')}
-                  />
-                  <label htmlFor="checkout-slide">add as intro slider</label>
+  return (
+    <div className='edit-product-page'>
+      {contentType === 'images'
+        ? (
+          <div>
+            <h3 className="accordion-page-item-content__title">Product Images</h3>
+            <h4 className="accordion-page-item-content__subtitle">Edit previews and sliders</h4>
+
+            <form className="form-container" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
+              <div className="form-container__row">
+
+                <div className="form-container__col">
+                  <p className='form-container__title'>Product preview</p>
+                  <div className='form-container-preview'>
+                    <div className="form-container-preview-left">
+                      <p className="form-container-preview-left__title">Current image:</p>
+                      <img src={currentProduct.preview} alt="Current image" />
+                    </div>
+                    <div className="form-container-preview-right">
+                      <label htmlFor="select-preview">select-preview</label>
+                      <input
+                        id='select-preview'
+                        type='file'
+                        name='preview'
+                        onChange={(e) => changeImageData(e, e.target.files, 'preview')}
+                      />
+                    </div>
+                  </div>
                 </div>
-                {imageData.introSlider.switched &&
-                  <div>
-                    <label htmlFor="select-preview">select-preview</label>
+
+                <div className="form-container__col">
+                  <p className='form-container__title'>Product preview</p>
+                  <div className='form-container-intro display_block'>
+
+                    <div className="form-container__row">
+                      <input
+                        className='checkbox'
+                        id='checkout-slide'
+                        type='checkbox'
+                        onChange={(e) => changeImageData(e, null, 'checkbox')}
+                      />
+                      <label className='form-container-preview-left__title' htmlFor="checkout-slide">add as intro slider</label>
+                    </div>
+                    {imageData.introSlider.switched &&
+                      <div className="form-container__row">
+                        <label htmlFor="select-preview">select-preview</label>
+                        <input
+                          id='select-preview'
+                          type='file'
+                          name='preview'
+                          onChange={(e) => changeImageData(e, e.target.files, 'intro')}
+                        />
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <h4 className='form-container__title'>Product sliders</h4>
+              <div className="form-container__row">
+                <div className='form-container-preview'>
+                  <div className="form-container-preview-left">
+                    <p className="form-container-preview-left__title">Current images:</p>
+                    <div className="array-images">
+                      {currentProduct.slider.map((item, index) => (
+                        <img key={index} src={item.preview} alt="" />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="form-container-preview-right">
+                    <label htmlFor="select-sliders">select sliders images</label>
                     <input
-                      id='select-preview'
+                      id='select-sliders'
                       type='file'
-                      name='preview'
-                      onChange={(e) => changeImageData(e, e.target.files, 'intro')}
+                      name='sliders'
+                      multiple
+                      onChange={(e) => changeImageData(e, e.target.files, 'sliders')}
                     />
                   </div>
-                }
+                </div>
               </div>
-            </div>
-            <div className="form-container__row">
-              <label htmlFor="select-sliders">select sliders images</label>
-              <input
-                id='select-sliders'
-                type='file'
-                name='sliders'
-                multiple
-                onChange={(e) => changeImageData(e, e.target.files, 'sliders')}
-              />
-            </div>
-            <div className="form-container__row">
-              <label htmlFor="select-dots">select dots images</label>
-              <input
-                id='select-dots'
-                type='file'
-                name='dots'
-                multiple
-                onChange={(e) => changeImageData(e, e.target.files, 'dots')}
-              />
-            </div>
-            {imagesDataError && <p className='error-msg'>*{imagesDataError}</p>}
-            <div className='create-product-page__buttons'>
-              <button
-                type='submit'
-                disabled={!!imagesDataError}
-              >
-                Update
-              </button>
-              <Link className='back-btn' to='/admin/products'>Back to admin</Link>
-            </div>
-          </form>
-        </div>
-      )
-      : contentType === 'options'
-      ? (
-        <div>
-          <div className="setting-product-content__title">Product Options</div>
-          <div className="setting-product-content__subtitle">Select Product Options</div>
-          <div className="create-product-page">
-            <div className="text-fields options">
-              {optionsData && Object.keys(optionsData).map((optionKey, index) => (
-                <div key={index} className='option-item'>
-                  <TextField
-                    label={`Options type:`}
-                    placeholder={optionsData[optionKey].placeholder}
-                    name={optionKey}
-                    value={optionsData[optionKey].name}
-                    onChange={handleChange}
-                    errors={errors}
-                    submitType='option-type'
-                    optionKey={optionKey}
-                    index={index}
-                  />
-                  {Object.values(optionsData[optionKey].options).map((option, index) => (
-                    <TextField
-                      label={`Option ${index + 1}:`}
-                      placeholder={option.placeholder}
-                      name={`${optionKey}-param_${index + 1}`}
-                      value={option.value}
-                      onChange={handleChange}
-                      errors={errors}
-                      submitType='option-item'
-                      optionKey={optionKey}
-                      index={index}
-                      key={index}
+
+              <h4 className='form-container__title'>Product sliders</h4>
+              <div className="form-container__row">
+                <div className='form-container-preview'>
+                  <div className="form-container-preview-left">
+                    <p className="form-container-preview-left__title">Current images:</p>
+                    <div className="array-images">
+                      {currentProduct.slider_dots.map(item => (
+                        <img src={item} alt="" />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="form-container-preview-right">
+                    <label htmlFor="select-dots">select dots images</label>
+                    <input
+                      id='select-dots'
+                      type='file'
+                      name='dots'
+                      multiple
+                      onChange={(e) => changeImageData(e, e.target.files, 'dots')}
                     />
+                  </div>
+                </div>
+              </div>
+
+              {imagesDataError && <p className='error-msg'>*{imagesDataError}</p>}
+
+              <div className='buttons'>
+                <button
+                  type='submit'
+                  disabled={!!imagesDataError}
+                >
+                  Update
+                </button>
+                <Link className='back-btn' to='/admin/products'>Back to admin</Link>
+              </div>
+            </form>
+            
+          </div>
+        )
+        : contentType === 'options'
+        ? (
+          <div>
+            <div className="accordion-page-item-content__title">Product Options</div>
+            <div className="accordion-page-item-content__subtitle">Select Product Options</div>
+
+            <div className='form-container'>
+
+              <div className="form-container__row">
+                <div className="text-fields options">
+                  {optionsData && Object.keys(optionsData).map((optionKey, index) => (
+                    <div key={index} className='option-item'>
+                      <TextField
+                        label={`Options type:`}
+                        placeholder={optionsData[optionKey].placeholder}
+                        name={optionKey}
+                        value={optionsData[optionKey].name}
+                        onChange={handleChange}
+                        errors={errors}
+                        submitType='option-type'
+                        optionKey={optionKey}
+                        index={index}
+                      />
+                      {Object.values(optionsData[optionKey].options).map((option, index) => (
+                        <TextField
+                          label={`Option ${index + 1}:`}
+                          placeholder={option.placeholder}
+                          name={`${optionKey}-param_${index + 1}`}
+                          value={option.value}
+                          onChange={handleChange}
+                          errors={errors}
+                          submitType='option-item'
+                          optionKey={optionKey}
+                          index={index}
+                          key={index}
+                        />
+                      ))}
+                      <div className="buttons">
+                        <button
+                          className={'remove' + (Object.keys(optionsData[optionKey].options).length === 1 ? ' disabled' : '')}
+                          onClick={() => removeOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
+                          disabled={Object.keys(optionsData[optionKey].options).length === 1}
+                        >
+                          x
+                        </button>
+                        <button
+                          className={'add' + (Object.keys(optionsData[optionKey].options).length > 3 ? ' disabled' : '')}
+                          onClick={() => addOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
+                          disabled={Object.keys(optionsData[optionKey].options).length > 3}
+                        >
+                          add option
+                        </button>
+                      </div>
+                    </div>
                   ))}
+                </div>
+              </div>
+              
+              <div className="form-container__row">
+                <div className="buttons no-margin">
                   <button
-                    className={'remove' + (Object.keys(optionsData[optionKey].options).length === 1 ? ' disabled' : '')}
-                    onClick={() => removeOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
-                    disabled={Object.keys(optionsData[optionKey].options).length === 1}
+                    className={'remove' + (Object.keys(optionsData).length < 2 ? ' disabled' : '')}
+                    onClick={() => removeOptionType(Object.keys(optionsData).length)}
+                    disabled={Object.keys(optionsData).length < 2}
                   >
-                    x
+                    remove last
                   </button>
                   <button
                     className='add'
-                    onClick={() => addOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
-                    disabled={Object.keys(optionsData[optionKey].options).length > 3}
+                    onClick={() => addOptionType(Object.keys(optionsData).length)}
+                    disabled={Object.keys(optionsData).length > 1}
                   >
-                    add option
+                    add option type
                   </button>
                 </div>
-              ))}
-              <button
-                className={'remove' + (Object.keys(optionsData).length < 2 ? ' disabled' : '')}
-                onClick={() => removeOptionType(Object.keys(optionsData).length)}
-                disabled={Object.keys(optionsData).length < 2}
-              >
-                remove last
-              </button>
-              <button
-                className='add'
-                onClick={() => addOptionType(Object.keys(optionsData).length)}
-                disabled={Object.keys(optionsData).length > 1}
-              >
-                add option type
-              </button>
-            </div>
-            <div className='create-product-page__buttons'>
-              <button
-                onClick={(e) => handleUpdate(e, contentType, optionsData, 3)}
-                disabled={!isValid}
-              >
-                Update
-              </button>
-              <Link className='back-btn' to='/admin/products'>Back to admin</Link>
+              </div>
+
+              <div className='buttons'>
+                <button
+                  onClick={(e) => handleUpdate(e, contentType, optionsData, 3)}
+                  disabled={!isValid}
+                >
+                  Update
+                </button>
+                <Link className='back-btn' to='/admin/products'>Back to admin</Link>
+              </div>
             </div>
           </div>
-        </div>
-      )
-      : (
-        <div>
-          <div className="setting-product-content__title">Product Information</div>
-          <div className="setting-product-content__subtitle">Edit Product Information</div>
-          <div className="create-product-page">
-            <div className="text-fields">
-              <TextField
-                label={`Name: ${data.name}`}
-                placeholder="Man item 12"
-                name="name"
-                value={data.name}
-                onChange={handleChange}
-                errors={errors}
-                submitType='info'
-              />
-              <TextField
-                label={`Title: ${data.title}`}
-                placeholder="Some title.."
-                name="title"
-                value={data.title}
-                onChange={handleChange}
-                errors={errors}
-                submitType='info'
-              />
-              <TextField
-                label={`Price: $${data.price}`}
-                placeholder="$13"
-                name="price"
-                value={data.price}
-                onChange={handleChange}
-                errors={errors}
-                submitType='price'
-              />
+        )
+        : (
+          <div>
+            <div className="accordion-page-item-content__title">Product Information</div>
+            <div className="accordion-page-item-content__subtitle">Edit Product Information</div>
+
+            <div className='form-container'>
+              <div className="form-container__row">
+                <div className="text-fields">
+                  <TextField
+                    label={`Name: ${data.name}`}
+                    placeholder="Man item 12"
+                    name="name"
+                    value={data.name}
+                    onChange={handleChange}
+                    errors={errors}
+                    submitType='info'
+                  />
+                  <TextField
+                    label={`Title: ${data.title}`}
+                    placeholder="Some title.."
+                    name="title"
+                    value={data.title}
+                    onChange={handleChange}
+                    errors={errors}
+                    submitType='info'
+                  />
+                  <TextField
+                    label={`Price: $${data.price}`}
+                    placeholder="$13"
+                    name="price"
+                    value={data.price}
+                    onChange={handleChange}
+                    errors={errors}
+                    submitType='price'
+                  />
+                </div>
+              </div>
+              <div className="form-container__row">
+                <RadioField
+                  label="Category:"
+                  options={[
+                    { name: 'Man', value: 'man' },
+                    { name: 'Woman', value: 'woman' },
+                    { name: 'Car', value: 'car' }
+                  ]}
+                  value={data.type}
+                  name="type"
+                  onChange={handleChange}
+                  submitType='info'
+                />
+              </div>
+              <div className="form-container__row">
+                <Textarea
+                  label="Description:"
+                  name="description"
+                  value={data.description}
+                  onChange={handleChange}
+                  errors={errors}
+                  submitType='info'
+                />
+              </div>
+              <div className="form-container__row">
+                <div className='buttons'>
+                  <button
+                    onClick={(e) => handleUpdate(e, contentType, data, 2)}
+                    disabled={!isValid}
+                  >
+                    Update
+                  </button>
+                  <Link className='back-btn' to='/admin/products'>Back to admin</Link>
+                </div>
+              </div>
             </div>
-            <RadioField
-              label="Category:"
-              options={[
-                { name: 'Man', value: 'man' },
-                { name: 'Woman', value: 'woman' },
-                { name: 'Car', value: 'car' }
-              ]}
-              value={data.type}
-              name="type"
-              onChange={handleChange}
-              submitType='info'
-            />
-            <Textarea
-              label="Description:"
-              name="description"
-              value={data.description}
-              onChange={handleChange}
-              errors={errors}
-              submitType='info'
-            />
-            <div className='create-product-page__buttons'>
-              <button
-                onClick={(e) => handleUpdate(e, contentType, data, 2)}
-                disabled={!isValid}
-              >
-                Update
-              </button>
-              <Link className='back-btn' to='/admin/products'>Back to admin</Link>
-            </div>
+
           </div>
-        </div>
-      )
-    }
-  </>
+        )
+      }
+    </div>
   )
 }
 

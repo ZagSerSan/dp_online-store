@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './app.css'
+import './_common-css/clickerPage.css'
 // components
 import routes from './routes'
 import withRouter from './utils/withRouter';
