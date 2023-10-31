@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import './css/profile.css'
 import userStore from '../../../store/userStore'
 import SettingItemContent from './settingItemContent'
 import Icon from '../../common/icon'
@@ -36,14 +35,14 @@ const Profile = () => {
   return (
     <div className="my-container">
       {editedUser
-        ? (<div className='user-page'>
+        ? (<div className='accordion-page'>
             {settingItems.map(settingItem => (
-              <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
-                <div className="setting-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
-                  <div className='setting-item-clicker__number'>{settingItem.number}</div>
-                  <div className='setting-item-clicker__title'>{settingItem.title}</div>
+              <div key={settingItem.number} className={"accordion-page-item" + (settingItemState === settingItem.number ? ' active' : '')}>
+                <div className="accordion-page-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
+                  <div className='accordion-page-item-clicker__number'>{settingItem.number}</div>
+                  <div className='accordion-page-item-clicker__title'>{settingItem.title}</div>
                 </div>
-                <div className="setting-item-content">
+                <div className="accordion-page-item-content">
                   <SettingItemContent
                     contentType={settingItem.contentType}
                     user={editedUser}
