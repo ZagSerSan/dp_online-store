@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import ProductService from '../service/product.service'
-import { toast } from 'react-toastify'
+import { errorCatcher } from '../utils/errorCatcher'
 
 const useStore = create((set) => ({
   productsEntity: null,
@@ -14,8 +14,7 @@ const useStore = create((set) => ({
       set((state) => ({ usersLoaded: false }))
       toast.success("Product has been created!")
     } catch (error) {
-      console.log('err', error)
-      toast.error("Product not created.. see logs..")
+      errorCatcher(error)
     }
   }),
   updateProduct: (newProductData) => set(async (state) => {
@@ -29,8 +28,7 @@ const useStore = create((set) => ({
       set((state) => ({ productsEntity: newProductsArray }))
       toast.success("Product has been updated!")
     } catch (error) {
-      console.log('err', error)
-      toast.error("Product not updated.. see logs..")
+      errorCatcher(error)
     }
   }),
   removeProduct: (productId) => set(async (state) => {
@@ -39,9 +37,8 @@ const useStore = create((set) => ({
       const updatedArray = state.productsEntity.filter(product => product._id !== productId)
       set((state) => ({ productsEntity: updatedArray}))
       toast.success("User has been removed!")
-    } catch (e) {
-      console.log('e', e)
-      toast.error("User not updated.. see logs..")
+    } catch (error) {
+      errorCatcher(error)
     }
   }),
   loadProductsList: async () => {

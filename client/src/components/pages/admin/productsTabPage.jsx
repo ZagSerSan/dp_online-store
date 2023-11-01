@@ -1,31 +1,19 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useStore from '../../../store/createStore'
+import Pagination from '../../common/pagination'
 
 const ProductsTabPage = () => {
   const { productsEntity, removeProduct } = useStore()
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
 
-  const pages = productsEntity.length / countOnPage
-
-  const pagesHeler = (numberOfPages) => {
-    const pagesArray = []
-    for (let i = 0; i < numberOfPages; i++) {
-      pagesArray.push(i)
-    }
-    return pagesArray
-  }
-
   const splicedEntity = productsEntity
     ? productsEntity.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
     : []
-
-  // useEffect(() => {
-  //   if (!usersLoaded) {
-  //     loadUsersList()
-  //   }
-  // }, [usersEntity, usersLoaded])
+  if (splicedEntity.length === 0) {
+    setCurrentPage(prev => prev - 1)
+  }
 
   const deleteProduct = (productId) => {
     removeProduct(productId)
@@ -48,12 +36,6 @@ const ProductsTabPage = () => {
                       <p>
                         <Link to={`/category/${product.type}/${product._id}`}>{product.name}</Link>
                       </p>
-                      <p className='address'>
-                        {/* {product.address
-                          ? `${product.address.сountry}, ${product.address.city}, ${product.address.street}, ${user.address.houseNumber}`
-                          : ''
-                        } */}
-                      </p>
                     </div>
                   </div>
                   <div className='user-list-item__buttons'>
@@ -63,19 +45,12 @@ const ProductsTabPage = () => {
                 </div>
               ))}
             </div>
-
-            <div className="user-tab-page-pagination">
-              {pagesHeler(pages).map(item => (
-                <button
-                  key={item}
-                  onClick={() => setCurrentPage(item)}
-                  className={currentPage === item ? 'active' : ''}
-                >
-                  {item + 1}
-                </button>
-              ))}
-            </div>
-
+            <Pagination
+              countOnPage={countOnPage}
+              itemsCount={productsEntity.length}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </div>
         : <p>users not loaded..</p>
       }

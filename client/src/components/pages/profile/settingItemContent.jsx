@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import TextField from '../../common/form/textField'
+import { toast } from 'react-toastify'
 import { validatorConfig } from '../../../utils/validatorConfig'
 import { validator } from '../../../utils/validator'
 import { useNavigate } from 'react-router-dom'
 import userStore from '../../../store/userStore'
+import TextField from '../../common/form/textField'
 
 const SettingItemContent = ({ contentType, user }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const { updateUser } = userStore()
+  const { authedUser, updateUser } = userStore()
 
   // значение полей формы по умолчанию
   const dataPasswordInitState = {
@@ -74,7 +75,9 @@ const SettingItemContent = ({ contentType, user }) => {
       default:
         break;
     }
-    navigate('/admin/users')
+    authedUser.admin
+      ? navigate('/admin/users')
+      : navigate('/home')
   }
 
   const handleChange = (payload, submitType) => {

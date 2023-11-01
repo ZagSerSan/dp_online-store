@@ -1,4 +1,5 @@
 import httpService from './http.service'
+import localStorageService from './localStorage.service'
 const productEndpoint = 'product/'
 
 const ProductService = {
@@ -8,13 +9,14 @@ const ProductService = {
   },
   createProductImages: async (files, body) => {
     const url = 'createProductImages'
-    console.log('filess :>> ', files)
+    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
     const { data } = await httpService.post(
       productEndpoint + url,
       { ...body, ...files},
       {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Authorization": accessToken
         },
       }
     )
@@ -22,14 +24,21 @@ const ProductService = {
   },
   createProduct: async (body) => {
     const url = 'createProduct'
+    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
     const { data } = await httpService.post(
       productEndpoint + url,
-      body
+      body,
+      {headers: {"Authorization": accessToken}}
     )
     return data
   },
   updateProduct: async (productData) => {
-    const { data } = await httpService.put(productEndpoint + productData._id, productData)
+    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
+    const { data } = await httpService.put(
+      productEndpoint + productData._id,
+      productData,
+      {headers: {"Authorization": accessToken}}
+    )
     return data
   },
   updateProductRate: async (commentData) => {
@@ -37,7 +46,11 @@ const ProductService = {
     return data
   },
   deleteProduct: async (productId) => {
-    const {data} = await httpService.delete(productEndpoint + productId)
+    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
+    const {data} = await httpService.delete(
+      productEndpoint + productId,
+      {headers: {"Authorization": accessToken}}
+    )
     return data
   }
 }

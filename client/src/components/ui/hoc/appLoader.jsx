@@ -14,10 +14,10 @@ const AppLoader = ({ children }) => {
   const loadEntities = async () => {
     try {
       await loadProductsList()
+      await loadUsersList()
       if (localStorageService.getAccessToken()) {
         await setAuthedUser()
       }
-      await loadUsersList()
       setGlobalLoading()
     } catch (error) {
       console.log('appLoader log', error)

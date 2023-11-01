@@ -60,8 +60,8 @@ const cartStore = create((set) => ({
       _id: item._id,
       name: item.name,
       type: item.type,
-      price: `$${item.price}`,
-      totalPrice: `$${item.price * state.cartItemData.count}`,
+      price: item.price,
+      totalPrice: item.price * state.cartItemData.count,
       image: item.preview,
     }
 

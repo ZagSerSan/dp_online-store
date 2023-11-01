@@ -2,8 +2,7 @@ import { create } from 'zustand'
 import localStorageService from '../service/localStorage.service'
 import userService from '../service/user.service'
 import authService from '../service/auth.service'
-import { Navigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { errorCatcher } from '../utils/errorCatcher'
 
 const userStore = create((set) => ({
   usersEntity: null,
@@ -24,17 +23,9 @@ const userStore = create((set) => ({
         newUsersArray.push(content)
         set((state) => ({ usersEntity: newUsersArray }))
       }
-      //!
-      // const newUsersArray = state.usersEntity.filter(
-      //   user => user._id !== newUserData._id
-      // )
-      // newUsersArray.push(content)
       set((state) => ({ usersLoaded: false}))
-      toast.success("User has been updated!")
-      // return { usersEntity: newUsersArray }
     } catch (error) {
-      console.log('err', error)
-      toast.error("User not updated.. see logs..")
+      errorCatcher(error)
     }
   }),
   removeUser: (userId) => set(async (state) => {
@@ -44,9 +35,8 @@ const userStore = create((set) => ({
       set((state) => ({ usersLoaded: false}))
       toast.success("User has been removed!")
       return { usersEntity: updatedArray }
-    } catch (e) {
-      console.log('e', e)
-      toast.error("User not updated.. see logs..")
+    } catch (error) {
+      errorCatcher(error)
     }
   }),
   createUser: async (payload) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './css/myProductsList.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import Icon from '../icon'
 import { cartAnimation } from '../../../utils/cartAnimation'
 import userStore from '../../../store/userStore'
@@ -28,10 +28,19 @@ const MyProductsList = ({ cartItems }) => {
     }
   }
 
+  const calculateTotalPrice = (products) => {
+    let sum = 0
+    for (let i = 0; i < products.length; i++) {
+      sum += products[i].totalPrice
+    }
+    return sum
+  }
+
   return (
       <div className='my-products'>
+
         <div className="my-products-list">
-          {cartItems && cartItems.length > 0
+          {cartItems
             ? cartItems.map(item => (
               <div key={item._id} className="item">
                 <img src={item.image} alt="product image" />
@@ -48,7 +57,7 @@ const MyProductsList = ({ cartItems }) => {
                   <div className="item-content-info">
                     <div className="item-content-info__col">
                       {Object.keys(item.optionTypes).map(key => (
-                        <p>
+                        <p key={key}>
                           <span className='darkened-text'>{key}: </span>
                           <span>{item.optionTypes[key]}</span>
                         </p>
@@ -57,7 +66,7 @@ const MyProductsList = ({ cartItems }) => {
                     <div className="item-content-info__col">
                       <p className='item-content__price'>
                         <span className='darkened-text'>price: </span>
-                        {item.price}
+                        ${item.price}
                       </p>
                       <p className='item-content__price'>
                         <span className='darkened-text'>count: </span>
@@ -67,29 +76,34 @@ const MyProductsList = ({ cartItems }) => {
                     <div className="item-content-info__col">
                       <p>Total price:</p>
                       <p>
-                        <span className='darkened-text'>{item.price} x {item.count} = </span>
-                        {item.totalPrice}
+                        <span className='darkened-text'>${item.price} x {item.count} = </span>
+                        ${item.totalPrice}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             ))
-            : (
-              <div className='cart-empty'>
-                <p>There's nothing here...</p>
-                <Link to='/category'>View products</Link>
-              </div>
-            )
+            : <Navigate to='/home'/>
           }
+        </div>
+
+        <div className="my-products-actions">
+          <div className="my-products-actions__total">
+            <p>Total price:</p>
+            <p>${calculateTotalPrice(cartItems)}</p>
+          </div>
+          <div className="my-products-actions-buttons">
+            <button>pay for products</button>
+            <button>Clear cart</button>
+          </div>
         </div>
       </div>
   )
 }
 
 MyProductsList.propTypes = {
-  cartItems: PropTypes.array,
-  role: PropTypes.string
+  cartItems: PropTypes.array
 }
 
 export default MyProductsList

@@ -1,8 +1,7 @@
 import React from 'react'
 import './css/favouritesPage.css'
 import userStore from '../../../store/userStore'
-import MyProductsList from '../../common/table/myProductsList'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ProductsList } from '../../ui'
 
 const FavouritesPage = () => {

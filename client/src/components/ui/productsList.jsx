@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 // css, api
@@ -37,7 +38,6 @@ const ProductsList = ({role = '', bookmarks}) => {
       bookmarksproducts.push(filteredProduct)
     })
     sortedProducts = bookmarksproducts
-    console.log('sortedProducts :>> ', sortedProducts)
   }
 
   return (
@@ -67,6 +67,11 @@ const ProductsList = ({role = '', bookmarks}) => {
       </div>
     </div>
   )
+}
+
+ProductsList.propTypes = {
+  bookmarks: PropTypes.array,
+  role: PropTypes.string
 }
 
 export default ProductsList

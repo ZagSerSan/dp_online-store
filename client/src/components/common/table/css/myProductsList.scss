@@ -1,33 +1,4 @@
 .my-products {
-  padding: 40px 15px;
-  .cart-empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
-    border-top: 1px solid #7e4c4f;
-
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: #a1a1a1;
-    font-size: 18px;
-
-    a {
-      margin-top: 30px;
-      padding: 10px;
-
-      background-color: #7e4c4f;
-      color: #fff;
-
-      border: 0;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.2s ease 0s;
-      &:hover {
-        background-color: #f6ab44;
-      }
-    }
-  }
   &-list {
     .item {
       border-top: 1px solid #4444447a;
@@ -75,6 +46,96 @@
           }
         }
       }
+    }
+  }
+  &-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: end;
+
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 3px solid #7e4c4f;
+
+    &__total {
+      display: flex;
+      align-items: end;
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #7e4c4f;
+      text-transform: uppercase;
+      text-align: center;
+      p:last-child {
+        font-weight: 500;
+        font-size: 30px;
+        margin-left: 20px;
+      }
+    }
+
+    &-buttons {
+      button {
+        margin-right: 20px;
+        padding: 15px 20px;
+
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        background-color: #d8d8d8;
+        border: 0;
+        border-radius: 5px;
+        color: #000;
+        cursor: pointer;
+        transition: all 0.2s ease 0s;
+
+        &:hover {
+          color: #fff;
+          background-color: #7e4c4f;
+        }
+      }
+      a {
+        color: #000;
+        text-decoration: underline;
+        transition: all 0.2s ease 0s;
+        &:hover {
+          color: #fff;
+          background-color: #7e4c4f;
+        }
+      }
+      // .back-btn {
+      //   font-family: "Montserrat", sans-serif;
+      //   font-size: 16px;
+      //   font-weight: 500;
+      //   text-decoration: none;
+
+      //   background-color: #db1d2a;
+      //   padding: 12px;
+      //   margin-left: 20px;
+      //   border: 0;
+      //   border-radius: 5px;
+      //   color: #fff;
+      //   cursor: pointer;
+      //   &:hover {
+      //     color: #fff;
+      //     background-color: #ac000b;
+      //   }
+      // }
+      // .add.disabled {
+      //   background-color: #7e4c4f63;
+      // }
+      // .remove {
+      //   background-color: #db1d2a;
+      //   margin-right: 10px;
+      //   &.disabled {
+      //     background-color: #db1d2a8e;
+      //   }
+      //   &:hover {
+      //     background-color: #db1d2a8e;
+      //   }
+      // }
     }
   }
 }
