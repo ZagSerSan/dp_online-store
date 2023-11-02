@@ -1,10 +1,11 @@
 import { create } from 'zustand'
 import ProductService from '../service/product.service'
 import { errorCatcher } from '../utils/errorCatcher'
+import { toast } from 'react-toastify'
 
 const useStore = create((set) => ({
   productsEntity: null,
-  productsLoadingStatus: true,
+  productsLoaded: false,
   globalLoading: true,
 
   createNewProduct: (newProductData) => set(async (state) => {
@@ -17,16 +18,15 @@ const useStore = create((set) => ({
       errorCatcher(error)
     }
   }),
-  updateProduct: (newProductData) => set(async (state) => {
+  updateProduct: (newProductData, role = '') => set(async (state) => {
     try {
-      const { content } = await ProductService.updateProduct(newProductData)
+      const { content } = await ProductService.updateProduct(newProductData, role)
       const newProductsArray = state.productsEntity.filter(
         product => product._id !== newProductData._id
       )
       newProductsArray.push(content)
       set((state) => ({ usersLoaded: false }))
       set((state) => ({ productsEntity: newProductsArray }))
-      toast.success("Product has been updated!")
     } catch (error) {
       errorCatcher(error)
     }
@@ -44,7 +44,7 @@ const useStore = create((set) => ({
   loadProductsList: async () => {
     const { content } = await ProductService.get()
     set((state) => ({ productsEntity: content}))
-    set((state) => ({ productsLoadingStatus: false}))
+    set((state) => ({ productsLoaded: true}))
   },
   setGlobalLoading: () => set((state) => ({ globalLoading: false})),
 }))

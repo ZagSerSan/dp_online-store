@@ -80,7 +80,8 @@ router.post('/createProductImages', auth, async (req, res) => {
 router.put('/:productId', auth, async (req, res) => {
   const authedUser = await User.findById(req.user._id)
   // проверка, является ли данный пользователь админом
-  if (authedUser.admin) {
+  // или клиент имеет доступ изменять общий рейтинг продукта
+  if (authedUser.admin || req.headers?.accessrole === 'edit-rate') {
     try {
       const { productId } = req.params    
       const editedProduct = await Product.findById(productId)

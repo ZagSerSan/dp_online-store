@@ -100,8 +100,6 @@ const cartStore = create((set) => ({
       updLocalUserCart(newCartItemData)
     }
   }),
-
-  //* bookmark
   toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
     e.stopPropagation()
     if (authedUser) {

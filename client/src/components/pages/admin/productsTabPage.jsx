@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useStore from '../../../store/createStore'
 import Pagination from '../../common/pagination'
 
 const ProductsTabPage = () => {
-  const { productsEntity, removeProduct } = useStore()
+  const { productsEntity, removeProduct, loadProductsList, productsLoaded } = useStore()
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
 
@@ -18,6 +18,12 @@ const ProductsTabPage = () => {
   const deleteProduct = (productId) => {
     removeProduct(productId)
   }
+
+  useEffect(() => {
+    if (!productsLoaded) {
+      loadProductsList()
+    }
+  }, [productsLoaded])
 
   return (
     <div className='user-tab-page'>

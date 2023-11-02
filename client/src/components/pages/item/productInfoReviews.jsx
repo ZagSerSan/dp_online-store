@@ -16,10 +16,13 @@ const ProductInfoReviews = () => {
 
   const removeComment = (commentId, productId) => {
     deleteComment(commentId)
-    updateProduct(getAverageRatingObj(
-      commentsEntity.filter(comment => comment._id !== commentId),
-      productId
-    ))
+    updateProduct(
+      getAverageRatingObj(
+        commentsEntity.filter(comment => comment._id !== commentId),
+        productId
+      ),
+      'edit-rate'
+    )
   }
 
   return (

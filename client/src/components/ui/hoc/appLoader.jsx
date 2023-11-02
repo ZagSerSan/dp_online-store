@@ -7,7 +7,7 @@ import ErrorPage from '../../pages/error'
 import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
-  const { loadProductsList, productsLoadingStatus, setGlobalLoading } = useStore()
+  const { loadProductsList, setGlobalLoading, globalLoading } = useStore()
   const { setAuthedUser, loadUsersList } = userStore()
   const [error, setError] = useState(false)
   
@@ -27,9 +27,9 @@ const AppLoader = ({ children }) => {
 
   useEffect(() => {
     loadEntities()
-  }, [])
+  }, [globalLoading])
 
-  if (productsLoadingStatus && !error) {
+  if (globalLoading && !error) {
     return <Icon id='loader' />
   } else if (error) {
     return <ErrorPage/>

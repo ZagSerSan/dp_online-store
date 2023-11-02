@@ -31,7 +31,7 @@ const routes = [
   {
     path: 'admin',
     children: [
-      {path: '', element: <Navigate to='products'/>},
+      {path: '', element: <Navigate to='users'/>},
       {
         path: 'users',
         children: [

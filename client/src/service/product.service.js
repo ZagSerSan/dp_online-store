@@ -8,49 +8,36 @@ const ProductService = {
     return data
   },
   createProductImages: async (files, body) => {
-    const url = 'createProductImages'
-    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
+    const url = productEndpoint + 'createProductImages'
     const { data } = await httpService.post(
-      productEndpoint + url,
+      url,
       { ...body, ...files},
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": accessToken
-        },
-      }
+      {headers: {"Content-Type": "multipart/form-data"}}
     )
     return data
   },
   createProduct: async (body) => {
-    const url = 'createProduct'
-    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
-    const { data } = await httpService.post(
-      productEndpoint + url,
-      body,
-      {headers: {"Authorization": accessToken}}
-    )
+    const url = productEndpoint + 'createProduct'
+    const { data } = await httpService.post(url, body)
     return data
   },
-  updateProduct: async (productData) => {
-    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
-    const { data } = await httpService.put(
-      productEndpoint + productData._id,
-      productData,
-      {headers: {"Authorization": accessToken}}
-    )
-    return data
-  },
-  updateProductRate: async (commentData) => {
-    const { data } = await httpService.put(productEndpoint + commentData.productId, {rate: commentData.rate})
-    return data
+  updateProduct: async (productData, role) => {
+    const url = productEndpoint + productData._id
+    // role = edit-rate
+    if (role) {
+      const { data } = await httpService.put(
+        url,
+        productData,
+        {headers: {"accessrole": role}}
+      )
+      return data
+    } else {
+      const { data } = await httpService.put(url, productData)
+      return data
+    }
   },
   deleteProduct: async (productId) => {
-    const accessToken = `Bearer ${localStorageService.getAccessToken()}`
-    const {data} = await httpService.delete(
-      productEndpoint + productId,
-      {headers: {"Authorization": accessToken}}
-    )
+    const {data} = await httpService.delete(productEndpoint + productId)
     return data
   }
 }

@@ -8,11 +8,11 @@ import userStore from '../../../store/userStore'
 import Icon from '../../common/icon'
 import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
-// import CommentService from '../../../service/comment.service'
 import commentStore from '../../../store/commentStore'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import useStore from '../../../store/createStore'
 import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+import ProductService from '../../../service/product.service'
 
 const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
@@ -67,10 +67,12 @@ const AddReviewForm = ({ productId }) => {
 
     try {
       data.rate = Number(data.rate)
-
       addComment(data)
       // обновление среднего рейтинга продукта для отобажения на гл странице
-      updateProduct(getAverageRatingObj(commentsEntity, data.productId, data))
+      updateProduct(
+        getAverageRatingObj(commentsEntity, data.productId, data),
+        'edit-rate'
+      )
       setData(initialState)
     } catch (e) {
       console.log('e', e)

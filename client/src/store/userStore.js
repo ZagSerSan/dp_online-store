@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 import localStorageService from '../service/localStorage.service'
 import userService from '../service/user.service'
-import authService from '../service/auth.service'
 import { errorCatcher } from '../utils/errorCatcher'
+import { toast } from 'react-toastify'
 
 const userStore = create((set) => ({
   usersEntity: null,
@@ -22,6 +22,7 @@ const userStore = create((set) => ({
         )
         newUsersArray.push(content)
         set((state) => ({ usersEntity: newUsersArray }))
+        toast.success("User has been updated! 26")
       }
       set((state) => ({ usersLoaded: false}))
     } catch (error) {
@@ -36,13 +37,23 @@ const userStore = create((set) => ({
       toast.success("User has been removed!")
       return { usersEntity: updatedArray }
     } catch (error) {
-      errorCatcher(error)
+      console.log('err', error)
+      const errorType = error.response?.data?.error?.message
+      if (errorType === "EMAIL_EXISTS") {
+        toast.error("Email exists!")
+      } else {
+        errorCatcher(error)
+      }
     }
   }),
   createUser: async (payload) => {
-    const role = 'create'
-    await authService.register(payload, role)
-    set((state) => ({ usersLoaded: false}))
+    try {
+      await userService.createUser(payload)
+      set((state) => ({ usersLoaded: false}))
+      toast.success("User has been created!")
+    } catch (error) {
+      errorCatcher(error)
+    }
   },
   loadUsersList: async () => {
     const { content } = await userService.get()
