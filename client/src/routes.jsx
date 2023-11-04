@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom"
 // --Routes
 import Category from './layouts/category'
 import Home from './layouts/home'
-// import ProductModal from './components/common/product/productModal'
 import CategoryPage from "./components/pages/category"
 import LoginPage from "./components/pages/auth/loginPage"
 import RegisterPage from "./components/pages/auth/registerPage"
@@ -52,8 +51,7 @@ const routes = [
             ]
           }
         ]
-      },
-      
+      }
     ]
   },
   {

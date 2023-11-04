@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import './css/modalOption.css'
 import cartStore from '../../../store/cartStore'
 
 const ModalOption = ({ name, options }) => {
   const { cartItemData, setCartItemData, setCartItemDataIsChanged } = cartStore()
 
+  // инициализация состояния cart item'а
   useEffect(() => {
     setCartItemData('setInitialOption', options)
   }, [])
-
+  // переключение опшинов
   const toggleOptions = (e, option) => {
     e.stopPropagation()
     setCartItemDataIsChanged(true)
@@ -37,6 +39,11 @@ const ModalOption = ({ name, options }) => {
       </div>
     </div>
   )
+}
+
+ModalOption.propTypes = {
+  name: PropTypes.string,
+  options: PropTypes.array 
 }
 
 export default ModalOption

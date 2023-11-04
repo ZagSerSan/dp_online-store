@@ -18,10 +18,6 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
     setShowPassword((prevState) => !prevState)
   }
 
-  // const toogleBluredState = () => {
-  //   setIsBlured(true)
-  // }
-
   return (
     <div className="text-field">
       {label && (
@@ -33,7 +29,6 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
         className={(!isBlured ? '' : errors?.[name] ? 'is-invalid' : 'is-valid')}
-        // id={name}
         name={name}
         value={value}
         onChange={handleChange}
@@ -66,6 +61,8 @@ TextField.propTypes = {
   type: PropTypes.string,
   submitType: PropTypes.string,
   placeholder: PropTypes.string,
+  optionKey: PropTypes.string,
+  index: PropTypes.string,
   switchErrMsg: PropTypes.bool,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired

@@ -1,8 +1,8 @@
 import React from 'react'
-import cartStore from '../../../store/cartStore'
-import Icon from '../icon'
 import './css/productActions.css'
 import userStore from '../../../store/userStore'
+import cartStore from '../../../store/cartStore'
+import Icon from '../icon'
 
 const ProductActions = ({ item }) => {
   const { authedUser, updateUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
@@ -40,6 +40,10 @@ const ProductActions = ({ item }) => {
       </button>
     </div>
   )
+}
+
+ProductActions.propTypes = {
+  item: PropTypes.object
 }
 
 export default ProductActions

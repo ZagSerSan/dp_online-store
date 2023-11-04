@@ -23,6 +23,16 @@ body {
   }
 }
 
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  width: 200px;
+  height: 200px;
+}
+
 .my-container {
   max-width: 1200px;
   width: 100%;

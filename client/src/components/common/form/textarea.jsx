@@ -40,7 +40,8 @@ Textarea.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   errors: PropTypes.object,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  submitType: PropTypes.string
 }
 
 export default Textarea

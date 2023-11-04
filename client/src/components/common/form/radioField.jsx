@@ -33,7 +33,8 @@ RadioField.propTypes = {
   options: PropTypes.array,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
+  submitType: PropTypes.string
 }
 
 export default RadioField

@@ -45,6 +45,10 @@ const CategoryNav = () => {
     })
   }
  
+  const test = (e) => {
+    console.log(e.target.clientHeight)
+  }
+
   return (
     // Hight Wrapper. Изменения стилей при выборе категории
     <div className={'category-nav_HW' + (type ? ' litle-padding' : '')}>
@@ -53,6 +57,7 @@ const CategoryNav = () => {
           {/* категории */}
           {categories.map(item => (
             <Link
+              onClick={test}
               key={item.id}
               to={item.to}
               className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}

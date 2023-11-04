@@ -1,10 +1,11 @@
-.popular-item {
+.product-item {
   position: relative;
   width: 25%;
   text-align: left;
   padding: 0 15px;
   margin-bottom: 10px;
   border-radius: 10px;
+  transition: transform 0.2s ease 0s;
 
   @media (max-width: 850px) {
     width: 33%;
@@ -18,11 +19,13 @@
   }
 
   &:hover {
-    .popular-item__img-popap {
+    transform: translate3d(-5px, -5px, 0);
+    box-shadow: 5px 5px 5px #ccc;
+    .product-item__img-popap {
       opacity: 1;
       top: 50%;
     }
-    .popular-item__img:before {
+    .product-item__img:before {
       opacity: 0.5;
       width: 100%;
       height: 100%;
@@ -110,6 +113,12 @@
     margin: 0 0 10px;
     letter-spacing: 0.08px;
 
+    a {
+      transition: color 0.2s ease 0s;
+      &:hover {
+        color: #f6ac44;
+      }
+    }
     button {
       position: relative;
       svg {
