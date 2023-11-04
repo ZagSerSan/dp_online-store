@@ -4,7 +4,7 @@ import { validatorConfig } from '../../../../utils/validatorConfig'
 import { validator } from '../../../../utils/validator'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
-import useStore from '../../../../store/createStore'
+import productStore from '../../../../store/productStore'
 import commentStore from '../../../../store/commentStore'
 import { ratingStarsHelper } from '../../../../utils/rateCountHelper'
 import Icon from '../../../common/icon'
@@ -13,7 +13,7 @@ import { formatDate } from '../../../../utils/formatDate'
 
 const SettingProductContent = ({ contentType, editedProduct }) => {
   const navigate = useNavigate()
-  const { updateProduct } = useStore()
+  const { updateProduct } = productStore()
   const [errors, setErrors] = useState({})
 
   // todo comments

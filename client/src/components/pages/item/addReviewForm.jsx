@@ -10,7 +10,7 @@ import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
 import commentStore from '../../../store/commentStore'
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
-import useStore from '../../../store/createStore'
+import productStore from '../../../store/productStore'
 import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
 import ProductService from '../../../service/product.service'
 
@@ -18,7 +18,7 @@ const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
   const { authedUser } = userStore()
   const { addComment, commentsEntity } = commentStore()
-  const { updateProduct } = useStore()
+  const { updateProduct } = productStore()
 
   const [errors, setErrors] = useState({})
   // значение полей формы

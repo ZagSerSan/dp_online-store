@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import useStore from '../../../store/createStore'
+import productStore from '../../../store/productStore'
 import Pagination from '../../common/pagination'
 
 const ProductsTabPage = () => {
-  const { productsEntity, removeProduct, loadProductsList, productsLoaded } = useStore()
+  const { productsEntity, removeProduct, loadProductsList, productsLoaded } = productStore()
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
 

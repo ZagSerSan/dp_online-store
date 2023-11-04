@@ -4,11 +4,11 @@ import './css/categoryNav.css'
 
 const CategoryNav = () => {
   const { type } = useParams()
-  // images
+  // изображения категорий
   const IMG_MAN = 'http://localhost:8080/images/category-nav/manCateg.png'
   const IMG_WOMAN = 'http://localhost:8080/images/category-nav/womanCateg.png'
   const IMG_CAR = 'http://localhost:8080/images/category-nav/carCateg.png'
-
+  // массив для рендера
   const categories = [
     {
       id: '1',
@@ -37,19 +37,20 @@ const CategoryNav = () => {
       styleClass: ' car-color'
     }
   ]
-
+  // если выбрана категория, скроллить вверх
   if (type) {
     window.scrollTo({
       top: 0,
-      // left: 100,
       behavior: "smooth",
     })
   }
  
   return (
+    // Hight Wrapper. Изменения стилей при выборе категории
     <div className={'category-nav_HW' + (type ? ' litle-padding' : '')}>
       <div className="my-container">
         <div className={'category-nav' + (type ? ' small' : '')}>
+          {/* категории */}
           {categories.map(item => (
             <Link
               key={item.id}

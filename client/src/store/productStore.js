@@ -3,10 +3,9 @@ import ProductService from '../service/product.service'
 import { errorCatcher } from '../utils/errorCatcher'
 import { toast } from 'react-toastify'
 
-const useStore = create((set) => ({
+const productStore = create((set) => ({
   productsEntity: null,
   productsLoaded: false,
-  globalLoading: true,
 
   createNewProduct: (newProductData) => set(async (state) => {
     try {
@@ -45,8 +44,7 @@ const useStore = create((set) => ({
     const { content } = await ProductService.get()
     set((state) => ({ productsEntity: content}))
     set((state) => ({ productsLoaded: true}))
-  },
-  setGlobalLoading: () => set((state) => ({ globalLoading: false})),
+  }
 }))
 
-export default useStore
+export default productStore

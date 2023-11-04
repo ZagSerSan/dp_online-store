@@ -7,6 +7,14 @@
     padding-bottom: 40px;
   }
 }
+.best-product__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 50px;
+}
 .best-product__title {
   margin: 0 0 15px;
   font-family: "Pacifico", cursive;
@@ -20,14 +28,6 @@
   font-weight: 600;
   line-height: 35px;
   margin: 0;
-}
-.best-product__wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 50px;
 }
 .best-product__col {
   width: 50%;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 // import './css/createProduct.css'
 import CreateProductConfig from './createProductConfig'
-import useStore from '../../../../store/createStore'
+import productStore from '../../../../store/productStore'
 import ProductService from '../../../../service/product.service'
 import { useNavigate } from 'react-router-dom'
 import { filesValidator } from '../../../../utils/filesValidator'
 
 const CreateProduct = () => {
   const navigate = useNavigate()
-  const { createNewProduct } = useStore()
+  const { createNewProduct } = productStore()
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
     {number: 1, contentType: 'info', title: 'Add product information'},

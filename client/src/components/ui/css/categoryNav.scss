@@ -2,19 +2,19 @@
 .category-nav_HW {
   background-color: #f6f6f6;
   padding: 40px 0 60px;
-
-  @media (max-width: 1150px) {
-    padding: 40px 0 40px;
-  }
-  @media (max-width: 750px) {
-    padding: 20px 0 20px;
-  }
-
+  // адаптив
+  // @media (max-width: 1150px) {
+  //   padding: 40px 0 40px;
+  // }
+  // @media (max-width: 750px) {
+  //   padding: 20px 0 20px;
+  // }
+  // стили для состояния "категория выбрана"
   &.litle-padding {
     padding: 20px 0;
-    @media (max-width: 500px) {
-      padding: 0px 0 15px;
-    }
+    // @media (max-width: 500px) {
+    //   padding: 0px 0 15px;
+    // }
   }
 
   h2 {
@@ -30,64 +30,69 @@
 
 .category-nav {
   width: 100%;
-  height: 277px;
+  // height: 277px;
   display: flex;
   transition: all 0.3s ease 0s;
-  animation: 0.4s alternate forwards categoryToNormal;
-
-  @media (max-width: 1150px) {
-    animation: 0.1s alternate forwards changeHeight;
-    @keyframes changeHeight {
-      from {
-        height: 277px;
-      }
-      to {
-        height: 170px;
-      }
-    }
-  }
-  @media (max-width: 750px) {
-    animation: 0.1s alternate forwards changeHeight;
-    @keyframes changeHeight {
-      from {
-        height: 170px;
-      }
-      to {
-        height: 70px;
-      }
-    }
-  }
-
-  @keyframes categoryToNormal {
-    from {
-      overflow: hidden;
-      height: 100px;
-    }
-    to {
-      height: 277px;
-    }
-  }
-
+  // animation: 0.4s alternate forwards categoryToNormal;
+  // адаптив
+  // @media (min-width: 1150px) {
+  //   animation: 0.4s alternate forwards changeHeight;
+  //   @keyframes changeHeight {
+  //     from {
+  //       height: 277px;
+  //     }
+  //     to {
+  //       height: 170px;
+  //     }
+  //   }
+  // }
+  // @media (max-width: 750px) {
+  //   animation: 0.4s alternate forwards changeHeight;
+  //   @keyframes changeHeight {
+  //     from {
+  //       height: 170px;
+  //     }
+  //     to {
+  //       height: 70px;
+  //     }
+  //   }
+  // }
+  // анимация
+  // @keyframes categoryToNormal {
+  //   from {
+  //     overflow: hidden;
+  //     height: 100px;
+  //   }
+  //   to {
+  //     height: 277px;
+  //   }
+  // }
+  // стили для состояния "категория выбрана"
   &.small {
     overflow: hidden;
     justify-content: center;
     border-radius: 10px;
-    animation: 0.4s alternate forwards categoryToSmall;
-    @media (max-width: 1150px) {
-      h3 {
-        top: 0;
-      }
-    }
-
-    @keyframes categoryToSmall {
-      from {
-        height: 277px;
-      }
-      to {
-        height: 60px;
-        padding: 5px 0;
-      }
-    }
+    height: 60px;
+    // @media (min-width: 750px) {
+    //   animation: 0.4s alternate forwards categoryToSmall;
+    // }
+    // адаптив
+    // @media (max-width: 1150px) {
+    //   h3 {
+    //     top: 0;
+    //   }
+    // }
+    // анимация
+    // @keyframes categoryToSmall {
+    //   from {
+    //     height: 277px;
+    //   }
+    //   to {
+    //     height: 60px;
+    //     padding: 5px 0;
+    //   }
+    // }
+    // nav-item
     .category-nav-item {
       background-color: transparent;
       h3 {
@@ -97,15 +102,17 @@
         font-size: 25px;
         padding: 15px 0;
         width: 80%;
-
-        @media (max-width: 1150px) {
-          top: 0px;
-          margin: -8px 0;
-        }
-        @media (max-width: 750px) {
-          width: 100%;
-          font-size: 18px;
-        }
+        bottom: 50%;
+        transform: translate3d(-50%, 50%, 0);
+        // адаптив
+        // @media (max-width: 1150px) {
+        //   top: 0px;
+        //   margin: -8px 0;
+        // }
+        // @media (max-width: 750px) {
+        //   width: 100%;
+        //   font-size: 18px;
+        // }
       }
       img {
         display: none;
@@ -114,29 +121,24 @@
         display: none;
       }
     }
-    .category-nav-item h3 {
-      bottom: 50%;
-      transform: translate3d(-50%, 50%, 0);
-    }
   } // /&.small
 }
-
+// nav-item, initial styles
 .category-nav-item {
   position: relative;
   width: 33.3%;
   margin: 0 15px;
   cursor: pointer;
-
-  @media (max-width: 420px) {
-    margin: 0 5px;
-  }
-
+  // адаптив
+  // @media (max-width: 420px) {
+  //   margin: 0 5px;
+  // }
   img {
     display: block;
     width: 100%;
-    @media (max-width: 750px) {
-      display: none;
-    }
+    // @media (max-width: 750px) {
+    //   display: none;
+    // }
   }
   h3 {
     position: absolute;
@@ -160,20 +162,20 @@
     box-shadow: 0 0.3px 7px rgb(0 0 0 / 20%);
     transition: all 0.3s ease 0s;
 
-    @media (max-width: 1150px) {
-      bottom: auto;
-      top: 50%;
-      transform: translate3d(-50%, 0%, 0);
-    }
-    @media (max-width: 950px) {
-      top: 40%;
-      padding: 10px 0px;
-    }
-    @media (max-width: 750px) {
-      top: 20%;
-      font-size: 20px;
-      width: 100%;
-    }
+    // @media (max-width: 1150px) {
+    //   bottom: auto;
+    //   top: 50%;
+    //   transform: translate3d(-50%, 0%, 0);
+    // }
+    // @media (max-width: 950px) {
+    //   top: 40%;
+    //   padding: 10px 0px;
+    // }
+    // @media (max-width: 750px) {
+    //   top: 20%;
+    //   font-size: 20px;
+    //   width: 100%;
+    // }
   }
   &:after {
     content: "";
@@ -198,12 +200,12 @@
   &.car-color:after {
     background-color: #2e1f00;
   }
+  // hover on category type
   &:hover {
     &:after {
       opacity: 0.5;
       width: 100%;
       height: 100%;
-      // background-color: red;
     }
     &.man-color h3 {
       color: #fff;
@@ -218,6 +220,7 @@
       background-color: #eaba5a;
     }
   }
+  // active category type
   &.active {
     &:after {
       opacity: 0.2;

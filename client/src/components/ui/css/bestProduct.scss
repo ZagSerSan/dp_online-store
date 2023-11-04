@@ -1,8 +1,15 @@
 .best-product {
   text-align: center;
   padding-bottom: 70px;
+
   @media (max-width: 900px) {
     padding-bottom: 40px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
   }
 
   &__title {
@@ -19,11 +26,7 @@
     line-height: 35px;
     margin: 0;
   }
-  &__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-  }
+
   &__col {
     width: 50%;
     padding: 0 15px;

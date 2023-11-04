@@ -103,7 +103,7 @@ router.post('/createUser', [
   }
 ])
 
-// обновление юсера
+// обновление пользователя
 router.put('/:userId', auth, async (req, res) => {
   const authedUser = await User.findById(req.user._id)
   // проверка, является ли данный пользователь админом

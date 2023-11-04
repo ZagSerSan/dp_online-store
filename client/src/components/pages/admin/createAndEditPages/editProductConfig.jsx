@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { filesValidator } from '../../../../utils/filesValidator'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
-import useStore from '../../../../store/createStore'
+import productStore from '../../../../store/productStore'
 import { tranformOptionsData } from '../../../../utils/tranformOptionsData'
-// import CheckBoxField from '../../../common/form/checkBoxField'
 
 const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
   const [errors, setErrors] = useState({})
   const [imagesDataError, setImagesDataError] = useState()
 
-  const { productsEntity } = useStore()
+  const { productsEntity } = productStore()
   const { productId } = useParams()
   const currentProduct = productsEntity
     ? productsEntity.find(product => product._id === productId)
@@ -382,8 +381,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
                   <div className="form-container-preview-left">
                     <p className="form-container-preview-left__title">Current images:</p>
                     <div className="array-images">
-                      {currentProduct.slider_dots.map(item => (
-                        <img src={item} alt="" />
+                      {currentProduct.slider_dots.map((item, index) => (
+                        <img key={index} src={item} alt="" />
                       ))}
                     </div>
                   </div>

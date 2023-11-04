@@ -1,5 +1,6 @@
 .cart-page {
   min-height: 550px;
+  padding-bottom: 70px;
 }
 .cart-page__title {
   font-family: "Montserrat", sans-serif;

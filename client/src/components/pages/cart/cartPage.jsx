@@ -2,7 +2,7 @@ import React from 'react'
 import './css/cartPage.css'
 import userStore from '../../../store/userStore'
 import MyProductsList from '../../common/table/myProductsList'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CartPage = () => {
   const { authedUser } = userStore()

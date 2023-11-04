@@ -5,14 +5,14 @@ import { formatDate } from '../../../utils/formatDate'
 import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
 import userStore from '../../../store/userStore'
 import commentStore from '../../../store/commentStore'
-import useStore from '../../../store/createStore'
+import productStore from '../../../store/productStore'
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
   const { authedUser, usersEntity } = userStore()
-  const { updateProduct  } = useStore()
+  const { updateProduct  } = productStore()
 
   const removeComment = (commentId, productId) => {
     deleteComment(commentId)

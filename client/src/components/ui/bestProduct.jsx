@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import './css/bestProduct.css'
-import useStore from '../../store/createStore'
+import productStore from '../../store/productStore'
 
 const BestProduct = () => {
-  const { productsEntity } = useStore()
+  const { productsEntity } = productStore()
+  // продукт, максимального рейтинга
   const maxRatingProduct = _.orderBy(productsEntity, ['rate'], ['desc'])[0]
 
   return (<>

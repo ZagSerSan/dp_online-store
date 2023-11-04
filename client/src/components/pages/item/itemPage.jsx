@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useStore from '../../../store/createStore'
+import productStore from '../../../store/productStore'
 import { settings } from '../../../utils/sliderSettings'
 import { calcAverageNumber } from '../../../utils/calcAverageNumber'
 import './productPage.css'
@@ -19,7 +19,7 @@ import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const ItemPage = () => {
   const { itemId } = useParams()
-  const currentProduct = useStore((state) => state.productsEntity.find(item => item._id === itemId))
+  const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
   const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
 
   const [contentState, setContentState] = useState('reviews')
@@ -58,6 +58,11 @@ const ItemPage = () => {
     if (!commentsIsLoaded) {
       loadCommentsList(itemId)
     }
+    // скроллить вверх при открытии страницы
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [commentsEntity])
 
   return (

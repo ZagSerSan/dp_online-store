@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './css/myProductsList.css'
 import { Link, Navigate } from 'react-router-dom'
@@ -6,17 +6,34 @@ import Icon from '../icon'
 import { cartAnimation } from '../../../utils/cartAnimation'
 import userStore from '../../../store/userStore'
 import userService from '../../../service/user.service'
+import Pagination from '../pagination'
 
 const MyProductsList = ({ cartItems }) => {
   const { authedUser, updateUser, updLocalUserCart } = userStore()
+  const [currentPage, setCurrentPage] = useState(0)
+  const countOnPage = 5
 
-  const removeFromCart = async (e, item) => {
+  const splicedEntity = authedUser.cart
+    ? authedUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+    : []
+  
+  if (splicedEntity.length === 0) {
+    setCurrentPage(prev => prev - 1)
+  }
+
+  const removeFromCart = async (e, item, role = '') => {
     cartAnimation(e.target, true)
     if (authedUser) {
       try {
+        let cart
+        if (role === 'clear-all') {
+          cart = []
+        } else {
+          cart = authedUser.cart.filter(cartItem => cartItem._id !== item._id)
+        }
         const newUserData = {
-          ...authedUser,
-          cart: authedUser.cart.filter(cartItem => cartItem._id !== item._id)
+          _id: authedUser._id,
+          cart
         }
         const { content } = await userService.updateUser(newUserData)
         updateUser(content)
@@ -27,7 +44,6 @@ const MyProductsList = ({ cartItems }) => {
       updLocalUserCart(item)
     }
   }
-
   const calculateTotalPrice = (products) => {
     let sum = 0
     for (let i = 0; i < products.length; i++) {
@@ -40,8 +56,8 @@ const MyProductsList = ({ cartItems }) => {
       <div className='my-products'>
 
         <div className="my-products-list">
-          {cartItems
-            ? cartItems.map(item => (
+          {splicedEntity
+            ? splicedEntity.map(item => (
               <div key={item._id} className="item">
                 <img src={item.image} alt="product image" />
                 <div className='item-content'>
@@ -88,6 +104,13 @@ const MyProductsList = ({ cartItems }) => {
           }
         </div>
 
+        <Pagination
+          countOnPage={countOnPage}
+          itemsCount={authedUser.cart.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+
         <div className="my-products-actions">
           <div className="my-products-actions__total">
             <p>Total price:</p>
@@ -95,7 +118,7 @@ const MyProductsList = ({ cartItems }) => {
           </div>
           <div className="my-products-actions-buttons">
             <button>pay for products</button>
-            <button>Clear cart</button>
+            <button onClick={(e) => removeFromCart(e, null, 'clear-all')}>Clear cart</button>
           </div>
         </div>
       </div>

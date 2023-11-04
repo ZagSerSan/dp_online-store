@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-// css
 import './css/header.css'
-// components
-import Icon from '../common/icon'
-import useStore from '../../store/createStore'
+// store, service, utils
+import productStore from '../../store/productStore'
+import userStore from '../../store/userStore'
+import globalStore from '../../store/globalStore'
 import userService from '../../service/user.service'
 import { cartAnimation } from '../../utils/cartAnimation'
+// components
+import Icon from '../common/icon'
 import TextField from '../common/form/textField'
-import userStore from '../../store/userStore'
+const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
 
 const Header = () => {
-  const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
+  // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
-  const { globalLoading, productsEntity } = useStore()
-
+  const { productsEntity } = productStore()
+  const { globalLoading } = globalStore()
+  // локальное состояния компонента
   const [filteredProducts, setFilteredProducts] = useState()
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
@@ -23,26 +26,28 @@ const Header = () => {
   const [searchData, setSearchData] = useState({search: ''})
   const [burgerMenu, setBurgerMenu] = useState(false)
 
-  if (!globalLoading) {
-    const header = document.querySelector('.header')
-    const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
+  // после загрузки приложения отслеживать скролл и переключать фиксацию header
+  useEffect(() => {
+    if (!globalLoading) {
+      const header = document.querySelector('.header')
+      const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
 
-    window.addEventListener('scroll', (e) => {
-      if (window.scrollY > limitHeigth) {
-        header.classList.add('fixed')
-      } else {
-        header.classList.remove('fixed')
-      }
-    })
-  }
-
+      window.addEventListener('scroll', (e) => {
+        e.stopPropagation()
+        
+        if (window.scrollY > limitHeigth) {
+          header.classList.add('fixed')
+        } else {
+          header.classList.remove('fixed')
+        }
+      })
+    }
+  }, [globalLoading]);
+  // переключение бургер меню
   const toggleBurger = () => {
     setBurgerMenu(prev => !prev)
   }
-  const logout = () => {
-    logOut()
-    setAuthDropMenu(false)
-  }
+  // изменение состояния поиска
   const handleChange = ({ name, value }) => {
     setSearchData(prev => ({
       ...prev,
@@ -53,11 +58,7 @@ const Header = () => {
       : []
     )
   }
-  const closeSearch = () => {
-    setShowSearch(false)
-    setSearchData({search: ''})
-    setFilteredProducts([])
-  }
+  // открыть/закрыть поиск
   const handleSearch = () => {
     if (showSearch) {
       setShowSearch(false)
@@ -66,6 +67,13 @@ const Header = () => {
       setShowSearch(true)
     }
   }
+  // обнуление состояния поиска
+  const closeSearch = () => {
+    setShowSearch(false)
+    setSearchData({search: ''})
+    setFilteredProducts([])
+  }
+  // удаление из корзины
   const removeFromCart = async (e, item) => {
     cartAnimation(e.target, true)
     if (authedUser) {
@@ -82,24 +90,35 @@ const Header = () => {
     } else {
       updLocalUserCart(item)
     }
-    
+  }
+  const logout = () => {
+    logOut()
+    setAuthDropMenu(false)
   }
 
+  // настройка показа элементов в дроап-меню корзины
   const cartItemsForDropMenu = authedUser
     ? authedUser.cart
     : localUser ? localUser.cart : null
+  // максимал кол-во показа продуктов в дроп меню
+  const dropItemslimit = 5
+  // обрезка
+  const splicedItems = cartItemsForDropMenu.length > dropItemslimit
+    ? cartItemsForDropMenu.slice(0, dropItemslimit)
+    : cartItemsForDropMenu
 
   return (
     <header className='header'>
+      {/* хелпер для анимации полета корзины */}
       <div className='cart-helper'>
         <Icon id='cart'/>
       </div>
       <div className="my-container header__inner">
-
+        {/* логотип */}
         <div className='header-logo'>
           <img src={LOGO_URL} alt="logo" />
         </div>
-
+        {/* навигационные ссылки */}
         <nav>
           <ul className='header-nav'>
             <li className='header-nav__link'><Link to="/">Home</Link></li>
@@ -128,8 +147,9 @@ const Header = () => {
             }
           </ul>
         </nav>
-        
+        {/* правая панель действий */}
         <div className='header-panel'>
+          {/* дроп-меню поиска */}
           {showSearch &&
             <div
               className='drop-menu search'
@@ -159,18 +179,20 @@ const Header = () => {
                     ))
                   )}
                   <div className='to-search-btn'>
-                    <NavLink className='drop-menu__link to-search-btn' to='/cart'>
-                      Wiew more
+                    <NavLink onClick={closeSearch} className='drop-menu__link to-search-btn' to='/category'>
+                      View more
                     </NavLink>
                   </div>
                 </div>
                 : searchData.search ? <p className='not-found'>not found</p> : null
               }
             </div>
-            }
+          }
+          {/* кнопка поиска */}
           <button className='header-panel__icon' onClick={handleSearch}>
             {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
+          {/* кнопка и дроп-меню пользователя */}
           <div className='header-panel__user-container'>
             <button
               className=''
@@ -206,8 +228,8 @@ const Header = () => {
                 </div>
               )
             }
-            
           </div>
+          {/* кнопка и дроп-менб корзины */}
           <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
             data-cart='cart'
             onMouseEnter={() => setCartMenu(true)}
@@ -226,9 +248,9 @@ const Header = () => {
                 onMouseLeave={() => setCartMenu(false)}
                 className='drop-menu cart'
               >
-                {(cartItemsForDropMenu && cartItemsForDropMenu.length > 0)
+                {(splicedItems && splicedItems.length > 0)
                   ? <div className='cart-wrapper'>
-                    {(cartItemsForDropMenu.map(item => (
+                    {(splicedItems.map(item => (
                       <div key={item._id} className='cart-wrapper__col'>
                         <div className="cart-wrapper__row">
                           <NavLink to={`/category/${item.type}/${item._id}`}>
@@ -251,15 +273,18 @@ const Header = () => {
                       </NavLink>
                     </div>
                   </div>
-                  : <p className='cart-is-empty'>cart is empty</p>
+                  : <p className='cart-is-empty'>empty</p>
                 }
               </div>
             }
           </div>
+          {/* кнопка бургер-меню */}
           <div className="burger" onClick={toggleBurger}>
+            {/* кнопка */}
             <button className={"burger-button" + (burgerMenu ? " active" : '')}>
 	            <div className="burger-button__icon"></div>
             </button>
+            {/* меню */}
             {burgerMenu && (
               <div className="burger-menu">
                 <Link className='burger-menu__link' to="/">Home</Link>
@@ -272,7 +297,7 @@ const Header = () => {
               </div>
             )}
           </div>
-        </div>
+        </div> 
       </div>
     </header>
   )

@@ -18,8 +18,8 @@
 }
 @media (max-width: 400px) {
   .popular-item {
-    width: 100%;
-    padding: 0 20px;
+    width: 85%;
+    margin: 0px auto 15px auto;
   }
 }
 .popular-item:hover .popular-item__img-popap {

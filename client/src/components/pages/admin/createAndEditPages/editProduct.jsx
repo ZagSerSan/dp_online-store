@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 // import './css/createProduct.css'
 import { filesValidator } from '../../../../utils/filesValidator'
 import ProductService from '../../../../service/product.service'
-import useStore from '../../../../store/createStore'
+import productStore from '../../../../store/productStore'
 import EditProductConfig from './editProductConfig'
 
 const EditProduct = () => {
-  const { updateProduct, productsEntity } = useStore()
+  const { updateProduct, productsEntity } = productStore()
   const { productId } = useParams()
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
