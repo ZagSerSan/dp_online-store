@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+// utils
 import { filesValidator } from '../../../../utils/filesValidator'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
+// components
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
 
 const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
-  const navigate = useNavigate()
   const [errors, setErrors] = useState({})
   const [imagesDataError, setImagesDataError] = useState()
+
   // значение полей формы info
   const initInfoData = {
     name: '',
@@ -42,8 +44,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
     },
   }
   const [optionsData, setOptionsData] = useState(initOptionsData)
-
-  // ImageData
+  // значение полей ImageData
   const initImagesData = {
     introSlider: {
       switched: false,
@@ -52,18 +53,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   }
   const [imageData, setImageData] = useState(initImagesData)
   
-  useEffect(() => {
-    if (productType) {
-      console.log('productType')
-      setImageData(prev => ({
-        ...prev,
-      }))
-    }
-  }, [productType])
-
   const changeImageData = (e, files, filesType) => {
-    // e.preventDefault()
-
     switch (filesType) {
       case 'checkbox':
         if (imageData.introSlider.switched) {
@@ -297,7 +287,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
             <div className="accordion-page-item-content__title">Product Images</div>
             <div className="accordion-page-item-content__subtitle">Edit previews and sliders</div>
 
-            <form className="form-container" onSubmit={(e) => handleNext(e, contentType, imageData)}>
+            <form className="form-container images" onSubmit={(e) => handleNext(e, contentType, imageData)}>
 
               <div className="form-container__row">
                 <div className="form-container__col">
@@ -444,7 +434,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
                           onClick={() => addOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
                           disabled={Object.keys(optionsData[optionKey].options).length > 3}
                         >
-                          add option
+                          +
                         </button>
                       </div>
                     </div>
@@ -459,14 +449,14 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
                     onClick={() => removeOptionType(Object.keys(optionsData).length)}
                     disabled={Object.keys(optionsData).length < 2}
                   >
-                    remove last
+                    del last
                   </button>
                   <button
                     className='add'
                     onClick={() => addOptionType(Object.keys(optionsData).length)}
                     disabled={Object.keys(optionsData).length > 1}
                   >
-                    add option type
+                    add type
                   </button>
                 </div>
               </div>

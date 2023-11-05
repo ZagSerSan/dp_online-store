@@ -15,7 +15,6 @@ function generateUserData() {
   }
 }
 
-//todo
 function generateProductData(newProductData) {
   const folderName = splitString(newProductData.name, ' ', '_')
 
