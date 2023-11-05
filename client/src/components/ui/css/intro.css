@@ -172,7 +172,7 @@
 .intro .slider-item__column:last-child {
   -webkit-box-align: end;
       -ms-flex-align: end;
-          align-items: end;
+          align-items: flex-end;
 }
 .intro .slider-item__content h3 {
   color: #000101;

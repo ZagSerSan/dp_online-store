@@ -113,7 +113,7 @@ const MyProductsList = ({ cartItems }) => {
 
         <div className="my-products-actions">
           <div className="my-products-actions__total">
-            <p>Total price:</p>
+            <p>Total:</p>
             <p>${calculateTotalPrice(cartItems)}</p>
           </div>
           <div className="my-products-actions-buttons">

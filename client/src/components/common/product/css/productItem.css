@@ -148,6 +148,8 @@
 }
 .product-item__title button {
   position: relative;
+  width: 30px;
+  height: 30px;
 }
 .product-item__title button svg {
   fill: transparent;

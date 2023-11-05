@@ -5,7 +5,6 @@ const commentStore = create((set) => ({
   commentsEntity: null,
   commentsIsLoaded: false,
 
-  setCommentsIsLoaded: (param) => set((state) => ({ commentsIsLoaded: param })),
   loadCommentsList: async (productId) => {
     const { content } = await CommentService.getComments(productId)
     set((state) => ({ commentsEntity: content}))

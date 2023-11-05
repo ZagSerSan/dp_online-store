@@ -7,10 +7,7 @@
 	margin: 0px auto;
 	background-color: #fff;
 	padding: 15px 0;
-	// адаптив
-	@media (max-width: 500px) {
-		padding: 8px 0 8px 8px;
-	}
+
 	// оболочка
 	&__inner {
 		display: flex;
@@ -145,6 +142,9 @@
 		margin-top: 8px;
 		padding: 15px;
 		cursor: default;
+		@media (max-width: 770px) {
+			right: -40px;
+		}
 
 		a {
 			text-transform: capitalize;
@@ -326,10 +326,18 @@
 			top: -5px;
 			right: -5px;
 			z-index: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 2px;
 
-			color: #7e4c4f;
-			width: 10px;
-			height: 10px;
+			font-size: 12px;
+			color: #fff;
+			background-color: #7e4c4f;
+			border-radius: 50%;
+
+			width: 18px;
+			height: 18px;
 		}
 		&.cart {
 			position: relative;
@@ -458,10 +466,12 @@
 				&:after {
 					top: 0;
 					transform: rotateZ(45deg);
+					background-color: #f6ab44;
 				}
 				&:before {
 					top: 0;
 					transform: rotateZ(-45deg);
+					background-color: #f6ab44;
 				}
 			}
 		}

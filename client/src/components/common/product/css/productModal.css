@@ -235,6 +235,9 @@
   padding: 0px;
   margin: 0;
 }
+.product-modal .slick-slider .slick-dots .slick-active img {
+  opacity: 0.5;
+}
 .product-modal .slick-slider .slick-dots li {
   height: 100px;
   width: 100px;

@@ -1,6 +1,6 @@
 .footer {
   background-color: #f3f3f3;
-  padding: 50px 0;
+  padding: 30px 0 20px;
 }
 .footer__inner {
   display: -webkit-box;
@@ -163,8 +163,14 @@
   font-weight: 400;
   font-size: 14px;
   color: #6c6c6c;
+  text-align: left;
   line-height: 26px;
   margin-bottom: 26px;
+}
+@media (max-width: 760px) {
+  .footer__col.subscribe p {
+    text-align: center;
+  }
 }
 .footer__col.subscribe form {
   padding: 3px 0;

@@ -62,7 +62,7 @@ TextField.propTypes = {
   submitType: PropTypes.string,
   placeholder: PropTypes.string,
   optionKey: PropTypes.string,
-  index: PropTypes.string,
+  index: PropTypes.number,
   switchErrMsg: PropTypes.bool,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired

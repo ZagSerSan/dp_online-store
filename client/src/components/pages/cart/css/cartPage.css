@@ -1,6 +1,6 @@
 .cart-page {
-  min-height: 550px;
-  padding-bottom: 70px;
+  min-height: 50vh;
+  padding: 0 15px 70px;
 }
 .cart-page__title {
   font-family: "Montserrat", sans-serif;
@@ -10,6 +10,12 @@
   margin: 40px 0 30px;
   text-align: center;
   text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .cart-page__title {
+    font-size: 18px;
+    margin: 20px 0;
+  }
 }
 .cart-page .cart-empty {
   display: -webkit-box;

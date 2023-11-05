@@ -1,5 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Pacifico&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
 body {
+  background-color: #ffffff;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0px;
+  width: auto;
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0px;
+}
+button:hover {
+  cursor: pointer;
+}
+
+body {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   color: #6c7279;
@@ -12,14 +51,9 @@ body {
   margin: 0 auto;
   padding-top: 80px;
 }
-@media (max-width: 770px) {
-  .app-wrapper {
-    padding-top: 60px;
-  }
-}
 @media (max-width: 500px) {
   .app-wrapper {
-    padding-top: 56px;
+    padding-top: 65px;
   }
 }
 

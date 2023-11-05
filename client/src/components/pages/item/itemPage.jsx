@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import productStore from '../../../store/productStore'
 import { settings } from '../../../utils/sliderSettings'
 import { calcAverageNumber } from '../../../utils/calcAverageNumber'
-import './productPage.css'
+import './css/productPage.css'
 // common components
 import Slider from 'react-slick'
 import Icon from '../../common/icon'
@@ -20,7 +20,7 @@ import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
+  const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
 
   const [contentState, setContentState] = useState('reviews')
   const navLinks = [
@@ -36,10 +36,6 @@ const ItemPage = () => {
       const productPageSlider_slickDots = productPageSlider.querySelector('.slick-dots')
       productPageSlider_slickDots.style.display = 'flex'
 
-      // const slider_arrows = productPageSlider.querySelectorAll('.slick-arrow')
-      // slider_arrows.forEach(arrow => {
-      //   arrow.style.display = 'none'
-      // })
       const productPageSlider_btn = productPageSlider.querySelectorAll('li > button')
       productPageSlider_btn.forEach((btn, index) => btn.innerHTML = `<img src=${currentProduct.slider_dots[index]} alt='${index}'/>`)
     }, 100)
@@ -54,23 +50,25 @@ const ItemPage = () => {
   }
 
   useEffect(() => {
-    setCommentsIsLoaded(false)
     if (!commentsIsLoaded) {
       loadCommentsList(itemId)
     }
-    // скроллить вверх при открытии страницы
+  }, [commentsIsLoaded])
+
+  // скроллить вверх при открытии страницы
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     })
-  }, [commentsEntity])
+  }, [itemId])
 
   return (
     <div className="product-page">
 
       <div className="my-container product-page__wrapper">
         {currentProduct && (<>
-          <div className="product-page-col pb-[100px]">
+          <div className="product-page-col">
             <div className="product-page-col__row product-page-slider">
               <Slider {...settings}>
                 {currentProduct.slider.map(item => (

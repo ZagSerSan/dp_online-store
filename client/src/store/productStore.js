@@ -20,6 +20,7 @@ const productStore = create((set) => ({
   updateProduct: (newProductData, role = '') => set(async (state) => {
     try {
       const { content } = await ProductService.updateProduct(newProductData, role)
+      console.log('content :>> ', content)
       const newProductsArray = state.productsEntity.filter(
         product => product._id !== newProductData._id
       )

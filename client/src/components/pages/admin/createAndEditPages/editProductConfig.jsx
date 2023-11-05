@@ -301,7 +301,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
             <h3 className="accordion-page-item-content__title">Product Images</h3>
             <h4 className="accordion-page-item-content__subtitle">Edit previews and sliders</h4>
 
-            <form className="form-container" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
+            <form className="form-container images" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
               <div className="form-container__row">
 
                 <div className="form-container__col">
@@ -464,7 +464,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
                           onClick={() => addOption(optionKey, Object.keys(optionsData[optionKey].options).length)}
                           disabled={Object.keys(optionsData[optionKey].options).length > 3}
                         >
-                          add option
+                          +
                         </button>
                       </div>
                     </div>
@@ -479,14 +479,14 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
                     onClick={() => removeOptionType(Object.keys(optionsData).length)}
                     disabled={Object.keys(optionsData).length < 2}
                   >
-                    remove last
+                    del last
                   </button>
                   <button
                     className='add'
                     onClick={() => addOptionType(Object.keys(optionsData).length)}
                     disabled={Object.keys(optionsData).length > 1}
                   >
-                    add option type
+                    add type
                   </button>
                 </div>
               </div>

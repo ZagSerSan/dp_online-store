@@ -118,9 +118,8 @@ const AddReviewForm = ({ productId }) => {
         </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="flex">
+        <div className="text-fields">
           <TextField
-            // label="Name:"
             name="name"
             value={data.name}
             placeholder='Name'
@@ -128,7 +127,6 @@ const AddReviewForm = ({ productId }) => {
             errors={errors}
           />
           <TextField
-            // label="Email:"
             name="email"
             value={data.email}
             placeholder='Email'
@@ -137,7 +135,6 @@ const AddReviewForm = ({ productId }) => {
           />
         </div>
         <Textarea
-          // label="Comment:"
           name="content"
           value={data.content}
           onChange={handleChange}

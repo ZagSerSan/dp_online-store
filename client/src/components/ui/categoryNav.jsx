@@ -50,10 +50,9 @@ const CategoryNav = () => {
   }
 
   return (
-    // Hight Wrapper. Изменения стилей при выборе категории
-    <div className={'category-nav_HW' + (type ? ' litle-padding' : '')}>
+    <div className='category-nav_HW'>
       <div className="my-container">
-        <div className={'category-nav' + (type ? ' small' : '')}>
+        <div className={'category-nav' + (type ? ' type-selected' : '')}>
           {/* категории */}
           {categories.map(item => (
             <Link

@@ -16,15 +16,13 @@ import ProductActions from './productActions'
 
 const ProductModal = ({ item, modalState, onToggleState }) => {
   const { setCartItemData } = cartStore()
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
+  const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
 
-  // загружать комменты этого продукта
   useEffect(() => {
-    setCommentsIsLoaded(false)
-    if (item && !commentsIsLoaded ) {
+    if (item && !commentsIsLoaded) {
       loadCommentsList(item._id)
     }
-  }, [item, commentsEntity])
+  }, [item, commentsIsLoaded])
 
   // modal close func
   const closeModal = () => {

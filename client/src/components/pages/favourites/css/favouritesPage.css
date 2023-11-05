@@ -1,5 +1,6 @@
 .favourites-page {
-  min-height: 550px;
+  min-height: 50vh;
+  padding: 0 15px;
 }
 .favourites-page__title {
   font-family: "Montserrat", sans-serif;
@@ -9,6 +10,12 @@
   margin: 40px 0 30px;
   text-align: center;
   text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .favourites-page__title {
+    font-size: 18px;
+    margin: 20px 0;
+  }
 }
 .favourites-page .cart-empty {
   display: -webkit-box;

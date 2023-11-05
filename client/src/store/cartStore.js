@@ -47,7 +47,6 @@ const cartStore = create((set) => ({
         }
       }
     } 
-    console.log('last return')
     return { cartItemDataWasChanged: false }
   }),
   addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {

@@ -10,7 +10,7 @@ const CartPage = () => {
   return (
     <div className="my-container">
       <div className="cart-page">
-        <h3 className='favourites-page__title'>YOUR cart ITEMS</h3>
+        <h3 className='cart-page__title'>YOUR cart ITEMS</h3>
         {authedUser && authedUser.cart.length > 0
           ? <MyProductsList cartItems={authedUser.cart}/>
           : <div className='cart-empty'>

@@ -16,16 +16,6 @@ const SettingProductContent = ({ contentType, editedProduct }) => {
   const { updateProduct } = productStore()
   const [errors, setErrors] = useState({})
 
-  // todo comments
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded, deleteComment } = commentStore()
-
-  useEffect(() => {
-      setCommentsIsLoaded(false)
-      if (!commentsIsLoaded) {
-        loadCommentsList(editedProduct._id)
-      }
-    }, [commentsEntity])
-      
   // значение полей формы
   const [dataInfo, setDataInfo] = useState({
     _id: editedProduct._id,

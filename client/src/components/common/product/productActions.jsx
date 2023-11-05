@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './css/productActions.css'
 import userStore from '../../../store/userStore'
 import cartStore from '../../../store/cartStore'

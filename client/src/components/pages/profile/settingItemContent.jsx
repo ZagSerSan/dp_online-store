@@ -158,7 +158,7 @@ const SettingItemContent = ({ contentType, user }) => {
                   submitType='password'
                 />
                 <TextField
-                  label='Password Confirm:'
+                  label='Confirm:'
                   placeholder="Confirm new password"
                   name="passwordConfirm"
                   value={dataPassword.passwordConfirm}
@@ -222,7 +222,7 @@ const SettingItemContent = ({ contentType, user }) => {
                   submitType='address'
                 />
                 <TextField
-                  label='House/apartment number:'
+                  label='apartment:'
                   placeholder="For example: 13/12"
                   name="houseNumber"
                   value={dataAddress.houseNumber}

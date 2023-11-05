@@ -1,16 +1,38 @@
 .product-page {
+  font-family: "Montserrat", sans-serif;
+
   &__wrapper {
     padding-top: 15px;
   }
   &-col {
     display: flex;
+    margin-top: 10px;
+
+    @media (max-width: 870px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &:last-child {
+      margin-top: 50px;
+    }
     &__row {
       position: relative;
       width: 50%;
       padding: 0 15px;
+      @media (max-width: 870px) {
+        width: 100%;
+        &:last-child {
+          margin-top: 50px;
+        }
+      }
 
       // 1й блок предвар просмотра
+      &.preview-info {
+        padding-top: 10px;
+      }
       & .preview-info {
+        padding-top: 30px;
         &__name {
           font-family: "Montserrat", sans-serif;
           color: #585858;
@@ -57,6 +79,8 @@
         }
       }
     }
+
+    // more-info block
     &.more-info {
       display: block;
       padding: 40px 0 0;
@@ -74,9 +98,21 @@
           color: #333;
           margin: 0 35px;
           padding-bottom: 13px;
+
+          @media (max-width: 580px) {
+            margin: 0 10px;
+          }
+          @media (max-width: 450px) {
+            font-size: 10px;
+            color: #333333b7;
+          }
+
           &.active {
             border-bottom: 2px solid #7e4c4f;
             color: #7e4c4f;
+            @media (max-width: 450px) {
+              font-size: 12px;
+            }
           }
           &:not(:last-child):after {
             background-color: #7a7a7a;
@@ -86,11 +122,21 @@
             right: -37px;
             top: 0px;
             width: 1px;
+
+            @media (max-width: 580px) {
+              right: -10px;
+            }
+            @media (max-width: 580px) {
+              display: none;
+            }
           }
         }
       }
       .more-info-content {
         padding: 40px 30px;
+        @media (max-width: 650px) {
+          padding: 25px 15px;
+        }
         &__description {
           font-family: "Montserrat", sans-serif;
           font-size: 14px;
@@ -110,6 +156,7 @@
           .product-reviews-item {
             width: 100%;
             margin-bottom: 30px;
+            text-align: left;
             &__col {
               display: flex;
               justify-content: space-between;
@@ -122,6 +169,10 @@
                   border: 1px solid #686868;
 
                   margin-right: 15px;
+                  @media (max-width: 450px) {
+                    margin-right: 10px;
+                    height: 40px;
+                  }
                 }
                 p {
                   padding: 3px 0 0 2px;
@@ -138,6 +189,9 @@
                 stroke: #838383;
                 height: 16px;
                 margin-right: 8px;
+                @media (max-width: 450px) {
+                  margin-right: 3px;
+                }
                 &.active {
                   stroke: #4d2e30;
                 }
@@ -150,12 +204,32 @@
               line-height: 13px;
               color: #333;
               text-transform: capitalize;
+
+              @media (max-width: 450px) {
+                font-size: 12px;
+              }
+
               span {
                 margin-right: 15px;
+                &.adapt {
+                  display: none;
+                }
+                @media (max-width: 450px) {
+                  margin-right: 5px;
+                  &.desktop {
+                    display: none;
+                  }
+                  &.adapt {
+                    display: inline;
+                  }
+                }
               }
               svg {
                 fill: red;
                 height: 13px;
+                @media (max-width: 450px) {
+                  margin-left: 8px;
+                }
               }
             }
             &__description {
@@ -175,6 +249,10 @@
               color: #303030;
               text-transform: uppercase;
               margin-bottom: 20px;
+
+              @media (max-width: 450px) {
+                font-size: 13px;
+              }
             }
             .subtitle {
               align-items: center;
@@ -186,6 +264,9 @@
                 font-weight: 700;
                 color: #303030;
                 margin-bottom: 6px;
+                @media (max-width: 450px) {
+                  font-weight: 600;
+                }
               }
               div {
                 display: flex;
@@ -205,23 +286,39 @@
               }
             }
             .form {
-              // сброс стилей tailwind'a
-              max-width: none;
-              box-shadow: none;
-              background-color: transparent;
-              padding: 0;
-
               width: 100%;
               display: flex;
               flex-direction: column;
 
+              .text-fields {
+                display: flex;
+                @media (max-width: 450px) {
+                  flex-direction: column;
+                }
+              }
               .text-field {
                 width: 50%;
+                @media (max-width: 450px) {
+                  width: 100%;
+                }
                 &:first-child {
                   padding-right: 15px;
+                  @media (max-width: 650px) {
+                    padding-right: 5px;
+                  }
+                  @media (max-width: 450px) {
+                    padding-right: 0px;
+                  }
                 }
                 &:last-child {
                   padding-left: 15px;
+                  @media (max-width: 650px) {
+                    padding-left: 5px;
+                  }
+                  @media (max-width: 450px) {
+                    margin-top: 10px;
+                    padding-left: 0px;
+                  }
                 }
               }
               input {
@@ -245,6 +342,9 @@
                 margin-top: 20px;
                 width: 100%;
                 font-size: 14px;
+                @media (max-width: 450px) {
+                  margin-top: 10px;
+                }
               }
               button.submit {
                 display: block;
@@ -289,6 +389,17 @@
               }
             }
           }
+          .no-comments {
+            font-family: "Montserrat", sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #242424;
+            text-align: center;
+
+            border-bottom: 1px #626262 solid;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+          }
         }
       }
     }
@@ -297,38 +408,38 @@
   // SLIDER -------------------------------------
   .slick-slider {
     // убрал чтобы прикрепить слайдер к низу item__row
-    // position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .slick-dots {
-      // position: absolute;
       position: relative;
-      // bottom: 0;
-      // left: 50%;
       z-index: 2;
-      // transform: translateX(-50%);
 
       display: flex;
       max-width: 100%;
-      padding-top: 10px;
+      padding: 10px 0 0;
       margin: 0;
-      // background-color: #ccc;
+      .slick-active {
+        img {
+          opacity: 0.5;
+        }
+      }
       li {
-        // display: block;
         height: 100px;
         width: 100px;
         margin-right: 10px;
         list-style: none;
         overflow: hidden;
-        // border: 1px solid #ddd;
+
+        @media (max-width: 500px) {
+          height: 70px;
+          width: 70px;
+        }
+
         &:last-child {
           margin-right: 0;
         }
-        // &:hover {
-        //   box-shadow: 0px 0px 2px #000;
-        // }
         button {
           background-color: transparent;
           border: 0;
@@ -361,6 +472,17 @@
       border-radius: 10%;
       transition: border-color 0.15s linear;
 
+      @media (max-width: 500px) {
+        width: 30px;
+        height: 30px;
+        bottom: 20px;
+      }
+      @media (max-width: 330px) {
+        width: 20px;
+        height: 20px;
+        bottom: 20px;
+      }
+
       &.slick-next {
         right: 20px;
         border-bottom: none;
@@ -381,6 +503,15 @@
     width: 100%;
     padding-bottom: -5px;
     border: 1px solid #ddd;
+    @media (max-width: 870px) {
+      width: 70%;
+    }
+    @media (max-width: 870px) {
+      width: 90%;
+    }
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
   .slick-track {
     display: flex;

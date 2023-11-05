@@ -195,12 +195,18 @@
       max-width: 100%;
       padding: 0px;
       margin: 0;
+      .slick-active {
+        img {
+          opacity: 0.5;
+        }
+      }
       li {
         height: 100px;
         width: 100px;
         margin-right: 10px;
         list-style: none;
         overflow: hidden;
+
         &:last-child {
           margin-right: 0;
         }

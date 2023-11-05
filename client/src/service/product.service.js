@@ -23,12 +23,35 @@ const ProductService = {
   },
   updateProduct: async (productData, role) => {
     const url = productEndpoint + productData._id
-    // role = edit-rate
-    if (role) {
+    // обновление только рейтинга
+    if (role === 'edit-rate') {
       const { data } = await httpService.put(
         url,
         productData,
         {headers: {"accessrole": role}}
+      )
+      return data
+    // обновление файлов продукта
+    } else if (role === 'images') {
+      const { data } = await httpService.put(
+        url,
+        { _id: productData._id, ...productData.info},
+        {headers: {"images": "data"}}
+      )
+      await httpService.put(
+        url,
+        { _id: productData._id, ...productData.files},
+        {headers: {
+          "Content-Type": "multipart/form-data",
+          "images": "files"
+        }}
+      )
+      return data
+    } else if (role === 'options') {
+      const { data } = await httpService.put(
+        url,
+        productData,
+        {headers: {"options": "options"}}
       )
       return data
     } else {

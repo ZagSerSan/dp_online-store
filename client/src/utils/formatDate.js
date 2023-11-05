@@ -6,5 +6,8 @@ export const formatDate = (commentData, type) => {
   }
   if (type === 'year') {
     return moment(commentData).format('DD MMM YYYY')
-  } 
+  }
+  if (type === 'year-adapt') {
+    return moment(commentData).format('DD.MM.YYYY')
+  }
 }

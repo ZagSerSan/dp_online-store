@@ -61,7 +61,8 @@ const ProductInfoReviews = () => {
                   <div>
                     <p className='product-reviews-item__name-data'>
                       <span>{formatDate(review.created_at, 'hours')}</span>
-                      <span>{formatDate(review.created_at, 'year')}</span>
+                      <span className='desktop'>{formatDate(review.created_at, 'year')}</span>
+                      <span className='adapt'>{formatDate(review.created_at, 'year-adapt')}</span>
                       {
                         (review?.userId === authedUser?._id || authedUser?.admin) &&
                         <button onClick={() => removeComment(review._id, review.productId)}>
@@ -75,7 +76,7 @@ const ProductInfoReviews = () => {
                   <p className='product-reviews-item__description'>{review.content}</p>
                 </div>
               </div>
-            )) : <p>no comments</p>
+            )) : <p className='no-comments'>no comments</p>
           ) : 'loading...'
       }
       </div>

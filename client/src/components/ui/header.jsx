@@ -27,6 +27,7 @@ const Header = () => {
   const [burgerMenu, setBurgerMenu] = useState(false)
 
   // после загрузки приложения отслеживать скролл и переключать фиксацию header
+  // так же скрывать дроп-меню при скролле
   useEffect(() => {
     if (!globalLoading) {
       const header = document.querySelector('.header')
@@ -40,12 +41,19 @@ const Header = () => {
         } else {
           header.classList.remove('fixed')
         }
+
+        setDropMenu(false)
+        setCartMenu(false)
+        setAuthDropMenu(false)
+        setShowSearch(false)
+        setBurgerMenu(false)
       })
     }
   }, [globalLoading]);
   // переключение бургер меню
   const toggleBurger = () => {
     setBurgerMenu(prev => !prev)
+    closeSearch()
   }
   // изменение состояния поиска
   const handleChange = ({ name, value }) => {
@@ -57,6 +65,24 @@ const Header = () => {
       ? productsEntity.filter(entity => entity.name.toLowerCase().includes(value.toLowerCase())).splice(0, 4)
       : []
     )
+  }
+  // открыть/закрыть меню пользователя
+  const toggleUserMenu = () => {
+    if (authDropMenu) {
+      setAuthDropMenu(false)
+    } else {
+      setAuthDropMenu(true)
+      closeSearch()
+    }
+  }
+  // открыть/закрыть меню корзины
+  const toggleCartMenu = () => {
+    if (cartMenu) {
+      setCartMenu(false)
+    } else {
+      setCartMenu(true)
+      closeSearch()
+    }
   }
   // открыть/закрыть поиск
   const handleSearch = () => {
@@ -99,11 +125,11 @@ const Header = () => {
   // настройка показа элементов в дроап-меню корзины
   const cartItemsForDropMenu = authedUser
     ? authedUser.cart
-    : localUser ? localUser.cart : null
+    : localUser ? localUser.cart : []
   // максимал кол-во показа продуктов в дроп меню
   const dropItemslimit = 5
   // обрезка
-  const splicedItems = cartItemsForDropMenu.length > dropItemslimit
+  const splicedItems = cartItemsForDropMenu?.length > dropItemslimit
     ? cartItemsForDropMenu.slice(0, dropItemslimit)
     : cartItemsForDropMenu
 
@@ -195,9 +221,9 @@ const Header = () => {
           {/* кнопка и дроп-меню пользователя */}
           <div className='header-panel__user-container'>
             <button
-              className=''
-              onMouseEnter={() => setAuthDropMenu(true)}
-              onMouseLeave={() => setAuthDropMenu(false)}
+              onClick={toggleUserMenu}
+              onMouseEnter={toggleUserMenu}
+              onMouseLeave={toggleUserMenu}
             >
               {authedUser
                 ? <img src={authedUser.image} alt="avatar" />
@@ -229,18 +255,17 @@ const Header = () => {
               )
             }
           </div>
-          {/* кнопка и дроп-менб корзины */}
+          {/* кнопка и дроп-меню корзины */}
           <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
             data-cart='cart'
-            onMouseEnter={() => setCartMenu(true)}
-            onMouseLeave={() => setCartMenu(false)}
+            onClick={toggleCartMenu}
+            onMouseEnter={toggleCartMenu}
+            onMouseLeave={toggleCartMenu}
           >
-            <div className="card-index">
-              {
-                (authedUser && authedUser.cart.length > 0 ? authedUser.cart.length : null)
-                || (localUser && localUser?.cart.length > 0 ? localUser.cart.length : null)
-              }
-            </div>
+            {authedUser && authedUser.cart.length > 0 || localUser && localUser?.cart.length > 0
+              ? <div className="card-index">{authedUser.cart.length}</div>
+              : null
+            }
             <Icon id='cart'/>
             {cartMenu &&
               <div
