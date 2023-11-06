@@ -27,7 +27,7 @@ const productStore = create((set) => ({
         product => product._id !== newProductData._id
       )
       newProductsArray.push(content)
-      set((state) => ({ usersLoaded: false }))
+      set((state) => ({ productsLoaded: false }))
       set((state) => ({ productsEntity: newProductsArray }))
     } catch (error) {
       errorCatcher(error)

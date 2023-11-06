@@ -1,7 +1,7 @@
 const express = require('express')
 const fs = require('fs/promises')
 const fs_notPromis = require("fs")
-// const path = require('path')
+const path = require('path')
 const auth = require('../middleware/auth.middleware')
 const chalk = require('chalk')
 const Product = require('../models/Product')
@@ -165,7 +165,6 @@ router.put('/:productId', auth, async (req, res) => {
       try {
         let updatedProduct = {}
         // если менялись какие-либо зависимости: имя или тип
-        console.log(editedProduct.name !== req.body.name || editedProduct.type !== req.body.type)
         if (editedProduct.name !== req.body.name || editedProduct.type !== req.body.type) {
           // если поменялся тип и название одновременно (во избежания конфликтов)
           if (editedProduct.name !== req.body.name && editedProduct.type !== req.body.type) {
@@ -189,13 +188,16 @@ router.put('/:productId', auth, async (req, res) => {
                 relocateFile(oldFolderName, newFolderName, fileName)
               })
             })
-            // удаление старой директории      
-            await fs.rm(oldFolderName,
-              { recursive:true }, 
-              (err) => { 
-                console.error(err)
-              }
-            )
+            // удаление старой директории
+            setTimeout(() => {
+              fs.rm(oldFolderName,
+                { recursive:true }, 
+                (err) => { 
+                  console.error(err)
+                }
+              )
+            }, 3000)
+            
             // менять пути к картинкам
             const folderName = splitString(req.body.name, ' ', '_')
             const IMAGES_URL_API = `http://localhost:8080/images/products/${req.body.type}/${folderName}`

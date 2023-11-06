@@ -374,7 +374,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 </div>
               </div>
 
-              <h4 className='form-container__title'>Product sliders</h4>
+              <h4 className='form-container__title'>Product slider dots</h4>
               <div className="form-container__row">
                 <div className='form-container-preview'>
                   <div className="form-container-preview-left">

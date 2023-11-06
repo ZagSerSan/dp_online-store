@@ -11,7 +11,7 @@ import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
   const { setGlobalLoading, globalLoading } = globalStore()
-  const { loadProductsList } = productStore()
+  const { loadProductsList, productsLoaded } = productStore()
   const { setAuthedUser, setLocalUser, loadUsersList } = userStore()
   const [error, setError] = useState(false)
   
@@ -32,8 +32,15 @@ const AppLoader = ({ children }) => {
   }
 
   useEffect(() => {
-    loadEntities()
-  }, [globalLoading])
+    // начальная глобальная загрузка
+    if (globalLoading) {
+      loadEntities()
+    }
+    // если сущности продуктов изменились и не глобальная загрузка
+    if (!productsLoaded && !globalLoading) {
+      loadProductsList()
+    }
+  }, [globalLoading, productsLoaded])
 
   if (globalLoading && !error) {
     return <Icon id='loader' />
