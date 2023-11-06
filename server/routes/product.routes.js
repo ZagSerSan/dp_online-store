@@ -86,6 +86,12 @@ router.put('/:productId', auth, async (req, res) => {
   // или клиент имеет доступ изменять общий рейтинг продукта
   if (authedUser.admin || req.headers?.accessrole === 'edit-rate') {
 
+    // если изменяется рейтинг продукта
+    if (req.headers.accessrole) {
+      console.log('req.headers.options :>> ', req.headers.options)
+      updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
+      res.send(updatedProduct)
+    } else
     // если тип редакт продукта = картинки
     if (req.headers.images) {
       try {
