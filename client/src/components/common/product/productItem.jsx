@@ -72,7 +72,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
           <Link to={`/category/${item.type}/${item._id}`}>{name}</Link>
           <button
             onClick={(e) => toggleBookmark(e, item._id, authedUser, updateUser, updLocalUserBookmarks)}
-            className={'w-[24px] h-[24px] z-10' + (isBookmarked ? ' active' : '')}
+            className={isBookmarked ? ' active' : ''}
           >
             <Icon id='heart'/>
           </button>

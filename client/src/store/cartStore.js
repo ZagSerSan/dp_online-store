@@ -94,8 +94,7 @@ const cartStore = create((set) => ({
             ? authedUser.cart.filter(cartItem => cartItem._id !== item._id)
             : [...authedUser.cart, newCartItemData]
         }
-        const { content } = await userService.updateUser(newUserData)
-        updateUser(content)
+        updateUser(newUserData)
       } catch (e) {
         console.log('e :>> ', e)
       }
@@ -114,8 +113,7 @@ const cartStore = create((set) => ({
             ? authedUser.bookmarks.filter(item => item !== id)
             : [...authedUser.bookmarks, id]
         }
-        const { content } = await userService.updateUser(newUserData)
-        updateUser(content)
+        updateUser(newUserData)
       } catch (e) {
         console.log('e :>> ', e)
       }
