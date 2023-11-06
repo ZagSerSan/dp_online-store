@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+// utils
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { formatDate } from '../../../utils/formatDate'
 import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+// store
 import userStore from '../../../store/userStore'
 import commentStore from '../../../store/commentStore'
 import productStore from '../../../store/productStore'
+// components
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
 

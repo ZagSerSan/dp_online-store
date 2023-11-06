@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import './auth.css'
-import TextField from '../../common/form/textField'
-import authService from '../../../service/auth.service'
 import { useNavigate, Navigate, Link } from "react-router-dom"
+import './auth.css'
+// utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+// serveice, store
+import authService from '../../../service/auth.service'
 import userStore from '../../../store/userStore'
+// components
+import TextField from '../../common/form/textField'
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+  const { setAuthedUser, authorizated } = userStore()
   const [errors, setErrors] = useState({})
+
   // значение полей формы
   const [data, setData] = useState({
     email: '',
     password: '',
   })
-
-  const { setAuthedUser, authorizated } = userStore()
-  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()

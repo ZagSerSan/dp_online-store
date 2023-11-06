@@ -1,4 +1,4 @@
-const apiServerUrl = 'http://localhost:8080/' // если не продакшн версия то = ''
+const apiServerUrl = 'http://localhost:8080/'
 
 const manItems = {
   manItem1: {

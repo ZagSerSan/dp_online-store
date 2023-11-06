@@ -13,6 +13,7 @@ const CreateProduct = () => {
   const { createNewProduct } = productStore()
   const [newProdData, setNewProdData] = useState({})
   const [productType, setProductType] = useState()
+
   // clicker items (ui)
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
@@ -20,12 +21,14 @@ const CreateProduct = () => {
     {number: 2, contentType: 'options', title: 'Add product options'},
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
+  
   // переключение типа контента
   const toggleSettingItem = (e, settingItemId) => {
     e.stopPropagation()
     setSettingItemState(settingItemId)
   }
-  // отправка данных
+
+  // отправка данных в зависимости от типа
   const handleSubmit = async (e, contentType, data) => {
     e.preventDefault()
 

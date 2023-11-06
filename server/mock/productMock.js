@@ -962,19 +962,4 @@ const products = [
   },
 ]
 
-// const fs = require('fs')
-// const path = require('path')
-
-// const image_1 = path.join(__dirname, '/images/items/man_item.png')
-// const image_2 = path.join(__dirname, '/images/items/woman_item.png')
-// const file_1 = fs.readFileSync(image_1, {encoding:'utf8'})
-// const file_2 = fs.readFileSync(image_2, {encoding:'utf8'})
-
-// const products = [
-//   {img: image_1},
-//   {img: image_2}
-// ]
-// const productsJSON = JSON.stringify(products)
-
 module.exports = products
-  // productsJSON

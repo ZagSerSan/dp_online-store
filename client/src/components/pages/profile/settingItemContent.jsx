@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
+// utils
 import { validatorConfig } from '../../../utils/validatorConfig'
 import { validator } from '../../../utils/validator'
-import { useNavigate } from 'react-router-dom'
+// store, components
 import userStore from '../../../store/userStore'
 import TextField from '../../common/form/textField'
 
 const SettingItemContent = ({ contentType, user }) => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const { authedUser, updateUser } = userStore()
+  const { authedUser, updateUser, removeUser, logOut } = userStore()
 
   // значение полей формы по умолчанию
   const dataPasswordInitState = {
@@ -103,6 +105,19 @@ const SettingItemContent = ({ contentType, user }) => {
         break;
       default:
         break;
+    }
+  }
+
+  const deleteAccount = (e) => {
+    e.preventDefault()
+    
+    const answer = confirm('Are you sure you want to delete your account?')
+    if (answer) {
+      navigate('/home')
+      removeUser(authedUser._id)
+      setTimeout(() => {
+        logOut()
+      }, 2000);
     }
   }
 
@@ -280,6 +295,14 @@ const SettingItemContent = ({ contentType, user }) => {
               >
                 Save data
               </button>
+              {authedUser._id === user._id &&
+                <button
+                  onClick={deleteAccount}
+                  className="remove"
+                >
+                  Delete account
+                </button>
+              }
             </div>
           </form>
         </div>
@@ -287,6 +310,11 @@ const SettingItemContent = ({ contentType, user }) => {
     }
   </div>
   )
+}
+
+SettingItemContent.propTypes = {
+  contentType: PropTypes.string,
+  user: PropTypes.object
 }
 
 export default SettingItemContent

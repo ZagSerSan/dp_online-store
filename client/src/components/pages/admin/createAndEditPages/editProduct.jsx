@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { filesValidator } from '../../../../utils/filesValidator'
-import ProductService from '../../../../service/product.service'
 import productStore from '../../../../store/productStore'
 import EditProductConfig from './editProductConfig'
-import { toast } from 'react-toastify'
 
 const EditProduct = () => {
-  const navigate = useNavigate()
   const { updateProduct, productsEntity } = productStore()
   const { productId } = useParams()
   const editedProduct = productsEntity.find(product => product._id === productId)
 
+  // clicker items (ui)
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
     {number: 1, contentType: 'info', title: 'Add product information'},
     {number: 2, contentType: 'options', title: 'Add product options'},
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
-  const [newProdData, setNewProdData] = useState({})
-  const [productType, setProductType] = useState()
-
+  // переключение типа контента
   const toggleSettingItem = (e, settingItemId) => {
     e.stopPropagation()
     setSettingItemState(settingItemId)
   }
 
+  // обновление информации в зависимости от типа
   const handleSubmit = async (e, contentType, data) => {
     e.preventDefault()
 
@@ -137,7 +135,6 @@ const EditProduct = () => {
                     contentType={settingItem.contentType}
                     toggleSettingItem={toggleSettingItem}
                     handleSubmit={handleSubmit}
-                    productType={productType}
                   />
                 </div>
               </div>

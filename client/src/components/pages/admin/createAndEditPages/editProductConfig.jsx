@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
+// utils
 import { filesValidator } from '../../../../utils/filesValidator'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
+import { tranformOptionsData } from '../../../../utils/tranformOptionsData'
+// store, components
+import productStore from '../../../../store/productStore'
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
-import productStore from '../../../../store/productStore'
-import { tranformOptionsData } from '../../../../utils/tranformOptionsData'
 
-const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
+const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
   const [errors, setErrors] = useState({})
   const [imagesDataError, setImagesDataError] = useState()
-
   const { productsEntity } = productStore()
   const { productId } = useParams()
   const currentProduct = productsEntity
@@ -30,7 +31,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
     description: currentProduct ? currentProduct.description : '',
   }
   const [data, setData] = useState(initInfoData)
-
   // значение полей формы options
   const initOptionsData = {
     option_1: {
@@ -54,7 +54,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
     ? tranformOptionsData(currentProduct.modalOptionTypes)
     : initOptionsData
   )
-
   // ImageData
   const initImagesData = {
     introSlider: {
@@ -62,9 +61,9 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
     },
     images: {}
   }
-
   const [imageData, setImageData] = useState(initImagesData)
-  
+
+  // функции редактирования данных (картинок и других)
   const changeImageData = (e, files, filesType) => {
     // e.preventDefault()
 
@@ -132,15 +131,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
         break
     }
   }
-
-  const handleUpdate = async (e, contentType, data, settingItemNumber) => {
-    e.preventDefault()
-    if(settingItemNumber) {
-      toggleSettingItem(e, settingItemNumber)
-    }
-    handleSubmit(e, contentType, data)
-  }
-
   const handleChange = (payload, submitType, optionKey, index) => {
     let { name, value } = payload
 
@@ -195,7 +185,16 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
         break
     }
   }
-  
+  // функция обновления данных
+  const handleUpdate = async (e, contentType, data, settingItemNumber) => {
+    e.preventDefault()
+    if(settingItemNumber) {
+      toggleSettingItem(e, settingItemNumber)
+    }
+    handleSubmit(e, contentType, data)
+  }
+
+  // функции кнопок изменения опшинов
   const addOptionType = (optionsTypeLength) => {
     const optionTypeName = `option_${optionsTypeLength + 1}`
     const optionTypeTemplate = {
@@ -582,6 +581,12 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit, produ
       }
     </div>
   )
+}
+
+EditProductConfig.propTypes = {
+  contentType: PropTypes.string,
+  toggleSettingItem: PropTypes.func,
+  handleSubmit: PropTypes.func
 }
 
 export default EditProductConfig

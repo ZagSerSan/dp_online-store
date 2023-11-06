@@ -1,8 +1,8 @@
 import { create } from 'zustand'
+import { toast } from 'react-toastify'
+import { errorCatcher } from '../utils/errorCatcher'
 import localStorageService from '../service/localStorage.service'
 import userService from '../service/user.service'
-import { errorCatcher } from '../utils/errorCatcher'
-import { toast } from 'react-toastify'
 
 const userStore = create((set) => ({
   usersEntity: null,
@@ -11,6 +11,7 @@ const userStore = create((set) => ({
   authorizated: false,
   usersLoaded: false,
 
+  // обновление пользователя
   updateUser: (newUserData) => set(async (state) => {
     try {
       const { content } = await userService.updateUser(newUserData)
@@ -29,6 +30,7 @@ const userStore = create((set) => ({
       errorCatcher(error)
     }
   }),
+  // удаление
   removeUser: (userId) => set(async (state) => {
     try {
       const { data } = await userService.deleteUser(userId)
@@ -38,6 +40,16 @@ const userStore = create((set) => ({
       return { usersEntity: updatedArray }
     } catch (error) {
       console.log('err', error)
+    }
+  }),
+  // создание
+  createUser: async (payload) => {
+    try {
+      await userService.createUser(payload)
+      set((state) => ({ usersLoaded: false}))
+      toast.success("User has been created!")
+    } catch (error) {
+      console.log('error :>> ', error)
       const errorType = error.response?.data?.error?.message
       if (errorType === "EMAIL_EXISTS") {
         toast.error("Email exists!")
@@ -45,40 +57,30 @@ const userStore = create((set) => ({
         errorCatcher(error)
       }
     }
-  }),
-  createUser: async (payload) => {
-    try {
-      await userService.createUser(payload)
-      set((state) => ({ usersLoaded: false}))
-      toast.success("User has been created!")
-    } catch (error) {
-      errorCatcher(error)
-    }
   },
+  // загрузка списка пользователей
   loadUsersList: async () => {
     const { content } = await userService.get()
     set((state) => ({ usersEntity: content}))
     set((state) => ({ usersLoaded: true}))
   },
-  updLocalUserCart: (cartItem) => set((state) => {
-    if (state.localUser?.cart) {
+  // обновление не авторизов пользователя (корзины)
+  updLocalUserCart: (cartItem, role) => set((state) => {
+    if (role === 'clear-all') {
+      const newLocalUserData = {
+        ...state.localUser,
+        cart: localStorageService.clearCart(cartItem)
+      }
+      return { localUser: newLocalUserData }
+    } else {
       const newLocalUserData = {
         ...state.localUser,
         cart: localStorageService.setCart(cartItem)
       }
       return { localUser: newLocalUserData }
-    } else {
-      const newLocalUserData = state.localUser
-        ? {
-          ...state.localUser,
-          cart: localStorageService.setCart(cartItem)
-        }
-        : {
-          cart: localStorageService.setCart(cartItem)
-        }
-      return { localUser: newLocalUserData }
     }
   }),
+  // обновление не авторизов пользователя (избранное)
   updLocalUserBookmarks: (id) => set((state) => {
     if (state.localUser?.bookmarks) {
       const newLocalUserData = {
@@ -98,16 +100,26 @@ const userStore = create((set) => ({
       return { localUser: newLocalUserData }
     }
   }),
+  // загрузка и установка авторизованного польз 
   setAuthedUser: async () => {
+    set((state) => ({ localUser: null }))
     const { content } = await userService.getCurrentUser()
     localStorageService.removeLocalUser()
     set((state) => ({ authedUser: content }))
     set((state) => ({ authorizated: true }))
+    set((state) => ({ usersLoaded: false }))
+  },
+  // загрузка и установка НЕ авторизованного польз 
+  setLocalUser: async () => {
+    const localUser = localStorageService.setLocalUser()
+    set((state) => ({ localUser }))
   },
   logOut: () => {
     localStorageService.removeAuthData()
     set((state) => ({ authedUser: null }))
     set((state) => ({ authorizated: false }))
+    const localUser = localStorageService.setLocalUser()
+    set((state) => ({ localUser }))
   }
 }))
 

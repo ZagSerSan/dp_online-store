@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+// store, service
 import globalStore from '../../../store/globalStore'
 import productStore from '../../../store/productStore'
 import userStore from '../../../store/userStore'
 import localStorageService from '../../../service/localStorage.service'
+// components
 import ErrorPage from '../../pages/error'
 import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
   const { setGlobalLoading, globalLoading } = globalStore()
   const { loadProductsList } = productStore()
-  const { setAuthedUser, loadUsersList } = userStore()
+  const { setAuthedUser, setLocalUser, loadUsersList } = userStore()
   const [error, setError] = useState(false)
   
   const loadEntities = async () => {
@@ -19,6 +21,8 @@ const AppLoader = ({ children }) => {
       await loadUsersList()
       if (localStorageService.getAccessToken()) {
         await setAuthedUser()
+      } else {
+        await setLocalUser()
       }
       setGlobalLoading()
     } catch (error) {

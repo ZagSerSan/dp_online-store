@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
     })
   }
 })
-
 // получение текущего пользователя
 router.get('/:userId', auth, async (req, res) => {
   try {
@@ -42,7 +41,6 @@ router.get('/:userId', auth, async (req, res) => {
     res.status(401).json({message: 'Unauthorized'})
   }
 })
-
 // создание пользователя 
 router.post('/createUser', [
   // правила валидации
@@ -102,12 +100,12 @@ router.post('/createUser', [
     }
   }
 ])
-
 // обновление пользователя
 router.put('/:userId', auth, async (req, res) => {
+  const { userId } = req.params
   const authedUser = await User.findById(req.user._id)
   // проверка, является ли данный пользователь админом
-  if (authedUser.admin) {
+  if (authedUser?.admin  || userId === req.user._id) {
     try {
       const { userId } = req.params    
       if (req.body.password && req.body.password === req.body.passwordConfirm) {
@@ -129,14 +127,13 @@ router.put('/:userId', auth, async (req, res) => {
     })
   }
 })
-
 // удаление пользователя
 router.delete('/:userId', auth, async (req, res) => {
+  const { userId } = req.params
   const authedUser = await User.findById(req.user._id)
   // проверка, является ли данный пользователь админом
-  if (authedUser.admin) {
+  if (authedUser?.admin || userId === req.user._id) {
     try {
-      const { userId } = req.params
       const removedUser = await User.findById(userId)
 
       await removedUser.deleteOne()

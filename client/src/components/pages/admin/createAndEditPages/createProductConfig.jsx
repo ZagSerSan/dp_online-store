@@ -10,7 +10,7 @@ import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
 
-const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, productType }) => {
+const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
   const [errors, setErrors] = useState({})
   const [imagesDataError, setImagesDataError] = useState()
 
@@ -53,6 +53,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
   }
   const [imageData, setImageData] = useState(initImagesData)
   
+  // функции редактирования данных (картинок и других)
   const changeImageData = (e, files, filesType) => {
     switch (filesType) {
       case 'checkbox':
@@ -118,15 +119,6 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
         break
     }
   }
-
-  const handleNext = async (e, contentType, data, settingItemNumber) => {
-    e.preventDefault()
-    if(settingItemNumber) {
-      toggleSettingItem(e, settingItemNumber)
-    }
-    handleSubmit(e, contentType, data)
-  }
-
   const handleChange = (payload, submitType, optionKey, index) => {
     let { name, value } = payload
 
@@ -182,6 +174,16 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
     }
   }
   
+  // функция сохранения данных
+  const handleNext = async (e, contentType, data, settingItemNumber) => {
+    e.preventDefault()
+    if(settingItemNumber) {
+      toggleSettingItem(e, settingItemNumber)
+    }
+    handleSubmit(e, contentType, data)
+  }
+
+  // функции кнопок изменения опшинов
   const addOptionType = (optionsTypeLength) => {
     const optionTypeName = `option_${optionsTypeLength + 1}`
     const optionTypeTemplate = {
@@ -556,6 +558,12 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit, pro
       }
     </div>
   )
+}
+
+CreateProductConfig.propTypes = {
+  contentType: PropTypes.string,
+  toggleSettingItem: PropTypes.func,
+  handleSubmit: PropTypes.func
 }
 
 export default CreateProductConfig

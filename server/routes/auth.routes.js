@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 const chalk = require('chalk')
 const User = require('../models/User')
 const TokenService = require('../services/token.service')
-// const auth = require('../middleware/auth.middleware')
 const { check, validationResult } = require('express-validator')
 const { generateUserData } = require('../utils/helpers')
 

@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import productStore from '../../../store/productStore'
+import './css/productPage.css'
+// utils
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { settings } from '../../../utils/sliderSettings'
 import { calcAverageNumber } from '../../../utils/calcAverageNumber'
-import './css/productPage.css'
-// common components
+// store
+import productStore from '../../../store/productStore'
+import commentStore from '../../../store/commentStore'
+// components
 import Slider from 'react-slick'
 import Icon from '../../common/icon'
-// ui components
 import ModalOption from '../../common/product/modalOption'
 import ProductActions from '../../common/product/productActions'
 import ProductsList from '../../ui/productsList'
 import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
-import commentStore from '../../../store/commentStore'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
   const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
-
+  // переключение контента
   const [contentState, setContentState] = useState('reviews')
   const navLinks = [
     {Label: 'DESCRIPTION', state: 'description', counter: false},

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
 import userService from '../service/user.service'
 
+// начальное состояние продукта для корзины
 const initialCartItemData = {
   count: 1,
   optionTypes: {}
@@ -11,7 +12,9 @@ const cartStore = create((set) => ({
   cartItemData: initialCartItemData,
   cartItemDataWasChanged: false,
 
+  // функуция "стандартное состояние корзины было изменено"
   setCartItemDataIsChanged: (param) => set((state) => ({ cartWasChanged: param})),
+  // редактирвание состояния корзины
   setCartItemData: (role, data) => set((state) => {
     if (role === 'closeModal') {
       set((state) => ({ cartItemDataWasChanged: false}))
@@ -49,6 +52,7 @@ const cartStore = create((set) => ({
     } 
     return { cartItemDataWasChanged: false }
   }),
+  // добавить в корзину
   addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
     e.stopPropagation()
     cartAnimation(e.target, isInCart)
@@ -99,6 +103,7 @@ const cartStore = create((set) => ({
       updLocalUserCart(newCartItemData)
     }
   }),
+  // переключать избранное
   toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
     e.stopPropagation()
     if (authedUser) {

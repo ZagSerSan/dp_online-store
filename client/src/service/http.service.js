@@ -46,7 +46,6 @@ http.interceptors.response.use(
       error.response.status >= 400 &&
       error.response.status < 500
     // условие для отлавливания не ожидаемой ошибки
-    // если ошибка не от клиента (нет подключения к серверу или он упал)
     if (!expectedErrors) {
       console.log('error :>> ', error)
       toast.error(error.message + '. http.service: 68')

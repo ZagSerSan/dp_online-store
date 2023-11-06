@@ -44,10 +44,6 @@ const CategoryNav = () => {
       behavior: "smooth",
     })
   }
- 
-  const test = (e) => {
-    console.log(e.target.clientHeight)
-  }
 
   return (
     <div className='category-nav_HW'>
@@ -56,7 +52,6 @@ const CategoryNav = () => {
           {/* категории */}
           {categories.map(item => (
             <Link
-              onClick={test}
               key={item.id}
               to={item.to}
               className={'category-nav-item' + item.styleClass + (type === item.type ? ' active' : '')}

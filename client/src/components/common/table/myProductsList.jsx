@@ -9,20 +9,29 @@ import userService from '../../../service/user.service'
 import Pagination from '../pagination'
 
 const MyProductsList = ({ cartItems }) => {
-  const { authedUser, updateUser, updLocalUserCart } = userStore()
+  const { authedUser, localUser, updateUser, updLocalUserCart } = userStore()
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
 
-  const splicedEntity = authedUser.cart
+  const splicedEntity = authedUser?.cart
     ? authedUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-    : []
+    : localUser.cart
+      ? localUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+      : []
   
+  const itemsCount = authedUser?.cart
+    ? authedUser.cart.length
+    : localUser.cart
+      ? localUser.cart.length
+      : 0
+
   if (splicedEntity.length === 0) {
     setCurrentPage(prev => prev - 1)
   }
 
   const removeFromCart = async (e, item, role = '') => {
     cartAnimation(e.target, true)
+
     if (authedUser) {
       try {
         let cart
@@ -41,7 +50,11 @@ const MyProductsList = ({ cartItems }) => {
         console.log('e :>> ', e)
       }
     } else {
-      updLocalUserCart(item)
+      if (role === 'clear-all') {
+        updLocalUserCart(item, role)
+      } else {
+        updLocalUserCart(item)
+      }
     }
   }
   const calculateTotalPrice = (products) => {
@@ -106,7 +119,7 @@ const MyProductsList = ({ cartItems }) => {
 
         <Pagination
           countOnPage={countOnPage}
-          itemsCount={authedUser.cart.length}
+          itemsCount={itemsCount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />

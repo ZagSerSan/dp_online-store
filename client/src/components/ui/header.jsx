@@ -249,6 +249,7 @@ const Header = () => {
                   onMouseLeave={() => setAuthDropMenu(false)}
                   className='drop-menu user'
                 >
+                  <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>Favourites</NavLink>
                   <NavLink className='drop-menu__link' to='/auth/login'>Login</NavLink>
                   <NavLink className='drop-menu__link' to='/auth/register'>Register</NavLink>
                 </div>
@@ -262,9 +263,11 @@ const Header = () => {
             onMouseEnter={toggleCartMenu}
             onMouseLeave={toggleCartMenu}
           >
-            {authedUser && authedUser.cart.length > 0 || localUser && localUser?.cart.length > 0
+            {authedUser && authedUser?.cart.length > 0
               ? <div className="card-index">{authedUser.cart.length}</div>
-              : null
+              : localUser && localUser?.cart.length > 0
+                ? <div className="card-index">{localUser.cart.length}</div>
+                : null
             }
             <Icon id='cart'/>
             {cartMenu &&

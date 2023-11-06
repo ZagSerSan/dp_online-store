@@ -13,7 +13,7 @@ const Profile = () => {
   ]
   const { usersEntity, usersLoaded, loadUsersList, authorizated } = userStore()
   const { userId } = useParams()
-  
+
   const editedUser = usersEntity
     ? usersEntity.find(user => user._id === userId)
     : null
@@ -22,7 +22,7 @@ const Profile = () => {
     if (!usersLoaded) {
       loadUsersList()
     }
-  }, [usersEntity, usersLoaded])
+  }, [usersEntity, usersLoaded, authorizated])
 
   const toggleSettingItem = (settingItemId) => {
     setSettingItemState(settingItemId)

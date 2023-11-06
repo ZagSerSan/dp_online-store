@@ -1,4 +1,4 @@
-// 1. У любого пользлвателя будет как миниму в БД qualities & professions
+// 1. У любого пользлвателя в БД будет как миниму products
 // 2. Они равны mock данным
 const Product = require('../models/Product')
 const productsMock = require('../mock/productMock.js')

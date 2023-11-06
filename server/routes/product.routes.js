@@ -1,13 +1,13 @@
 const express = require('express')
 const fs = require('fs/promises')
-const fs_notPromis = require("fs"); // Or `import fs from "fs";` with ESM
-const path = require('path')
+const fs_notPromis = require("fs")
+// const path = require('path')
 const auth = require('../middleware/auth.middleware')
 const chalk = require('chalk')
 const Product = require('../models/Product')
 const router = express.Router({mergeParams: true})
-const { generateProductData, splitString } = require('../utils/helpers');
-const User = require('../models/User');
+const { generateProductData, splitString } = require('../utils/helpers')
+const User = require('../models/User')
 
 // получение всех продуктов
 router.get('/', async (req, res) => {

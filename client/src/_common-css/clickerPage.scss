@@ -517,6 +517,12 @@
             }
           }
 
+          .buttons {
+            button.remove {
+              margin-left: 15px;
+              margin-right: 0;
+            }
+          }
           // внутренние заголовки формы
           &__title {
             font-family: "Montserrat", sans-serif;

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './../../auth/auth.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+// utils
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import { getRandomInt } from '../../../../utils/helper'
+// store, components
 import userStore from '../../../../store/userStore'
 import TextField from '../../../common/form/textField'
 import CheckBoxField from '../../../common/form/checkBoxField'
@@ -11,6 +13,8 @@ import CheckBoxField from '../../../common/form/checkBoxField'
 const CreateUser = () => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
+  const { createUser } = userStore()
+
   // значение полей формы
   const initDataState = {
     name: '',
@@ -20,8 +24,8 @@ const CreateUser = () => {
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   }
   const [data, setData] = useState(initDataState)
-  const { createUser } = userStore()
 
+  // отправка данных
   const handleSubmit = async (e) => {
     e.preventDefault()
     const ifValid = validate()
@@ -31,6 +35,7 @@ const CreateUser = () => {
     await setData(initDataState)
     navigate('/admin/users')
   }
+  // отправка состояния данных
   const handleChange = ({ name, value }) => {
     setData(prev => ({
       ...prev,

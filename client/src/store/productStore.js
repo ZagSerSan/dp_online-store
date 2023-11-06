@@ -7,6 +7,7 @@ const productStore = create((set) => ({
   productsEntity: null,
   productsLoaded: false,
 
+  // создание продукта
   createNewProduct: (newProductData) => set(async (state) => {
     try {
       const { content } = await ProductService.createProduct(newProductData)
@@ -17,10 +18,11 @@ const productStore = create((set) => ({
       errorCatcher(error)
     }
   }),
+  // обновление продукта
   updateProduct: (newProductData, role = '') => set(async (state) => {
     try {
       const { content } = await ProductService.updateProduct(newProductData, role)
-      console.log('content :>> ', content)
+      // замена его в локальном состоянии
       const newProductsArray = state.productsEntity.filter(
         product => product._id !== newProductData._id
       )
@@ -31,6 +33,7 @@ const productStore = create((set) => ({
       errorCatcher(error)
     }
   }),
+  // удаление продукта
   removeProduct: (productId) => set(async (state) => {
     try {
       const { data } = await ProductService.deleteProduct(productId)
@@ -41,6 +44,7 @@ const productStore = create((set) => ({
       errorCatcher(error)
     }
   }),
+  // загрузка списка продуктов
   loadProductsList: async () => {
     const { content } = await ProductService.get()
     set((state) => ({ productsEntity: content}))

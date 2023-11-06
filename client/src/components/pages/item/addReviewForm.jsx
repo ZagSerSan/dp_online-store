@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
-// utils, state, ect
+// utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+// state
 import userStore from '../../../store/userStore'
+import commentStore from '../../../store/commentStore'
+import productStore from '../../../store/productStore'
 // components
 import Icon from '../../common/icon'
 import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
-import commentStore from '../../../store/commentStore'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
-import productStore from '../../../store/productStore'
-import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
-import ProductService from '../../../service/product.service'
 
 const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
   const { authedUser } = userStore()
   const { addComment, commentsEntity } = commentStore()
   const { updateProduct } = productStore()
-
   const [errors, setErrors] = useState({})
+
   // значение полей формы
   let initialState = {
     productId: productId ? productId : itemId,
@@ -30,7 +31,6 @@ const AddReviewForm = ({ productId }) => {
     content: '',
     rate: 4
   }
-
   const [data, setData] = useState(initialState)
   const [rattingState, setRattingState] = useState(data.rate)
 
@@ -44,7 +44,6 @@ const AddReviewForm = ({ productId }) => {
       }
     ))
   }, [authedUser])
-
 
   const rateStarElements = document.querySelectorAll('.interactive-ratting-function')
   rateStarElements.forEach(button => {
@@ -150,6 +149,10 @@ const AddReviewForm = ({ productId }) => {
       </form>
     </div>
   )
+}
+
+AddReviewForm.propTypes = {
+  productId: PropTypes.string
 }
 
 export default AddReviewForm

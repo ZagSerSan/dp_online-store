@@ -4,20 +4,16 @@ import config from '../config.json'
 import localStorageService from './localStorage.service'
 
 const httpAuth = axios.create({
-  baseURL: config.apiEndPoint + 'auth/',
-  // params: {
-  //   key: process.env.REACT_APP_FIREBASE_KEY
-  // }
+  baseURL: config.apiEndPoint + 'auth/'
 })
 
 const authService = {
-  register: async (payload, role = 'register') => {
+  register: async (payload) => {
     try {
       const url = 'signUp'
       const { data } = await httpAuth.post(url, payload)
-      if (role === 'register') {
-        localStorageService.setTokens(data)
-      }
+      localStorageService.removeLocalUser()
+      localStorageService.setTokens(data)
       toast.success("User has been created!")
       return data
     } catch (error) {
@@ -46,7 +42,7 @@ const authService = {
       refresh_token: localStorageService.getRefreshToken()
     })
     return data
-  },
+  }
 }
 
 export default authService

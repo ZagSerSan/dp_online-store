@@ -1,14 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Navigate, useNavigate } from 'react-router-dom'
 import './css/adminPage.css'
 import UserTabPage from './userTabPage'
 import ProductsTabPage from './productsTabPage'
-import { Navigate, useNavigate } from 'react-router-dom'
 import userStore from '../../../store/userStore'
 
 const AdminPage = ({ tabState }) => {
-  const { authedUser } = userStore()
   const navigate = useNavigate()
-  // users, products
+  const { authedUser } = userStore()
   const tabs = ['users', 'products']
 
   const toggleTabs = (tab) => {
@@ -34,8 +34,11 @@ const AdminPage = ({ tabState }) => {
         : <Navigate to='/home'/>
       }
     </div>
-
   )
+}
+
+AdminPage.propTypes = {
+  tabState: PropTypes.string
 }
 
 export default AdminPage

@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const InfoContent = ({ contentType }) => {
-  // const navigate = useNavigate()
 
   return (
     <div className='info-page'>
@@ -48,6 +48,10 @@ const InfoContent = ({ contentType }) => {
     }
   </div>
   )
+}
+
+InfoContent.propTypes = {
+  contentType: PropTypes.string
 }
 
 export default InfoContent

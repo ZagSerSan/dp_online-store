@@ -10,7 +10,9 @@ import { validatorConfig } from '../../../utils/validatorConfig'
 import userStore from '../../../store/userStore'
 
 const RegisterPage = () => {
+  const { setAuthedUser, authorizated } = userStore()
   const [errors, setErrors] = useState({})
+
   // значение полей формы
   const [data, setData] = useState({
     name: '',
@@ -20,7 +22,6 @@ const RegisterPage = () => {
     admin: false,
     image: `https://xsgames.co/randomusers/assets/avatars/male/${getRandomInt(0, 78)}.jpg`
   })
-  const { setAuthedUser, authorizated } = userStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -87,7 +88,6 @@ const RegisterPage = () => {
             value={data.admin}
             onChange={handleChange}
             name="admin"
-            // error={errors.admin}
           >
             <p className='license-msg'>As an admin.</p>
           </CheckBoxField>

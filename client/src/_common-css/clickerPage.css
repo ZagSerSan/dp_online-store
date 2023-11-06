@@ -640,6 +640,10 @@
 .accordion-page .accordion-page-item-content .profile-page .form-container__col:first-child {
   padding-right: 15px;
 }
+.accordion-page .accordion-page-item-content .profile-page .form-container .buttons button.remove {
+  margin-left: 15px;
+  margin-right: 0;
+}
 .accordion-page .accordion-page-item-content .profile-page .form-container__title {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;

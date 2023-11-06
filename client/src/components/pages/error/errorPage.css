@@ -1,4 +1,4 @@
-.wrapper {
+.error-page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,7 +9,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 100px;
+  padding: 50px 15px;
 }
 
 h1 {
@@ -17,7 +17,7 @@ h1 {
   color: #f6ab44;
   font-size: 38px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 h3 {

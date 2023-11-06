@@ -2,6 +2,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// получение названия папки из имени продукта
 function splitString(stringToSplit, separator, joinString) {
   let arrayOfStrings = stringToSplit.split(separator)
   return arrayOfStrings.join(joinString).toLowerCase()
