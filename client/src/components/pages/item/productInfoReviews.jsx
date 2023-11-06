@@ -1,14 +1,32 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+// utils
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import { formatDate } from '../../../utils/formatDate'
+import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+// store
+import userStore from '../../../store/userStore'
 import commentStore from '../../../store/commentStore'
+import productStore from '../../../store/productStore'
+// components
 import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
-import { Link } from 'react-router-dom'
-import userStore from '../../../store/userStore'
 
 const ProductInfoReviews = () => {
   const { commentsEntity, deleteComment } = commentStore()
-  const { authedUser } = userStore()
+  const { authedUser, usersEntity } = userStore()
+  const { updateProduct  } = productStore()
+
+  const removeComment = (commentId, productId) => {
+    deleteComment(commentId)
+    updateProduct(
+      getAverageRatingObj(
+        commentsEntity.filter(comment => comment._id !== commentId),
+        productId
+      ),
+      'edit-rate'
+    )
+  }
 
   return (
     <div className='more-info-content__reviews'>
@@ -19,33 +37,49 @@ const ProductInfoReviews = () => {
               ? commentsEntity.map(review => (
               <div key={review._id} className="product-reviews-item">
                 <div className="product-reviews-item__col">
-                  <div className='product-reviews-item__ratting'>
-                    {ratingStarsHelper.map(rateItem => (
-                      <Icon
-                        key={rateItem.value}
-                        id='rate-star-full'
-                        strokeWidth='2' 
-                        className={(rateItem.value <= review.rate ? ' active' : '')}
+                  <div className='left-part'>
+                    {usersEntity && (
+                      <img
+                        src={usersEntity.find(user => user._id === review.userId).image}
+                        alt="" 
                       />
-                    ))}
-                    ({review.rate})
+                    )}
+                    <div>
+                      <p className='product-reviews-item__name-data'>
+                        {review.name}
+                      </p>
+                      <div className='product-reviews-item__ratting'>
+                        {ratingStarsHelper.map(rateItem => (
+                          <Icon
+                            key={rateItem.value}
+                            id='rate-star-full'
+                            strokeWidth='2' 
+                            className={(rateItem.value <= review.rate ? ' active' : '')}
+                          />
+                        ))}
+                        ({review.rate})
+                      </div>
+                    </div>
                   </div>
-                  <p className='product-reviews-item__name-data'>
-                    <span>{review.name}</span>
-                    <span>{review.created_at}</span>
-                    {
-                      (review?.userId === authedUser?._id || authedUser.admin) &&
-                      <button onClick={() => deleteComment(review._id)}>
-                        <Icon id='close' />
-                      </button>
-                    }
-                  </p>
+                  <div>
+                    <p className='product-reviews-item__name-data'>
+                      <span>{formatDate(review.created_at, 'hours')}</span>
+                      <span className='desktop'>{formatDate(review.created_at, 'year')}</span>
+                      <span className='adapt'>{formatDate(review.created_at, 'year-adapt')}</span>
+                      {
+                        (review?.userId === authedUser?._id || authedUser?.admin) &&
+                        <button onClick={() => removeComment(review._id, review.productId)}>
+                          <Icon id='close' />
+                        </button>
+                      }
+                    </p>
+                  </div>
                 </div>
                 <div className="product-reviews-item__col">
                   <p className='product-reviews-item__description'>{review.content}</p>
                 </div>
               </div>
-            )) : <p>no comments</p>
+            )) : <p className='no-comments'>no comments</p>
           ) : 'loading...'
       }
       </div>

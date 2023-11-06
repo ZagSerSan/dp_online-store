@@ -1,0 +1,900 @@
+.accordion-page {
+  padding: 30px 15px;
+}
+.accordion-page .accordion-page-item {
+  position: relative;
+}
+.accordion-page .accordion-page-item.active .accordion-page-item-content {
+  height: auto;
+  padding: 30px 20px;
+  margin: 0 0 30px;
+  border: 1px solid #eaeaea;
+}
+@media (max-width: 500px) {
+  .accordion-page .accordion-page-item.active .accordion-page-item-content {
+    padding: 20px 15px;
+  }
+}
+.accordion-page .accordion-page-item-clicker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 30px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.accordion-page .accordion-page-item-clicker:hover {
+  background-color: rgba(126, 76, 79, 0.1215686275);
+}
+.accordion-page .accordion-page-item-clicker.no-click {
+  cursor: default;
+}
+.accordion-page .accordion-page-item-clicker.no-click:hover {
+  background-color: transparent;
+}
+.accordion-page .accordion-page-item-clicker__number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 42px;
+  width: 42px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  background-color: #7e4c4f;
+  color: #fff;
+}
+.accordion-page .accordion-page-item-clicker__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  padding-left: 10px;
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  text-transform: uppercase;
+}
+.accordion-page .accordion-page-item-content {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.accordion-page .accordion-page-item-content__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #444444;
+  text-transform: uppercase;
+}
+.accordion-page .accordion-page-item-content__subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #444444;
+  letter-spacing: 0.2px;
+}
+.accordion-page .accordion-page-item-content .buttons {
+  margin: 30px auto 0px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.accordion-page .accordion-page-item-content .buttons.no-margin {
+  margin: 0;
+}
+@media (max-width: 870px) {
+  .accordion-page .accordion-page-item-content .buttons {
+    margin: 20px auto 0px 0px;
+  }
+}
+.accordion-page .accordion-page-item-content .buttons button {
+  height: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #7e4c4f;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.accordion-page .accordion-page-item-content .buttons button:disabled {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+  cursor: default;
+}
+.accordion-page .accordion-page-item-content .buttons button:disabled:hover {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+}
+.accordion-page .accordion-page-item-content .buttons button:hover {
+  background-color: #f6ab44;
+}
+.accordion-page .accordion-page-item-content .buttons a {
+  text-decoration: underline;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.accordion-page .accordion-page-item-content .buttons a:hover {
+  color: #f6ab44;
+}
+.accordion-page .accordion-page-item-content .buttons .back-btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #db1d2a;
+  padding: 12px;
+  margin-left: 20px;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .buttons .back-btn:hover {
+  color: #fff;
+  background-color: #ac000b;
+}
+.accordion-page .accordion-page-item-content .buttons .add.disabled {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+}
+.accordion-page .accordion-page-item-content .buttons .remove {
+  background-color: #db1d2a;
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .buttons .remove.disabled {
+  background-color: rgba(219, 29, 42, 0.5568627451);
+}
+.accordion-page .accordion-page-item-content .buttons .remove:hover {
+  background-color: rgba(219, 29, 42, 0.5568627451);
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container,
+.accordion-page .accordion-page-item-content .create-product-page .form-container {
+  width: auto;
+  max-width: none;
+  padding: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: transparent;
+  padding-top: 28px;
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__row,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__col,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__col {
+  width: 50%;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__col:last-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__col:last-child {
+  padding-left: 15px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__col:first-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__col:first-child {
+  padding-right: 15px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__title,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 15px;
+}
+@media (max-width: 700px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container__row,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container__row {
+    width: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+@media (max-width: 700px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container__col,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container__col {
+    padding: 0;
+    width: 100%;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview,
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    border-bottom: 1px solid rgba(126, 76, 79, 0.6156862745);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview.display_block,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro.display_block,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview.display_block,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro.display_block {
+  display: block;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview.display_block .form-container__row:last-child,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro.display_block .form-container__row:last-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview.display_block .form-container__row:last-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro.display_block .form-container__row:last-child {
+  border: 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview.display_block .form-container__row:last-child label,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro.display_block .form-container__row:last-child label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview.display_block .form-container__row:last-child label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro.display_block .form-container__row:last-child label {
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview input,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview label,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro input,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left {
+  margin-right: 20px;
+}
+@media (max-width: 700px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left,
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left {
+    margin-right: 0px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left__title,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left__title,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left__title,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left img,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left img,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left img,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left img {
+  width: 100px;
+}
+@media (max-width: 400px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left img,
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left img,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left img,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left img {
+    width: 30%;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left .array-images,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left .array-images,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left .array-images,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left .array-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left .array-images img,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left .array-images img,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left .array-images img,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left .array-images img {
+  margin-right: 15px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left input,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left input {
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-left input.checkbox,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-left input.checkbox,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-left input.checkbox,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-left input.checkbox {
+  display: block;
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-right label,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-right label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-right label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-right label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  margin-bottom: 20px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-preview-right input,
+.accordion-page .accordion-page-item-content .edit-product-page .form-container.images .form-container-intro-right input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-preview-right input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-right input {
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 25px;
+}
+@media (max-width: 570px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options {
+  display: block;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .option-item,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .option-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-bottom: 15px;
+}
+@media (max-width: 870px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .option-item,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .option-item {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field {
+  width: 15%;
+}
+@media (max-width: 870px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field {
+    width: 27%;
+  }
+}
+@media (max-width: 580px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field {
+    width: 33%;
+    margin: 0 10px;
+  }
+}
+@media (max-width: 385px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field {
+    width: 50%;
+    margin: 0 10px;
+  }
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field:last-child,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field:last-child {
+    margin-right: 30px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field:first-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field:first-child {
+  margin-right: 40px;
+}
+@media (max-width: 870px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields.options .text-field:first-child,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields.options .text-field:first-child {
+    margin-right: 10px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 10px;
+  margin-bottom: 0;
+}
+@media (max-width: 870px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field {
+    padding: 0 5px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field:last-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field:last-child {
+  padding-right: 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field:first-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field:first-child {
+  padding-left: 0;
+}
+@media (max-width: 570px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 8px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field input {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555;
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields .text-field .error-msg,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields .text-field .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: red;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 25px;
+}
+@media (max-width: 600px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field label {
+  cursor: pointer;
+  margin-right: 20px;
+}
+@media (max-width: 600px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field label,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field label {
+    margin-right: 10px;
+    width: 100%;
+  }
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field label:first-child,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field label:first-child {
+    margin-bottom: 10px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field div,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 10px;
+}
+@media (max-width: 600px) {
+  .accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field div,
+  .accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field div {
+    margin-right: 0px;
+  }
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field div input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .radio-field div input {
+  background: #fff;
+  border: 2px solid #eceff8;
+  padding: 10px;
+  width: 100%;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .checkbox-field,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .checkbox-field {
+  margin-bottom: 20px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .checkbox-field div,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .checkbox-field div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .checkbox-field input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .checkbox-field input {
+  margin-right: 10px;
+  width: 16px;
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .textarea,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .textarea {
+  width: 100%;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .textarea textarea,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .textarea textarea {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  background: #fff;
+  border: 2px solid #eceff8;
+  padding: 10px;
+  width: 100%;
+  color: #555;
+  resize: vertical;
+  max-height: 100px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .textarea label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .textarea label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 10px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .error-msg,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: red;
+  margin: 0 auto 0 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container {
+  width: auto;
+  max-width: none;
+  padding: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: transparent;
+  padding-top: 28px;
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container__col {
+  width: 50%;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container__col:last-child {
+  padding-left: 15px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container__col:first-child {
+  padding-right: 15px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .buttons button.remove {
+  margin-left: 15px;
+  margin-right: 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview, .accordion-page .accordion-page-item-content .profile-page .form-container-intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview.display_block, .accordion-page .accordion-page-item-content .profile-page .form-container-intro.display_block {
+  display: block;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview.display_block .form-container__row:last-child, .accordion-page .accordion-page-item-content .profile-page .form-container-intro.display_block .form-container__row:last-child {
+  border: 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview.display_block .form-container__row:last-child label, .accordion-page .accordion-page-item-content .profile-page .form-container-intro.display_block .form-container__row:last-child label {
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview input,
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview label, .accordion-page .accordion-page-item-content .profile-page .form-container-intro input,
+.accordion-page .accordion-page-item-content .profile-page .form-container-intro label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left {
+  margin-right: 20px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left__title, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left img, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left img {
+  width: 100px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left .array-images, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left .array-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left .array-images img, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left .array-images img {
+  margin-right: 15px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left input, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left input {
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-left input.checkbox, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-left input.checkbox {
+  display: block;
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-right label, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-right label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #444444;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  margin-bottom: 20px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container-preview-right input, .accordion-page .accordion-page-item-content .profile-page .form-container-intro-right input {
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields.options {
+  display: block;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields.options .option-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-bottom: 15px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields.options .text-field {
+  width: 15%;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields.options .text-field:first-child {
+  margin-right: 40px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 10px;
+  margin-bottom: 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field:last-child {
+  padding-right: 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field:first-child {
+  padding-left: 0;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 8px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field input {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555;
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .text-fields .text-field .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: red;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .radio-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 10px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .radio-field label {
+  cursor: pointer;
+  margin-right: 20px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .radio-field div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 10px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .radio-field div input {
+  background: #fff;
+  border: 2px solid #eceff8;
+  padding: 10px;
+  width: 100%;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .checkbox-field {
+  margin-bottom: 20px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .checkbox-field div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .checkbox-field input {
+  margin-right: 10px;
+  width: 16px;
+  cursor: pointer;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .textarea {
+  width: 100%;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .textarea textarea {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  background: #fff;
+  border: 2px solid #eceff8;
+  padding: 10px;
+  width: 100%;
+  color: #555;
+  resize: vertical;
+  max-height: 100px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .textarea label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  margin-bottom: 5px;
+}
+.accordion-page .accordion-page-item-content .profile-page .form-container .error-msg {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: red;
+  margin: 0 auto 0 0;
+}
+.accordion-page .accordion-page-item-content .info-page .form-container {
+  width: auto;
+  max-width: none;
+  padding: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: transparent;
+  padding-top: 28px;
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+}
+.accordion-page .accordion-page-item-content .info-page .form-container__row {
+  width: 100%;
+}
+.accordion-page .accordion-page-item-content .info-page .form-container .delivery-text,
+.accordion-page .accordion-page-item-content .info-page .form-container .about-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+}
+.accordion-page .accordion-page-item-content .info-page .form-container .contact-text {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 5px;
+}
+.accordion-page .accordion-page-item-content .info-page .form-container .contact-text:hover {
+  text-decoration: underline;
+}

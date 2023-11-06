@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Slider from 'react-slick'
 import './css/intro.css'
-import useStore from '../../store/createStore'
+import productStore from '../../store/productStore'
+import Slider from 'react-slick'
 
 const Intro = () => {
-  const sliderItems = useStore(
+  // получение продуктов, предназначенных для слайдера
+  const sliderItems = productStore(
     state => state.productsEntity.filter(item => item.introSlider.switched === true)
   )
-
+  // настройки для слайдера
   var settings = {
     dots: false,
     infinite: false,
@@ -22,7 +23,9 @@ const Intro = () => {
       <Slider className='my-container' {...settings}>
         {sliderItems.map(slider => (
           <div key={slider._id}>
+            {/* slider-item */}
             <div className='slider-item'>
+              {/* left part */}
               <div className="slider-item__column">
                 <div className="slider-item__content">
                   <h3>{slider.name}</h3>
@@ -30,6 +33,7 @@ const Intro = () => {
                   <Link to={`/category/${slider.type}/${slider._id}`}>SHOP NOW</Link>
                 </div>
               </div>
+              {/* right part (image) */}
               <div className="slider-item__column">
                 <img 
                   src={slider.introSlider.slide}

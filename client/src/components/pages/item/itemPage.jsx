@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useStore from '../../../store/createStore'
+import './css/productPage.css'
+// utils
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { settings } from '../../../utils/sliderSettings'
 import { calcAverageNumber } from '../../../utils/calcAverageNumber'
-import './productPage.css'
-// common components
+// store
+import productStore from '../../../store/productStore'
+import commentStore from '../../../store/commentStore'
+// components
 import Slider from 'react-slick'
 import Icon from '../../common/icon'
-// ui components
 import ModalOption from '../../common/product/modalOption'
 import ProductActions from '../../common/product/productActions'
 import ProductsList from '../../ui/productsList'
 import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
-import commentStore from '../../../store/commentStore'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
 const ItemPage = () => {
   const { itemId } = useParams()
-  const currentProduct = useStore((state) => state.productsEntity.find(item => item._id === itemId))
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
-
+  const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
+  const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
+  // переключение контента
   const [contentState, setContentState] = useState('reviews')
   const navLinks = [
     {Label: 'DESCRIPTION', state: 'description', counter: false},
@@ -36,10 +37,6 @@ const ItemPage = () => {
       const productPageSlider_slickDots = productPageSlider.querySelector('.slick-dots')
       productPageSlider_slickDots.style.display = 'flex'
 
-      // const slider_arrows = productPageSlider.querySelectorAll('.slick-arrow')
-      // slider_arrows.forEach(arrow => {
-      //   arrow.style.display = 'none'
-      // })
       const productPageSlider_btn = productPageSlider.querySelectorAll('li > button')
       productPageSlider_btn.forEach((btn, index) => btn.innerHTML = `<img src=${currentProduct.slider_dots[index]} alt='${index}'/>`)
     }, 100)
@@ -54,18 +51,25 @@ const ItemPage = () => {
   }
 
   useEffect(() => {
-    setCommentsIsLoaded(false)
     if (!commentsIsLoaded) {
       loadCommentsList(itemId)
     }
-  }, [commentsEntity])
+  }, [commentsIsLoaded])
+
+  // скроллить вверх при открытии страницы
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, [itemId])
 
   return (
     <div className="product-page">
 
       <div className="my-container product-page__wrapper">
         {currentProduct && (<>
-          <div className="product-page-col pb-[100px]">
+          <div className="product-page-col">
             <div className="product-page-col__row product-page-slider">
               <Slider {...settings}>
                 {currentProduct.slider.map(item => (

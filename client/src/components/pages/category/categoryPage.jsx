@@ -1,6 +1,6 @@
 import React from 'react'
-import { CategoryNav, ProductsList } from '../../ui'
 import { Navigate, useParams } from 'react-router-dom'
+import { CategoryNav, ProductsList } from '../../ui'
 
 const CategoryPage = () => {
   const { type } = useParams()

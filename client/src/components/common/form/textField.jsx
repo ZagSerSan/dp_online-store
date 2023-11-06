@@ -1,25 +1,22 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../icon'
 
-const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, switchErrMsg = true }) => {
+const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, optionKey, index, switchErrMsg = true }) => {
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
   const [isBlured, setIsBlured] = useState(false)
 
   const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value }, submitType)
+    onChange({ name: target.name, value: target.value }, submitType, optionKey, index)
     setIsBlured(true)
   }
 
   // Метод для изменения состояния
-  // const toggleShowPassword = () => {
-  //   setShowPassword((prevState) => !prevState)
-  // }
-
-  // const toogleBluredState = () => {
-  //   setIsBlured(true)
-  // }
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState)
+  }
 
   return (
     <div className="text-field">
@@ -32,20 +29,19 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
         placeholder={placeholder}
         type={showPassword ? 'text' : type}
         className={(!isBlured ? '' : errors?.[name] ? 'is-invalid' : 'is-valid')}
-        id={name}
         name={name}
         value={value}
         onChange={handleChange}
       />
-      {/* {type === 'password' && (
+      {type === 'password' && (
         <button
           type="button"
-          className="btn btn-outline-secondary"
+          className="show-password"
           onClick={toggleShowPassword}
         >
-          <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}></i>
+          {showPassword ? <Icon id='eye-off'/> : <Icon id='eye'/>}
         </button>
-      )} */}
+      )}
       {switchErrMsg && (
         errors && isBlured && <div className="error-msg">{errors[name]}</div>
       )}
@@ -58,10 +54,15 @@ TextField.defaultValues = {
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   type: PropTypes.string,
   submitType: PropTypes.string,
   placeholder: PropTypes.string,
+  optionKey: PropTypes.string,
+  index: PropTypes.number,
   switchErrMsg: PropTypes.bool,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired

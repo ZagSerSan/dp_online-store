@@ -3,11 +3,16 @@
   text-align: center;
   background-color: #fff;
 }
+@media (max-width: 900px) {
+  .products-list {
+    padding: 40px 0;
+  }
+}
 .products-list.litle-padding {
   padding: 0px 0;
 }
 .products-list__toptitle {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   font-family: "Pacifico", cursive;
   font-weight: 400;
   font-size: 22px;

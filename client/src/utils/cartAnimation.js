@@ -1,6 +1,5 @@
 export const cartAnimation = (target, state) => {
   const cartHelperEl = document.querySelector('.cart-helper')
-  // const headerCartElement = document.querySelector('[data-cart="cart"]')
   const headerCartCoords = document.querySelector('[data-cart="cart"]').getBoundingClientRect()
   if (state) {
     const cartHelperEl = document.querySelector('.cart-helper')
@@ -27,7 +26,6 @@ export const cartAnimation = (target, state) => {
     cartHelperEl.style.left = `${targetCoords.left}px`
     cartHelperEl.style.height = `30px`
     cartHelperEl.style.width = `30px`
-    //todo вставить изображение вместо красного фона
     setTimeout(() => {
       cartHelperEl.classList.add('active')
     }, 100);

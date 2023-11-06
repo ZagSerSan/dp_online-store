@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Icon from '../../common/icon'
-import './profile.css'
-import SettingItemContent from './settingItemContent'
-import userStore from '../../../store/userStore'
 import { Navigate, useParams } from 'react-router-dom'
+import userStore from '../../../store/userStore'
+import SettingItemContent from './settingItemContent'
+import Icon from '../../common/icon'
 
 const Profile = () => {
   const [settingItemState, setSettingItemState] = useState(1)
@@ -14,7 +13,7 @@ const Profile = () => {
   ]
   const { usersEntity, usersLoaded, loadUsersList, authorizated } = userStore()
   const { userId } = useParams()
-  
+
   const editedUser = usersEntity
     ? usersEntity.find(user => user._id === userId)
     : null
@@ -23,10 +22,7 @@ const Profile = () => {
     if (!usersLoaded) {
       loadUsersList()
     }
-  }, [usersEntity, usersLoaded])
-
-  // console.log('usersEntity :>> ', usersEntity)
-  // console.log('editedUser :>> ', editedUser)
+  }, [usersEntity, usersLoaded, authorizated])
 
   const toggleSettingItem = (settingItemId) => {
     setSettingItemState(settingItemId)
@@ -39,14 +35,14 @@ const Profile = () => {
   return (
     <div className="my-container">
       {editedUser
-        ? (<div className='user-page'>
+        ? (<div className='accordion-page'>
             {settingItems.map(settingItem => (
-              <div key={settingItem.number} className={"setting-item" + (settingItemState === settingItem.number ? ' active' : '')}>
-                <div className="setting-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
-                  <div className='setting-item-clicker__number'>{settingItem.number}</div>
-                  <div className='setting-item-clicker__title'>{settingItem.title}</div>
+              <div key={settingItem.number} className={"accordion-page-item" + (settingItemState === settingItem.number ? ' active' : '')}>
+                <div className="accordion-page-item-clicker" onClick={() => toggleSettingItem(settingItem.number)}>
+                  <div className='accordion-page-item-clicker__number'>{settingItem.number}</div>
+                  <div className='accordion-page-item-clicker__title'>{settingItem.title}</div>
                 </div>
-                <div className="setting-item-content">
+                <div className="accordion-page-item-content">
                   <SettingItemContent
                     contentType={settingItem.contentType}
                     user={editedUser}

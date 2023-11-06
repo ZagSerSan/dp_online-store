@@ -16,6 +16,11 @@
   border: 1px solid #a0a0a0;
   margin-right: 25px;
 }
+@media (max-width: 400px) {
+  .product-actions-counter {
+    margin-right: 10px;
+  }
+}
 .product-actions-counter button,
 .product-actions-counter p {
   padding: 0 6px;
@@ -30,6 +35,12 @@
   transition: background-color 0.3s ease 0s;
   background-color: #7e4c4f;
   color: #fff;
+}
+@media (max-width: 400px) {
+  .product-actions-cartadd {
+    padding: 10px 10px;
+    margin-right: 10px;
+  }
 }
 .product-actions-cartadd:hover {
   background-color: #07610e;

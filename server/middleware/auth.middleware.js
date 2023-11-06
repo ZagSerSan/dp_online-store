@@ -1,25 +1,29 @@
 const TokenSevise = require('../services/token.service')
 
 module.exports = (req, res, next) => {
+  // проверка доступности сервера
   if (req.method === 'OPTIONS') {
     return next()
   }
 
   try {
-    // Bearer token-key-fsdfsdf3f23f-3f2f3f...
+    // валидация отсутствия токена в req.headers
     const token = req.headers.authorization.split(' ')[1]
     if (!token) {
-      res.status(401).json({message: 'Unauthorized'})
+      console.log('token :>> ', token)
+      res.status(401).json({message: 'auth.middleware -> !token: Unauthorized'})
     }
-
+    // валидация токенов
     const data = TokenSevise.validateAccess(token)
     if (!data) {
-      return res.status(401).json({message: 'Unauthorized'})
+      console.log('data :>> ', data)
+      return res.status(401).json({message: 'auth.middleware -> !data: Unauthorized'})
     }
 
     req.user = data
     next()
   } catch (e) {
+    console.log('err', e)
     res.status(401).json({message: 'Unauthorized'})
   }
 }

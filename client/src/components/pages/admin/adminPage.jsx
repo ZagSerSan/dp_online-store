@@ -1,38 +1,44 @@
-import React, { useState } from 'react'
-import './adminPage.css'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Navigate, useNavigate } from 'react-router-dom'
+import './css/adminPage.css'
 import UserTabPage from './userTabPage'
 import ProductsTabPage from './productsTabPage'
-// import EditFormList from '../profile/editFormList'
+import userStore from '../../../store/userStore'
 
-const AdminPage = () => {
-  // users, products
+const AdminPage = ({ tabState }) => {
+  const navigate = useNavigate()
+  const { authedUser } = userStore()
   const tabs = ['users', 'products']
-  const [tabState, setTabState] = useState('users')
 
   const toggleTabs = (tab) => {
-    setTabState(tab)
+    navigate(`/admin/${tab}`)
   }
 
   return (
     <div className='admin-page'>
-
-    <div className="my-container">
-      <div className="admin-page-tabs">
-        {tabs.map(tab => (
-          <button key={tab} className={tab === tabState ? ' active' : ''} onClick={() => toggleTabs(tab)}>{tab}</button>
-        ))}
-      </div>
-      <div className="admin-page-content">
-        {tabState === 'users'
-          ? <UserTabPage />
-          // : <ProductsTabPage />
-          : <p>Products Tab Page</p>
-        }
-      </div>
+      {authedUser && authedUser.admin
+        ? <div className="my-container">
+        <div className="admin-page-tabs">
+          {tabs.map(tab => (
+            <button key={tab} className={tab === tabState ? ' active' : ''} onClick={() => toggleTabs(tab)}>{tab}</button>
+          ))}
+        </div>
+        <div className="admin-page-content">
+          {tabState === 'users'
+            ? <UserTabPage />
+            : <ProductsTabPage />
+          }
+        </div>
+          </div>
+        : <Navigate to='/home'/>
+      }
     </div>
-    </div>
-
   )
+}
+
+AdminPage.propTypes = {
+  tabState: PropTypes.string
 }
 
 export default AdminPage

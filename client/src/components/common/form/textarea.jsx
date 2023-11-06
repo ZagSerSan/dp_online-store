@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Textarea = ({ name, label, value, errors, onChange }) => {
+const Textarea = ({ name, label, value, errors, onChange, submitType }) => {
   const [isBlured, setIsBlured] = useState(false)
   
   const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value })
+    onChange({ name: target.name, value: target.value }, submitType)
     setIsBlured(true)
   }
 
@@ -40,7 +40,8 @@ Textarea.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   errors: PropTypes.object,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  submitType: PropTypes.string
 }
 
 export default Textarea

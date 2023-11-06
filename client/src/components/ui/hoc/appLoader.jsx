@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import useStore from '../../../store/createStore'
+// store, service
+import globalStore from '../../../store/globalStore'
+import productStore from '../../../store/productStore'
 import userStore from '../../../store/userStore'
 import localStorageService from '../../../service/localStorage.service'
+// components
 import ErrorPage from '../../pages/error'
 import Icon from '../../common/icon'
 
 const AppLoader = ({ children }) => {
-  const { loadProductsList, productsLoadingStatus, setGlobalLoading } = useStore()
-  const { setAuthedUser } = userStore()
+  const { setGlobalLoading, globalLoading } = globalStore()
+  const { loadProductsList, productsLoaded } = productStore()
+  const { setAuthedUser, setLocalUser, loadUsersList } = userStore()
   const [error, setError] = useState(false)
   
   const loadEntities = async () => {
     try {
       await loadProductsList()
+      await loadUsersList()
       if (localStorageService.getAccessToken()) {
         await setAuthedUser()
+      } else {
+        await setLocalUser()
       }
       setGlobalLoading()
     } catch (error) {
@@ -25,10 +32,17 @@ const AppLoader = ({ children }) => {
   }
 
   useEffect(() => {
-    loadEntities()
-  }, [])
+    // начальная глобальная загрузка
+    if (globalLoading) {
+      loadEntities()
+    }
+    // если сущности продуктов изменились и не глобальная загрузка
+    if (!productsLoaded && !globalLoading) {
+      loadProductsList()
+    }
+  }, [globalLoading, productsLoaded])
 
-  if (productsLoadingStatus && !error) {
+  if (globalLoading && !error) {
     return <Icon id='loader' />
   } else if (error) {
     return <ErrorPage/>

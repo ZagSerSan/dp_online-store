@@ -1,77 +1,41 @@
 // Higth Wrapper
 .category-nav_HW {
   background-color: #f6f6f6;
-  padding: 40px 0 60px;
-  &.litle-padding {
-    padding: 100px 0 20px;
-  }
-
-  h2 {
-    color: #000101;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 35px;
-    margin: 0;
-    text-align: center;
-    margin-bottom: 40px;
-  }
 }
 
 .category-nav {
   width: 100%;
-  height: 277px;
   display: flex;
   transition: all 0.3s ease 0s;
-  animation: 0.4s alternate forwards categoryToNormal;
-  @keyframes categoryToNormal {
-    from {
-      overflow: hidden;
-      height: 100px;
-    }
-    to {
-      height: 277px;
-    }
+  padding: 40px 0 60px;
+  // адаптив
+  @media (max-width: 700px) {
+    padding: 30px 0;
   }
 
-  &.small {
-    overflow: hidden;
-    justify-content: center;
-    border-radius: 10px;
-    animation: 0.4s alternate forwards categoryToSmall;
-    @keyframes categoryToSmall {
-      from {
-        height: 277px;
-      }
-      to {
-        height: 60px;
-        padding: 5px 0;
-      }
-    }
+  // стили для состояния "категория выбрана"
+  &.type-selected {
+    padding: 30px 0;
     .category-nav-item {
-      background-color: transparent;
+      &:after {
+        display: none;
+      }
       h3 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 25px;
-        padding: 15px 0;
-        width: 80%;
+        position: relative;
+        top: 0;
+        @media (min-width: 700px) {
+          padding: 15px 0;
+        }
       }
       img {
         display: none;
       }
-      &:after {
-        display: none;
-      }
     }
-    .category-nav-item h3 {
-      bottom: 50%;
-      transform: translate3d(-50%, 50%, 0);
-    }
-  } // /&.small
+  }
 }
-
+// nav-item, initial styles
 .category-nav-item {
+  display: block;
   position: relative;
   width: 33.3%;
   margin: 0 15px;
@@ -80,6 +44,9 @@
   img {
     display: block;
     width: 100%;
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
   h3 {
     position: absolute;
@@ -102,6 +69,22 @@
     border-radius: 50px;
     box-shadow: 0 0.3px 7px rgb(0 0 0 / 20%);
     transition: all 0.3s ease 0s;
+
+    @media (max-width: 1150px) {
+      padding: 15px 0px;
+      font-size: 25px;
+    }
+    @media (max-width: 700px) {
+      position: relative;
+      top: 0;
+      bottom: auto;
+      padding: 10px 0px;
+      font-size: 20px;
+      width: 100%;
+    }
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
   }
   &:after {
     content: "";
@@ -114,7 +97,6 @@
     width: 50%;
     height: 50%;
     opacity: 0;
-    // background-color: #000;
     transition: all 0.3s ease 0s;
   }
   &.man-color:after {
@@ -126,12 +108,13 @@
   &.car-color:after {
     background-color: #2e1f00;
   }
+
+  // hover on category type
   &:hover {
     &:after {
       opacity: 0.5;
       width: 100%;
       height: 100%;
-      // background-color: red;
     }
     &.man-color h3 {
       color: #fff;
@@ -146,11 +129,13 @@
       background-color: #eaba5a;
     }
   }
+  // active category type
   &.active {
     &:after {
-      opacity: 0.2;
-      width: 100%;
-      height: 100%;
+      display: none;
+      // opacity: 0.2;
+      // width: 100%;
+      // height: 100%;
     }
     &.man-color h3 {
       color: #fff;

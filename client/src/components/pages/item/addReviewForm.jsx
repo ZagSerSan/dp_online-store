@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
-import { nanoid } from 'nanoid'
-// utils, state, ect
+// utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+import { ratingStarsHelper } from '../../../utils/rateCountHelper'
+import { getAverageRatingObj } from '../../../utils/getAverageRatingObj'
+// state
 import userStore from '../../../store/userStore'
+import commentStore from '../../../store/commentStore'
+import productStore from '../../../store/productStore'
 // components
 import Icon from '../../common/icon'
 import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
-// import CommentService from '../../../service/comment.service'
-import commentStore from '../../../store/commentStore'
-import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 
-const AddReviewForm = () => {
+const AddReviewForm = ({ productId }) => {
   const { itemId } = useParams()
   const { authedUser } = userStore()
-  const { addComment } = commentStore()
+  const { addComment, commentsEntity } = commentStore()
+  const { updateProduct } = productStore()
   const [errors, setErrors] = useState({})
+
   // значение полей формы
   let initialState = {
-    productId: itemId,
+    productId: productId ? productId : itemId,
     userId: authedUser ? authedUser._id : '',
     name: authedUser ? authedUser.name : '',
     email: authedUser ? authedUser.email : '',
     content: '',
     rate: 4
   }
-
   const [data, setData] = useState(initialState)
   const [rattingState, setRattingState] = useState(data.rate)
 
@@ -42,7 +45,6 @@ const AddReviewForm = () => {
     ))
   }, [authedUser])
 
-
   const rateStarElements = document.querySelectorAll('.interactive-ratting-function')
   rateStarElements.forEach(button => {
     button.addEventListener('mouseenter', (e) => {
@@ -54,15 +56,22 @@ const AddReviewForm = () => {
         }))
       }
     })
-  })
+  })  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     const ifValid = validate()
     if (!ifValid) return
 
     try {
+      data.rate = Number(data.rate)
       addComment(data)
+      // обновление среднего рейтинга продукта для отобажения на гл странице
+      updateProduct(
+        getAverageRatingObj(commentsEntity, data.productId, data),
+        'edit-rate'
+      )
       setData(initialState)
     } catch (e) {
       console.log('e', e)
@@ -108,9 +117,8 @@ const AddReviewForm = () => {
         </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="flex">
+        <div className="text-fields">
           <TextField
-            // label="Name:"
             name="name"
             value={data.name}
             placeholder='Name'
@@ -118,7 +126,6 @@ const AddReviewForm = () => {
             errors={errors}
           />
           <TextField
-            // label="Email:"
             name="email"
             value={data.email}
             placeholder='Email'
@@ -127,7 +134,6 @@ const AddReviewForm = () => {
           />
         </div>
         <Textarea
-          // label="Comment:"
           name="content"
           value={data.content}
           onChange={handleChange}
@@ -143,6 +149,10 @@ const AddReviewForm = () => {
       </form>
     </div>
   )
+}
+
+AddReviewForm.propTypes = {
+  productId: PropTypes.string
 }
 
 export default AddReviewForm

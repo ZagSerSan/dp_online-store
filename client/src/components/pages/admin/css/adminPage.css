@@ -1,0 +1,182 @@
+.admin-page {
+  padding: 30px 15px 40px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#fff));
+  background: linear-gradient(#f0f0f0, #fff);
+  min-height: 300px;
+}
+.admin-page__tabs-wrapper {
+  height: 50px;
+}
+@media (max-width: 580px) {
+  .admin-page-tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.admin-page-tabs button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(126, 76, 79, 0.4431372549);
+  min-width: 150px;
+  background-color: transparent;
+  padding: 5px 0;
+  -webkit-transition: all 0.2s ease 0;
+  transition: all 0.2s ease 0;
+  border-top: 1px #c5c5c5 solid;
+}
+.admin-page-tabs button:first-child {
+  border-left: 1px #c5c5c5 solid;
+}
+.admin-page-tabs button:last-child {
+  border-right: 1px #c5c5c5 solid;
+}
+.admin-page-tabs button:hover {
+  color: #7e4c4f;
+}
+.admin-page-tabs button.active {
+  color: #7e4c4f;
+  background-color: #fff;
+  border: 1px #7e4c4f solid;
+  border-bottom: 0;
+}
+@media (max-width: 580px) {
+  .admin-page-tabs button {
+    min-width: 100px;
+  }
+}
+.admin-page-content {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+  background: linear-gradient(#fff, #f0f0f0);
+}
+
+.user-tab-page {
+  padding: 25px 15px 25px;
+  margin-top: -1px;
+  border: 1px #7e4c4f solid;
+}
+.user-tab-page a.add-user {
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 10px;
+  background-color: #7e4c4f;
+  -webkit-transition: all 0.2s ease 0;
+  transition: all 0.2s ease 0;
+}
+.user-tab-page a.add-user:hover {
+  background-color: #c57d17;
+}
+.user-tab-page .user-list {
+  padding-top: 10px;
+}
+.user-tab-page .user-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top: 1px #7e4c4f solid;
+  padding: 15px 6px 0;
+  margin-top: 15px;
+}
+@media (max-width: 580px) {
+  .user-tab-page .user-list-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.user-tab-page .user-list-item__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.user-tab-page .user-list-item__info img {
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+.user-tab-page .user-list-item__info p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5a3739;
+}
+.user-tab-page .user-list-item__info p a.email {
+  color: rgba(197, 125, 23, 0.6235294118);
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+.user-tab-page .user-list-item__info p a.email:hover {
+  color: #c57d17;
+}
+.user-tab-page .user-list-item__info p.address {
+  color: #838383;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 3px;
+}
+.user-tab-page .user-list-item__info a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 580px) {
+  .user-tab-page .user-list-item__buttons {
+    margin-top: 15px;
+  }
+}
+.user-tab-page .user-list-item__buttons button,
+.user-tab-page .user-list-item__buttons a {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+.user-tab-page .user-list-item__buttons button:first-child,
+.user-tab-page .user-list-item__buttons a:first-child {
+  color: #ff6600;
+  margin-right: 15px;
+}
+.user-tab-page .user-list-item__buttons button:first-child:hover,
+.user-tab-page .user-list-item__buttons a:first-child:hover {
+  color: #a54200;
+}
+.user-tab-page .user-list-item__buttons button:last-child,
+.user-tab-page .user-list-item__buttons a:last-child {
+  color: #ff0000;
+}
+.user-tab-page .user-list-item__buttons button:last-child:hover,
+.user-tab-page .user-list-item__buttons a:last-child:hover {
+  color: #b30000;
+}
+.user-tab-page-pagination {
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.user-tab-page-pagination button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7e4c4f;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #7e4c4f;
+  margin-right: 10px;
+}
+.user-tab-page-pagination button:hover, .user-tab-page-pagination button.active {
+  background-color: #7e4c4f;
+  color: #fff;
+}

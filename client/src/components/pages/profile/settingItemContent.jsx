@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import TextField from '../../common/form/textField'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
+// utils
 import { validatorConfig } from '../../../utils/validatorConfig'
 import { validator } from '../../../utils/validator'
-import { Navigate } from 'react-router-dom'
+// store, components
 import userStore from '../../../store/userStore'
+import TextField from '../../common/form/textField'
 
 const SettingItemContent = ({ contentType, user }) => {
+  const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const { authedUser, authorizated, updateUser } = userStore()
+  const { authedUser, updateUser, removeUser, logOut } = userStore()
 
-  // значение полей формы
+  // значение полей формы по умолчанию
   const dataPasswordInitState = {
     _id: user._id,
     password: '',
     passwordConfirm: '',
   }
-
+  // стандартные значения полей формы
   const [dataAccount, setDataAccount] = useState({
     _id: user._id,
     name: user ? user.name : '',
@@ -33,6 +37,7 @@ const SettingItemContent = ({ contentType, user }) => {
     houseNumber: '',
   })
 
+  // update data by renders
   useEffect(() => {
     setDataAccount(prev => (
       {
@@ -72,6 +77,9 @@ const SettingItemContent = ({ contentType, user }) => {
       default:
         break;
     }
+    authedUser.admin
+      ? navigate('/admin/users')
+      : navigate('/home')
   }
 
   const handleChange = (payload, submitType) => {
@@ -98,12 +106,19 @@ const SettingItemContent = ({ contentType, user }) => {
       default:
         break;
     }
+  }
+
+  const deleteAccount = (e) => {
+    e.preventDefault()
     
-    // setData(prev => ({
-    //   ...prev,
-    //   [name]: value
-    // }))
-    
+    const answer = confirm('Are you sure you want to delete your account?')
+    if (answer) {
+      navigate('/home')
+      removeUser(authedUser._id)
+      setTimeout(() => {
+        logOut()
+      }, 2000);
+    }
   }
 
   useEffect(() => {
@@ -112,7 +127,6 @@ const SettingItemContent = ({ contentType, user }) => {
 
   const validate = (contentType) => {
     let errors
-
     switch (contentType) {
       case 'account':
         errors = validator(dataAccount, validatorConfig)
@@ -134,18 +148,21 @@ const SettingItemContent = ({ contentType, user }) => {
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
+
   // блокировка кнопки
   const isValid = Object.keys(errors).length === 0
 
-  return (<>
+  return (
+    <div className='profile-page'>
     {contentType === 'password'
       ? (
         <div>
-          <div className="setting-item-content__title">CHANGE PASSWORD</div>
-          <div className="setting-item-content__subtitle">Your Password</div>
-          <form className="setting-item-content-form-container" onSubmit={(e) => handleSubmit(e, 'password')}>
-            <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row">
+          <div className="accordion-page-item-content__title">CHANGE PASSWORD</div>
+          <div className="accordion-page-item-content__subtitle">Your Password</div>
+
+          <form className="form-container" onSubmit={(e) => handleSubmit(e, 'password')}>
+            <div className="form-container__row">
+              <div className="text-fields">
                 <TextField
                   label='Password:'
                   placeholder="Enter a new password.."
@@ -155,10 +172,8 @@ const SettingItemContent = ({ contentType, user }) => {
                   errors={errors}
                   submitType='password'
                 />
-              </div>
-              <div className="setting-item-content-form-container__row">
                 <TextField
-                  label='Password Confirm:'
+                  label='Confirm:'
                   placeholder="Confirm new password"
                   name="passwordConfirm"
                   value={dataPassword.passwordConfirm}
@@ -168,14 +183,14 @@ const SettingItemContent = ({ contentType, user }) => {
                 />
               </div>
             </div>
-            <div className="setting-item-content-form-container__col">
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="submit"
-            >
-              Save data
-            </button>
+            <div className='buttons'>
+              <button
+                type="submit"
+                disabled={!isValid}
+                className="submit"
+              >
+                Save data
+              </button>
             </div>
           </form>
         </div>
@@ -183,11 +198,13 @@ const SettingItemContent = ({ contentType, user }) => {
       : contentType === 'address'
       ? (
         <div>
-          <div className="setting-item-content__title">Address Book Entries</div>
-          <div className="setting-item-content__subtitle">Change default address or add new</div>
-          <form className="setting-item-content-form-container" onSubmit={(e) => handleSubmit(e, 'address')}>
-            <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row">
+          <div className="accordion-page-item-content__title">Address Book Entries</div>
+          <div className="accordion-page-item-content__subtitle">Change default address or add new</div>
+
+          <form className="form-container" onSubmit={(e) => handleSubmit(e, 'address')}>
+
+            <div className="form-container__row">
+              <div className="text-fields">
                 <TextField
                   label='Сountry:'
                   placeholder="For example: Polish"
@@ -197,8 +214,6 @@ const SettingItemContent = ({ contentType, user }) => {
                   errors={errors}
                   submitType='address'
                 />
-              </div>
-              <div className="setting-item-content-form-container__row">
                 <TextField
                   label='City:'
                   placeholder="For example: Bydgoszcz"
@@ -210,8 +225,8 @@ const SettingItemContent = ({ contentType, user }) => {
                 />
               </div>
             </div>
-            <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row">
+            <div className="form-container__row">
+              <div className="text-fields">
                 <TextField
                   label='Street:'
                   placeholder="For example: Szarych Szeregow"
@@ -221,10 +236,8 @@ const SettingItemContent = ({ contentType, user }) => {
                   errors={errors}
                   submitType='address'
                 />
-              </div>
-              <div className="setting-item-content-form-container__row">
                 <TextField
-                  label='House/apartment number:'
+                  label='apartment:'
                   placeholder="For example: 13/12"
                   name="houseNumber"
                   value={dataAddress.houseNumber}
@@ -234,23 +247,26 @@ const SettingItemContent = ({ contentType, user }) => {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="submit"
-            >
-              Save data
-            </button>
+            <div className='buttons'>
+              <button
+                type="submit"
+                disabled={!isValid}
+                className="submit"
+              >
+                Save data
+              </button>
+            </div>
           </form>
         </div>
       )
       : (
         <div>
-          <div className="setting-item-content__title">My Account Information</div>
-          <div className="setting-item-content__subtitle">Your Personal Details</div>
-          <form className="setting-item-content-form-container" onSubmit={(e) => handleSubmit(e, 'account')}>
-            <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row">
+          <div className="accordion-page-item-content__title">My Account Information</div>
+          <div className="accordion-page-item-content__subtitle">Your Personal Details</div>
+
+          <form className="form-container" onSubmit={(e) => handleSubmit(e, 'account')}>
+            <div className="form-container__row">
+              <div className="text-fields">
                 <TextField
                   label='Name:'
                   placeholder="Enter your name"
@@ -260,8 +276,6 @@ const SettingItemContent = ({ contentType, user }) => {
                   errors={errors}
                   submitType='account'
                 />
-              </div>
-              <div className="setting-item-content-form-container__row">
                 <TextField
                   label='Email:'
                   placeholder="Enter your email.."
@@ -273,23 +287,34 @@ const SettingItemContent = ({ contentType, user }) => {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="submit"
-            >
-              Save data
-            </button>
-            {/* <div className="setting-item-content-form-container__col">
-              <div className="setting-item-content-form-container__row"></div>
-              <div className="setting-item-content-form-container__row"></div>
-            </div> */}
+            <div className='buttons'>
+              <button
+                type="submit"
+                disabled={!isValid}
+                className="submit"
+              >
+                Save data
+              </button>
+              {authedUser._id === user._id &&
+                <button
+                  onClick={deleteAccount}
+                  className="remove"
+                >
+                  Delete account
+                </button>
+              }
+            </div>
           </form>
         </div>
       )
     }
-  </>
+  </div>
   )
+}
+
+SettingItemContent.propTypes = {
+  contentType: PropTypes.string,
+  user: PropTypes.object
 }
 
 export default SettingItemContent

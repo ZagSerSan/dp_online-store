@@ -3,7 +3,6 @@ const config = require('config')
 const Token = require('../models/Token')
 
 class TokenService {
-  // return: accessToken, refreshToken, expiresIn
   generate(payload) {
     const accessToken = jwt.sign(payload, config.get('accessSecretKey'), {
       expiresIn: '1h'
@@ -31,8 +30,7 @@ class TokenService {
     await data.deleteOne()
     return null
   }
-
-
+  // метод валидации рефреш токена (refresh token)
   validateRefresh(refreshToken) {
     try {
       return jwt.verify(refreshToken, config.get('refreshSecretKey'))
@@ -40,6 +38,7 @@ class TokenService {
       return null
     }
   }
+  // метод валидации токена доступа (access token)
   validateAccess(accessToken) {
     try {
       return jwt.verify(accessToken, config.get('accessSecretKey'))

@@ -1,21 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const RadioField = ({ label, options, name, onChange, value }) => {
+const RadioField = ({ label, options, name, onChange, value, submitType }) => {
   const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value })
+    onChange({ name: target.name, value: target.value }, submitType)
   }
 
   return (
     <div className='radio-field'>
       <label>{label}</label>
       {options.map((option) => (
-        <div
-          key={option.name + '_' + option.value}
-          className="input-wrapper"
-        >
+        <div key={option.name + '_' + option.value}>
           <input
-            className="form-check-input"
             type="radio"
             name={name}
             id={option.name + '_' + option.value}
@@ -23,10 +19,7 @@ const RadioField = ({ label, options, name, onChange, value }) => {
             checked={option.value === value}
             onChange={handleChange}
           />
-          <label
-            className="form-check-label"
-            htmlFor={option.name + '_' + option.value}
-          >
+          <label htmlFor={option.name + '_' + option.value}>
             {option.name}
           </label>
         </div>
@@ -40,7 +33,8 @@ RadioField.propTypes = {
   options: PropTypes.array,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
+  submitType: PropTypes.string
 }
 
 export default RadioField

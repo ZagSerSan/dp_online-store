@@ -9,6 +9,11 @@ export const validatorConfig = {
       minValue: 3
     }
   },
+  value: {
+    isRequired: {
+      message: 'value is required!'
+    }
+  },
   email: {
     isRequired: {
       message: 'Mail is required!'
@@ -38,6 +43,11 @@ export const validatorConfig = {
     isMinLenght: {
       message: 'Password must have min 8 symbols!',
       minValue: 8
+    }
+  },
+  type: {
+    isRequired: {
+      message: 'type is required!'
     }
   },
   content: {
@@ -82,9 +92,14 @@ export const validatorConfig = {
       message: 'Comment is required!'
     }
   },
-  // search: {
-  //   isRequired: {
-  //     message: 'Comment is required!'
-  //   }
-  // }
+  description: {
+    isRequired: {
+      message: 'Description is required!'
+    }
+  },
+  price: {
+    isRequired: {
+      message: 'Price is required!'
+    }
+  },
 }

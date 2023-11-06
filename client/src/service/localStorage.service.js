@@ -29,7 +29,29 @@ export function removeAuthData() {
   localStorage.removeItem(LOCAL_ID)
 }
 
-// todo
+export function setLocalUser() {
+  let localUser = {
+    cart: [],
+    bookmarks: []
+  }
+
+  let cartContain = Boolean(localStorage.getItem('cart'))
+  let bookmarksContain = Boolean(localStorage.getItem('bookmarks'))
+
+  if (cartContain) {
+    localUser.cart = JSON.parse(localStorage.getItem('cart'))
+  } else {
+    localStorage.setItem('cart', JSON.stringify([]))
+  }
+
+  if (bookmarksContain) {
+    localUser.bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
+  } else {
+    localStorage.setItem('bookmarks', JSON.stringify([]))
+  }
+
+  return localUser
+}
 export function removeLocalUser() {
   localStorage.removeItem('cart')
   localStorage.removeItem('bookmarks')
@@ -37,18 +59,36 @@ export function removeLocalUser() {
 export function setCart(newCartItem) {
   let isContain = Boolean(localStorage.getItem('cart'))
   let cart = []
+  // если есть сущность cart в localStore
   if (isContain) {
     cart = JSON.parse(localStorage.getItem('cart'))
+    // добавляем или удаляем
     const updatedCart = cart.find(item=> item._id === newCartItem._id)
       ? cart.filter(item => item._id !== newCartItem._id)
       : [...cart, newCartItem]
+    // ложим обратно в localStore
     localStorage.setItem('cart', JSON.stringify(updatedCart))
-    // для стейта localUser
+    // возвращаем в стор новую корзину
     return updatedCart
   } else {
+    // если нету сущности cart в localStore
     cart.push(newCartItem)
     localStorage.setItem('cart', JSON.stringify(cart))
     // для стейта localUser
+    return cart
+  }
+}
+export function clearCart() {
+  let isContain = Boolean(localStorage.getItem('cart'))
+  const cart = []
+  // если есть сущность cart в localStore
+  if (isContain) {
+    localStorage.removeItem('cart')
+    localStorage.setItem('cart', JSON.stringify(cart))
+    return cart
+  } else {
+    // если нету сущности cart в localStore
+    localStorage.setItem('cart', JSON.stringify(cart))
     return cart
   }
 }
@@ -80,6 +120,8 @@ const localStorageService = {
   removeAuthData,
   setBookmarks,
   setCart,
+  clearCart,
+  setLocalUser,
   removeLocalUser
 }
 

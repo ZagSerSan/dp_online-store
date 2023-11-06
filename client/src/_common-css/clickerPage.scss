@@ -1,0 +1,781 @@
+// общий стиль для всех аккардионов
+.accordion-page {
+  padding: 30px 15px;
+
+  .accordion-page-item {
+    position: relative;
+
+    // активно = открыт аккардион-айтем
+    &.active {
+      .accordion-page-item-content {
+        height: auto;
+        padding: 30px 20px;
+        margin: 0 0 30px;
+        border: 1px solid #eaeaea;
+        @media (max-width: 500px) {
+          padding: 20px 15px;
+        }
+      }
+    }
+
+    // кнопка аккардиона
+    &-clicker {
+      display: flex;
+      margin: 0 0 30px;
+      cursor: pointer;
+      transition: all 0.2s ease 0s;
+
+      &:hover {
+        background-color: #7e4c4f1f;
+      }
+
+      &.no-click {
+        cursor: default;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
+      &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 42px;
+        width: 42px;
+
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        background-color: #7e4c4f;
+        color: #fff;
+      }
+      &__title {
+        display: flex;
+        align-items: center;
+
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+
+        padding-left: 10px;
+        width: 100%;
+        border: 1px solid #e7e7e7;
+        text-transform: uppercase;
+      }
+    }
+
+    // контент аккардиона
+    &-content {
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+
+      background-color: #fff;
+      transition: all 0.3s linear;
+
+      // обшие заголовки и кнопки страниц конфига
+      &__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: #444444;
+        text-transform: uppercase;
+      }
+      &__subtitle {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #444444;
+
+        letter-spacing: 0.2px;
+      }
+
+      .buttons {
+        margin: 30px auto 0px 0px;
+        display: flex;
+        &.no-margin {
+          margin: 0;
+        }
+        @media (max-width: 870px) {
+          margin: 20px auto 0px 0px;
+        }
+
+        button {
+          height: 40px;
+
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+
+          background-color: #7e4c4f;
+          padding: 10px;
+          border: 0;
+          border-radius: 5px;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.2s ease 0s;
+
+          &:disabled {
+            background-color: #7e4c4f63;
+            cursor: default;
+            &:hover {
+              background-color: #7e4c4f63;
+            }
+          }
+          &:hover {
+            background-color: #f6ab44;
+          }
+        }
+        a {
+          text-decoration: underline;
+          transition: all 0.2s ease 0s;
+          &:hover {
+            color: #f6ab44;
+          }
+        }
+        .back-btn {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: none;
+
+          background-color: #db1d2a;
+          padding: 12px;
+          margin-left: 20px;
+          border: 0;
+          border-radius: 5px;
+          color: #fff;
+          cursor: pointer;
+          &:hover {
+            color: #fff;
+            background-color: #ac000b;
+          }
+        }
+        .add.disabled {
+          background-color: #7e4c4f63;
+        }
+        .remove {
+          background-color: #db1d2a;
+          margin-right: 10px;
+          &.disabled {
+            background-color: #db1d2a8e;
+          }
+          &:hover {
+            background-color: #db1d2a8e;
+          }
+        }
+      }
+
+      // стили для разных страниц конфига
+      .edit-product-page,
+      .create-product-page {
+        & .form-container {
+          width: auto;
+          max-width: none;
+          padding: 0px;
+          box-shadow: none;
+          background-color: transparent;
+
+          padding-top: 28px;
+          margin-top: 30px;
+          border-top: 1px solid #eaeaea;
+
+          // колонки
+          &__row {
+            display: flex;
+            width: 100%;
+          }
+          &__col {
+            width: 50%;
+            &:last-child {
+              padding-left: 15px;
+            }
+            &:first-child {
+              padding-right: 15px;
+            }
+          }
+
+          // внутренние заголовки формы
+          &__title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #7e4c4f;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+          }
+          &.images {
+            .form-container__row {
+              @media (max-width: 700px) {
+                width: 100%;
+                flex-wrap: wrap;
+              }
+            }
+            .form-container__col {
+              @media (max-width: 700px) {
+                padding: 0;
+                width: 100%;
+              }
+            }
+            .form-container-preview,
+            .form-container-intro {
+              display: flex;
+              margin-bottom: 20px;
+              @media (max-width: 700px) {
+                width: 100%;
+                flex-direction: column;
+                border-bottom: 1px solid #7e4c4f9d;
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+              }
+
+              &.display_block {
+                display: block;
+                .form-container__row:last-child {
+                  border: 0;
+                  label {
+                    margin-right: 10px;
+                  }
+                }
+              }
+
+              input,
+              label {
+                font-family: "Montserrat", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #444444;
+
+                letter-spacing: 0.2px;
+                margin-bottom: 6px;
+              }
+
+              &-left {
+                margin-right: 20px;
+                @media (max-width: 700px) {
+                  margin-right: 0px;
+                }
+                &__title {
+                  font-family: "Montserrat", sans-serif;
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #444444;
+
+                  letter-spacing: 0.2px;
+                  margin-bottom: 6px;
+                }
+                img {
+                  width: 100px;
+                  @media (max-width: 400px) {
+                    width: 30%;
+                  }
+                }
+                .array-images {
+                  display: flex;
+                  img {
+                    margin-right: 15px;
+                  }
+                }
+                input {
+                  cursor: pointer;
+                  &.checkbox {
+                    display: block;
+                    margin-right: 10px;
+                  }
+                }
+              }
+              &-right {
+                label {
+                  display: block;
+                  font-family: "Montserrat", sans-serif;
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #444444;
+                  cursor: pointer;
+
+                  letter-spacing: 0.2px;
+                  margin-bottom: 20px;
+                }
+                input {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+
+          // поля
+          .text-fields {
+            width: 100%;
+            display: flex;
+            margin-bottom: 25px;
+            @media (max-width: 570px) {
+              flex-wrap: wrap;
+            }
+
+            &.options {
+              display: block;
+              .option-item {
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: 15px;
+                @media (max-width: 870px) {
+                  flex-wrap: wrap;
+                }
+              }
+              .text-field {
+                width: 15%;
+                @media (max-width: 870px) {
+                  width: 27%;
+                }
+                @media (max-width: 580px) {
+                  width: 33%;
+                  margin: 0 10px;
+                }
+
+                @media (max-width: 385px) {
+                  width: 50%;
+                  margin: 0 10px;
+                  &:last-child {
+                    margin-right: 30px;
+                  }
+                }
+                &:first-child {
+                  margin-right: 40px;
+                  @media (max-width: 870px) {
+                    margin-right: 10px;
+                  }
+                }
+              }
+            }
+
+            .text-field {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              padding: 0 10px;
+              margin-bottom: 0;
+              @media (max-width: 870px) {
+                padding: 0 5px;
+              }
+
+              &:last-child {
+                padding-right: 0;
+              }
+              &:first-child {
+                padding-left: 0;
+              }
+
+              @media (max-width: 570px) {
+                padding: 0;
+                width: 100%;
+                margin-bottom: 20px;
+              }
+
+              label {
+                font-family: "Montserrat", sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                color: #7e4c4f;
+                margin-bottom: 8px;
+              }
+              input {
+                font-family: "Montserrat", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #555;
+
+                width: 100%;
+                height: 40px;
+                padding: 0 15px;
+                background-color: transparent;
+                border: 1px solid #eaeaea;
+                border-radius: 5px;
+              }
+              .error-msg {
+                font-family: "Montserrat", sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                color: red;
+              }
+            }
+          }
+          .radio-field {
+            display: flex;
+            align-items: center;
+
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #7e4c4f;
+            margin-bottom: 25px;
+            @media (max-width: 600px) {
+              flex-wrap: wrap;
+            }
+
+            label {
+              cursor: pointer;
+              margin-right: 20px;
+              @media (max-width: 600px) {
+                margin-right: 10px;
+                width: 100%;
+                &:first-child {
+                  margin-bottom: 10px;
+                }
+              }
+            }
+            div {
+              display: flex;
+              align-items: center;
+              margin-right: 10px;
+              @media (max-width: 600px) {
+                margin-right: 0px;
+              }
+
+              input {
+                background: #fff;
+                border: 2px solid #eceff8;
+                padding: 10px;
+                width: 100%;
+
+                margin-right: 5px;
+                cursor: pointer;
+              }
+            }
+          }
+          .checkbox-field {
+            margin-bottom: 20px;
+            div {
+              display: flex;
+              align-items: center;
+            }
+            input {
+              margin-right: 10px;
+              width: 16px;
+              cursor: pointer;
+            }
+          }
+          .textarea {
+            width: 100%;
+
+            textarea {
+              font-family: "Montserrat", sans-serif;
+              font-size: 14px;
+              background: #fff;
+              border: 2px solid #eceff8;
+              padding: 10px;
+              width: 100%;
+              color: #555;
+              resize: vertical;
+              max-height: 100px;
+            }
+            label {
+              display: block;
+              font-family: "Montserrat", sans-serif;
+              font-size: 16px;
+              font-weight: 500;
+              color: #7e4c4f;
+              margin-bottom: 10px;
+            }
+          }
+          .error-msg {
+            font-family: "Montserrat", sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: red;
+            margin: 0 auto 0 0;
+          }
+        }
+      } // .product-pages
+
+      .profile-page {
+        & .form-container {
+          width: auto;
+          max-width: none;
+          padding: 0px;
+          box-shadow: none;
+          background-color: transparent;
+
+          padding-top: 28px;
+          margin-top: 30px;
+          border-top: 1px solid #eaeaea;
+
+          // колонки
+          &__row {
+            display: flex;
+            width: 100%;
+          }
+          &__col {
+            width: 50%;
+            &:last-child {
+              padding-left: 15px;
+            }
+            &:first-child {
+              padding-right: 15px;
+            }
+          }
+
+          .buttons {
+            button.remove {
+              margin-left: 15px;
+              margin-right: 0;
+            }
+          }
+          // внутренние заголовки формы
+          &__title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #7e4c4f;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+          }
+          &-preview,
+          &-intro {
+            display: flex;
+            &.display_block {
+              display: block;
+              .form-container__row:last-child {
+                border: 0;
+                label {
+                  margin-right: 10px;
+                }
+              }
+            }
+
+            input,
+            label {
+              font-family: "Montserrat", sans-serif;
+              font-size: 14px;
+              font-weight: 400;
+              color: #444444;
+
+              letter-spacing: 0.2px;
+              margin-bottom: 6px;
+            }
+
+            &-left {
+              margin-right: 20px;
+              &__title {
+                font-family: "Montserrat", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #444444;
+
+                letter-spacing: 0.2px;
+                margin-bottom: 6px;
+              }
+              img {
+                width: 100px;
+              }
+              .array-images {
+                display: flex;
+                img {
+                  margin-right: 15px;
+                }
+              }
+              input {
+                cursor: pointer;
+                &.checkbox {
+                  display: block;
+                  margin-right: 10px;
+                }
+              }
+            }
+            &-right {
+              label {
+                display: block;
+                font-family: "Montserrat", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #444444;
+                cursor: pointer;
+
+                letter-spacing: 0.2px;
+                margin-bottom: 20px;
+              }
+              input {
+                cursor: pointer;
+              }
+            }
+          }
+
+          // поля
+          .text-fields {
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+
+            &.options {
+              display: block;
+              .option-item {
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: 15px;
+              }
+              .text-field {
+                width: 15%;
+                &:first-child {
+                  margin-right: 40px;
+                }
+              }
+            }
+
+            .text-field {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              padding: 0 10px;
+              margin-bottom: 0;
+              &:last-child {
+                padding-right: 0;
+              }
+              &:first-child {
+                padding-left: 0;
+              }
+
+              label {
+                font-family: "Montserrat", sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                color: #7e4c4f;
+                margin-bottom: 8px;
+              }
+              input {
+                font-family: "Montserrat", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #555;
+
+                width: 100%;
+                height: 40px;
+                padding: 0 15px;
+                background-color: transparent;
+                border: 1px solid #eaeaea;
+                border-radius: 5px;
+              }
+              .error-msg {
+                font-family: "Montserrat", sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                color: red;
+              }
+            }
+          }
+          .radio-field {
+            display: flex;
+            align-items: center;
+
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #7e4c4f;
+            margin-bottom: 10px;
+
+            label {
+              cursor: pointer;
+              margin-right: 20px;
+            }
+            div {
+              display: flex;
+              align-items: center;
+              margin-right: 10px;
+
+              input {
+                background: #fff;
+                border: 2px solid #eceff8;
+                padding: 10px;
+                width: 100%;
+
+                margin-right: 5px;
+                cursor: pointer;
+              }
+            }
+          }
+          .checkbox-field {
+            margin-bottom: 20px;
+            div {
+              display: flex;
+              align-items: center;
+            }
+            input {
+              margin-right: 10px;
+              width: 16px;
+              cursor: pointer;
+            }
+          }
+          .textarea {
+            width: 100%;
+            textarea {
+              font-family: "Montserrat", sans-serif;
+              font-size: 14px;
+              background: #fff;
+              border: 2px solid #eceff8;
+              padding: 10px;
+              width: 100%;
+              color: #555;
+              resize: vertical;
+              max-height: 100px;
+            }
+            label {
+              display: block;
+              font-family: "Montserrat", sans-serif;
+              font-size: 16px;
+              font-weight: 500;
+              color: #7e4c4f;
+              margin-bottom: 5px;
+            }
+          }
+          .error-msg {
+            font-family: "Montserrat", sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: red;
+            margin: 0 auto 0 0;
+          }
+        }
+      } // .profile-page
+
+      .info-page {
+        & .form-container {
+          width: auto;
+          max-width: none;
+          padding: 0px;
+          box-shadow: none;
+          background-color: transparent;
+
+          padding-top: 28px;
+          margin-top: 30px;
+          border-top: 1px solid #eaeaea;
+
+          // колонки
+          &__row {
+            // display: flex;
+            width: 100%;
+          }
+          .delivery-text,
+          .about-text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #555;
+          }
+          .contact-text {
+            display: block;
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 5px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      } // .info-page
+    }
+  }
+}

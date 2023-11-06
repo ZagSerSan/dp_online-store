@@ -1,18 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import userStore from '../../../store/userStore'
 import { Link } from 'react-router-dom'
+import Pagination from '../../common/pagination'
 
 const UserTabPage = () => {
-  const { usersEntity, loadUsersList, removeUser, usersLoaded, setUsersLoaded } = userStore()
+  const { usersEntity, loadUsersList, removeUser, usersLoaded } = userStore()
+  const [currentPage, setCurrentPage] = useState(0)
+  const countOnPage = 5
+
   const usersWithoutAdmin = usersEntity
     ? usersEntity.filter(user => user.admin === false)
     : []
+  const splicedEntity = usersWithoutAdmin
+    ? usersWithoutAdmin.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+    : []
+  if (splicedEntity.length === 0) {
+    setCurrentPage(prev => prev - 1)
+  }
 
   useEffect(() => {
     if (!usersLoaded) {
       loadUsersList()
     }
-  }, [usersEntity, usersLoaded])
+  }, [usersLoaded])
 
   const deleteUser = (userId) => {
     removeUser(userId)
@@ -22,9 +32,9 @@ const UserTabPage = () => {
     <div className='user-tab-page'>
       {usersWithoutAdmin
         ? <div>
-            <Link to='/admin/create-user' className='add-user'>create user</Link>
+            <Link to='/admin/users/create-user' className='add-user'>create user</Link>
             <div className="user-list">
-              {usersWithoutAdmin.map((user, index) => (
+              {splicedEntity.map((user, index) => (
                 <div key={index} className='user-list-item'>
                   <div className='user-list-item__info'>
                     <img src={user.image} alt="avatar" />
@@ -49,6 +59,12 @@ const UserTabPage = () => {
                 </div>
               ))}
             </div>
+            <Pagination
+              countOnPage={countOnPage}
+              itemsCount={usersWithoutAdmin.length}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </div>
         : <p>users not loaded..</p>
       }

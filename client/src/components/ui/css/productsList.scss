@@ -2,13 +2,16 @@
   padding: 95px 0 70px;
   text-align: center;
   background-color: #fff;
+  // адаптив
+  @media (max-width: 900px) {
+    padding: 40px 0;
+  }
 
   &.litle-padding {
     padding: 0px 0;
   }
-
   &__toptitle {
-    margin: 0 0 20px;
+    margin: 0 0 15px;
     font-family: "Pacifico", cursive;
     font-weight: 400;
     font-size: 22px;

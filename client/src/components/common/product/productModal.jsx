@@ -1,25 +1,28 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Slider from 'react-slick'
-import Icon from '../icon'
 import './css/productModal.css'
-import { settings } from '../../../utils/sliderSettings'
-import ModalOption from './modalOption'
-import cartStore from '../../../store/cartStore'
-import ProductActions from './productActions'
-import commentStore from '../../../store/commentStore'
+// utils, store
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { calcAverageNumber } from '../../../utils/calcAverageNumber'
+import { settings } from '../../../utils/sliderSettings'
+//store
+import cartStore from '../../../store/cartStore'
+import commentStore from '../../../store/commentStore'
+// components
+import Icon from '../icon'
+import ModalOption from './modalOption'
+import ProductActions from './productActions'
 
 const ProductModal = ({ item, modalState, onToggleState }) => {
   const { setCartItemData } = cartStore()
-  const { commentsEntity, loadCommentsList, commentsIsLoaded, setCommentsIsLoaded } = commentStore()
+  const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
 
   useEffect(() => {
-    setCommentsIsLoaded(false)
-    if (item && !commentsIsLoaded ) {
+    if (item && !commentsIsLoaded) {
       loadCommentsList(item._id)
     }
-  }, [item, commentsEntity])
+  }, [item, commentsIsLoaded])
 
   // modal close func
   const closeModal = () => {
@@ -46,7 +49,7 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
       productModalPreview_btn.forEach((btn, index) => btn.innerHTML = `<img src=${item.slider_dots[index]} alt='${index}'/>`)
     }, 100)
   }
-  // сброс положение слайдера в модалке
+  // сброс сущности в модалке
   if (!modalState) {
     item = null
   }
@@ -57,6 +60,7 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
         <button className='product-modal__close' onClick={closeModal}><Icon id={'close'}/></button>
           {item && (
             <>
+              {/* слайдер */}
               <div className="product-modal-preview">
                 <Slider {...settings}>
                   {item.slider.map(item => (
@@ -68,7 +72,7 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
                   ))}
                 </Slider>
               </div>
-
+              {/* контент */}
               <div className="product-modal-content">
                 <h3 className="product-modal-content__name">{item.name}</h3>
                 <p className="product-modal-content__price">${item.price}.00</p>
@@ -102,6 +106,12 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
       </div>
     </div>
   )
+}
+
+ProductModal.propTypes = {
+  item: PropTypes.object, 
+  modalState: PropTypes.bool, 
+  onToggleState: PropTypes.func 
 }
 
 export default ProductModal

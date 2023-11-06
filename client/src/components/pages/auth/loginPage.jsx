@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import './auth.css'
-import TextField from '../../common/form/textField'
-import authService from '../../../service/auth.service'
 import { useNavigate, Navigate, Link } from "react-router-dom"
+import './auth.css'
+// utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
+// serveice, store
+import authService from '../../../service/auth.service'
 import userStore from '../../../store/userStore'
+// components
+import TextField from '../../common/form/textField'
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+  const { setAuthedUser, authorizated } = userStore()
   const [errors, setErrors] = useState({})
+
   // значение полей формы
   const [data, setData] = useState({
     email: '',
     password: '',
   })
-
-  const { setAuthedUser, authorizated } = userStore()
-  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -61,10 +64,10 @@ const LoginPage = () => {
   }
   
   return (
-    <div className="my-container form-container">
+    <div className="my-container auth-form-container">
       <div className="authorization-page">
         <h2 className='authorization-page__title'>Login</h2>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="authorization-page-form" onSubmit={handleSubmit}>
           <TextField
             placeholder="Email"
             name="email"

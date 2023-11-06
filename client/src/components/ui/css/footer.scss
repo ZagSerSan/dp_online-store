@@ -1,51 +1,109 @@
 .footer {
   background-color: #f3f3f3;
-  padding: 50px 0;
+  padding: 30px 0 20px;
 
   &__inner {
     display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+    justify-content: space-between;
+    @media (max-width: 520px) {
+      justify-content: space-around;
+    }
   }
+  // колонки
   &__col {
-    width: 25%;
-
-    .footer-firstcol {
-      &__logo {
+    width: auto;
+    max-width: 25%;
+    @media (max-width: 1150px) {
+      &:last-child {
+        max-width: 30%;
       }
-      &__description {
-        font-family: "Montserrat", sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 26px;
-        color: #6c6c6c;
-
-        margin: 20px 0;
+    }
+    @media (max-width: 760px) {
+      max-width: 33%;
+      &:last-child {
+        max-width: 100%;
+        margin: 0px auto;
+        margin-top: 30px;
       }
-      &__social {
-        display: flex;
-        svg {
-          fill: transparent;
-          stroke: #6c6c6c;
-          height: 25px;
-          margin-right: 15px;
-          cursor: pointer;
-          transition: color 0.2s ease 0s;
-          &:hover {
-            stroke: #613b3e;
+    }
+    @media (max-width: 520px) {
+      max-width: 100%;
+      justify-content: space-around;
+    }
+
+    // первая колонка с лого
+    &.footer-firstcol {
+      display: flex;
+      flex-direction: column;
+      @media (max-width: 520px) {
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .footer-firstcol {
+        &__logo {
+          width: 150px;
+          @media (max-width: 490px) {
+            img {
+              margin: 0px auto;
+            }
+          }
+        }
+        &__description {
+          font-family: "Montserrat", sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 26px;
+          color: #6c6c6c;
+
+          margin: 20px 0;
+        }
+        &__social {
+          display: flex;
+          @media (max-width: 490px) {
+            margin-bottom: 20px;
+          }
+          svg {
+            fill: transparent;
+            stroke: #6c6c6c;
+            height: 25px;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.2s ease 0s;
+            &:hover {
+              stroke: #613b3e;
+            }
           }
         }
       }
     }
+    // вторая и третья колонка ссылок
     &.footer-useful,
     &.footer-help {
       display: flex;
       flex-direction: column;
       padding-left: 50px;
+      @media (max-width: 1200px) {
+        padding-left: 0px;
+      }
+
+      @media (max-width: 940px) {
+        padding-left: 0px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
       p {
         font-family: "Montserrat", sans-serif;
         font-size: 16px;
         font-weight: 500;
         color: #575757;
         margin-bottom: 35px;
+        @media (max-width: 490px) {
+          margin-bottom: 20px;
+        }
       }
       a {
         font-family: "Montserrat", sans-serif;
@@ -54,6 +112,12 @@
         color: #6c6c6c;
         margin: 0 auto 13px 0;
         transition: all 0.2s ease 0s;
+        @media (max-width: 940px) {
+          margin: 0 auto 13px;
+        }
+        @media (max-width: 490px) {
+          margin-bottom: 10px;
+        }
 
         &:hover {
           color: #7e4c4f;
@@ -61,15 +125,20 @@
         }
       }
     }
+    // последняя, подписка
     &.subscribe {
       p {
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
         font-size: 14px;
         color: #6c6c6c;
+        text-align: left;
 
         line-height: 26px;
         margin-bottom: 26px;
+        @media (max-width: 760px) {
+          text-align: center;
+        }
       }
       form {
         padding: 3px 0;
@@ -87,6 +156,7 @@
           margin-right: 5px;
 
           input {
+            width: 100%;
             border: 0;
             height: 100%;
 
@@ -95,6 +165,7 @@
             color: #c3c3c3;
             font-size: 14px;
             border-radius: 50px;
+            padding: 0 0 0 13px;
             &.is-invalid {
               &:focus {
                 outline: 1px solid red;
@@ -115,11 +186,13 @@
           height: 100%;
           line-height: 0;
           color: #fff;
+          background-color: #7e4c4f;
           border-radius: 50px;
           cursor: pointer;
           padding: 0px 25px;
           transition: background-color 0.2s ease 0s;
           &.disabled {
+            background-color: #7e4c4f98;
             cursor: default;
           }
         }

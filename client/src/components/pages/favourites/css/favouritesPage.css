@@ -1,0 +1,51 @@
+.favourites-page {
+  min-height: 50vh;
+  padding: 0 15px;
+}
+.favourites-page__title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #444444;
+  font-size: 22px;
+  margin: 40px 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .favourites-page__title {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+}
+.favourites-page .cart-empty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid #7e4c4f;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #a1a1a1;
+  font-size: 18px;
+}
+.favourites-page .cart-empty a {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #7e4c4f;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s ease 0s;
+  transition: background-color 0.2s ease 0s;
+}
+.favourites-page .cart-empty a:hover {
+  background-color: #f6ab44;
+}
