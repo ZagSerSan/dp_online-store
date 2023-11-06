@@ -88,7 +88,6 @@ router.put('/:productId', auth, async (req, res) => {
 
     // если изменяется рейтинг продукта
     if (req.headers.accessrole) {
-      console.log('req.headers.options :>> ', req.headers.options)
       let updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {new: true})
       res.send(updatedProduct)
     } else
