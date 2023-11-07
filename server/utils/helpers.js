@@ -23,7 +23,6 @@ function generateProductData(newProductData) {
   const filesPath = `./static/images/products/${newProductData.type}/${folderName}`
 
   const { preview, sliders, dots, intro } = newProductData.filesName
-  console.log('newProductData.filesName :>> ', newProductData.filesName);
 
   const generateImagePath = (namesArray, imagesType) => {
     switch (imagesType) {

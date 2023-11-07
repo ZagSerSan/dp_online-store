@@ -314,7 +314,7 @@ router.put('/:productId', auth, async (req, res) => {
             const relocateFile = async (oldFolder, newFolder, fileName) => {
               await fs.rename(`${oldFolder}/${fileName}`, `${newFolder}/${fileName}`, err => {
                 if(err) throw err; // не удалось переименовать файл
-                console.log('Файлы успешно перенесены');
+                console.log('Файлы успешно перенесены')
               })
             }
             // цикл перемещения

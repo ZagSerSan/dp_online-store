@@ -19,15 +19,9 @@ app.use(express.static('static'))
 app.use('/api', routes)
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('production')
-} else {
-  console.log('development')
-}
+  app.use('/', express.static(path.join(__dirname, 'static')))
 
-if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.join(__dirname, 'client')))
-
-  const indexPath = path.join(__dirname, 'client', 'index.html')
+  const indexPath = path.join(__dirname, 'static', 'index.html')
   app.get('*', (req, res) => {
     res.sendFile(indexPath)
   })
