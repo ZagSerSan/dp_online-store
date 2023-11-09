@@ -4,7 +4,7 @@ import configFile from '../config.json'
 import localStorageService from './localStorage.service'
 import authService from './auth.service'
 
-// "apiEndPoint": "http://localhost:8080/api/"
+// "apiEndPoint": "http://3.91.27.138/api/"
 const http = axios.create({
   baseURL: configFile.apiEndPoint
 })

@@ -19,7 +19,7 @@ function generateUserData() {
 function generateProductData(newProductData) {
   const folderName = splitString(newProductData.name, ' ', '_')
 
-  const IMAGES_URL_API = `http://localhost:8080/images/products/${newProductData.type}/${folderName}`
+  const IMAGES_URL_API = `http://3.91.27.138/images/products/${newProductData.type}/${folderName}`
   const filesPath = `./static/images/products/${newProductData.type}/${folderName}`
 
   const { preview, sliders, dots, intro } = newProductData.filesName

@@ -1,4 +1,4 @@
-const apiServerUrl = 'http://localhost:8080/'
+const apiServerUrl = 'http://3.91.27.138/'
 
 const manItems = {
   manItem1: {

@@ -18,14 +18,14 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.static('static'))
 app.use('/api', routes)
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use('/', express.static(path.join(__dirname, 'static')))
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, 'static')))
 
-//   const indexPath = path.join(__dirname, 'static', 'index.html')
-//   app.get('*', (req, res) => {
-//     res.sendFile(indexPath)
-//   })
-// }
+  const indexPath = path.join(__dirname, 'static', 'index.html')
+  app.get('*', (req, res) => {
+    res.sendFile(indexPath)
+  })
+}
 
 async function start() {
 

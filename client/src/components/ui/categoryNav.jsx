@@ -5,9 +5,9 @@ import './css/categoryNav.css'
 const CategoryNav = () => {
   const { type } = useParams()
   // изображения категорий
-  const IMG_MAN = 'http://localhost:8080/images/category-nav/manCateg.png'
-  const IMG_WOMAN = 'http://localhost:8080/images/category-nav/womanCateg.png'
-  const IMG_CAR = 'http://localhost:8080/images/category-nav/carCateg.png'
+  const IMG_MAN = 'http://3.91.27.138/images/category-nav/manCateg.png'
+  const IMG_WOMAN = 'http://3.91.27.138/images/category-nav/womanCateg.png'
+  const IMG_CAR = 'http://3.91.27.138/images/category-nav/carCateg.png'
   // массив для рендера
   const categories = [
     {
