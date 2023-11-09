@@ -123,7 +123,7 @@ router.post('/token', async (req, res) => {
     const dbToken = await TokenService.findToken(refreshToken)
     // сравниваем токены юсера
     if (isTokenInvalid(data, dbToken)) {
-      res.status(401).json({message: 'Unauthorized'})
+      return res.status(401).json({message: 'Unauthorized'})
     }
     // получение токенов для отправки клиенту
     const tokens = await TokenService.generate({ _id: data._id })
