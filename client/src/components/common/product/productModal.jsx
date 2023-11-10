@@ -19,7 +19,7 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
   const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
 
   useEffect(() => {
-    if (item && !commentsIsLoaded) {
+    if (item) {
       loadCommentsList(item._id)
     }
   }, [item, commentsIsLoaded])
