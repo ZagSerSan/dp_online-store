@@ -98,7 +98,7 @@ router.put('/:productId', auth, async (req, res) => {
         if (req.headers.images === 'data') {
           // менять пути к картинкам
           const folderName = splitString(editedProduct.name, ' ', '_')
-          const IMAGES_URL_API = `http://localhost:8080/images/products/${editedProduct.type}/${folderName}`
+          const IMAGES_URL_API = `http://3.91.27.138/images/products/${editedProduct.type}/${folderName}`
           const { preview, sliders, dots, intro } = req.body.filesName
           // генерация новых данных для обновления
           const generateImagePath = (namesArray, imagesType) => {
@@ -205,7 +205,7 @@ router.put('/:productId', auth, async (req, res) => {
             
             // менять пути к картинкам
             const folderName = splitString(req.body.name, ' ', '_')
-            const IMAGES_URL_API = `http://localhost:8080/images/products/${req.body.type}/${folderName}`
+            const IMAGES_URL_API = `http://3.91.27.138/images/products/${req.body.type}/${folderName}`
             const { preview, sliders, dots, intro } = editedProduct.filesName
       
             const generateImagePath = (namesArray, imagesType) => {
@@ -259,7 +259,7 @@ router.put('/:productId', auth, async (req, res) => {
       
             // менять пути к картинкам
             const folderName = splitString(req.body.name, ' ', '_')
-            const IMAGES_URL_API = `http://localhost:8080/images/products/${req.body.type}/${folderName}`
+            const IMAGES_URL_API = `http://3.91.27.138/images/products/${req.body.type}/${folderName}`
             const { preview, sliders, dots, intro } = editedProduct.filesName
       
             const generateImagePath = (namesArray, imagesType) => {
@@ -335,7 +335,7 @@ router.put('/:productId', auth, async (req, res) => {
             
             // менять пути к картинкам
             const folderName = splitString(editedProduct.name, ' ', '_')
-            const IMAGES_URL_API = `http://localhost:8080/images/products/${req.body.type}/${folderName}`
+            const IMAGES_URL_API = `http://3.91.27.138/images/products/${req.body.type}/${folderName}`
             const { preview, sliders, dots, intro } = editedProduct.filesName
       
             const generateImagePath = (namesArray, imagesType) => {

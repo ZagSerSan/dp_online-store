@@ -5,10 +5,11 @@ import productStore from '../../store/productStore'
 import Slider from 'react-slick'
 
 const Intro = () => {
+  const { productsEntity } = productStore()
   // получение продуктов, предназначенных для слайдера
-  const sliderItems = productStore(
-    state => state.productsEntity.filter(item => item.introSlider.switched === true)
-  )
+  const sliderItems = productsEntity
+    ? productsEntity.filter((item) => item.introSlider.switched === true)
+    : []
   // настройки для слайдера
   var settings = {
     dots: false,

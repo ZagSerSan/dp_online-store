@@ -7,7 +7,7 @@ import { validatorConfig } from '../../utils/validatorConfig'
 // components, other
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
-const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
+const LOGO_URL = 'http://3.91.27.138/images/logo/logoSapach.png'  
 
 const Footer = () => {
   // значение полей формы и ошибки

@@ -10,7 +10,7 @@ import { cartAnimation } from '../../utils/cartAnimation'
 // components
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
-const LOGO_URL = 'http://localhost:8080/images/logo/logoSapach.png'  
+const LOGO_URL = 'http://3.91.27.138/images/logo/logoSapach.png'  
 
 const Header = () => {
   // сущности и функции сторов
