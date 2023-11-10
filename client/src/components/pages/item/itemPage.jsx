@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import './css/productPage.css'
 // utils
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
@@ -42,19 +42,13 @@ const ItemPage = () => {
     }, 100)
   }
 
-  if (!currentProduct) {
-    return <Icon id='loader'/>
-  }
-
   const toggleContent = (newState) => {
     setContentState(newState)
   }
 
   useEffect(() => {
-    if (!commentsIsLoaded) {
-      loadCommentsList(itemId)
-    }
-  }, [commentsIsLoaded])
+    loadCommentsList(itemId)
+  }, [itemId, commentsIsLoaded])
 
   // скроллить вверх при открытии страницы
   useEffect(() => {
@@ -66,76 +60,77 @@ const ItemPage = () => {
 
   return (
     <div className="product-page">
-
-      <div className="my-container product-page__wrapper">
-        {currentProduct && (<>
-          <div className="product-page-col">
-            <div className="product-page-col__row product-page-slider">
-              <Slider {...settings}>
-                {currentProduct.slider.map(item => (
-                  <div key={item.id}>
-                    <div className=''>
-                      <img src={item.preview} alt={item.title} />
+      {currentProduct ? (
+        <>
+          <div className="my-container product-page__wrapper">
+            <div className="product-page-col">
+              <div className="product-page-col__row product-page-slider">
+                <Slider {...settings}>
+                  {currentProduct.slider.map(item => (
+                    <div key={item.id}>
+                      <div className=''>
+                        <img src={item.preview} alt={item.title} />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-            <div className="product-page-col__row preview-info">
-              <p className="preview-info__name">{currentProduct.name}</p>
-              <p className="preview-info__rate">
-              {ratingStarsHelper.map(rateItem => (
-                <Icon
-                  key={rateItem.value}
-                  id='rate-star-full'
-                  strokeWidth='2' 
-                  className={
-                    (rateItem.value <= calcAverageNumber(commentsEntity) ? ' active' : '')
-                  }
-                />
-              ))}
-              <span>({calcAverageNumber(commentsEntity)})</span>
-              </p>
-              <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p>
-              <p className="preview-info__in-stock">In stock</p>
-              <p className="preview-info__description">{currentProduct.description}</p>
-              <div className='options'>
-                {currentProduct.modalOptionTypes.map(item => (
-                  <ModalOption
-                    key={item.name}
-                    name={item.name} 
-                    options={item.options}
+                  ))}
+                </Slider>
+              </div>
+              <div className="product-page-col__row preview-info">
+                <p className="preview-info__name">{currentProduct.name}</p>
+                <p className="preview-info__rate">
+                {ratingStarsHelper.map(rateItem => (
+                  <Icon
+                    key={rateItem.value}
+                    id='rate-star-full'
+                    strokeWidth='2' 
+                    className={
+                      (rateItem.value <= calcAverageNumber(commentsEntity) ? ' active' : '')
+                    }
                   />
                 ))}
+                <span>({calcAverageNumber(commentsEntity)})</span>
+                </p>
+                <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p>
+                <p className="preview-info__in-stock">In stock</p>
+                <p className="preview-info__description">{currentProduct.description}</p>
+                <div className='options'>
+                  {currentProduct.modalOptionTypes.map(item => (
+                    <ModalOption
+                      key={item.name}
+                      name={item.name} 
+                      options={item.options}
+                    />
+                  ))}
+                </div>
+                <ProductActions item={currentProduct}/>
               </div>
-              <ProductActions item={currentProduct}/>
             </div>
-          </div>
 
-          <div className="product-page-col more-info">
-            <div className="more-info-nav">
-              {navLinks.map(link => (
-                <button
-                  key={link.state}
-                  className={contentState === link.state ? 'active' : ''}
-                  onClick={() => toggleContent(link.state)}
-                >
-                  {link.Label} {link.counter && <span>({commentsEntity?.length})</span>}
-                </button>
-              ))}
-            </div>
-            <div className="more-info-content">
-              {contentState === 'more'
-                ? <ProductInfoMore/>
-                : contentState === 'reviews'
-                ? <ProductInfoReviews/>
-                : <ProductInfoDescription/>
-              }
+            <div className="product-page-col more-info">
+              <div className="more-info-nav">
+                {navLinks.map(link => (
+                  <button
+                    key={link.state}
+                    className={contentState === link.state ? 'active' : ''}
+                    onClick={() => toggleContent(link.state)}
+                  >
+                    {link.Label} {link.counter && <span>({commentsEntity?.length})</span>}
+                  </button>
+                ))}
+              </div>
+              <div className="more-info-content">
+                {contentState === 'more'
+                  ? <ProductInfoMore/>
+                  : contentState === 'reviews'
+                  ? <ProductInfoReviews/>
+                  : <ProductInfoDescription/>
+                }
+              </div>
             </div>
           </div>
-        </>)}
-      </div>
-      <ProductsList role='productItem'/>
+          <ProductsList role='productItem'/>
+        </>
+      ) : <Navigate to='/home'/>}
     </div>
   )
 }
