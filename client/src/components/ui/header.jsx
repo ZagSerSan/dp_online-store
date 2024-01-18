@@ -7,12 +7,14 @@ import userStore from '../../store/userStore'
 import globalStore from '../../store/globalStore'
 import userService from '../../service/user.service'
 import { cartAnimation } from '../../utils/cartAnimation'
+import configFile from '../../config.json'
 // components
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
-const LOGO_URL = 'http://3.91.27.138/images/logo/logoSapach.png'  
 
 const Header = () => {
+  const LOGO_URL = `${configFile.apiEndPointStatic}images/logo/logoSapach.png`  
+
   // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { productsEntity } = productStore()

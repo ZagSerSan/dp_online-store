@@ -4,12 +4,14 @@ import './css/footer.css'
 // utils
 import { validator } from '../../utils/validator'
 import { validatorConfig } from '../../utils/validatorConfig'
+import configFile from '../../config.json'
 // components, other
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
-const LOGO_URL = 'http://3.91.27.138/images/logo/logoSapach.png'  
 
 const Footer = () => {
+  const LOGO_URL = `${configFile.apiEndPointStatic}images/logo/logoSapach.png`  
+
   // значение полей формы и ошибки
   const [data, setData] = useState({email: ''})
   const [errors, setErrors] = useState({})

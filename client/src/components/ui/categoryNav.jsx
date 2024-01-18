@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './css/categoryNav.css'
+import configFile from '../../config.json'
 
 const CategoryNav = () => {
   const { type } = useParams()
   // изображения категорий
-  const IMG_MAN = 'http://3.91.27.138/images/category-nav/manCateg.png'
-  const IMG_WOMAN = 'http://3.91.27.138/images/category-nav/womanCateg.png'
-  const IMG_CAR = 'http://3.91.27.138/images/category-nav/carCateg.png'
+  const api_staticUrl = configFile.apiEndPointStatic
+  const IMG_MAN = `${api_staticUrl}images/category-nav/manCateg.png`
+  const IMG_WOMAN = `${api_staticUrl}images/category-nav/womanCateg.png`
+  const IMG_CAR = `${api_staticUrl}images/category-nav/carCateg.png`
   // массив для рендера
   const categories = [
     {
