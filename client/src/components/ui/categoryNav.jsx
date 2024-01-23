@@ -6,7 +6,7 @@ import configFile from '../../config.json'
 const CategoryNav = () => {
   const { type } = useParams()
   // изображения категорий
-  const api_staticUrl = configFile.apiEndPointStatic
+  const api_staticUrl = configFile.apiEndPoint
   const IMG_MAN = `${api_staticUrl}images/category-nav/manCateg.png`
   const IMG_WOMAN = `${api_staticUrl}images/category-nav/womanCateg.png`
   const IMG_CAR = `${api_staticUrl}images/category-nav/carCateg.png`

@@ -1,4 +1,5 @@
 {
+  "apiEndPoint": "http://localhost:8080/",
   "port": 8080,
   "mongoUri": "mongodb+srv://zagsersan:zagsersan112233@dp-onlinestore.jrqyvh1.mongodb.net/?retryWrites=true&w=majority",
   "accessSecretKey": "super secret from backend",

@@ -13,7 +13,7 @@ import Icon from '../common/icon'
 import TextField from '../common/form/textField'
 
 const Header = () => {
-  const LOGO_URL = `${configFile.apiEndPointStatic}images/logo/logoSapach.png`  
+  const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
   // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()

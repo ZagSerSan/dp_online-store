@@ -10,7 +10,7 @@ import Icon from '../common/icon'
 import TextField from '../common/form/textField'
 
 const Footer = () => {
-  const LOGO_URL = `${configFile.apiEndPointStatic}images/logo/logoSapach.png`  
+  const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
   // значение полей формы и ошибки
   const [data, setData] = useState({email: ''})

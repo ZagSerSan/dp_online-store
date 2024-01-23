@@ -1,4 +1,9 @@
-const apiServerUrl = 'http://3.91.27.138/'
+const configFile = require('../../config/default.json')
+
+// const apiServerUrl = 'http://3.91.27.138/'
+// const apiServerUrl = 'http://localhost:8080/'
+const apiServerUrl = configFile.apiEndPoint
+// const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
 const manItems = {
   manItem1: {
