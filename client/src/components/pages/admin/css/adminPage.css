@@ -4,8 +4,27 @@
   background: linear-gradient(#f0f0f0, #fff);
   min-height: 300px;
 }
-.admin-page__tabs-wrapper {
-  height: 50px;
+.admin-page .my-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #fff;
+  border: 1px #7e4c4f solid;
+}
+.admin-page-tabs {
+  width: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-right: 1px #7e4c4f solid;
 }
 @media (max-width: 580px) {
   .admin-page-tabs {
@@ -22,34 +41,20 @@
   font-size: 16px;
   font-weight: 500;
   color: rgba(126, 76, 79, 0.4431372549);
-  min-width: 150px;
   background-color: transparent;
   padding: 5px 0;
   -webkit-transition: all 0.2s ease 0;
   transition: all 0.2s ease 0;
-  border-top: 1px #c5c5c5 solid;
-}
-.admin-page-tabs button:first-child {
-  border-left: 1px #c5c5c5 solid;
-}
-.admin-page-tabs button:last-child {
-  border-right: 1px #c5c5c5 solid;
 }
 .admin-page-tabs button:hover {
   color: #7e4c4f;
 }
 .admin-page-tabs button.active {
-  color: #7e4c4f;
-  background-color: #fff;
-  border: 1px #7e4c4f solid;
-  border-bottom: 0;
-}
-@media (max-width: 580px) {
-  .admin-page-tabs button {
-    min-width: 100px;
-  }
+  background-color: #7e4c4f;
+  color: #fff;
 }
 .admin-page-content {
+  width: 85%;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -60,8 +65,6 @@
 
 .user-tab-page {
   padding: 25px 15px 25px;
-  margin-top: -1px;
-  border: 1px #7e4c4f solid;
 }
 .user-tab-page a.add-user {
   color: #fff;
