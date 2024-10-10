@@ -51,6 +51,10 @@
 
 .user-tab-page {
   padding: 25px 15px 25px;
+  //? высота устанавливается
+  //? списком в др компонентах..
+  min-height: 554px;
+
   a.add-user {
     color: #fff;
     padding: 5px 15px;

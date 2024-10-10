@@ -5,11 +5,12 @@ import './css/adminPage.css'
 import UserTabPage from './userTabPage'
 import ProductsTabPage from './productsTabPage'
 import userStore from '../../../store/userStore'
+import StatisticsTabPage from './statisticsTabPage'
 
 const AdminPage = ({ tabState }) => {
   const navigate = useNavigate()
   const { authedUser } = userStore()
-  const tabs = ['users', 'products']
+  const tabs = ['users', 'products', 'statistics']
 
   const toggleTabs = (tab) => {
     navigate(`/admin/${tab}`)
@@ -27,7 +28,9 @@ const AdminPage = ({ tabState }) => {
         <div className="admin-page-content">
           {tabState === 'users'
             ? <UserTabPage />
-            : <ProductsTabPage />
+            : tabState === 'products'
+            ? <ProductsTabPage />
+            : <StatisticsTabPage/>
           }
         </div>
           </div>

@@ -51,7 +51,14 @@ const routes = [
             ]
           }
         ]
-      }
+      },
+      {
+        path: 'statistics',
+        children: [
+          {path: '', element: <AdminPage tabState='statistics'/>},
+          // {path: 'create-user', element: <CreateUser/>},
+        ]
+      },
     ]
   },
   {

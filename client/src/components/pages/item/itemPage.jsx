@@ -18,9 +18,14 @@ import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
 
+  // todo (line 93) - отображение скидки (опционально с таймером)
+
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
+
+  console.log(currentProduct)
+
   const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
   // переключение контента
   const [contentState, setContentState] = useState('reviews')
@@ -90,7 +95,17 @@ const ItemPage = () => {
                 ))}
                 <span>({calcAverageNumber(commentsEntity)})</span>
                 </p>
-                <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p>
+
+                {/* todo - отображение скидки (опционально с таймером) */}
+                {/* <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p> */}
+                {currentProduct.discount
+                  ? <p className="preview-info__price">$
+                      {currentProduct.price - (currentProduct.price / 100 * currentProduct.discount.percentage)}
+                       - <strike>${currentProduct.price}.00</strike> (02:43:15)
+                    </p>
+                  : <p className="preview-info__price">${currentProduct.price}</p>
+                }
+
                 <p className="preview-info__in-stock">In stock</p>
                 <p className="preview-info__description">{currentProduct.description}</p>
                 <div className='options'>

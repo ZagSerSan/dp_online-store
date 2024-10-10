@@ -65,6 +65,7 @@
 
 .user-tab-page {
   padding: 25px 15px 25px;
+  min-height: 554px;
 }
 .user-tab-page a.add-user {
   color: #fff;

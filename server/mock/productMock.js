@@ -5,6 +5,8 @@ const { manItem1, manItem2, manItem3, manItem4, manItem5, manItem6 } = manItems
 const { womanItem1, womanItem2, womanItem3, womanItem4, womanItem5, womanItem6 } = womanItems
 const { carItem1, carItem2, carItem3, carItem4, carItem5, carItem6 } = carItems
 
+// todo - скидка
+
 const products = [
   {
     name: 'Man item 1',
@@ -12,6 +14,11 @@ const products = [
     title: 'Some title',
     price: 14,
     rate: 0,
+    discount: {
+      // процент и время
+      percentage: 15,
+      endTime: true
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_1`,
     filesName: {
