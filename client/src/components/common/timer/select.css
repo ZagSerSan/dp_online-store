@@ -1,0 +1,17 @@
+.select__wrapper {
+  display: flex;
+}
+.select-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+}
+
+input {
+  width: 30px;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+}
