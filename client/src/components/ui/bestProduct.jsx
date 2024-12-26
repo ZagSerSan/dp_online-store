@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import './css/bestProduct.css'
 import productStore from '../../store/productStore'
 // todo = timer
-import moment from 'moment'
 import Timer from '../common/timer/timer'
 
 const BestProduct = () => {
@@ -12,62 +11,7 @@ const BestProduct = () => {
   // продукт, максимального рейтинга
   const maxRatingProduct = _.orderBy(productsEntity, ['rate'], ['desc'])[0]
 
-// todo = timer
-  const counterItems = [
-    {type: 'DD', name: 'Days'},
-    {type: 'HH', name: 'Hours'},
-    {type: 'mm', name: 'Min'},
-    {type: 'ss', name: 'Sec'},
-  ]
-
-  
-  const nowDate = moment(Date.now())
-  const futureDate = moment('2024-01-31T22:00:00')
-  const [timeDiff, setTimeDiff] = useState()
-
-  // let updateTimer = () => {
-  //   if (timeDiff > 0) {
-  //     setTimeDiff(moment.utc(futureDate.diff(Date.now())))
-  //   } else {
-  //     // clearInterval(timer);
-  //     console.log('else')
-  //   }
-  // }
-  // let timer = setInterval(updateTimer, 1000);
-  // console.log('timer :>> ', timer)
-
-  useEffect(() => {
-
-    setTimeDiff(moment.utc(futureDate.diff(nowDate)))
-
-    // let updateTimer = () => {
-    //   if (timeDiff > 0) {
-    //     setTimeDiff(prev => prev - 1000)
-    //   } else {
-    //     // clearInterval(timer);
-    //     console.log('else')
-    //   }
-    // }
-    // let timer = setInterval(updateTimer, 1000)
-    // updateTimer()
-
-  }, [])
-
-  // let updateTimer = () => {
-  //   if (timeDiff > 0) {
-  //     setTimeDiff(moment.utc(futureDate.diff(Date.now())))
-  //   } else {
-  //     // clearInterval(timer);
-  //     console.log('else')
-  //   }
-  // }
-  // let timer = setInterval(updateTimer, 1000);
-  // console.log('timer :>> ', timer)
-  // updateTimer()
-
-  const getTimeValue = (formatType) => {
-    return timeDiff.format(formatType)
-  }
+// todo = перерендер после окончания таймера
 
   return (<>
     {maxRatingProduct && (
