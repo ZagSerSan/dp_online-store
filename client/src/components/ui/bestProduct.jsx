@@ -5,6 +5,7 @@ import './css/bestProduct.css'
 import productStore from '../../store/productStore'
 // todo = timer
 import moment from 'moment'
+import Timer from '../common/timer/timer'
 
 const BestProduct = () => {
   const { productsEntity } = productStore()
@@ -88,23 +89,21 @@ const BestProduct = () => {
                   {maxRatingProduct.name}
                 </Link>
               </h3>
-              <p className="best-product-content__price">
-                <span className='old-price'>$16.00</span>
-                <span className='new-price'>$10.00</span>
-              </p>
+              <div className="best-product-content__price">
+                
+                {maxRatingProduct.discount?.endTime > Date.now()
+                  ? <p>
+                      <span>{(maxRatingProduct.price - (maxRatingProduct.price / 100 * maxRatingProduct.discount.percentage)).toFixed(2)} - </span>
+                      <strike>${(maxRatingProduct.price).toFixed(2)}</strike>
+                    </p>
+                  : <p className="preview-info__price">${maxRatingProduct.price}.00</p>
+                }
+
+              </div>
               <p className="best-product-content__description">
                 Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commodo
               </p>
-              <div className="best-product-content-counter">
-                {timeDiff && counterItems.map(formatItem => (
-                  <div key={formatItem.type} className="best-product-content-counter-item">
-                    <p className="best-product-content-counter-item__number">
-                      {getTimeValue(formatItem.type)}
-                    </p>
-                    <p className="best-product-content-counter-item__name">{formatItem.name}</p>
-                  </div>
-                ))}
-              </div>
+              <Timer endDate={maxRatingProduct.discount?.endTime}/>
               <Link
                 className="best-product-content__shop-btn"
                 to={`/category/${maxRatingProduct.type}/${maxRatingProduct._id}`}

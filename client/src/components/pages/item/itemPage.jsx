@@ -17,14 +17,13 @@ import ProductsList from '../../ui/productsList'
 import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
+import Timer from '../../common/timer/timer'
 
   // todo (line 93) - отображение скидки (опционально с таймером)
 
 const ItemPage = () => {
   const { itemId } = useParams()
   const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
-
-  console.log(currentProduct)
 
   const { commentsEntity, loadCommentsList, commentsIsLoaded } = commentStore()
   // переключение контента
@@ -96,13 +95,14 @@ const ItemPage = () => {
                 <span>({calcAverageNumber(commentsEntity)})</span>
                 </p>
 
-                {/* todo - отображение скидки (опционально с таймером) */}
-                {/* <p className="preview-info__price">${currentProduct.price}.00 - <strike>$50.00</strike></p> */}
-                {currentProduct.discount
-                  ? <p className="preview-info__price">$
-                      {currentProduct.price - (currentProduct.price / 100 * currentProduct.discount.percentage)}
-                       - <strike>${currentProduct.price}.00</strike> (02:43:15)
-                    </p>
+                {currentProduct.discount?.endTime > Date.now()
+                  ? <div>
+                      <p className="preview-info__price">$
+                        <span>{(currentProduct.price - (currentProduct.price / 100 * currentProduct.discount.percentage)).toFixed(2)} - </span>
+                        <strike>${(currentProduct.price).toFixed(2)}</strike>
+                      </p>
+                      <Timer endDate={currentProduct.discount?.endTime}/>
+                    </div>
                   : <p className="preview-info__price">${currentProduct.price}</p>
                 }
 

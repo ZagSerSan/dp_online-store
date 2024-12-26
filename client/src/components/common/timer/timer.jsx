@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react"
-import dateStore from "../store/dateStore"
-import { formatTime } from "../utils/formatTime"
+import "./timer.css"
+//* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
+// import dateStore from "../../../store/dateStore"
+import { formatTime } from "../../../utils/formatTime"
 
 // test func
 const onComplete = () => {
   console.log("Timer completed")
 }
 
-function Timer() {
-  const { endDate } = dateStore() // получение времени из store (а там получаем из селектов)
+function Timer({ endDate }) {
+  //* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
+  // const { endDate } = dateStore() // получение времени из store (а там получаем из селектов)
   const [remainingTime, setRemainingTime] = useState(endDate) // state для разницы времени
   const timerIdRef = useRef(null) // Хранит идентификатор таймера
 
@@ -48,11 +51,14 @@ function Timer() {
   let timeObj = formatTime(remainingTime)
 
   return (
-    <div>
-      {timeObj && Object.keys(timeObj).map(key => (
-        <p key={key}>
-          {`${key}: ${timeObj[key]}`}
-        </p>
+    <div className="counter">
+      {Object.keys(timeObj).map(key => (
+        <div key={key} className="counter-item">
+          <p className="counter-item__number">
+            {timeObj[key]}
+          </p>
+          <p className="counter-item__name">{key}</p>
+        </div>
       ))}
     </div>
   )
