@@ -9,7 +9,7 @@ const onComplete = () => {
   console.log("Timer completed")
 }
 
-function Timer({ endDate }) {
+function Timer({ endDate, rerenderComponent }) {
   //* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
   // const { endDate } = dateStore() // получение времени из store (а там получаем из селектов)
   const [remainingTime, setRemainingTime] = useState(endDate) // state для разницы времени
@@ -18,7 +18,7 @@ function Timer({ endDate }) {
   useEffect(() => {
     const endTime = endDate
 
-    if (endTime === 0) {
+    if (endTime === 0) {      
       clearTimeout(timerIdRef.current) // Останавливаем текущий таймер
       setRemainingTime(0) // Обнуляем состояние
       return
@@ -33,7 +33,8 @@ function Timer({ endDate }) {
       if (timeLeft > 0) {
         timerIdRef.current = setTimeout(tick, 1000)
       } else {
-        onComplete()
+        // onComplete()
+        rerenderComponent(remainingTime)
       }
     }
 

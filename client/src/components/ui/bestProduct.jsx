@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react'
+// main
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import './css/bestProduct.css'
+// my components
 import productStore from '../../store/productStore'
-// todo = timer
 import Timer from '../common/timer/timer'
 
 const BestProduct = () => {
+  // получения всех продуктов для отбора самого популярного
   const { productsEntity } = productStore()
   // продукт, максимального рейтинга
   const maxRatingProduct = _.orderBy(productsEntity, ['rate'], ['desc'])[0]
 
-// todo = перерендер после окончания таймера
+  // попытка сделать рендер через замыкание из дочернего элемента
+  const [timerEnabled, setTimerEnabled] = useState()
+  const rerenderComponent = (timerState) => {
+    // если закончилось время таймера то менять сост родителя на false
+    timerState < Date.now() ? setTimerEnabled(false) : setTimerEnabled(true)
+  }
 
   return (<>
     {maxRatingProduct && (
@@ -47,7 +54,7 @@ const BestProduct = () => {
               <p className="best-product-content__description">
                 Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commodo
               </p>
-              <Timer endDate={maxRatingProduct.discount?.endTime}/>
+              <Timer endDate={maxRatingProduct.discount?.endTime} rerenderComponent={rerenderComponent}/>
               <Link
                 className="best-product-content__shop-btn"
                 to={`/category/${maxRatingProduct.type}/${maxRatingProduct._id}`}

@@ -34,6 +34,13 @@ const ItemPage = () => {
     {Label: 'REVIEWS', state: 'reviews', counter: true}
   ]
 
+  // попытка сделать рендер через замыкание из дочернего элемента
+  const [timerEnabled, setTimerEnabled] = useState()
+  const rerenderComponent = (timerState) => {
+    // если закончилось время таймера то менять сост родителя на false
+    timerState < Date.now() ? setTimerEnabled(false) : setTimerEnabled(true)
+  }
+
   // correcting html slider
   if (currentProduct) {
     setTimeout(() => {
@@ -101,7 +108,7 @@ const ItemPage = () => {
                         <span>{(currentProduct.price - (currentProduct.price / 100 * currentProduct.discount.percentage)).toFixed(2)} - </span>
                         <strike>${(currentProduct.price).toFixed(2)}</strike>
                       </p>
-                      <Timer endDate={currentProduct.discount?.endTime}/>
+                      <Timer endDate={currentProduct.discount?.endTime} rerenderComponent={rerenderComponent}/>
                     </div>
                   : <p className="preview-info__price">${currentProduct.price}</p>
                 }

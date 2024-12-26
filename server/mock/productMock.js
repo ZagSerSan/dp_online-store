@@ -13,7 +13,7 @@ const products = [
     type: 'man',
     title: 'Some title',
     price: 14,
-    rate: 5,
+    rate: 0,
     discount: {
       // процент и время
       percentage: 15,
