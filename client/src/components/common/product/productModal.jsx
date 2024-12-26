@@ -13,6 +13,7 @@ import commentStore from '../../../store/commentStore'
 import Icon from '../icon'
 import ModalOption from './modalOption'
 import ProductActions from './productActions'
+import applyDiscount from '../../../utils/applyDiscount'
 
 const ProductModal = ({ item, modalState, onToggleState }) => {
   const { setCartItemData } = cartStore()
@@ -75,7 +76,15 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
               {/* контент */}
               <div className="product-modal-content">
                 <h3 className="product-modal-content__name">{item.name}</h3>
-                <p className="product-modal-content__price">${item.price}.00</p>
+
+                {item.discount?.endTime > Date.now()
+                  ? <p className="product-modal-content__price">$
+                      <span>{applyDiscount(item.price, item.discount).toFixed(2)} - </span>
+                      <strike>${(item.price).toFixed(2)}</strike>
+                    </p>
+                  : <p className="product-modal-content__price">${(item.price).toFixed(2)}</p>
+                }
+
                 <div className="product-modal-content__rate">
                   {ratingStarsHelper.map(rateItem => (
                     <Icon

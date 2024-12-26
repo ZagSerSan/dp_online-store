@@ -11,6 +11,7 @@ import configFile from '../../config.json'
 // components
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
+import applyDiscount from '../../utils/applyDiscount'
 
 const Header = () => {
   const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
@@ -291,7 +292,10 @@ const Header = () => {
                           <NavLink to={`/category/${item.type}/${item._id}`}>
                             {item.name}
                           </NavLink>
-                          <p>{item.price} x {item.count} = <span className='total-price'>{item.totalPrice}</span></p>
+
+                          {/*  */}
+                          <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{item.totalPrice}</span></p>
+
                         </div>
                         <button onClick={(e) => removeFromCart(e, item)}><Icon id='close'/></button>
                       </div>

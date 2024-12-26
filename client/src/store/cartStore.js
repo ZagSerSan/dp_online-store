@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
-import userService from '../service/user.service'
+import applyDiscount from '../utils/applyDiscount'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
@@ -63,8 +63,9 @@ const cartStore = create((set) => ({
       _id: item._id,
       name: item.name,
       type: item.type,
+      discount: item.discount,
       price: item.price,
-      totalPrice: item.price * state.cartItemData.count,
+      totalPrice: applyDiscount(item.price, item.discount) * state.cartItemData.count,
       image: item.preview,
     }
 

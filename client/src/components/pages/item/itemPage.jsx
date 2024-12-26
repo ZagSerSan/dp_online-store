@@ -18,6 +18,7 @@ import ProductInfoMore from './productInfoMore'
 import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
 import Timer from '../../common/timer/timer'
+import applyDiscount from '../../../utils/applyDiscount'
 
   // todo (line 93) - отображение скидки (опционально с таймером)
 
@@ -105,12 +106,12 @@ const ItemPage = () => {
                 {currentProduct.discount?.endTime > Date.now()
                   ? <div>
                       <p className="preview-info__price">$
-                        <span>{(currentProduct.price - (currentProduct.price / 100 * currentProduct.discount.percentage)).toFixed(2)} - </span>
+                        <span>{applyDiscount(currentProduct.price, currentProduct.discount).toFixed(2)} - </span>
                         <strike>${(currentProduct.price).toFixed(2)}</strike>
                       </p>
                       <Timer endDate={currentProduct.discount?.endTime} rerenderComponent={rerenderComponent}/>
                     </div>
-                  : <p className="preview-info__price">${currentProduct.price}</p>
+                  : <p className="preview-info__price">${(currentProduct.price).toFixed(2)}</p>
                 }
 
                 <p className="preview-info__in-stock">In stock</p>

@@ -6,12 +6,13 @@ import './css/productItem.css'
 import cartStore from '../../../store/cartStore'
 import userStore from '../../../store/userStore'
 import Icon from '../icon'
+import applyDiscount from '../../../utils/applyDiscount'
 
 const ProductItem = ({ item, setModalState, setModalItem }) => {
   const navigate = useNavigate()
   const { authedUser, localUser, updateUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { addToCart, toggleBookmark } = cartStore()
-  const { _id: id, name, preview, title, price, type } = item
+  const { _id: id, name, preview, title, price, type, discount } = item
   const [cartHover, setCartHover] = useState(false)
 
   // является ли айтем избранным ?
@@ -77,7 +78,14 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
             <Icon id='heart'/>
           </button>
         </div>
-        <p className="product-item__price">${price}.00</p>
+
+        {discount?.endTime > Date.now()
+          ? <p className="product-item__price">
+              <span>{applyDiscount(price, discount).toFixed(2)} - </span>
+              <strike>${(price).toFixed(2)}</strike>
+            </p>
+          : <p className="product-item__price">${price.toFixed(2)}</p>
+        }
       </div>
     </div>
   )

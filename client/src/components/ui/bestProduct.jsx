@@ -6,6 +6,7 @@ import './css/bestProduct.css'
 // my components
 import productStore from '../../store/productStore'
 import Timer from '../common/timer/timer'
+import applyDiscount from '../../utils/applyDiscount'
 
 const BestProduct = () => {
   // получения всех продуктов для отбора самого популярного
@@ -13,13 +14,13 @@ const BestProduct = () => {
   // продукт, максимального рейтинга
   const maxRatingProduct = _.orderBy(productsEntity, ['rate'], ['desc'])[0]
 
-  // попытка сделать рендер через замыкание из дочернего элемента
+  // перерендер через замыкание из дочернего элемента
   const [timerEnabled, setTimerEnabled] = useState()
   const rerenderComponent = (timerState) => {
     // если закончилось время таймера то менять сост родителя на false
     timerState < Date.now() ? setTimerEnabled(false) : setTimerEnabled(true)
   }
-
+  
   return (<>
     {maxRatingProduct && (
       <div className='my-container best-product'>
@@ -44,10 +45,10 @@ const BestProduct = () => {
                 
                 {maxRatingProduct.discount?.endTime > Date.now()
                   ? <p>
-                      <span>{(maxRatingProduct.price - (maxRatingProduct.price / 100 * maxRatingProduct.discount.percentage)).toFixed(2)} - </span>
+                      <span>{applyDiscount(maxRatingProduct.price, maxRatingProduct.discount).toFixed(2)} - </span>
                       <strike>${(maxRatingProduct.price).toFixed(2)}</strike>
                     </p>
-                  : <p className="preview-info__price">${maxRatingProduct.price}.00</p>
+                  : <p className="preview-info__price">${(maxRatingProduct.price).toFixed(2)}</p>
                 }
 
               </div>

@@ -7,6 +7,7 @@ import { cartAnimation } from '../../../utils/cartAnimation'
 import userStore from '../../../store/userStore'
 import userService from '../../../service/user.service'
 import Pagination from '../pagination'
+import applyDiscount from '../../../utils/applyDiscount'
 
 const MyProductsList = ({ cartItems }) => {
   const { authedUser, localUser, updateUser, updLocalUserCart } = userStore()
@@ -93,21 +94,30 @@ const MyProductsList = ({ cartItems }) => {
                       ))}
                     </div>
                     <div className="item-content-info__col">
-                      <p className='item-content__price'>
-                        <span className='darkened-text'>price: </span>
-                        ${item.price}
-                      </p>
+                      {item.discount?.endTime > Date.now()
+                        ? <p className="item-content__price">
+                            <span className='darkened-text'>price: </span>
+                            <span>${applyDiscount(item.price, item.discount).toFixed(2)} -
+                            <strike> ${(item.price).toFixed(2)}</strike></span>
+                          </p>
+                        : <p className="item-content__price">${(item.price).toFixed(2)}</p>
+                      }
                       <p className='item-content__price'>
                         <span className='darkened-text'>count: </span>
                         {item.count}
                       </p>
                     </div>
                     <div className="item-content-info__col">
-                      <p>Total price:</p>
-                      <p>
-                        <span className='darkened-text'>${item.price} x {item.count} = </span>
-                        ${item.totalPrice}
-                      </p>
+                      {item.discount?.endTime > Date.now()
+                        ? <p>
+                            <span className='darkened-text'>${applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = </span>
+                            ${(item.totalPrice).toFixed(2)}
+                          </p>
+                        : <p>
+                            <span className='darkened-text'>${(item.price).toFixed(2)} x {item.count} = </span>
+                            ${(item.totalPrice).toFixed(2)}
+                          </p>
+                      }
                     </div>
                   </div>
                 </div>
@@ -127,7 +137,7 @@ const MyProductsList = ({ cartItems }) => {
         <div className="my-products-actions">
           <div className="my-products-actions__total">
             <p>Total:</p>
-            <p>${calculateTotalPrice(cartItems)}</p>
+            <p>${calculateTotalPrice(cartItems).toFixed(2)}</p>
           </div>
           <div className="my-products-actions-buttons">
             <button>pay for products</button>
