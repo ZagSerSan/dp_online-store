@@ -184,6 +184,11 @@
   display: flex;
   width: 100%;
 }
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__row.flex-block,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__row.flex-block {
+  display: block;
+  width: 100%;
+}
 .accordion-page .accordion-page-item-content .edit-product-page .form-container__col,
 .accordion-page .accordion-page-item-content .create-product-page .form-container__col {
   width: 50%;

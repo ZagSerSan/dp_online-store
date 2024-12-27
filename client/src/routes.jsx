@@ -30,7 +30,7 @@ const routes = [
   {
     path: 'admin',
     children: [
-      {path: '', element: <Navigate to='users'/>},
+      {path: '', element: <Navigate to='products'/>},
       {
         path: 'users',
         children: [

@@ -10,7 +10,7 @@ import StatisticsTabPage from './statisticsTabPage'
 const AdminPage = ({ tabState }) => {
   const navigate = useNavigate()
   const { authedUser } = userStore()
-  const tabs = ['users', 'products', 'statistics']
+  const tabs = ['products', 'users', 'statistics']
 
   const toggleTabs = (tab) => {
     navigate(`/admin/${tab}`)

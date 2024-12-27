@@ -74,6 +74,11 @@ const products = [
     title: 'Some title',
     price: 16,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_1`,
     filesName: {
@@ -127,6 +132,11 @@ const products = [
     title: 'Some title',
     price: 18,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_1`,
     filesName: {
@@ -180,6 +190,11 @@ const products = [
     title: 'Some title',
     price: 20,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_2`,
     filesName: {
@@ -233,6 +248,11 @@ const products = [
     title: 'Some title',
     price: 22,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_2`,
     filesName: {
@@ -286,6 +306,11 @@ const products = [
     title: 'Some title',
     price: 24,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_2`,
     filesName: {
@@ -339,6 +364,11 @@ const products = [
     title: 'Some title',
     price: 26,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_3`,
     filesName: {
@@ -392,6 +422,11 @@ const products = [
     title: 'Some title',
     price: 28,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_3`,
     filesName: {
@@ -445,6 +480,11 @@ const products = [
     title: 'Some title',
     price: 39,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_3`,
     filesName: {
@@ -498,6 +538,11 @@ const products = [
     title: 'Some title',
     price: 14,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_4`,
     filesName: {
@@ -551,6 +596,11 @@ const products = [
     title: 'Some title',
     price: 16,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_4`,
     filesName: {
@@ -604,6 +654,11 @@ const products = [
     title: 'Some title',
     price: 18,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_4`,
     filesName: {
@@ -657,6 +712,11 @@ const products = [
     title: 'Some title',
     price: 20,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_5`,
     filesName: {
@@ -710,6 +770,11 @@ const products = [
     title: 'Some title',
     price: 22,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_5`,
     filesName: {
@@ -763,6 +828,11 @@ const products = [
     title: 'Some title',
     price: 24,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_5`,
     filesName: {
@@ -816,6 +886,11 @@ const products = [
     title: 'Some title',
     price: 26,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/woman/woman_item_6`,
     filesName: {
@@ -869,6 +944,11 @@ const products = [
     title: 'Some title',
     price: 28,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_6`,
     filesName: {
@@ -922,6 +1002,11 @@ const products = [
     title: 'Some title',
     price: 39,
     rate: 0,
+    discount: {
+      type: 'percentage',
+      value: 0,
+      endTime: 0
+    },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/car/car_item_6`,
     filesName: {

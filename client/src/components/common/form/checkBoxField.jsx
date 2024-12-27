@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import './checkBoxField.css'
 
-const CheckBoxField = ({ name, value, onChange, children, error }) => {
+const CheckBoxField = ({ name, value, submitType, onChange, children, error }) => {
   const [isBlured, setIsBlured] = useState(false)
 
   const handleChange = () => {
-    onChange({name, value: !value})
+    // onChange({ name: target.name, value: target.value }, submitType, optionKey, index)
+    // onChange({ name: target.name, value: target.value }, submitType)
+    onChange({name, value: !value}, submitType)
+
     setIsBlured(true)
   }
 
@@ -13,9 +17,10 @@ const CheckBoxField = ({ name, value, onChange, children, error }) => {
     <div className='checkbox-field'>
       <div>
         <input
-          className="form-check-input"
+          //? className="form-check-input" -> undefined className...
           type="checkbox"
-          value=""
+          value={value}
+          checked={value}
           id={name}
           onChange={handleChange}
         />

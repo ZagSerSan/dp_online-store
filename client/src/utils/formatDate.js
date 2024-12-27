@@ -10,4 +10,7 @@ export const formatDate = (commentData, type) => {
   if (type === 'year-adapt') {
     return moment(commentData).format('DD.MM.YYYY')
   }
+  if (type === 'all-data-time') {
+    return moment(commentData).format('DD.MM.YYYY HH:mm')
+  }
 }

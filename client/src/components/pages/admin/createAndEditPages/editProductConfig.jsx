@@ -11,17 +11,51 @@ import productStore from '../../../../store/productStore'
 import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
+import CheckBoxField from '../../../common/form/checkBoxField'
+import { formatTime } from '../../../../utils/formatTime'
+import { formatDate } from '../../../../utils/formatDate'
+
+//todo discount ui
 
 const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
-  const [errors, setErrors] = useState({})
-  const [imagesDataError, setImagesDataError] = useState()
-  const { productsEntity } = productStore()
   const { productId } = useParams()
+  const { productsEntity } = productStore()
+  const [imagesDataError, setImagesDataError] = useState()
+  const [errors, setErrors] = useState({})
   const currentProduct = productsEntity
     ? productsEntity.find(product => product._id === productId)
     : null
 
-  // значение полей формы info
+
+// todo discount ui ------------------------------------------------------------------
+  const [isProductOnSale, setIsProductOnSale] = useState(false)
+  
+  const initDiscountData = {
+    type: 'percentage',
+    value: 0,
+    endTime: 0
+  }
+  const [discountData, setDiscountData] = useState(
+    currentProduct?.discount
+      ? currentProduct?.discount
+      : initDiscountData
+  )
+
+  // console.log('discountData :>> ', discountData)
+
+  useEffect(() => {
+    currentProduct?.discount?.endTime > Date.now()
+      ? setIsProductOnSale(true)
+      : setIsProductOnSale(false)
+  }, [])
+
+  // console.log('isProductOnSale :>> ', isProductOnSale)
+
+
+//todo discount ui ------------------------------------------------------------------
+
+
+  //* значение полей формы info
   const initInfoData = {
     _id: productId,
     name: currentProduct ? currentProduct.name : '',
@@ -31,7 +65,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     description: currentProduct ? currentProduct.description : '',
   }
   const [data, setData] = useState(initInfoData)
-  // значение полей формы options
+
+  //* значение полей формы options
   const initOptionsData = {
     option_1: {
       name: '',
@@ -54,7 +89,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     ? tranformOptionsData(currentProduct.modalOptionTypes)
     : initOptionsData
   )
-  // ImageData
+
+  //* ImageData
   const initImagesData = {
     introSlider: {
       switched: false,
@@ -131,6 +167,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         break
     }
   }
+
   const handleChange = (payload, submitType, optionKey, index) => {
     let { name, value } = payload
 
@@ -150,6 +187,15 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
           }))
         }
         break
+
+      case 'onSale':
+        //todo менять состояние "есть ли скидка здесь"
+        setIsProductOnSale(value)
+        break
+        
+      //! тут произвести изменение состояния discountData (setDiscountData) для отправки на сервер
+        // console.log('discountData :>> ', discountData)
+
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
@@ -539,6 +585,55 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                   />
                 </div>
               </div>
+
+              <div className="form-container__row flex-block">
+
+                {/* //todo discount ui */}
+                <div style={{display: 'flex'}}>
+                  <CheckBoxField
+                    label='On sale?'
+                    // label={`Name: ${data.name}`}
+                    name="onSale"
+                    value={isProductOnSale}
+                    submitType='onSale'
+                    onChange={handleChange}
+                    // error={errors.admin}
+                  >
+                    <p className='license-msg'>On sale?</p>
+                  </CheckBoxField>
+
+                  {isProductOnSale
+                    ? <div  style={{display: 'flex'}}>
+                        <p>___текущая скидка: </p>
+                        <p>___type: {currentProduct?.discount?.type}</p>
+                        <p>___value
+                          <span>:
+                            {currentProduct?.discount?.type === 'percentage'
+                              ? currentProduct?.discount?.value + '%'
+                              : '$' + currentProduct?.discount?.value
+                            }
+                          </span>
+                        </p>
+                        <p>___endTime
+                          <span>: {formatDate(currentProduct?.discount?.endTime, 'all-data-time')}</span>
+                        </p>
+                    </div>
+                    : <p>(скидки нету)</p>
+                  }
+                </div>
+
+                {isProductOnSale
+                  // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
+                  ? <div style={{display: 'flex'}}>
+                      <div>select: time</div>
+                      <div>select: type</div>
+                      <div>textField: value </div>
+                    </div>
+                  : null
+                }
+
+              </div>
+
               <div className="form-container__row">
                 <RadioField
                   label="Category:"
