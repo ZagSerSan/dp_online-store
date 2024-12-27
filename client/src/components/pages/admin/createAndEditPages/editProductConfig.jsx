@@ -14,6 +14,7 @@ import Textarea from '../../../common/form/textarea'
 import CheckBoxField from '../../../common/form/checkBoxField'
 import { formatTime } from '../../../../utils/formatTime'
 import { formatDate } from '../../../../utils/formatDate'
+import SelectDate from '../../../common/timer/SelectDate'
 
 //todo discount ui
 
@@ -625,9 +626,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 {isProductOnSale
                   // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
-                      <div>select: time</div>
-                      <div>select: type</div>
-                      <div>textField: value </div>
+                      <SelectDate endTime={currentProduct?.discount?.endTime}/>
                     </div>
                   : null
                 }

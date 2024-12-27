@@ -1,10 +1,16 @@
 // используеься в таймере
-export const formatTime = (milisecundes) => {
-  let days = Math.floor(milisecundes / 60 / 60 / 24)
-  let hours = Math.floor(milisecundes / 60 / 60 % 24)
-  let minutes = Math.floor(milisecundes / 60 % 60)
-  let secundes = Math.floor(milisecundes % 60)
+export const formatTime = (milliseconds) => {
 
-  if (milisecundes <= 0 ) return false
-  return { days, hours, minutes, secundes }
+  const seconds = Math.floor(milliseconds / 1000)
+  const minutes = Math.floor(seconds / 60)
+  const hours = Math.floor(minutes / 60)
+  const days = Math.floor(hours / 24)
+
+  if (milliseconds <= 0 ) return false
+  return {
+    days: days,
+    hours: hours % 24,
+    minutes: minutes % 60,
+    seconds: seconds % 60,
+  }
 }

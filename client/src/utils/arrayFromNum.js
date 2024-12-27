@@ -1,4 +1,6 @@
 export const arrayFromNum = (num, nowDateValue) => {
+  // параметры (всего часов (23) --> выбранный час)
+  // arrayFromNum(23, selectedData.hour)
   // вторым параметром (nowDateValue) принимается значение текущей даты для фильтрации
   let array = []
 
