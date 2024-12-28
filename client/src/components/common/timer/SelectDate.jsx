@@ -14,7 +14,9 @@ const SelectDate = ({ endTime }) => {
 
   // получение текущей даты
   const [selectedData, setSelectedData] = useState(getCurrDate(endTime))
-  console.log('selectedData :>> ', selectedData)
+  // console.log('selectedData :>> ', selectedData)
+
+  //todo попытка сделать функцию рассчитывающую initialDate обьект
 
   // исходное состояние оцпий селекта 
   const [initialDate, setInitialDate] = useState(
@@ -77,54 +79,41 @@ const SelectDate = ({ endTime }) => {
     }
   )
 
-
   //! useEffect`ы переписывают selectedData!!!
   //? это ограничение полезно при текущей дате, но если оперирую будущем то сложно.. переделать..
-  // изменение макс кол-ва минут в зависимости от выбранного часа
-  // useEffect(() => {
-  //   // если выбраный час = текущему => обновить минимальную опцию на +1 мин
-  //   if (selectedData.hours === getCurrDate('hour')) {
-  //     setInitialDate(prev => ({
-  //       ...prev,
-  //       minutes: {options: arrayFromNum(59, selectedData.minute + 1)}
-  //     }))
-  //     // перезаписать состояние выбаной минуты на +1 вперёд
-  //     setSelectedData(prev => ({
-  //       ...prev,
-  //       minute: selectedData.minute + 1
-  //     }))
-  //   } else {
-  //     // если выбраный час != текущему => вывесил полный список минут начиная с 1
-  //     setInitialDate(prev => ({
-  //       ...prev,
-  //       minutes: {options: arrayFromNum(59, 1)}
-  //     }))
-  //   }
-  // }, [selectedData.hour])
+  // изменение макс кол-ва $1 в зависимости от выбранного $2
 
-  // // изменение макс кол-ва часов в зависимости от выбранного часа
-  // useEffect(() => {
-  //   // если выбраный день = текущему => ограничить мин опцию часа от текущего
-  //   if (selectedData.day === getCurrDate('day')) {
-  //     setInitialDate(prev => ({
-  //       ...prev,
-  //       hours: {options: arrayFromNum(selectedData.hour, 23)}
-  //     }))
-  //     // перезаписать состояние выбаного часа на минимальное допустимое
-  //     setSelectedData(prev => ({
-  //       ...prev,
-  //       hour: selectedData.hour
-  //     }))
-  //   } else {
-  //     // если выбраный час != текущему => вывесил полный список минут начиная с 1
-  //     setInitialDate(prev => ({
-  //       ...prev,
-  //       hours: {options: arrayFromNum(23, 0)}
-  //     }))
-  //   }
-  // }, [selectedData.day])
+  // месяцев от года
+  useEffect(() => {
+    // если выбран текущий год => в селект генер месяцы от текущего
+    if (selectedData.year === getCurrDate('year')) {
+      console.log(selectedData.year === getCurrDate('year'))
 
-  // // изменение макс кол-ва дней в зависимости от выбранного месяца
+      // setInitialDate(prev => ({
+      //   ...prev,
+      //   months: {options: arrayFromNum(12, getCurrDate('month'))}
+      // }))
+      // // и меняем выбраный месяц на текущий (для перехода из опции след года)
+      // setSelectedData(prev => ({
+      //   ...prev,
+      //   month: selectedData.month
+      // }))
+    } else {
+      console.log(selectedData.year === getCurrDate('year'))
+      // // если выбран не текущий год => в селект генер месяцы от 1
+      // setInitialDate(prev => ({
+      //   ...prev,
+      //   months: {options: arrayFromNum(12, 1)}
+      // }))
+      // // и меняем выбраный месяц на 1 (просто для сброса)
+      // setSelectedData(prev => ({
+      //   ...prev,
+      //   month: 1
+      // }))
+    }
+  }, [selectedData.year])
+
+  // // дней от месяца
   // useEffect(() => {
   //   // переменная откуда начинать отсчёт дней месяца
   //   // если месяц не текущий, то начинать от 1 дня, а не от текущего как в текущем месяце
@@ -156,33 +145,51 @@ const SelectDate = ({ endTime }) => {
   //   }
   // }, [selectedData.month])
 
-  // // изменение макс кол-ва месяцев в зависимости от выбранного года
+  // // часов от дня
   // useEffect(() => {
-  //   // если выбран текущий год => в селект генер месяцы от текущего
-  //   if (selectedData.year === getCurrDate('year')) {
+  //   // если выбраный день = текущему => ограничить мин опцию часа от текущего
+  //   if (selectedData.day === getCurrDate('day')) {
   //     setInitialDate(prev => ({
   //       ...prev,
-  //       months: {options: arrayFromNum(12, getCurrDate('month'))}
+  //       hours: {options: arrayFromNum(selectedData.hour, 23)}
   //     }))
-  //     // и меняем выбраный месяц на текущий (для перехода из опции след года)
+  //     // перезаписать состояние выбаного часа на минимальное допустимое
   //     setSelectedData(prev => ({
   //       ...prev,
-  //       month: selectedData.month
+  //       hour: selectedData.hour
   //     }))
   //   } else {
-  //     // если выбран не текущий год => в селект генер месяцы от 1
+  //     // если выбраный час != текущему => вывесил полный список минут начиная с 1
   //     setInitialDate(prev => ({
   //       ...prev,
-  //       months: {options: arrayFromNum(12, 1)}
-  //     }))
-  //     // и меняем выбраный месяц на 1 (просто для сброса)
-  //     setSelectedData(prev => ({
-  //       ...prev,
-  //       month: 1
+  //       hours: {options: arrayFromNum(23, 0)}
   //     }))
   //   }
-  // }, [selectedData.year])
+  // }, [selectedData.day])
 
+  // // минут от часа
+  // useEffect(() => {
+  //   // если выбраный час = текущему => обновить минимальную опцию на +1 мин
+  //   if (selectedData.hours === getCurrDate('hour')) {
+  //     setInitialDate(prev => ({
+  //       ...prev,
+  //       minutes: {options: arrayFromNum(59, selectedData.minute + 1)}
+  //     }))
+  //     // перезаписать состояние выбаной минуты на +1 вперёд
+  //     setSelectedData(prev => ({
+  //       ...prev,
+  //       minute: selectedData.minute + 1
+  //     }))
+  //   } else {
+  //     // если выбраный час != текущему => вывесил полный список минут начиная с 1
+  //     setInitialDate(prev => ({
+  //       ...prev,
+  //       minutes: {options: arrayFromNum(59, 1)}
+  //     }))
+  //   }
+  // }, [selectedData.hour])
+
+  
   // перезапись состояния выбраной даты при изменении значений селекта на сайте
   const toggleChange = (e, type) => {
     const value = e.target.value
