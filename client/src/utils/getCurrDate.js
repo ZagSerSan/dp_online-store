@@ -1,6 +1,5 @@
 export const getCurrDate = (typeOrTime) => {
-  //? если передан тип, напрмиер day, то выводить текущий день
-  //? если не передан, вывшзидить весть обьект текущей даты
+  //* новая логика:
 
   const currDate = new Date()
 
@@ -12,13 +11,9 @@ export const getCurrDate = (typeOrTime) => {
     minute: currDate.getMinutes()
   }
 
-  //* новая логика:
-  // если приходят ms уже установ времени как число (number), то из него сделать обьект даты
-  // если приходит type как строка (string), то возвратить значение этого типа
-  // во всех остальных возвр обьект текущей даты
+  // если приходят ms как число (number), то из него сделать обьект даты
   if (typeof typeOrTime === 'number') {
     const futureDate = new Date(typeOrTime)
-
     return {
       day: futureDate.getDate(),
       month: futureDate.getMonth() + 1, // Месяцы в JavaScript начинаются с 0
@@ -26,14 +21,11 @@ export const getCurrDate = (typeOrTime) => {
       hour: futureDate.getHours(),
       minute: futureDate.getMinutes(),
     }
-    // return 'endTime'
+  // если приходит type как строка (string), то возвратить значение этого типа
   } else if (typeof typeOrTime === 'string') {
     return currDate_obj[typeOrTime]
-  } 
-
-  // if (type) {
-  //   return currDate_obj[type]
-  // } else {
-  //   return currDate_obj
-  // }
+  // во всех остальных возвр обьект текущей даты
+  } else {
+    return currDate_obj
+  }
 }

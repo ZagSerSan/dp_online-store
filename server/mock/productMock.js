@@ -20,7 +20,7 @@ const products = [
       value: 15,
       // endTime: Date.now() + 3600000
       // endTime: Date.now() + (1000 * 60 * 5)
-      endTime: Date.now() + (3600000 * 24 * 2)
+      endTime: Date.now() + (3600000 * 24 * 62)
     },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_1`,
