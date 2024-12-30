@@ -79,12 +79,13 @@ const SelectDate = ({ endTime }) => {
   }
 
   // исходное состояние оцпий селекта 
-  const [initialDate, setInitialDate] = useState(createInitialDate())
+  const [initialDate, setInitialDate] = useState()
 
   // перерассчёт и перезапись initialDate при изменении селекта (selectedDate)
   useEffect(() => {
+    console.log('useEffect')
     setInitialDate(createInitialDate())
-  }, [selectedData])
+  }, [selectedData.year])
 
   // перезапись состояния выбраной даты при изменении значений селекта на сайте
   const toggleChange = (e, type) => {
@@ -94,6 +95,7 @@ const SelectDate = ({ endTime }) => {
       ...prev,
       [type]: Number(value)
     }))
+
   }
 
   // отправка даты из селекта в стор (конечный пункт компонента)
@@ -111,25 +113,28 @@ const SelectDate = ({ endTime }) => {
       <h3>select data and time:</h3>
 
       <div className='select__wrapper'>
-        {Object.keys(initialDate).map(key => (
-          <div key={key}>
-            <p>{key}:</p>
-            <select onChange={(e) => toggleChange(e, key)} value={selectedData[key]}>
-              {initialDate[key].options
-                ? initialDate[key].options.map(option => (
-                  <option
-                      key={option}
-                      value={option}
-                    >
-                      {option}
-                    </option>
-                  ))
-                : <option value={null}>---</option>
-              }
-            </select>
+        {initialDate ?
+          Object.keys(initialDate).map(key => (
+            <div key={key}>
+              <p>{key}:</p>
+              <select onChange={(e) => toggleChange(e, key)} value={selectedData[key]}>
+                {initialDate[key].options
+                  ? initialDate[key].options.map(option => (
+                    <option
+                        key={option}
+                        value={option}
+                      >
+                        {option}
+                      </option>
+                    ))
+                  : <option value={null}>---</option>
+                }
+              </select>
 
-          </div>
-        ))}
+            </div>
+          ))
+          : <p>Loading</p>
+        }
       </div>
 
       {/* <button onClick={setDate} disabled={endDate}>set date</button> */}
