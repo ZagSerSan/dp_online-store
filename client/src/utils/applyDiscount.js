@@ -23,6 +23,3 @@ export default function applyDiscount(productPrice, discount) {
       return productPrice // Если тип не распознан, оставляем цену без изменений
   }
 }
-
-// const finalPrice = applyDiscount(product.price, product.discount)
-// console.log(finalPrice) // Выводит 85, если скидка активна

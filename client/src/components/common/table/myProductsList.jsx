@@ -61,7 +61,7 @@ const MyProductsList = ({ cartItems }) => {
   const calculateTotalPrice = (products) => {
     let sum = 0
     for (let i = 0; i < products.length; i++) {
-      sum += products[i].totalPrice
+      sum += applyDiscount(products[i].price, products[i].discount) * products[i].count
     }
     return sum
   }
@@ -108,16 +108,10 @@ const MyProductsList = ({ cartItems }) => {
                       </p>
                     </div>
                     <div className="item-content-info__col">
-                      {item.discount?.endTime > Date.now()
-                        ? <p>
-                            <span className='darkened-text'>${applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = </span>
-                            ${(item.totalPrice).toFixed(2)}
-                          </p>
-                        : <p>
-                            <span className='darkened-text'>${(item.price).toFixed(2)} x {item.count} = </span>
-                            ${(item.totalPrice).toFixed(2)}
-                          </p>
-                      }
+                      <p>
+                        <span className='darkened-text'>${applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = </span>
+                        ${(applyDiscount(item.price, item.discount) * item.count).toFixed(2)}
+                      </p>
                     </div>
                   </div>
                 </div>

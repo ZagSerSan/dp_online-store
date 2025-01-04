@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import "./timer.css"
 //* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
-// import dateStore from "../../../store/dateStore"
 import { formatTime } from "../../../utils/formatTime"
 
 // test func
@@ -9,15 +8,13 @@ const onComplete = () => {
   console.log("Timer completed")
 }
 
+//* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
 function Timer({ endDate, rerenderComponent }) {
-  //* получаем время из родител-го компон-та как пропс (от страницы отображ таймера)
-  // const { endDate } = dateStore() // получение времени из store (а там получаем из селектов)
   const [remainingTime, setRemainingTime] = useState(endDate) // state для разницы времени
   const timerIdRef = useRef(null) // Хранит идентификатор таймера
+  const endTime = endDate
 
   useEffect(() => {
-    const endTime = endDate
-
     if (endTime === 0) {      
       clearTimeout(timerIdRef.current) // Останавливаем текущий таймер
       setRemainingTime(0) // Обнуляем состояние
@@ -28,12 +25,12 @@ function Timer({ endDate, rerenderComponent }) {
       const now = Date.now()
       const timeLeft = Math.max(0, endTime - now)
 
-      setRemainingTime(Math.floor(timeLeft / 1000))
+      setRemainingTime(Math.floor(timeLeft))
 
       if (timeLeft > 0) {
         timerIdRef.current = setTimeout(tick, 1000)
       } else {
-        // onComplete()
+        // onComplete() - функция выполняется после завершения таймера
         rerenderComponent(remainingTime)
       }
     }

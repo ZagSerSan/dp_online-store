@@ -294,7 +294,7 @@ const Header = () => {
                           </NavLink>
 
                           {/*  */}
-                          <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{item.totalPrice}</span></p>
+                          <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{applyDiscount(item.price, item.discount).toFixed(2) * item.count}</span></p>
 
                         </div>
                         <button onClick={(e) => removeFromCart(e, item)}><Icon id='close'/></button>

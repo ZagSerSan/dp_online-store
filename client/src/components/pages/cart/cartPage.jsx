@@ -10,13 +10,6 @@ const CartPage = () => {
     ? authedUser?.cart
     : localUser?.cart
 
-  // {authedUser && authedUser?.cart.length > 0
-  //   ? <div className="card-index">{authedUser.cart.length}</div>
-  //   : localUser && localUser?.cart.length > 0
-  //     ? <div className="card-index">{localUser.cart.length}</div>
-  //     : null
-  // }
-
   return (
     <div className="my-container">
       <div className="cart-page">
@@ -25,7 +18,6 @@ const CartPage = () => {
           || 
         (localUser && localUser?.cart.length > 0)
           ? <MyProductsList cartItems={cartItems}/>
-          // ? <MyProductsList cartItems={authedUser.cart}/>
           : <div className='cart-empty'>
               <p>There's nothing here...</p>
               <Link to='/category'>View products</Link>
