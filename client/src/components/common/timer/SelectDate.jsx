@@ -83,19 +83,74 @@ const SelectDate = ({ endTime }) => {
 
   // перерассчёт и перезапись initialDate при изменении селекта (selectedDate)
   useEffect(() => {
-    console.log('useEffect')
     setInitialDate(createInitialDate())
-  }, [selectedData.year])
+  }, [selectedData])
 
   // перезапись состояния выбраной даты при изменении значений селекта на сайте
   const toggleChange = (e, type) => {
-    const value = e.target.value
+    // применение конкретно сейчас изменённого селекта
+    const value = Number(e.target.value)
 
-    setSelectedData(prev => ({
-      ...prev,
-      [type]: Number(value)
-    }))
-
+    // обновление состояния выбранной даты
+    setSelectedData(prev => {
+      const updated = { ...prev, [type]: value }
+  
+      // пересчёт зависимого времени
+      if (type === 'year') {
+        // Если изменён год, обновляем месяц и день
+        if (value === getCurrDate('year')) {
+          updated.month = Math.max(updated.month, getCurrDate('month'))
+          if (updated.month === getCurrDate('month')) {
+            updated.day = Math.max(updated.day, getCurrDate('day'))
+          } else {
+            updated.day = 1 // Сброс дня к минимальному для нового месяца
+          }
+        } else {
+          updated.month = 1 // Сброс месяца к минимальному
+          updated.day = 1   // Сброс дня к минимальному
+        }
+      } else if (type === 'month') {
+        // Если изменён месяц, обновляем день
+        const daysInMonth = new Date(updated.year, updated.month, 0).getDate()
+        if (updated.year === getCurrDate('year') && updated.month === getCurrDate('month')) {
+          updated.day = getCurrDate('day')
+          // updated.day = Math.max(updated.day, getCurrDate('day'))
+          if (updated.day === getCurrDate('day')) {
+            updated.hour = getCurrDate('hour')
+            if (updated.hour === getCurrDate('hour')) {
+              updated.minute = Math.max(updated.minute, getCurrDate('minute') + 1) // Минуты не могут быть меньше текущего времени
+            } else {
+              updated.minute = 0 // Сброс минут, если час больше текущего
+            }
+          } else {
+            updated.minute = 0 // Сброс минут, если час больше текущего
+          }
+        } else {
+          updated.day = Math.min(updated.day, daysInMonth)
+        }
+      } else if (type === 'day') {
+        if (
+          updated.year === getCurrDate('year') &&
+          updated.month === getCurrDate('month') &&
+          updated.day === getCurrDate('day')
+        ) {
+          // Если выбранный день совпадает с текущим днём, пересчитываем часы и минуты
+          updated.hour = Math.max(updated.hour, getCurrDate('hour'))
+      
+          if (updated.hour === getCurrDate('hour')) {
+            updated.minute = Math.max(updated.minute, getCurrDate('minute') + 1) // Минуты не могут быть меньше текущего времени
+          } else {
+            updated.minute = 0 // Сброс минут, если час больше текущего
+          }
+        } else {
+          // Если выбранный день не совпадает с текущим, сбрасываем время
+          updated.hour = 0
+          updated.minute = 0
+        }
+      }
+  
+      return updated
+    })
   }
 
   // отправка даты из селекта в стор (конечный пункт компонента)
@@ -104,8 +159,7 @@ const SelectDate = ({ endTime }) => {
   // }
 
   const testAction = () => {
-    // console.log('selectedData:', selectedData)
-    console.log(formatSelectedDate(selectedData))
+    console.log(selectedData)
   }
 
   return (
