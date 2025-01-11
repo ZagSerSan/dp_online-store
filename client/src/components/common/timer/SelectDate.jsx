@@ -8,7 +8,7 @@ import { getCurrDate } from '../../../utils/getCurrDate'
 // todo idea - проверка и реал новых идей
   //? откл/вкл выбора минут или установить стандартное фикс знач, наприм 00 или 59 мин
 
-const SelectDate = ({ endTime }) => {
+const SelectDate = ({ endTime, onChange }) => {
   //? вызывать функции из store изменяющего продукт
   // const { endDate, setEndDate, resetEndDate } = dateStore()
 
@@ -153,13 +153,27 @@ const SelectDate = ({ endTime }) => {
     })
   }
 
-  // отправка даты из селекта в стор (конечный пункт компонента)
-  // const setDate = () => {
-  //   setEndDate(formatSelectedDate(selectedData))
-  // }
+  //todo ==========================================
 
-  const testAction = () => {
-    console.log(selectedData)
+  // отправка даты из селекта в стор (конечный пункт компонента)
+  const setDate = () => {
+    // Функция для преобразования объекта в timestamp
+    function convertToEndDate(dateObj) {
+      const { year, month, day, hour, minute } = dateObj
+      // Создаем объект Date (месяц нужно уменьшить на 1, так как он начинается с 0)
+      const date = new Date(year, month - 1, day, hour, minute)
+      // Преобразуем в миллисекунды с помощью getTime()
+      return date.getTime()
+    }
+
+    const endDate = convertToEndDate(selectedData)
+
+    onChange({name: 'endTime', value: endDate}, "onSale")
+  }
+
+  // сбиваем дату на текущую
+  const resetDate = () => {
+    setSelectedData(getCurrDate())
   }
 
   return (
@@ -193,8 +207,8 @@ const SelectDate = ({ endTime }) => {
 
       {/* <button onClick={setDate} disabled={endDate}>set date</button> */}
       {/* <button onClick={resetEndDate}>reset date</button> */}
-      <button onClick={testAction}>set date</button>
-      <button onClick={testAction}>reset date</button>
+      <button onClick={setDate}>Set date</button>
+      <button onClick={resetDate}>Reset date</button>
     </div>
   ) 
 }

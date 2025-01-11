@@ -29,18 +29,20 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
 
 
 // todo discount ui ------------------------------------------------------------------
-  const [isProductOnSale, setIsProductOnSale] = useState(false)
-  
-  const initDiscountData = {
-    type: 'percentage',
-    value: 0,
-    endTime: 0
-  }
-  const [discountData, setDiscountData] = useState(
-    currentProduct?.discount
-      ? currentProduct?.discount
-      : initDiscountData
+  const [isProductOnSale, setIsProductOnSale] = useState(
+    currentProduct.discount.endTime > Date.now() ? true : false
   )
+  
+  // const initDiscountData = {
+  //   type: 'percentage',
+  //   value: 0,
+  //   endTime: 0
+  // }
+  // const [discountData, setDiscountData] = useState(
+  //   currentProduct?.discount
+  //     ? currentProduct?.discount
+  //     : initDiscountData
+  // )
 
   // console.log('discountData :>> ', discountData)
 
@@ -55,7 +57,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
 
 //todo discount ui ------------------------------------------------------------------
 
-
+  // todo добавление discount в стейт блока инфо этого товара
   //* значение полей формы info
   const initInfoData = {
     _id: productId,
@@ -64,6 +66,9 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     title: currentProduct ? currentProduct.title : '',
     price: currentProduct ? currentProduct.price : '',
     description: currentProduct ? currentProduct.description : '',
+    discount: {
+      ...currentProduct.discount
+    },
   }
   const [data, setData] = useState(initInfoData)
 
@@ -188,15 +193,23 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
           }))
         }
         break
-
       case 'onSale':
-        //todo менять состояние "есть ли скидка здесь"
-        setIsProductOnSale(value)
-        break
-        
-      //! тут произвести изменение состояния discountData (setDiscountData) для отправки на сервер
-        // console.log('discountData :>> ', discountData)
+        console.log('payload :>> ', payload)
 
+        // if (optionKey === 'state') {
+        //   //todo менять состояние "есть ли скидка здесь"
+        //   setIsProductOnSale(value)
+        // }
+
+        // изменение состояния discount.endData для отправки на сервер
+        setData(prev => ({
+          ...prev,
+            discount: {
+              ...prev.discount,
+              [name]: value
+            },
+        }))
+        break
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
@@ -596,6 +609,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     // label={`Name: ${data.name}`}
                     name="onSale"
                     value={isProductOnSale}
+                    // submitType='onSale'
                     submitType='onSale'
                     onChange={handleChange}
                     // error={errors.admin}
@@ -626,7 +640,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 {isProductOnSale
                   // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
-                      <SelectDate endTime={currentProduct?.discount?.endTime}/>
+                      <SelectDate endTime={currentProduct?.discount?.endTime} onChange={handleChange}/>
                     </div>
                   : null
                 }

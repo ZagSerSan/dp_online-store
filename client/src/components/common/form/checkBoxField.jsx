@@ -8,7 +8,7 @@ const CheckBoxField = ({ name, value, submitType, onChange, children, error }) =
   const handleChange = () => {
     // onChange({ name: target.name, value: target.value }, submitType, optionKey, index)
     // onChange({ name: target.name, value: target.value }, submitType)
-    onChange({name, value: !value}, submitType)
+    onChange({name, value: !value}, submitType, 'state')
 
     setIsBlured(true)
   }
