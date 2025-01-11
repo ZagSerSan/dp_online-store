@@ -196,6 +196,13 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
       case 'onSale':
         console.log('payload :>> ', payload)
 
+        /* Поменять логику на такую, чтобы сначала показывался чекБокс от данный продукта
+           приходящего из сервера при загрузке..
+           ...
+           Если сначала скидки нет, то при изменении чекБокса
+           создавать в стейт скидки Date.now() + (1 час), чтобы включить таким образом ui,
+           если убрать чекБок то стейт на 0 
+         */
         // if (optionKey === 'state') {
         //   //todo менять состояние "есть ли скидка здесь"
         //   setIsProductOnSale(value)
