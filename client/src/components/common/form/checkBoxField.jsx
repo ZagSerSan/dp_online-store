@@ -6,8 +6,6 @@ const CheckBoxField = ({ name, value, submitType, onChange, children, error }) =
   const [isBlured, setIsBlured] = useState(false)
 
   const handleChange = () => {
-    // onChange({ name: target.name, value: target.value }, submitType, optionKey, index)
-    // onChange({ name: target.name, value: target.value }, submitType)
     onChange({name, value: !value}, submitType, 'state')
 
     setIsBlured(true)
@@ -17,7 +15,6 @@ const CheckBoxField = ({ name, value, submitType, onChange, children, error }) =
     <div className='checkbox-field'>
       <div>
         <input
-          //? className="form-check-input" -> undefined className...
           type="checkbox"
           value={value}
           checked={value}

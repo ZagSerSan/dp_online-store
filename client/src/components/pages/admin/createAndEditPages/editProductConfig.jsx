@@ -195,7 +195,17 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         break
       case 'discount':
         // todo - изменение типа скидки и её размера
-        // изменение состояния discount.endData для отправки на сервер
+        // изменение состояния discount для отправки на сервер
+        // изменение name из-за её конфликта в radio селектах
+        // если трогаем discountType, то name = type, в остальн случ name по умолчанию
+        // name = name === 'discountType' ? 'type' : name === 'discountValue' ? 'value' : name
+        if (name === 'discountValue') {
+          name = 'value'
+          value = Number(value)
+        } else if (name === 'discountType') {
+          name = 'type'
+        }
+
         setData(prev => ({
           ...prev,
             discount: {
@@ -621,41 +631,38 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
 
               <div className="form-container__row flex-block">
 
-                {/* //todo discount ui */}
+                {/* информационный блок */}
                 <div style={{display: 'flex'}}>
                   <CheckBoxField
                     label='On sale?'
-                    // label={`Name: ${data.name}`}
                     name="onSale"
                     value={isProductOnSale}
-                    // submitType='onSale'
                     submitType='onSale'
                     onChange={handleChange}
-                    // error={errors.admin}
                   >
                     <p className='license-msg'>On sale?</p>
                   </CheckBoxField>
-
                   {isProductOnSale
                     ? <div  style={{display: 'flex'}}>
                         <p>___текущая скидка: </p>
-                        <p>___type: {currentProduct?.discount?.type}</p>
+                        <p>___type: {data?.discount?.type}</p>
                         <p>___value
                           <span>:
-                            {currentProduct?.discount?.type === 'percentage'
-                              ? currentProduct?.discount?.value + '%'
-                              : '$' + currentProduct?.discount?.value
+                            {data?.discount?.type === 'percentage'
+                              ? data?.discount?.value + '%'
+                              : '$' + data?.discount?.value
                             }
                           </span>
                         </p>
                         <p>___endTime
-                          <span>: {formatDate(currentProduct?.discount?.endTime, 'all-data-time')}</span>
+                          <span>: {formatDate(data?.discount?.endTime, 'all-data-time')}</span>
                         </p>
                     </div>
                     : <p>(скидки нету)</p>
                   }
                 </div>
 
+                {/* функционал */}
                 {isProductOnSale
                   // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
@@ -664,6 +671,33 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                         onChange={handleChange}
                         submitType={'discount'}
                       />
+
+                      <div>
+                        <TextField
+                          label="Discount value:"
+                          placeholder="15"
+                          name="discountValue"
+                          value={data?.discount?.value}
+                          onChange={handleChange}
+                          errors={errors}
+                          submitType='discount'
+                        />  
+                      </div>
+                      
+                      <div>
+                        <RadioField
+                          label="Type:"
+                          options={[
+                            { name: 'percentage', value: 'percentage' },
+                            { name: 'fixed', value: 'fixed' },
+                            { name: 'shipping', value: 'shipping' }
+                          ]}
+                          value={data?.discount?.type}
+                          name="discountType"
+                          onChange={handleChange}
+                          submitType='discount'
+                        />
+                      </div>
                     </div>
                   : null
                 }
