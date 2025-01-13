@@ -316,7 +316,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     setOptionsData(prev => {
       const copyOptions = prev[optionKey].options
       delete copyOptions[optionsLength - 1]
-      console.log('optionsLength - 1 :>> ', optionsLength - 1)
 
       return {
         ...prev,
@@ -372,8 +371,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
       {contentType === 'images'
         ? (
           <div>
-            <h3 className="accordion-page-item-content__title">Product Images</h3>
-            <h4 className="accordion-page-item-content__subtitle">Edit previews and sliders</h4>
+            {/* <h3 className="accordion-page-item-content__title">Product Images</h3> */}
+            {/* <h4 className="accordion-page-item-content__subtitle">Edit previews and sliders</h4> */}
 
             <form className="form-container images" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
               <div className="form-container__row">
@@ -491,8 +490,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         : contentType === 'options'
         ? (
           <div>
-            <div className="accordion-page-item-content__title">Product Options</div>
-            <div className="accordion-page-item-content__subtitle">Select Product Options</div>
+            {/* <div className="accordion-page-item-content__title">Product Options</div> */}
+            {/* <div className="accordion-page-item-content__subtitle">Select Product Options</div> */}
 
             <div className='form-container'>
 
@@ -579,8 +578,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         )
         : (
           <div>
-            <div className="accordion-page-item-content__title">Product Information</div>
-            <div className="accordion-page-item-content__subtitle">Edit Product Information</div>
+            {/* <div className="accordion-page-item-content__title">Product Information</div> */}
+            {/* <div className="accordion-page-item-content__subtitle">Edit Product Information</div> */}
 
             <div className='form-container'>
               <div className="form-container__row">
@@ -614,11 +613,35 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                   />
                 </div>
               </div>
+              <div className="form-container__row">
+                <RadioField
+                  label="Category:"
+                  options={[
+                    { name: 'Man', value: 'man' },
+                    { name: 'Woman', value: 'woman' },
+                    { name: 'Car', value: 'car' }
+                  ]}
+                  value={data.type}
+                  name="type"
+                  onChange={handleChange}
+                  submitType='info'
+                />
+              </div>
+              <div className="form-container__row">
+                <Textarea
+                  label="Description:"
+                  name="description"
+                  value={data.description}
+                  onChange={handleChange}
+                  errors={errors}
+                  submitType='info'
+                />
+              </div>
 
-              <div className="form-container__row flex-block">
+              <div className="form-container__row discount">
 
                 {/* информационный блок */}
-                <div style={{display: 'flex'}}>
+                <div className='discount-info'>
                   <CheckBoxField
                     label='On sale?'
                     name="onSale"
@@ -626,31 +649,48 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     submitType='onSale'
                     onChange={handleChange}
                   >
-                    <p className='license-msg'>On sale?</p>
+                    <p className='discount-info__title'>On sale?</p>
                   </CheckBoxField>
                   {isProductOnSale
-                    ? <div  style={{display: 'flex'}}>
-                        <p>___текущая скидка: </p>
-                        <p>___type: {data?.discount?.type}</p>
-                        <p>___value
-                          <span>:
+                    ? <div className='discount-info-panel'>
+                        <p className='discount-info-panel__title'>Current:</p>
+
+                        {Object.keys(data.discount).map(key => (
+                          <p className='discount-info-panel__key' key={key}>
+                            {key}
+                            {' : '}
+                            <span>
+                              {key === 'endTime'
+                                ? formatDate(data.discount[key], 'all-data-time')
+                                : key === 'value'
+                                ? (data.discount.type === 'percentage' ? (data.discount[key] + '%') : ('$' + data.discount[key]))
+                                : data.discount[key]
+                              }
+                            </span>
+                          </p>
+                        ))}
+
+                        {/* <p>type: {data?.discount?.type}</p>
+                        <p>value:
+                          <span>
                             {data?.discount?.type === 'percentage'
                               ? data?.discount?.value + '%'
                               : '$' + data?.discount?.value
                             }
                           </span>
                         </p>
-                        <p>___endTime
+                        <p>
+                          endTime
                           <span>: {formatDate(data?.discount?.endTime, 'all-data-time')}</span>
-                        </p>
+                        </p> */}
                     </div>
-                    : <p>(скидки нету)</p>
+                    : <p className='discount-info-panel'>(no discount)</p>
                   }
                 </div>
 
                 {/* функционал */}
                 {isProductOnSale
-                  ? <div style={{display: 'flex'}}>
+                  ? <div className='discount-settings' style={{display: 'flex'}}>
                       <SelectDate
                         endTime={data?.discount?.endTime}
                         onChange={handleChange}
@@ -684,33 +724,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     </div>
                   : null
                 }
-
               </div>
 
-              <div className="form-container__row">
-                <RadioField
-                  label="Category:"
-                  options={[
-                    { name: 'Man', value: 'man' },
-                    { name: 'Woman', value: 'woman' },
-                    { name: 'Car', value: 'car' }
-                  ]}
-                  value={data.type}
-                  name="type"
-                  onChange={handleChange}
-                  submitType='info'
-                />
-              </div>
-              <div className="form-container__row">
-                <Textarea
-                  label="Description:"
-                  name="description"
-                  value={data.description}
-                  onChange={handleChange}
-                  errors={errors}
-                  submitType='info'
-                />
-              </div>
               <div className="form-container__row">
                 <div className='buttons'>
                   <button

@@ -178,8 +178,6 @@ const SelectDate = ({ endTime, onChange, submitType }) => {
 
   return (
     <div className='select'>
-      <h3>select data and time:</h3>
-
       <div className='select__wrapper'>
         {initialDate ?
           Object.keys(initialDate).map(key => (

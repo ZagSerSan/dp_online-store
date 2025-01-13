@@ -76,21 +76,21 @@
       transition: all 0.3s linear;
 
       // обшие заголовки и кнопки страниц конфига
-      &__title {
-        font-family: "Montserrat", sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        color: #444444;
-        text-transform: uppercase;
-      }
-      &__subtitle {
-        font-family: "Montserrat", sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        color: #444444;
+      // &__title {
+      //   font-family: "Montserrat", sans-serif;
+      //   font-size: 18px;
+      //   font-weight: 400;
+      //   color: #444444;
+      //   text-transform: uppercase;
+      // }
+      // &__subtitle {
+      //   font-family: "Montserrat", sans-serif;
+      //   font-size: 16px;
+      //   font-weight: 400;
+      //   color: #444444;
 
-        letter-spacing: 0.2px;
-      }
+      //   letter-spacing: 0.2px;
+      // }
 
       .buttons {
         margin: 30px auto 0px 0px;
@@ -102,15 +102,16 @@
           margin: 20px auto 0px 0px;
         }
 
-        button {
-          height: 40px;
-
+        button,
+        a {
           font-family: "Montserrat", sans-serif;
           font-size: 16px;
+          line-height: 1;
           font-weight: 500;
 
           background-color: #7e4c4f;
-          padding: 10px;
+          padding: 10px 30px;
+          margin: 0;
           border: 0;
           border-radius: 5px;
           color: #fff;
@@ -142,7 +143,7 @@
           text-decoration: none;
 
           background-color: #db1d2a;
-          padding: 12px;
+          // padding: 12px;
           margin-left: 20px;
           border: 0;
           border-radius: 5px;
@@ -178,14 +179,15 @@
           box-shadow: none;
           background-color: transparent;
 
-          padding-top: 28px;
-          margin-top: 30px;
-          border-top: 1px solid #eaeaea;
+          // padding-top: 28px;
+          // margin-top: 30px;
+          // border-top: 1px solid #eaeaea;
 
           // колонки
           &__row {
             display: flex;
             width: 100%;
+            margin: 0 0 20px 0;
           }
           &__row.flex-block {
             display: block;
@@ -310,11 +312,63 @@
             }
           }
 
+          // блок скидки
+          .discount {
+            display: block;
+
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #7e4c4f;
+            border: 1px solid #eaeaea;
+            // text-transform: uppercase;
+            // text-align: center;
+            // margin-bottom: 15px;
+
+            &-info {
+              display: flex;
+              padding: 10px 0;
+
+              &__title {
+                cursor: pointer;
+                transition: all 0.2s linear;
+                &:hover {
+                  color: #7e4c4f7c;
+                }
+              }
+
+              .checkbox-field {
+                margin-bottom: 0;
+              }
+
+              &-panel {
+                display: flex;
+                margin-left: 20px;
+                p {
+                  padding: 0 5px;
+                }
+                span {
+                  color: #7e4c4f;
+                  font-style: italic;
+                }
+                &__title {
+                  color: #569254;
+                }
+                &__key {
+                  color: #f6ac44b2;
+                }
+              }
+            }
+            &-settings {
+              background-color: rgba(34, 34, 73, 0.281);
+              padding: 10px 10px;
+            }
+          }
+
           // поля
           .text-fields {
             width: 100%;
             display: flex;
-            margin-bottom: 25px;
             @media (max-width: 570px) {
               flex-wrap: wrap;
             }
@@ -414,7 +468,6 @@
             font-size: 16px;
             font-weight: 500;
             color: #7e4c4f;
-            margin-bottom: 25px;
             @media (max-width: 600px) {
               flex-wrap: wrap;
             }

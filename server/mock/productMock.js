@@ -12,11 +12,27 @@ const products = [
     title: 'Some title',
     price: 25,
     rate: 0,
+    // percentage - 5%, fixed - $5, shipping/delivery/ect(especiality) -> prod - delivery ($5)
     discount: {
-      type: 'percentage', // (product - 5%), 'fixed' (prod - $5), 'shipping' (prod - delivery)
+      type: 'percentage', 
       value: 15,
       endTime: 0
     },
+    // пример структуры для некскольних скидок
+    // discount: [
+    //   {
+    //     name: 'New year',
+    //     type: 'percentage',
+    //     value: 15,
+    //     endTime: 0
+    //   },
+    //   {
+    //     name: 'Delivery',
+    //     type: 'delivery',
+    //     value: 10,
+    //     endTime: 0
+    //   }
+    // ],
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
     filesPath: `./static/images/products/man/man_item_1`,
     filesName: {

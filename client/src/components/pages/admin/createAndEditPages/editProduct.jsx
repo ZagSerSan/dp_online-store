@@ -13,9 +13,10 @@ const EditProduct = () => {
   // clicker items (ui)
   const [settingItemState, setSettingItemState] = useState(1)
   const settingItems = [
-    {number: 1, contentType: 'info', title: 'Add product information'},
-    {number: 2, contentType: 'options', title: 'Add product options'},
-    {number: 3, contentType: 'images', title: 'Add product images'}
+    {number: 1, contentType: 'info', title: 'Basic Information'},
+    // {number: 2, contentType: 'discount', title: 'Discount'},
+    {number: 2, contentType: 'options', title: 'Product options'},
+    {number: 3, contentType: 'images', title: 'Product images'}
   ]
   // переключение типа контента
   const toggleSettingItem = (e, settingItemId) => {

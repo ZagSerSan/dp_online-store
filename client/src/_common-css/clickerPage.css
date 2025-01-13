@@ -75,20 +75,6 @@
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
-.accordion-page .accordion-page-item-content__title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #444444;
-  text-transform: uppercase;
-}
-.accordion-page .accordion-page-item-content__subtitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #444444;
-  letter-spacing: 0.2px;
-}
 .accordion-page .accordion-page-item-content .buttons {
   margin: 30px auto 0px 0px;
   display: -webkit-box;
@@ -103,13 +89,15 @@
     margin: 20px auto 0px 0px;
   }
 }
-.accordion-page .accordion-page-item-content .buttons button {
-  height: 40px;
+.accordion-page .accordion-page-item-content .buttons button,
+.accordion-page .accordion-page-item-content .buttons a {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
+  line-height: 1;
   font-weight: 500;
   background-color: #7e4c4f;
-  padding: 10px;
+  padding: 10px 30px;
+  margin: 0;
   border: 0;
   border-radius: 5px;
   color: #fff;
@@ -117,14 +105,17 @@
   -webkit-transition: all 0.2s ease 0s;
   transition: all 0.2s ease 0s;
 }
-.accordion-page .accordion-page-item-content .buttons button:disabled {
+.accordion-page .accordion-page-item-content .buttons button:disabled,
+.accordion-page .accordion-page-item-content .buttons a:disabled {
   background-color: rgba(126, 76, 79, 0.3882352941);
   cursor: default;
 }
-.accordion-page .accordion-page-item-content .buttons button:disabled:hover {
+.accordion-page .accordion-page-item-content .buttons button:disabled:hover,
+.accordion-page .accordion-page-item-content .buttons a:disabled:hover {
   background-color: rgba(126, 76, 79, 0.3882352941);
 }
-.accordion-page .accordion-page-item-content .buttons button:hover {
+.accordion-page .accordion-page-item-content .buttons button:hover,
+.accordion-page .accordion-page-item-content .buttons a:hover {
   background-color: #f6ab44;
 }
 .accordion-page .accordion-page-item-content .buttons a {
@@ -141,7 +132,6 @@
   font-weight: 500;
   text-decoration: none;
   background-color: #db1d2a;
-  padding: 12px;
   margin-left: 20px;
   border: 0;
   border-radius: 5px;
@@ -173,9 +163,6 @@
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: transparent;
-  padding-top: 28px;
-  margin-top: 30px;
-  border-top: 1px solid #eaeaea;
 }
 .accordion-page .accordion-page-item-content .edit-product-page .form-container__row,
 .accordion-page .accordion-page-item-content .create-product-page .form-container__row {
@@ -183,6 +170,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  margin: 0 0 20px 0;
 }
 .accordion-page .accordion-page-item-content .edit-product-page .form-container__row.flex-block,
 .accordion-page .accordion-page-item-content .create-product-page .form-container__row.flex-block {
@@ -368,13 +356,71 @@
 .accordion-page .accordion-page-item-content .create-product-page .form-container.images .form-container-intro-right input {
   cursor: pointer;
 }
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+  border: 1px solid #eaeaea;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info__title,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info__title {
+  cursor: pointer;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info__title:hover,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info__title:hover {
+  color: rgba(126, 76, 79, 0.4862745098);
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info .checkbox-field,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info .checkbox-field {
+  margin-bottom: 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info-panel,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info-panel p,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info-panel p {
+  padding: 0 5px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info-panel span,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info-panel span {
+  color: #7e4c4f;
+  font-style: italic;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info-panel__title,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info-panel__title {
+  color: #569254;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-info-panel__key,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-info-panel__key {
+  color: rgba(246, 172, 68, 0.6980392157);
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings {
+  background-color: rgba(34, 34, 73, 0.281);
+  padding: 10px 10px;
+}
 .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields,
 .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 25px;
 }
 @media (max-width: 570px) {
   .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields,
@@ -517,7 +563,6 @@
   font-size: 16px;
   font-weight: 500;
   color: #7e4c4f;
-  margin-bottom: 25px;
 }
 @media (max-width: 600px) {
   .accordion-page .accordion-page-item-content .edit-product-page .form-container .radio-field,
