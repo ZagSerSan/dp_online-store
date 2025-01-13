@@ -140,7 +140,7 @@
 }
 .accordion-page .accordion-page-item-content .buttons .back-btn:hover {
   color: #fff;
-  background-color: #ac000b;
+  background-color: rgba(172, 0, 11, 0.5803921569);
 }
 .accordion-page .accordion-page-item-content .buttons .add.disabled {
   background-color: rgba(126, 76, 79, 0.3882352941);
@@ -171,6 +171,10 @@
   display: flex;
   width: 100%;
   margin: 0 0 20px 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container__row:last-child,
+.accordion-page .accordion-page-item-content .create-product-page .form-container__row:last-child {
+  margin: 0;
 }
 .accordion-page .accordion-page-item-content .edit-product-page .form-container__row.flex-block,
 .accordion-page .accordion-page-item-content .create-product-page .form-container__row.flex-block {
@@ -412,8 +416,37 @@
 }
 .accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings,
 .accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings {
-  background-color: rgba(34, 34, 73, 0.281);
-  padding: 10px 10px;
+  padding: 10px 0px;
+  line-height: 1;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item {
+  width: auto;
+  margin: 0px 10px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item.text-fields,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item.text-fields {
+  max-width: 50px;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item.text-fields .text-field label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item.text-fields .text-field label {
+  margin-bottom: 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item.text-fields .text-field input,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item.text-fields .text-field input {
+  height: auto;
+  margin-top: 10px;
+  padding: 0 10px;
+  border: 1px solid #7e4c4f;
+  background-color: #fff;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item .radio-field div,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item .radio-field div {
+  margin: 0;
+}
+.accordion-page .accordion-page-item-content .edit-product-page .form-container .discount-settings-item .radio-field label,
+.accordion-page .accordion-page-item-content .create-product-page .form-container .discount-settings-item .radio-field label {
+  margin-right: 15px;
 }
 .accordion-page .accordion-page-item-content .edit-product-page .form-container .text-fields,
 .accordion-page .accordion-page-item-content .create-product-page .form-container .text-fields {

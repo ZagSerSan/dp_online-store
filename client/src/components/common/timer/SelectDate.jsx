@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./select.css"
-// import dateStore from '../store/dateStore'
 import { arrayFromNum } from '../../../utils/arrayFromNum'
-import { formatSelectedDate } from '../../../utils/formatSelectedDate'
 import { getCurrDate } from '../../../utils/getCurrDate'
 
 // todo idea - проверка и реал новых идей
   //? откл/вкл выбора минут или установить стандартное фикс знач, наприм 00 или 59 мин
 
-const SelectDate = ({ endTime, onChange, submitType }) => {
-  //? вызывать функции из store изменяющего продукт
-  // const { endDate, setEndDate, resetEndDate } = dateStore()
-
+const SelectDate = ({ endTime, onChange, submitType, additionalСlass }) => {
   // получение текущей даты
   const [selectedData, setSelectedData] = useState(getCurrDate(endTime))
 
@@ -153,8 +148,6 @@ const SelectDate = ({ endTime, onChange, submitType }) => {
     })
   }
 
-  //todo ==========================================
-
   // отправка даты из селекта в стор (конечный пункт компонента)
   const setDate = () => {
     // Функция для преобразования объекта в timestamp
@@ -177,12 +170,12 @@ const SelectDate = ({ endTime, onChange, submitType }) => {
   }
 
   return (
-    <div className='select'>
+    <div className={'select ' + additionalСlass}>
       <div className='select__wrapper'>
         {initialDate ?
           Object.keys(initialDate).map(key => (
-            <div key={key}>
-              <p>{key}:</p>
+            <div className='select-item' key={key}>
+              <p>{key === 'year' ? 'yyyy' : key === 'month' ? 'mm' : key === 'day' ? 'dd' : key === 'hour' ? 'hh' : 'min'}</p>
               <select onChange={(e) => toggleChange(e, key)} value={selectedData[key]}>
                 {initialDate[key].options
                   ? initialDate[key].options.map(option => (
@@ -203,10 +196,10 @@ const SelectDate = ({ endTime, onChange, submitType }) => {
         }
       </div>
 
-      {/* <button onClick={setDate} disabled={endDate}>set date</button> */}
-      {/* <button onClick={resetEndDate}>reset date</button> */}
-      <button onClick={setDate}>Set date</button>
-      <button onClick={resetDate}>Reset date</button>
+      <div className='select-buttons'>
+        <button onClick={setDate}>Set date</button>
+        <button className='back-btn' onClick={resetDate}>Reset date</button>
+      </div>
     </div>
   ) 
 }

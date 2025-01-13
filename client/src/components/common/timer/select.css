@@ -1,17 +1,64 @@
+.select {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7e4c4f;
+}
 .select__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
-.select-item {
-  display: flex;
-  flex-direction: column;
-  margin: 0 5px;
+.select-item select {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #7e4c4f;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px 5px 0 0;
 }
-
-input {
-  width: 30px;
+.select-buttons button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+  background-color: #7e4c4f;
+  padding: 8px 20px;
+  margin: 10px 10px 0 0;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
-
-button {
-  margin-top: 10px;
-  margin-right: 10px;
+.select-buttons button:disabled {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+  cursor: default;
+}
+.select-buttons button:disabled:hover {
+  background-color: rgba(126, 76, 79, 0.3882352941);
+}
+.select-buttons button:hover {
+  background-color: #f6ab44;
+}
+.select-buttons a {
+  text-decoration: underline;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.select-buttons a:hover {
+  color: #f6ab44;
+}
+.select-buttons .back-btn {
+  background-color: #db1d2a;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.select-buttons .back-btn:hover {
+  color: #fff;
+  background-color: rgba(172, 0, 11, 0.5803921569);
 }

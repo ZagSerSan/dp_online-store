@@ -15,7 +15,7 @@ import CheckBoxField from '../../../common/form/checkBoxField'
 import { formatDate } from '../../../../utils/formatDate'
 import SelectDate from '../../../common/timer/SelectDate'
 
-//todo styling discount ui 
+//todo (modify) - расширить функционал скидки до нескольких (2 и больше) 
 
 const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
   const { productId } = useParams()
@@ -695,10 +695,11 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                         endTime={data?.discount?.endTime}
                         onChange={handleChange}
                         submitType={'discount'}
+                        additionalСlass='discount-settings-item'
                       />
-                      <div className="text-fields">
+                      <div className="discount-settings-item text-fields">
                         <TextField
-                          label="Value:"
+                          label="value:"
                           placeholder="15"
                           name="discountValue"
                           value={data?.discount?.value}
@@ -707,7 +708,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                           submitType='discount'
                         />  
                       </div>
-                      <div>
+                      <div className='discount-settings-item'>
                         <RadioField
                           label="Type:"
                           options={[
@@ -727,7 +728,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
               </div>
 
               <div className="form-container__row">
-                <div className='buttons'>
+                <div className='buttons no-margin'>
                   <button
                     onClick={(e) => handleUpdate(e, contentType, data, 2)}
                     disabled={!isValid}

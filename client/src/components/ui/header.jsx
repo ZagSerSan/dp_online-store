@@ -293,7 +293,6 @@ const Header = () => {
                             {item.name}
                           </NavLink>
 
-                          {/*  */}
                           <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{applyDiscount(item.price, item.discount).toFixed(2) * item.count}</span></p>
 
                         </div>
