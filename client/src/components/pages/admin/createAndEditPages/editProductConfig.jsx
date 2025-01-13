@@ -30,7 +30,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
 
 // todo discount ui ------------------------------------------------------------------
   const [isProductOnSale, setIsProductOnSale] = useState(
-    currentProduct.discount.endTime > Date.now() ? true : false
+    currentProduct.discount.endTime < Date.now() ? false : true
   )
   
   // const initDiscountData = {
@@ -193,21 +193,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
           }))
         }
         break
-      case 'onSale':
-        console.log('payload :>> ', payload)
-
-        /* Поменять логику на такую, чтобы сначала показывался чекБокс от данный продукта
-           приходящего из сервера при загрузке..
-           ...
-           Если сначала скидки нет, то при изменении чекБокса
-           создавать в стейт скидки Date.now() + (1 час), чтобы включить таким образом ui,
-           если убрать чекБок то стейт на 0 
-         */
-        // if (optionKey === 'state') {
-        //   //todo менять состояние "есть ли скидка здесь"
-        //   setIsProductOnSale(value)
-        // }
-
+      case 'discount':
         // изменение состояния discount.endData для отправки на сервер
         setData(prev => ({
           ...prev,
@@ -217,6 +203,31 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
             },
         }))
         break
+      case 'onSale':
+          if (isProductOnSale) {
+            // при отключении деактивировать скидку путём обнуления времени
+            setData(prev => ({
+              ...prev,
+                discount: {
+                  ...prev.discount,
+                  endTime: 0
+                },
+            }))
+          } else {
+            // при включении активировать скидку путём добавления времени
+            setData(prev => ({
+              ...prev,
+                discount: {
+                  ...prev.discount,
+                  endTime: Date.now() + (1000 * 60 * 60 * 24 * 3) // + 1 час
+                },
+            }))
+          }
+          // todo -> пересчитать селекты под дату из активации чекбокста
+          
+          // переключения чек-бокса
+          setIsProductOnSale(prev => !prev)
+          break
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
@@ -647,7 +658,11 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 {isProductOnSale
                   // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
-                      <SelectDate endTime={currentProduct?.discount?.endTime} onChange={handleChange}/>
+                      <SelectDate
+                        endTime={currentProduct?.discount?.endTime}
+                        onChange={handleChange}
+                        submitType={'discount'}
+                      />
                     </div>
                   : null
                 }

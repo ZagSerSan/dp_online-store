@@ -8,7 +8,7 @@ import { getCurrDate } from '../../../utils/getCurrDate'
 // todo idea - проверка и реал новых идей
   //? откл/вкл выбора минут или установить стандартное фикс знач, наприм 00 или 59 мин
 
-const SelectDate = ({ endTime, onChange }) => {
+const SelectDate = ({ endTime, onChange, submitType }) => {
   //? вызывать функции из store изменяющего продукт
   // const { endDate, setEndDate, resetEndDate } = dateStore()
 
@@ -168,7 +168,7 @@ const SelectDate = ({ endTime, onChange }) => {
 
     const endDate = convertToEndDate(selectedData)
 
-    onChange({name: 'endTime', value: endDate}, "onSale")
+    onChange({name: 'endTime', value: endDate}, submitType)
   }
 
   // сбиваем дату на текущую
