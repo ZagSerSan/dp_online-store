@@ -15,6 +15,7 @@ import CheckBoxField from '../../../common/form/checkBoxField'
 import { formatDate } from '../../../../utils/formatDate'
 import SelectDate from '../../../common/timer/SelectDate'
 
+//todo чекбокс для перезаписи обновлённой инфы о скидке продуктов в корзине пользователя
 //todo (modify) - расширить функционал скидки до нескольких (2 и больше) 
 
 const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
