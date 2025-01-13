@@ -194,6 +194,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         }
         break
       case 'discount':
+        // todo - изменение типа скидки и её размера
         // изменение состояния discount.endData для отправки на сервер
         setData(prev => ({
           ...prev,
@@ -204,6 +205,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         }))
         break
       case 'onSale':
+        // переключение чекбокса скидки
+          //? todo(опционально) - обновлять продукты корзины пользователя при изменении времени скидки
           if (isProductOnSale) {
             // при отключении деактивировать скидку путём обнуления времени
             setData(prev => ({
@@ -219,12 +222,10 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
               ...prev,
                 discount: {
                   ...prev.discount,
-                  endTime: Date.now() + (1000 * 60 * 60 * 24 * 3) // + 1 час
+                  endTime: Date.now() + (1000 * 60 * 60 * 24) // + 1 день
                 },
             }))
-          }
-          // todo -> пересчитать селекты под дату из активации чекбокста
-          
+          }          
           // переключения чек-бокса
           setIsProductOnSale(prev => !prev)
           break
@@ -659,7 +660,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                   // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
                       <SelectDate
-                        endTime={currentProduct?.discount?.endTime}
+                        endTime={data?.discount?.endTime}
                         onChange={handleChange}
                         submitType={'discount'}
                       />
