@@ -198,10 +198,20 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         // изменение состояния discount для отправки на сервер
         // изменение name из-за её конфликта в radio селектах
         // если трогаем discountType, то name = type, в остальн случ name по умолчанию
-        // name = name === 'discountType' ? 'type' : name === 'discountValue' ? 'value' : name
         if (name === 'discountValue') {
-          name = 'value'
           value = Number(value)
+          // вводятся ли цифры в value?
+          if (!isNaN(value)) {
+            name = 'value'
+            // value на % тне может быть больше чем 100, и не fixed > price
+            if (data.discount.type === 'percentage' && value > 100) {
+              value = 100
+            } else if ((data.discount.type === 'fixed' || data.discount.type === 'shipping') && value > data.price) {
+              value = data.price
+            }
+          } else {
+            return
+          }
         } else if (name === 'discountType') {
           name = 'type'
         }
@@ -375,7 +385,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     } else {
       const errors = validator(data, validatorConfig)
       setErrors(errors)
-      // return Object.keys(errors).length === 0
+      // console.log('errors :>> ', errors)
     }
   }
   // блокировка кнопки
@@ -664,17 +674,16 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
 
                 {/* функционал */}
                 {isProductOnSale
-                  // тут будет onChange с новым submitType для изменения discountData (setDiscountData)
                   ? <div style={{display: 'flex'}}>
                       <SelectDate
                         endTime={data?.discount?.endTime}
                         onChange={handleChange}
                         submitType={'discount'}
                       />
-
-                      <div>
+                      {/* <div> */}
+                      <div className="text-fields">
                         <TextField
-                          label="Discount value:"
+                          label="Value:"
                           placeholder="15"
                           name="discountValue"
                           value={data?.discount?.value}
@@ -683,7 +692,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                           submitType='discount'
                         />  
                       </div>
-                      
                       <div>
                         <RadioField
                           label="Type:"
