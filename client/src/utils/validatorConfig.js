@@ -9,6 +9,15 @@ export const validatorConfig = {
       minValue: 3
     }
   },
+  title: {
+    isRequired: {
+      message: 'Name is required!'
+    },
+    isMinLenght: {
+      message: 'Name must have 3 symbols!',
+      minValue: 3
+    }
+  },
   value: {
     isRequired: {
       message: 'value is required!'

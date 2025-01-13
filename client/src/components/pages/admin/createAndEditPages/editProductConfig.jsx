@@ -12,11 +12,10 @@ import RadioField from '../../../common/form/radioField'
 import TextField from '../../../common/form/textField'
 import Textarea from '../../../common/form/textarea'
 import CheckBoxField from '../../../common/form/checkBoxField'
-import { formatTime } from '../../../../utils/formatTime'
 import { formatDate } from '../../../../utils/formatDate'
 import SelectDate from '../../../common/timer/SelectDate'
 
-//todo discount ui
+//todo styling discount ui 
 
 const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => {
   const { productId } = useParams()
@@ -27,24 +26,9 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     ? productsEntity.find(product => product._id === productId)
     : null
 
-
-// todo discount ui ------------------------------------------------------------------
   const [isProductOnSale, setIsProductOnSale] = useState(
     currentProduct.discount.endTime < Date.now() ? false : true
   )
-  
-  // const initDiscountData = {
-  //   type: 'percentage',
-  //   value: 0,
-  //   endTime: 0
-  // }
-  // const [discountData, setDiscountData] = useState(
-  //   currentProduct?.discount
-  //     ? currentProduct?.discount
-  //     : initDiscountData
-  // )
-
-  // console.log('discountData :>> ', discountData)
 
   useEffect(() => {
     currentProduct?.discount?.endTime > Date.now()
@@ -52,12 +36,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
       : setIsProductOnSale(false)
   }, [])
 
-  // console.log('isProductOnSale :>> ', isProductOnSale)
-
-
-//todo discount ui ------------------------------------------------------------------
-
-  // todo добавление discount в стейт блока инфо этого товара
   //* значение полей формы info
   const initInfoData = {
     _id: productId,
@@ -194,7 +172,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         }
         break
       case 'discount':
-        // todo - изменение типа скидки и её размера
         // изменение состояния discount для отправки на сервер
         // изменение name из-за её конфликта в radio селектах
         // если трогаем discountType, то name = type, в остальн случ name по умолчанию
@@ -385,7 +362,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     } else {
       const errors = validator(data, validatorConfig)
       setErrors(errors)
-      // console.log('errors :>> ', errors)
     }
   }
   // блокировка кнопки
@@ -680,7 +656,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                         onChange={handleChange}
                         submitType={'discount'}
                       />
-                      {/* <div> */}
                       <div className="text-fields">
                         <TextField
                           label="Value:"
