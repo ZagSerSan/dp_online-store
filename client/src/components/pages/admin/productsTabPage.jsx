@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import productStore from '../../../store/productStore'
 import Pagination from '../../common/pagination'
 
+// todo - добавить кнопку сортировки по скидкам, или сдедать отдельну вкладку для скидочных продуктов...
+
 const ProductsTabPage = () => {
   const { productsEntity, removeProduct, loadProductsList, productsLoaded } = productStore()
   const [currentPage, setCurrentPage] = useState(0)
@@ -30,6 +32,8 @@ const ProductsTabPage = () => {
       {productsEntity
         ? <div>
             <Link to='/admin/products/create-product' className='add-user'>create product</Link>
+            ---
+            <Link to='' className='add-user'><strike>sort by discount</strike></Link>
 
             <div className="user-list">
               {splicedEntity.map((product, index) => (
