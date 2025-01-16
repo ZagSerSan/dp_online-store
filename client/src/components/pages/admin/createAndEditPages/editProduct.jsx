@@ -25,8 +25,18 @@ const EditProduct = () => {
   }
 
   // обновление информации в зависимости от типа
-  const handleSubmit = async (e, contentType, data) => {
+  const handleSubmit = async (e, contentType, data, additionalState) => {
+    // updUserDataTrigger -> триггер для обновления данный в корзинах пользователей
     e.preventDefault()
+
+    // обновл данных корзины пользователей посредством включённого тригерра updUserCartData в additionalState
+    const updUsersCartData = () => {
+      if (additionalState.updUserCartData) {
+        console.log('updUsersCartData func')
+        // варифнт 1 -> найти всех пользователей с этим продуктом в виде массива,
+        // в каждом обекте массива поменять данные продукта в корзине
+      }
+    }
 
     switch (contentType) {
       // обновление простой информации
@@ -41,10 +51,12 @@ const EditProduct = () => {
             } else {
               updateProduct({_id: productId, ...data})
               toast.success("Product has been updated :)")
+              updUsersCartData()
             }
           } else {
             updateProduct({_id: productId, ...data})
             toast.success("Product has been updated :)")
+            updUsersCartData()
           }
         } catch (error) {
           toast.error("Product has not been updated :(")
