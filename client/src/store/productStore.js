@@ -3,7 +3,7 @@ import ProductService from '../service/product.service'
 import { errorCatcher } from '../utils/errorCatcher'
 import { toast } from 'react-toastify'
 
-const productStore = create((set) => ({
+const productStore = create((set, get) => ({
   productsEntity: null,
   productsLoaded: false,
 

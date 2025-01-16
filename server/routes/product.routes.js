@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
     })
   }
 })
+
 // создание информации о продукте
 router.post('/createProduct', auth, async (req, res) => {
   const authedUser = await User.findById(req.user._id)
@@ -45,6 +46,7 @@ router.post('/createProduct', auth, async (req, res) => {
     })
   }
 })
+
 // сохранение файлов продукта
 router.post('/createProductImages', auth, async (req, res) => {
   const authedUser = await User.findById(req.user._id)
@@ -77,6 +79,7 @@ router.post('/createProductImages', auth, async (req, res) => {
     })
   }
 })
+
 // обновление продукта
 router.put('/:productId', auth, async (req, res) => {
   const { productId } = req.params    
@@ -125,7 +128,7 @@ router.put('/:productId', auth, async (req, res) => {
                   }
                 ))
               default:
-                break;
+                break
             }
           }
           const productImagesPath = {
@@ -147,7 +150,7 @@ router.put('/:productId', auth, async (req, res) => {
           await fs.rm(editedProduct.filesPath,
             { recursive:true }, 
             (err) => { 
-              console.error(err); 
+              console.error(err) 
             }
           )
           // создание новой папки и запись новых файлов
@@ -184,8 +187,8 @@ router.put('/:productId', auth, async (req, res) => {
             // функция пермещения файла
             const relocateFile = async (oldFolder, newFolder, fileName) => {
               await fs.rename(`${oldFolder}/${fileName}`, `${newFolder}/${fileName}`, err => {
-                if(err) throw err; // не удалось переименовать файл
-                console.log('Файлы успешно перенесены');
+                if(err) throw err // не удалось переименовать файл
+                console.log('Файлы успешно перенесены')
               })
             }
             // цикл перемещения
@@ -233,7 +236,7 @@ router.put('/:productId', auth, async (req, res) => {
                     }
                   ))
                 default:
-                  break;
+                  break
               }
             }
             const productImagesPath = {
@@ -255,8 +258,8 @@ router.put('/:productId', auth, async (req, res) => {
             let newFolderName = `./static/images/products/${editedProduct.type}/${splitString(req.body.name, ' ', '_')}`
         
             fs.rename(`${oldFolderName}`, `${newFolderName}`, err => {
-              if(err) throw err; // не удалось переименовать файл
-              console.log('Файлы успешно перенесены');
+              if(err) throw err // не удалось переименовать файл
+              console.log('Файлы успешно перенесены')
             })
       
             // менять пути к картинкам
@@ -288,7 +291,7 @@ router.put('/:productId', auth, async (req, res) => {
                     }
                   ))
                 default:
-                  break;
+                  break
               }
             }
             const productImagesPath = {
@@ -316,7 +319,7 @@ router.put('/:productId', auth, async (req, res) => {
             // функция пермещения файла
             const relocateFile = async (oldFolder, newFolder, fileName) => {
               await fs.rename(`${oldFolder}/${fileName}`, `${newFolder}/${fileName}`, err => {
-                if(err) throw err; // не удалось переименовать файл
+                if(err) throw err // не удалось переименовать файл
                 console.log('Файлы успешно перенесены')
               })
             }
@@ -365,7 +368,7 @@ router.put('/:productId', auth, async (req, res) => {
                     }
                   ))
                 default:
-                  break;
+                  break
               }
             }
             const productImagesPath = {
@@ -399,6 +402,7 @@ router.put('/:productId', auth, async (req, res) => {
     })
   }
 })
+
 // удаление продукта
 router.delete('/:productId', auth, async (req, res) => {
   const authedUser = await User.findById(req.user._id)
@@ -411,7 +415,7 @@ router.delete('/:productId', auth, async (req, res) => {
       await fs.rm(removedProduct.filesPath,
         { recursive:true }, 
         (err) => { 
-          console.error(err); 
+          console.error(err) 
         }
       )
       await removedProduct.deleteOne()

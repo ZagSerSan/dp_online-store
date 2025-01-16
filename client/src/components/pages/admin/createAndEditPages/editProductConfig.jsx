@@ -31,10 +31,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     currentProduct.discount.endTime < Date.now() ? false : true
   )
 
-  const [additionalState, setAdditionalState] = useState({
-    updUserCartData: false
-  })
-
   useEffect(() => {
     currentProduct?.discount?.endTime > Date.now()
       ? setIsProductOnSale(true)
@@ -231,12 +227,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
           // переключения чек-бокса
           setIsProductOnSale(prev => !prev)
           break
-      case 'changeUserCartData':
-        setAdditionalState(prev => ({
-          ...prev,
-          [name]: value
-        }))
-        break
       case 'option-type':
         setOptionsData(prev => {
           for (let i = 0; i < Object.keys(prev[optionKey].options).length; i++) {
@@ -589,9 +579,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         )
         : (
           <div>
-            {/* <div className="accordion-page-item-content__title">Product Information</div> */}
-            {/* <div className="accordion-page-item-content__subtitle">Edit Product Information</div> */}
-
             <div className='form-container'>
               <div className="form-container__row">
                 <div className="text-fields">
@@ -736,17 +723,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     </div>
                   : null
                 }
-                
-                <CheckBoxField
-                    label='Change users cart data?'
-                    name="updUserCartData"
-                    value={additionalState.updUserCartData}
-                    submitType='changeUserCartData'
-                    onChange={handleChange}
-                  >
-                    <p className='discount-info__title'>Change users cart data?</p>
-                  </CheckBoxField>
-
               </div>
 
               <div className="form-container__row">
