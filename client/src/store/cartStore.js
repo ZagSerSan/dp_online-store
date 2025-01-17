@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
-import applyDiscount from '../utils/applyDiscount'
+// import applyDiscount from '../utils/applyDiscount'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
@@ -57,18 +57,10 @@ const cartStore = create((set) => ({
     e.stopPropagation()
     cartAnimation(e.target, isInCart)
 
-    console.log('item :>> ', item)
-
     // create new cart item for send to server
     let newCartItemData = {
       ...state.cartItemData,
       _id: item._id,
-      // name: item.name,
-      // type: item.type,
-      // discount: item.discount,
-      // price: item.price,
-      // totalPrice: applyDiscount(item.price, item.discount) * state.cartItemData.count,
-      // image: item.preview,
     }
 
     // if default options is was not changed
@@ -89,6 +81,7 @@ const cartStore = create((set) => ({
       })
     }
 
+    //todo тут изменить логику на простое добавление без его замены - line 90
     if (authedUser) {
       try {
         const newUserData = {

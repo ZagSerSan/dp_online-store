@@ -10,26 +10,15 @@ import Pagination from '../pagination'
 import applyDiscount from '../../../utils/applyDiscount'
 
 const MyProductsList = ({ cartItems }) => {
-  const { authedUser, localUser, updateUser, updLocalUserCart } = userStore()
+  const { authedUser, updateUser, updLocalUserCart } = userStore()
   const [currentPage, setCurrentPage] = useState(0)
+  // кол-во отображаемых на одной странице
   const countOnPage = 5
-
+  // обрезка кол-ва для текущей страницы
   const splicedEntity = cartItems.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-
-  // const splicedEntity = authedUser?.cart
-  //   ? authedUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-  //   : localUser.cart
-  //     ? localUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-  //     : []
-  
+  // кол-во всех в корзине
   const itemsCount = cartItems.length
-
-  // const itemsCount = authedUser?.cart
-  //   ? authedUser.cart.length
-  //   : localUser.cart
-  //     ? localUser.cart.length
-  //     : 0
-
+  // вернуть на предыдушую страницу если 0 элементов на текущей
   if (splicedEntity.length === 0) {
     setCurrentPage(prev => prev - 1)
   }
@@ -77,7 +66,7 @@ const MyProductsList = ({ cartItems }) => {
           {splicedEntity
             ? splicedEntity.map(item => (
               <div key={item._id} className="item">
-                <img src={item.image} alt="product image" />
+                <img src={item.preview} alt="product preview" />
                 <div className='item-content'>
                   <div className="item-content__name">
                     <Link to={`/category/${item.type}/${item._id}`} className='item-content__name'>{item.name}</Link>
