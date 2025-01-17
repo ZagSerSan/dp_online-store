@@ -268,7 +268,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     if(settingItemNumber) {
       toggleSettingItem(e, settingItemNumber)
     }
-    handleSubmit(e, contentType, data, additionalState)
+    handleSubmit(e, contentType, data)
   }
 
   // функции кнопок изменения опшинов

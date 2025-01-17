@@ -14,17 +14,21 @@ const MyProductsList = ({ cartItems }) => {
   const [currentPage, setCurrentPage] = useState(0)
   const countOnPage = 5
 
-  const splicedEntity = authedUser?.cart
-    ? authedUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-    : localUser.cart
-      ? localUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
-      : []
+  const splicedEntity = cartItems.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+
+  // const splicedEntity = authedUser?.cart
+  //   ? authedUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+  //   : localUser.cart
+  //     ? localUser.cart.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
+  //     : []
   
-  const itemsCount = authedUser?.cart
-    ? authedUser.cart.length
-    : localUser.cart
-      ? localUser.cart.length
-      : 0
+  const itemsCount = cartItems.length
+
+  // const itemsCount = authedUser?.cart
+  //   ? authedUser.cart.length
+  //   : localUser.cart
+  //     ? localUser.cart.length
+  //     : 0
 
   if (splicedEntity.length === 0) {
     setCurrentPage(prev => prev - 1)
