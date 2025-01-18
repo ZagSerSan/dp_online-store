@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
-// import applyDiscount from '../utils/applyDiscount'
+import { generateCartItemKey } from '../utils/generateCartItemKey'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
@@ -56,11 +56,14 @@ const cartStore = create((set) => ({
   addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
     e.stopPropagation()
     cartAnimation(e.target, isInCart)
-
+    // определение уник ключа добавляемого продукта
+    const newCartItemKey = generateCartItemKey(item._id, state.cartItemData.optionTypes)
     // create new cart item for send to server
     let newCartItemData = {
       ...state.cartItemData,
-      _id: item._id,
+      // добавление уник key из выбранных опицй
+      key: generateCartItemKey(item._id, state.cartItemData.optionTypes),
+      _id: item._id
     }
 
     // if default options is was not changed
@@ -84,12 +87,30 @@ const cartStore = create((set) => ({
     //todo тут изменить логику на простое добавление без его замены - line 90
     if (authedUser) {
       try {
+        //* сравнение ключей нового с уже имеющимся в корзине
+        const findedCartItem = authedUser.cart.find(cartItem => cartItem.key === newCartItemKey)
+
+        let newCart
+        // если уник ключи совпадают
+        if (findedCartItem && (findedCartItem.key === newCartItemKey)) {
+          // если кол-во совпадает
+          if (findedCartItem.count === state.cartItemData.count) {
+            // ничего не делать
+            return
+          } else {
+            // убрать предыдущий с старым значением кол-ва и добав новый с нов знач кол-ва
+            let findedCartItems = authedUser.cart.filter(cartItem => cartItem.key !== newCartItemKey)
+            newCart = [...findedCartItems, newCartItemData]
+          }
+        } else {
+          newCart = [...authedUser.cart, newCartItemData]
+        }
+
         const newUserData = {
           ...authedUser,
-          cart: authedUser.cart.find(cartItem => cartItem._id === item._id)
-            ? authedUser.cart.filter(cartItem => cartItem._id !== item._id)
-            : [...authedUser.cart, newCartItemData]
+          cart: newCart
         }
+
         updateUser(newUserData)
       } catch (e) {
         console.log('e :>> ', e)

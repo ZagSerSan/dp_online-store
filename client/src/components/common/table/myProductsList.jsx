@@ -65,7 +65,7 @@ const MyProductsList = ({ cartItems }) => {
         <div className="my-products-list">
           {splicedEntity
             ? splicedEntity.map(item => (
-              <div key={item._id} className="item">
+              <div key={item.key} className="item">
                 <img src={item.preview} alt="product preview" />
                 <div className='item-content'>
                   <div className="item-content__name">

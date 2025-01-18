@@ -23,8 +23,12 @@ const CartPage = () => {
   // если вдруг сущности не загрузились (тестовый момент)
   if (!cartItems || !productsEntity) return
 
+  // todo
+  
+
   // Сопоставляем данные из корзины с актуальными данными о продуктах
   const updatedCart = cartItems.map(item => {
+    
     const productData = productsEntity.find(product => product._id === item._id)
     return {
       ...item,
