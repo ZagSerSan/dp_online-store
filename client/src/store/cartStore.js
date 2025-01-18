@@ -119,6 +119,9 @@ const cartStore = create((set) => ({
       updLocalUserCart(newCartItemData)
     }
   }),
+
+  //todo удалить из корзины
+  
   // переключать избранное
   toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
     e.stopPropagation()
