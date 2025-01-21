@@ -7,8 +7,6 @@ const ModalOption = ({ name, options }) => {
   const { cartItemData, setCartItemData, setCartItemDataIsChanged } = cartStore()
   // инициализация состояния cart item'а
   useEffect(() => {
-    console.log('--useEffect')
-    
     setCartItemData('setInitialOption', options)
   }, [])
   // переключение опшинов

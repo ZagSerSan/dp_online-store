@@ -95,7 +95,7 @@ const MyProductsList = ({ cartItems }) => {
           </div>
           <div className="my-products-actions-buttons">
             <button>pay for products</button>
-            <button onClick={(e) => removeFromCart(e, null, 'clear-all', authedUser, updateUser, updLocalUserCart)}>Clear cart</button>
+            <button onClick={(e) => removeFromCart(e, null, authedUser, updateUser, updLocalUserCart, 'clear-all')}>Clear cart</button>
           </div>
         </div>
       </div>
