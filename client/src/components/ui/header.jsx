@@ -5,19 +5,21 @@ import './css/header.css'
 import productStore from '../../store/productStore'
 import userStore from '../../store/userStore'
 import globalStore from '../../store/globalStore'
-import userService from '../../service/user.service'
 import { cartAnimation } from '../../utils/cartAnimation'
 import configFile from '../../config.json'
 // components
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
 import applyDiscount from '../../utils/applyDiscount'
+import cartStore from '../../store/cartStore'
+import { getFullUserCartItems } from '../../utils/getFullUserCartItems'
 
 const Header = () => {
   const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
   // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
+  const { removeFromCart } = cartStore()
   const { productsEntity } = productStore()
   const { globalLoading } = globalStore()
   // локальное состояния компонента
@@ -52,7 +54,7 @@ const Header = () => {
         setBurgerMenu(false)
       })
     }
-  }, [globalLoading]);
+  }, [globalLoading])
   // переключение бургер меню
   const toggleBurger = () => {
     setBurgerMenu(prev => !prev)
@@ -102,33 +104,18 @@ const Header = () => {
     setSearchData({search: ''})
     setFilteredProducts([])
   }
-  // удаление из корзины
-  const removeFromCart = async (e, item) => {
-    cartAnimation(e.target, true)
-    if (authedUser) {
-      try {
-        const newUserData = {
-          ...authedUser,
-          cart: authedUser.cart.filter(cartItem => cartItem._id !== item._id)
-        }
-        const { content } = await userService.updateUser(newUserData)
-        updateUser(content)
-      } catch (e) {
-        console.log('e :>> ', e)
-      }
-    } else {
-      updLocalUserCart(item)
-    }
-  }
   const logout = () => {
     logOut()
     setAuthDropMenu(false)
   }
 
-  // настройка показа элементов в дроап-меню корзины
+  // Сопоставляем актуальные полные данные продуктов на основе корзины
   const cartItemsForDropMenu = authedUser
-    ? authedUser.cart
-    : localUser ? localUser.cart : []
+    ? getFullUserCartItems(productsEntity, authedUser.cart)
+    : localUser
+      ? getFullUserCartItems(productsEntity, localUser.cart)
+      : []
+
   // максимал кол-во показа продуктов в дроп меню
   const dropItemslimit = 5
   // обрезка
@@ -285,7 +272,7 @@ const Header = () => {
                       <div key={item._id} className='cart-wrapper__col'>
                         <div className="cart-wrapper__row">
                           <NavLink to={`/category/${item.type}/${item._id}`}>
-                            <img src={item.image} alt={item.name} />
+                            <img src={item.preview} alt={item.name} />
                           </NavLink>
                         </div>
                         <div className="cart-wrapper__row">
@@ -296,7 +283,7 @@ const Header = () => {
                           <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{applyDiscount(item.price, item.discount).toFixed(2) * item.count}</span></p>
 
                         </div>
-                        <button onClick={(e) => removeFromCart(e, item)}><Icon id='close'/></button>
+                        <button onClick={(e) => removeFromCart(e, item, authedUser, updateUser, updLocalUserCart)}><Icon id='close'/></button>
                       </div>
                       ))
                     )}
