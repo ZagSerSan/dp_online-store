@@ -3,18 +3,16 @@ import PropTypes from 'prop-types'
 import './css/myProductsList.css'
 import { Link, Navigate } from 'react-router-dom'
 import Icon from '../icon'
-import { cartAnimation } from '../../../utils/cartAnimation'
 import userStore from '../../../store/userStore'
-import userService from '../../../service/user.service'
 import Pagination from '../pagination'
 import applyDiscount from '../../../utils/applyDiscount'
 import cartStore from '../../../store/cartStore'
+import { calculateTotalPrice } from '../../../utils/calculateTotalPrice'
 
 const MyProductsList = ({ cartItems }) => {
   const { authedUser, updateUser, updLocalUserCart } = userStore()
-  // todo
   const { removeFromCart } = cartStore()
-  
+
   const [currentPage, setCurrentPage] = useState(0)
   // кол-во отображаемых на одной странице
   const countOnPage = 5
@@ -22,46 +20,10 @@ const MyProductsList = ({ cartItems }) => {
   const splicedEntity = cartItems.slice(currentPage * countOnPage, (currentPage * countOnPage) + countOnPage)
   // кол-во всех в корзине
   const itemsCount = cartItems.length
+
   // вернуть на предыдушую страницу если 0 элементов на текущей
   if (splicedEntity.length === 0) {
     setCurrentPage(prev => prev - 1)
-  }
-
-  // const removeFromCart = async (e, item, role = '') => {
-  //   // cartAnimation(e.target, true)
-
-  //   if (authedUser) {
-  //     try {
-  //       let cart
-  //       if (role === 'clear-all') {
-  //         cart = []
-  //       } else {
-  //         cart = authedUser.cart.filter(cartItem => cartItem._id !== item._id)
-  //       }
-  //       const newUserData = {
-  //         _id: authedUser._id,
-  //         cart
-  //       }
-  //       const { content } = await userService.updateUser(newUserData)
-  //       updateUser(content)
-  //     } catch (e) {
-  //       console.log('e :>> ', e)
-  //     }
-  //   } else {
-  //     if (role === 'clear-all') {
-  //       updLocalUserCart(item, role)
-  //     } else {
-  //       updLocalUserCart(item)
-  //     }
-  //   }
-  // }
-
-  const calculateTotalPrice = (products) => {
-    let sum = 0
-    for (let i = 0; i < products.length; i++) {
-      sum += applyDiscount(products[i].price, products[i].discount) * products[i].count
-    }
-    return sum
   }
 
   return (
@@ -77,7 +39,7 @@ const MyProductsList = ({ cartItems }) => {
                     <Link to={`/category/${item.type}/${item._id}`} className='item-content__name'>{item.name}</Link>
                     <button
                       className='delete'
-                      onClick={(e) => removeFromCart(e, item, null, authedUser, updateUser, updLocalUserCart)}
+                      onClick={(e) => removeFromCart(e, item, authedUser, updateUser, updLocalUserCart)}
                     >
                       <Icon id='close'/>
                     </button>

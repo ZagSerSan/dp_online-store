@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
 import { generateCartItemKey } from '../utils/generateCartItemKey'
-import userService from '../service/user.service'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
@@ -59,6 +58,11 @@ const cartStore = create((set) => ({
     cartAnimation(e.target, isInCart)
     // определение уник ключа добавляемого продукта
     const newCartItemKey = generateCartItemKey(item._id, state.cartItemData.optionTypes)
+
+    console.log('item :>> ', item)
+    console.log('state.cartItemData :>> ', state.cartItemData)
+    console.log('newCartItemKey :>> ', newCartItemKey)
+
     // create new cart item for send to server
     let newCartItemData = {
       ...state.cartItemData,
@@ -121,8 +125,9 @@ const cartStore = create((set) => ({
     }
   }),
   // удалить из корзины
-  removeFromCart: (e, item, role = '', authedUser, updateUser, updLocalUserCart ) => set(async (state) => {
+  removeFromCart: (e, item, authedUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {
     // cartAnimation(e.target, true)
+    console.log('item.key :>> ', item.key)
 
     // если пользователь залогинен
     if (authedUser) {
@@ -135,9 +140,10 @@ const cartStore = create((set) => ({
           // удалять один элемент посредствой фильтрации корзины от выбранного
           newCart = authedUser.cart.filter(cartItem => cartItem.key !== item.key)
         }
+        
         const newUserData = {
           _id: authedUser._id,
-          newCart
+          cart: newCart
         }
         // обновление пользователя
         updateUser(newUserData)

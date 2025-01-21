@@ -107,8 +107,7 @@ router.put('/:userId', auth, async (req, res) => {
   // проверка, является ли данный пользователь админом
   if (authedUser?.admin  || userId === req.user._id) {
     try {
-      const { userId } = req.params    
-      if (req.body.password && req.body.password === req.body.passwordConfirm) {
+      if (req.body.password && (req.body.password === req.body.passwordConfirm)) {
         const hashedPassword = await bcrypt.hash(req.body.password, 12)
         const updatedUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true})
         res.send(updatedUser)
