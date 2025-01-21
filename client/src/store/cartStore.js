@@ -4,8 +4,9 @@ import { generateCartItemKey } from '../utils/generateCartItemKey'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
+  key: '',
   count: 1,
-  optionTypes: {}
+  options: {}
 }
 
 const cartStore = create((set) => ({
@@ -30,8 +31,8 @@ const cartStore = create((set) => ({
       return {
         cartItemData: {
           ...state.cartItemData,
-          optionTypes: {
-            ...state.cartItemData.optionTypes,
+          options: {
+            ...state.cartItemData.options,
             [data.type]: data.value
           }
         }
@@ -41,10 +42,10 @@ const cartStore = create((set) => ({
       const filteredOption = data.filter(option => option.selected === true)
       return {
         cartItemData: {
-          ...state.cartItemData,
+          // ...state.cartItemData,
           ...initialCartItemData,
-          optionTypes: {
-            ...state.cartItemData.optionTypes,
+          options: {
+            ...state.cartItemData.options,
             [filteredOption[0].type]: filteredOption[0].value 
           }
         }
@@ -55,39 +56,46 @@ const cartStore = create((set) => ({
   // добавить в корзину
   addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
     e.stopPropagation()
-    cartAnimation(e.target, isInCart)
-    // определение уник ключа добавляемого продукта
-    const newCartItemKey = generateCartItemKey(item._id, state.cartItemData.optionTypes)
+    // cartAnimation(e.target, isInCart)
 
-    console.log('item :>> ', item)
-    console.log('state.cartItemData :>> ', state.cartItemData)
-    console.log('newCartItemKey :>> ', newCartItemKey)
-
-    // create new cart item for send to server
-    let newCartItemData = {
-      ...state.cartItemData,
-      // добавление уник key из выбранных опицй
-      key: generateCartItemKey(item._id, state.cartItemData.optionTypes),
-      _id: item._id
-    }
+    //todo для выбранных по умолчанию опций
+    let selectedOptions = {}
 
     // if default options is was not changed
     if (!state.cartItemDataWasChanged) {
+      // установить опции продукта по умолч при быстрой покупке из списка продуктов
       const itemOptions = item.modalOptionTypes
+      // для выбранных по умолчанию опций
 
       itemOptions.forEach(optionItem => {
         const { options } = optionItem
         // получаем только "выбранные по умолчанию"
         const filteredOption = options.filter(item => item.selected === true)
-        newCartItemData = {
-          ...newCartItemData,
-          optionTypes: {
-            ...newCartItemData.optionTypes,
-            [filteredOption[0].type]: filteredOption[0].value
-          }
+        // обновляем обект выбранных
+        selectedOptions = {
+          ...selectedOptions,
+          [filteredOption[0].type]: filteredOption[0].value
         }
       })
     }
+
+    // create new cart item for send to server
+    let newCartItemData = {
+      ...state.cartItemData,
+      options: Object.keys(state.cartItemData.options).length === 0
+        ? selectedOptions
+        : state.cartItemData.options,
+      // добавление уник key из выбранных опицй
+      key: generateCartItemKey(
+        item._id,
+        Object.keys(state.cartItemData.options).length === 0
+          ? selectedOptions
+          : state.cartItemData.options,
+      ),
+      _id: item._id
+    }
+
+    const newCartItemKey = newCartItemData.key
 
     if (authedUser) {
       try {
@@ -127,7 +135,6 @@ const cartStore = create((set) => ({
   // удалить из корзины
   removeFromCart: (e, item, authedUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {
     // cartAnimation(e.target, true)
-    console.log('item.key :>> ', item.key)
 
     // если пользователь залогинен
     if (authedUser) {

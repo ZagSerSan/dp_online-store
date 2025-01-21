@@ -46,10 +46,10 @@ const MyProductsList = ({ cartItems }) => {
                   </div>
                   <div className="item-content-info">
                     <div className="item-content-info__col">
-                      {Object.keys(item.optionTypes).map(key => (
+                      {Object.keys(item.options).map(key => (
                         <p key={key}>
                           <span className='darkened-text'>{key}: </span>
-                          <span>{item.optionTypes[key]}</span>
+                          <span>{item.options[key]}</span>
                         </p>
                       ))}
                     </div>

@@ -5,9 +5,10 @@ import cartStore from '../../../store/cartStore'
 
 const ModalOption = ({ name, options }) => {
   const { cartItemData, setCartItemData, setCartItemDataIsChanged } = cartStore()
-
   // инициализация состояния cart item'а
   useEffect(() => {
+    console.log('--useEffect')
+    
     setCartItemData('setInitialOption', options)
   }, [])
   // переключение опшинов
@@ -26,8 +27,8 @@ const ModalOption = ({ name, options }) => {
             key={option.value}
             className={'modal-option__button ' + 
               (
-                cartItemData.optionTypes[option.type] === option.value ||
-                cartItemData.optionTypes[option.type] === option.value 
+                cartItemData.options[option.type] === option.value ||
+                cartItemData.options[option.type] === option.value 
                   ? ' selected' : ''
               )
             }

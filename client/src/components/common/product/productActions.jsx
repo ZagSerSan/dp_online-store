@@ -31,7 +31,7 @@ const ProductActions = ({ item }) => {
         className={"product-actions-cartadd" + (isInCart ? ' added' : '')}
         onClick={(e) => addToCart(e, authedUser, updateUser, updLocalUserCart, item, isInCart )}
       >
-        {isInCart ? 'REMOVE WITH CART' : 'ADD TO CART'}
+        ADD TO CART
       </button>
       <button
         className={"product-actions-bookmark" + (isBookmarked ? ' active' : '')}
