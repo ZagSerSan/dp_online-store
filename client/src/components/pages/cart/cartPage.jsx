@@ -25,7 +25,6 @@ const CartPage = () => {
 
   // todo
   
-
   // Сопоставляем данные из корзины с актуальными данными о продуктах
   const updatedCart = cartItems.map(item => {
     

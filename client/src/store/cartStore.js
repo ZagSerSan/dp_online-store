@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { cartAnimation } from '../utils/cartAnimation'
 import { generateCartItemKey } from '../utils/generateCartItemKey'
+import userService from '../service/user.service'
 
 // начальное состояние продукта для корзины
 const initialCartItemData = {
@@ -84,10 +85,9 @@ const cartStore = create((set) => ({
       })
     }
 
-    //todo тут изменить логику на простое добавление без его замены - line 90
     if (authedUser) {
       try {
-        //* сравнение ключей нового с уже имеющимся в корзине
+        // сравнение ключей нового с уже имеющимся в корзине
         const findedCartItem = authedUser.cart.find(cartItem => cartItem.key === newCartItemKey)
 
         let newCart
@@ -98,9 +98,10 @@ const cartStore = create((set) => ({
             // ничего не делать
             return
           } else {
-            // убрать предыдущий с старым значением кол-ва и добав новый с нов знач кол-ва
-            let findedCartItems = authedUser.cart.filter(cartItem => cartItem.key !== newCartItemKey)
-            newCart = [...findedCartItems, newCartItemData]
+            // отфильтровать корзину и изменить кол-во тек-го продукта (если key совпадают)
+            newCart = authedUser.cart.map((item) =>
+              item.key === newCartItemKey ? { ...item, count: newCartItemData.count } : item
+            )
           }
         } else {
           newCart = [...authedUser.cart, newCartItemData]
@@ -119,9 +120,38 @@ const cartStore = create((set) => ({
       updLocalUserCart(newCartItemData)
     }
   }),
+  // удалить из корзины
+  removeFromCart: (e, item, role = '', authedUser, updateUser, updLocalUserCart ) => set(async (state) => {
+    // cartAnimation(e.target, true)
 
-  //todo удалить из корзины
-  
+    // если пользователь залогинен
+    if (authedUser) {
+      try {
+        let newCart
+        if (role === 'clear-all') {
+          // обнуление корзины при её полной очистке
+          newCart = []
+        } else {
+          // удалять один элемент посредствой фильтрации корзины от выбранного
+          newCart = authedUser.cart.filter(cartItem => cartItem.key !== item.key)
+        }
+        const newUserData = {
+          _id: authedUser._id,
+          newCart
+        }
+        // обновление пользователя
+        updateUser(newUserData)
+      } catch (e) {
+        console.log('e :>> ', e)
+      }
+    } else {
+      if (role === 'clear-all') {
+        updLocalUserCart(item, role)
+      } else {
+        updLocalUserCart(item)
+      }
+    }
+  }),
   // переключать избранное
   toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
     e.stopPropagation()
