@@ -54,15 +54,17 @@ const cartStore = create((set) => ({
     return { cartItemDataWasChanged: false }
   }),
   // добавить в корзину
-  addToCart:  (e, authedUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
+  addToCart:  (e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart ) => set(async (state) => {
     e.stopPropagation()
     // cartAnimation(e.target, isInCart)
 
-    //todo для выбранных по умолчанию опций
+    // для выбранных по умолчанию опций
     let selectedOptions = {}
 
     // if default options is was not changed
     if (!state.cartItemDataWasChanged) {
+      console.log('if')
+      
       // установить опции продукта по умолч при быстрой покупке из списка продуктов
       const itemOptions = item.modalOptionTypes
       // для выбранных по умолчанию опций
@@ -79,58 +81,102 @@ const cartStore = create((set) => ({
       })
     }
 
+    // console.log('selectedOptions :>> ', selectedOptions)
+    // console.log('Changed', state.cartItemDataWasChanged)
+    console.log('cartItemData', state.cartItemData)
+    
+    // сбрасывать оции в модальном окне (или )
+    
     // create new cart item for send to server
     let newCartItemData = {
       ...state.cartItemData,
-      options: Object.keys(state.cartItemData.options).length === 0
-        ? selectedOptions
-        : state.cartItemData.options,
+      options: Object.keys(selectedOptions).length === 0
+        ? state.cartItemData.options
+        : selectedOptions,
+      // options: Object.keys(state.cartItemData.options).length === 0
+      //   ? selectedOptions
+      //   : state.cartItemData.options,
       // добавление уник key из выбранных опицй
       key: generateCartItemKey(
         item._id,
-        Object.keys(state.cartItemData.options).length === 0
-          ? selectedOptions
-          : state.cartItemData.options,
+        Object.keys(selectedOptions).length === 0
+          ? state.cartItemData.options
+          : selectedOptions,
       ),
       _id: item._id
     }
 
+    console.log('newCartItemData :>> ', newCartItemData)
+
     const newCartItemKey = newCartItemData.key
 
+    const getUpdatedCart = (user, role) => {
+      let newUserData
+      let newCart
+  
+      // сравнение ключей нового с уже имеющимся в корзине
+      const findedCartItem = user.cart.find(cartItem => cartItem.key === newCartItemKey)
+
+      // если уник ключи совпадают
+      if (findedCartItem && (findedCartItem.key === newCartItemKey)) {
+        // если кол-во совпадает
+        if (findedCartItem.count === state.cartItemData.count) {
+          // ничего не делать
+          newCart = user.cart
+          // return
+        } else {
+          // отфильтровать корзину и изменить кол-во тек-го продукта (если key совпадают)
+          newCart = user.cart.map((item) =>
+            item.key === newCartItemKey ? { ...item, count: newCartItemData.count } : item
+          )
+        }
+      } else {
+        newCart = [...user.cart, newCartItemData]
+      }
+
+      newUserData = {
+        ...user,
+        cart: newCart
+      }
+
+      // todo менять деф (выбран по умолч) опции на странице из изменения после доб в корзину
+
+      // set((state) => ({
+      //   cartItemData: {
+      //     ...state.cartItemData,
+      //     count: 1,
+      //     options: selectedOptions
+      //     // options: Object.keys(selectedOptions).length === 0
+      //     //   ? state.cartItemData.options
+      //     //   : selectedOptions,
+      //   }
+      // }))
+
+      if (role === 'authedUser') {
+        return newUserData
+      } else if (role === 'localUser') {
+        return newCart
+      }
+    }
+
+    // если авторизован и не авторизован (else)
     if (authedUser) {
       try {
-        // сравнение ключей нового с уже имеющимся в корзине
-        const findedCartItem = authedUser.cart.find(cartItem => cartItem.key === newCartItemKey)
-
-        let newCart
-        // если уник ключи совпадают
-        if (findedCartItem && (findedCartItem.key === newCartItemKey)) {
-          // если кол-во совпадает
-          if (findedCartItem.count === state.cartItemData.count) {
-            // ничего не делать
-            return
-          } else {
-            // отфильтровать корзину и изменить кол-во тек-го продукта (если key совпадают)
-            newCart = authedUser.cart.map((item) =>
-              item.key === newCartItemKey ? { ...item, count: newCartItemData.count } : item
-            )
-          }
-        } else {
-          newCart = [...authedUser.cart, newCartItemData]
-        }
-
-        const newUserData = {
-          ...authedUser,
-          cart: newCart
-        }
-
-        updateUser(newUserData)
+        updateUser(getUpdatedCart(authedUser, 'authedUser'))
       } catch (e) {
         console.log('e :>> ', e)
       }
     } else {
-      updLocalUserCart(newCartItemData)
+      updLocalUserCart(getUpdatedCart(localUser, 'localUser'))
+
+      //! отладка
+      // Boolean(getUpdatedCart(localUser, 'localUser'))
+      // ? updLocalUserCart(getUpdatedCart(localUser, 'localUser'))
+      // : console.log(`${Boolean(getUpdatedCart(localUser, 'localUser'))}`)
     }
+
+    set((state) => ({ cartItemDataWasChanged: false}))
+    set((state) => ({ cartItemData: {...state.cartItemData, count: 1} }))
   }),
   // удалить из корзины
   removeFromCart: (e, item, authedUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {

@@ -29,7 +29,7 @@ const ProductActions = ({ item }) => {
       </div>
       <button
         className={"product-actions-cartadd" + (isInCart ? ' added' : '')}
-        onClick={(e) => addToCart(e, authedUser, updateUser, updLocalUserCart, item, isInCart )}
+        onClick={(e) => addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart )}
       >
         ADD TO CART
       </button>

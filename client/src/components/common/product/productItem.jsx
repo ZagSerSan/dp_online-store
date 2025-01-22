@@ -56,7 +56,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
             <Icon id='view' data-modal='1'/>
           </button>
           <button
-            onClick={(e) => addToCart(e, authedUser, updateUser, updLocalUserCart, item, isInCart )}
+            onClick={(e) => addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart )}
             onMouseEnter={() => setCartHover(true)}
             onMouseLeave={() => setCartHover(false)}
           >

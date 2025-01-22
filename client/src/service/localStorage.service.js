@@ -56,28 +56,43 @@ export function removeLocalUser() {
   localStorage.removeItem('cart')
   localStorage.removeItem('bookmarks')
 }
-export function setCart(newCartItem) {
-  let isContain = Boolean(localStorage.getItem('cart'))
-  let cart = []
-  // если есть сущность cart в localStore
-  if (isContain) {
-    cart = JSON.parse(localStorage.getItem('cart'))
-    // добавляем или удаляем
-    const updatedCart = cart.find(item=> item._id === newCartItem._id)
-      ? cart.filter(item => item._id !== newCartItem._id)
-      : [...cart, newCartItem]
-    // ложим обратно в localStore
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
-    // возвращаем в стор новую корзину
-    return updatedCart
-  } else {
-    // если нету сущности cart в localStore
-    cart.push(newCartItem)
-    localStorage.setItem('cart', JSON.stringify(cart))
+
+// обновить корзину на новую
+export function setCart(newLocalCart) {
+  if (newLocalCart) {
+    localStorage.setItem('cart', JSON.stringify(newLocalCart))
     // для стейта localUser
-    return cart
+    return newLocalCart
   }
 }
+
+// export function setCart(newCartItem, role) {
+//   // есть ли сущность 'cart' в localStore
+//   let isContain = Boolean(localStorage.getItem('cart'))
+//   let cart = []
+
+//   // если есть сущность cart в localStore
+//   if (isContain) {
+//     cart = JSON.parse(localStorage.getItem('cart'))
+
+//     // добавляем или удаляем
+//     const updatedCart = cart.find(item=> item._id === newCartItem._id)
+//       ? cart.filter(item => item._id !== newCartItem._id)
+//       : [...cart, newCartItem]
+
+//     // ложим обратно в localStore
+//     localStorage.setItem('cart', JSON.stringify(updatedCart))
+//     // возвращаем в стор новую корзину
+//     return updatedCart
+//   } else {
+//     // если нету сущности cart в localStore
+//     cart.push(newCartItem)
+//     localStorage.setItem('cart', JSON.stringify(cart))
+//     // для стейта localUser
+//     return cart
+//   }
+// }
+
 export function clearCart() {
   let isContain = Boolean(localStorage.getItem('cart'))
   const cart = []

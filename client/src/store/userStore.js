@@ -65,17 +65,24 @@ const userStore = create((set) => ({
     set((state) => ({ usersLoaded: true}))
   },
   // обновление не авторизов пользователя (корзины)
-  updLocalUserCart: (cartItem, role) => set((state) => {
+  // updLocalUserCart: (cartItem, role) => set((state) => {
+  updLocalUserCart: (newLocalCart, role) => set((state) => {
     if (role === 'clear-all') {
+      localStorageService.clearCart()
       const newLocalUserData = {
         ...state.localUser,
-        cart: localStorageService.clearCart(cartItem)
+        cart: []
       }
       return { localUser: newLocalUserData }
     } else {
+      // обновление корзины в localStore
+      localStorageService.setCart(newLocalCart)
+      // обновление localUser в store
       const newLocalUserData = {
         ...state.localUser,
-        cart: localStorageService.setCart(cartItem)
+        // cart: localStorageService.setCart(cartItem, role)
+        cart: newLocalCart
+        
       }
       return { localUser: newLocalUserData }
     }
