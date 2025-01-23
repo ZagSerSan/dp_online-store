@@ -23,9 +23,15 @@ const ProductActions = ({ item }) => {
   return (
     <div className="product-actions">
       <div className="product-actions-counter">
-        <button onClick={() => setCartItemData('decrement')}>-</button>
+        <button
+          onClick={() => setCartItemData('decrement')}
+          disabled={cartItemData.count === 1}
+        >-</button>
         <p>{cartItemData.count}</p>
-        <button onClick={() => setCartItemData('increment')}>+</button>
+        <button
+          onClick={() => setCartItemData('increment')}
+          disabled={cartItemData.count === 10}
+        >+</button>
       </div>
       <button
         className={"product-actions-cartadd" + (isInCart ? ' added' : '')}

@@ -269,7 +269,7 @@ const Header = () => {
                 {(splicedItems && splicedItems.length > 0)
                   ? <div className='cart-wrapper'>
                     {(splicedItems.map(item => (
-                      <div key={item._id} className='cart-wrapper__col'>
+                      <div key={item.key} className='cart-wrapper__col'>
                         <div className="cart-wrapper__row">
                           <NavLink to={`/category/${item.type}/${item._id}`}>
                             <img src={item.preview} alt={item.name} />

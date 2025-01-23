@@ -4,11 +4,13 @@ import './css/modalOption.css'
 import cartStore from '../../../store/cartStore'
 
 const ModalOption = ({ name, options }) => {
-  const { cartItemData, setCartItemData, setCartItemDataIsChanged } = cartStore()
+  const { cartItemData, cartItemDataWasChanged, setCartItemData, setCartItemDataIsChanged } = cartStore()
   // инициализация состояния cart item'а
   useEffect(() => {
-    setCartItemData('setInitialOption', options)
-  }, [])
+    if (!cartItemDataWasChanged) {
+      setCartItemData('setInitialOption', options)
+    }
+  }, [cartItemDataWasChanged])
   // переключение опшинов
   const toggleOptions = (e, option) => {
     e.stopPropagation()
@@ -22,6 +24,7 @@ const ModalOption = ({ name, options }) => {
       <div>
         {options && options.map(option => (
           <button
+            disabled={cartItemData.count === 10}
             key={option.value}
             className={'modal-option__button ' + 
               (

@@ -12,7 +12,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 9px;
   border: 1px solid #a0a0a0;
   margin-right: 25px;
 }
@@ -21,9 +20,31 @@
     margin-right: 10px;
   }
 }
-.product-actions-counter button,
 .product-actions-counter p {
-  padding: 0 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 5px;
+  margin: 0;
+}
+.product-actions-counter button {
+  font-size: 20px;
+  padding: 10px 15px;
+}
+.product-actions-counter button:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#fff), to(#f6ab44));
+  background: linear-gradient(90deg, #fff 0%, #f6ab44 100%);
+}
+.product-actions-counter button:first-child:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#f6ab44), to(#fff));
+  background: linear-gradient(90deg, #f6ab44 0%, #fff 100%);
+}
+.product-actions-counter button:disabled {
+  color: #b3b3b3;
+  cursor: not-allowed;
 }
 .product-actions-cartadd {
   font-size: 14px;
@@ -43,10 +64,7 @@
   }
 }
 .product-actions-cartadd:hover {
-  background-color: #07610e;
-}
-.product-actions-cartadd.added:hover {
-  background-color: #a10000;
+  background-color: #f6ab44;
 }
 .product-actions-bookmark {
   padding: 10px auto;
@@ -63,19 +81,20 @@
   transition: all 0.2s ease 0s;
 }
 .product-actions-bookmark:hover {
-  background-color: #000;
+  background-color: #f6ab44;
 }
 .product-actions-bookmark:hover svg {
+  fill: #fff;
   stroke: #fff;
 }
 .product-actions-bookmark.active svg {
-  fill: #000;
-  stroke: #000;
+  fill: red;
+  stroke: red;
 }
 .product-actions-bookmark.active:hover {
-  background-color: #000;
+  background-color: #f6ab44;
 }
 .product-actions-bookmark.active:hover svg {
-  fill: #fff;
-  stroke: #fff;
+  fill: red;
+  stroke: red;
 }
