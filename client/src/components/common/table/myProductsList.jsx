@@ -10,7 +10,7 @@ import cartStore from '../../../store/cartStore'
 import { calculateTotalPrice } from '../../../utils/calculateTotalPrice'
 
 const MyProductsList = ({ cartItems }) => {
-  const { authedUser, updateUser, updLocalUserCart } = userStore()
+  const { authedUser, localUser, updateUser, updLocalUserCart } = userStore()
   const { removeFromCart } = cartStore()
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -39,7 +39,7 @@ const MyProductsList = ({ cartItems }) => {
                     <Link to={`/category/${item.type}/${item._id}`} className='item-content__name'>{item.name}</Link>
                     <button
                       className='delete'
-                      onClick={(e) => removeFromCart(e, item, authedUser, updateUser, updLocalUserCart)}
+                      onClick={(e) => removeFromCart(e, item, authedUser, localUser, updateUser, updLocalUserCart)}
                     >
                       <Icon id='close'/>
                     </button>
@@ -95,7 +95,7 @@ const MyProductsList = ({ cartItems }) => {
           </div>
           <div className="my-products-actions-buttons">
             <button>pay for products</button>
-            <button onClick={(e) => removeFromCart(e, null, authedUser, updateUser, updLocalUserCart, 'clear-all')}>Clear cart</button>
+            <button onClick={(e) => removeFromCart(e, null, authedUser, localUser, updateUser, updLocalUserCart, 'clear-all')}>Clear cart</button>
           </div>
         </div>
       </div>

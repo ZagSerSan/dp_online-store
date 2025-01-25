@@ -63,8 +63,6 @@ const cartStore = create((set) => ({
 
     // if default options is was not changed
     if (!state.cartItemDataWasChanged) {
-      console.log('if')
-      
       // установить опции продукта по умолч при быстрой покупке из списка продуктов
       const itemOptions = item.modalOptionTypes
       // для выбранных по умолчанию опций
@@ -81,21 +79,12 @@ const cartStore = create((set) => ({
       })
     }
 
-    // console.log('selectedOptions :>> ', selectedOptions)
-    // console.log('Changed', state.cartItemDataWasChanged)
-    console.log('cartItemData', state.cartItemData)
-    
-    // сбрасывать оции в модальном окне (или )
-    
     // create new cart item for send to server
     let newCartItemData = {
       ...state.cartItemData,
       options: Object.keys(selectedOptions).length === 0
         ? state.cartItemData.options
         : selectedOptions,
-      // options: Object.keys(state.cartItemData.options).length === 0
-      //   ? selectedOptions
-      //   : state.cartItemData.options,
       // добавление уник key из выбранных опицй
       key: generateCartItemKey(
         item._id,
@@ -105,8 +94,6 @@ const cartStore = create((set) => ({
       ),
       _id: item._id
     }
-
-    console.log('newCartItemData :>> ', newCartItemData)
 
     const newCartItemKey = newCartItemData.key
 
@@ -139,19 +126,6 @@ const cartStore = create((set) => ({
         cart: newCart
       }
 
-      // todo менять деф (выбран по умолч) опции на странице из изменения после доб в корзину
-
-      // set((state) => ({
-      //   cartItemData: {
-      //     ...state.cartItemData,
-      //     count: 1,
-      //     options: selectedOptions
-      //     // options: Object.keys(selectedOptions).length === 0
-      //     //   ? state.cartItemData.options
-      //     //   : selectedOptions,
-      //   }
-      // }))
-
       if (role === 'authedUser') {
         return newUserData
       } else if (role === 'localUser') {
@@ -161,58 +135,46 @@ const cartStore = create((set) => ({
 
     // если авторизован и не авторизован (else)
     if (authedUser) {
-      try {
-        updateUser(getUpdatedCart(authedUser, 'authedUser'))
-      } catch (e) {
-        console.log('e :>> ', e)
-      }
+      updateUser(getUpdatedCart(authedUser, 'authedUser'))
+      //? try {
+      //   updateUser(getUpdatedCart(authedUser, 'authedUser'))
+      // } catch (e) {
+      //   console.log('e :>> ', e)
+      // }
     } else {
       updLocalUserCart(getUpdatedCart(localUser, 'localUser'))
-
-      //! отладка
-      // Boolean(getUpdatedCart(localUser, 'localUser'))
-      // ? updLocalUserCart(getUpdatedCart(localUser, 'localUser'))
-      // : console.log(`${Boolean(getUpdatedCart(localUser, 'localUser'))}`)
     }
 
     set((state) => ({ cartItemDataWasChanged: false}))
     set((state) => ({ cartItemData: {...state.cartItemData, count: 1} }))
   }),
-  // удалить из корзины
-  removeFromCart: (e, item, authedUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {
+  //todo удалить из корзины
+  removeFromCart: (e, item, authedUser, localUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {
     // cartAnimation(e.target, true)
+    let newCart
+    const userCart = authedUser ? authedUser.cart : localUser.cart
+
+    if (role === 'clear-all') {
+      newCart = []
+    } else {
+      // удалять один элемент посредствой фильтрации корзины от выбранного
+      newCart = userCart.filter(cartItem => cartItem.key !== item.key)
+    }
 
     // если пользователь залогинен
     if (authedUser) {
-      try {
-        let newCart
-        if (role === 'clear-all') {
-          // обнуление корзины при её полной очистке
-          newCart = []
-        } else {
-          // удалять один элемент посредствой фильтрации корзины от выбранного
-          newCart = authedUser.cart.filter(cartItem => cartItem.key !== item.key)
-        }
-        
-        const newUserData = {
-          _id: authedUser._id,
-          cart: newCart
-        }
-        // обновление пользователя
-        updateUser(newUserData)
-      } catch (e) {
-        console.log('e :>> ', e)
+      // обновление пользователя
+      const newUserData = {
+        _id: authedUser._id,
+        cart: newCart
       }
+      updateUser(newUserData)
     } else {
-      if (role === 'clear-all') {
-        updLocalUserCart(item, role)
-      } else {
-        updLocalUserCart(item)
-      }
+      updLocalUserCart(newCart)
     }
-  }),
-  // переключать избранное
+    }),
   toggleBookmark: async (e, id, authedUser, updateUser, updLocalUserBookmarks) => {
+    // переключать избранное
     e.stopPropagation()
     if (authedUser) {
       try {

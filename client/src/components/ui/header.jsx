@@ -283,7 +283,7 @@ const Header = () => {
                           <p>{applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = <span className='total-price'>{applyDiscount(item.price, item.discount).toFixed(2) * item.count}</span></p>
 
                         </div>
-                        <button onClick={(e) => removeFromCart(e, item, authedUser, updateUser, updLocalUserCart)}><Icon id='close'/></button>
+                        <button onClick={(e) => removeFromCart(e, item, authedUser, localUser, updateUser, updLocalUserCart)}><Icon id='close'/></button>
                       </div>
                       ))
                     )}
