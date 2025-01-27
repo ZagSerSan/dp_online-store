@@ -118,35 +118,19 @@
 .category-nav-item.car-color:after {
   background-color: #2e1f00;
 }
+.category-nav-item:hover h3 {
+  color: #fff;
+  background-color: #eaba5a;
+}
 .category-nav-item:hover:after {
   opacity: 0.5;
   width: 100%;
   height: 100%;
 }
-.category-nav-item:hover.man-color h3 {
+.category-nav-item.active h3 {
   color: #fff;
-  background-color: #015ea4;
-}
-.category-nav-item:hover.woman-color h3 {
-  color: #fff;
-  background-color: #fd3281;
-}
-.category-nav-item:hover.car-color h3 {
-  color: #fff;
-  background-color: #eaba5a;
+  background-color: #7e4c4f;
 }
 .category-nav-item.active:after {
   display: none;
-}
-.category-nav-item.active.man-color h3 {
-  color: #fff;
-  background-color: #015ea4;
-}
-.category-nav-item.active.woman-color h3 {
-  color: #fff;
-  background-color: #fd3281;
-}
-.category-nav-item.active.car-color h3 {
-  color: #fff;
-  background-color: #eaba5a;
 }

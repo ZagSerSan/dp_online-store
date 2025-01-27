@@ -111,43 +111,53 @@
 
   // hover on category type
   &:hover {
+    h3 {
+      color: #fff;
+      background-color: #eaba5a;
+    }
+
     &:after {
       opacity: 0.5;
       width: 100%;
       height: 100%;
     }
-    &.man-color h3 {
-      color: #fff;
-      background-color: #015ea4;
-    }
-    &.woman-color h3 {
-      color: #fff;
-      background-color: #fd3281;
-    }
-    &.car-color h3 {
-      color: #fff;
-      background-color: #eaba5a;
-    }
+    // &.man-color h3 {
+    //   color: #fff;
+    //   background-color: #015ea4;
+    // }
+    // &.woman-color h3 {
+    //   color: #fff;
+    //   background-color: #fd3281;
+    // }
+    // &.car-color h3 {
+    //   color: #fff;
+    //   background-color: #eaba5a;
+    // }
   }
   // active category type
   &.active {
+    h3 {
+      color: #fff;
+      background-color: #7e4c4f;
+    }
+
     &:after {
       display: none;
       // opacity: 0.2;
       // width: 100%;
       // height: 100%;
     }
-    &.man-color h3 {
-      color: #fff;
-      background-color: #015ea4;
-    }
-    &.woman-color h3 {
-      color: #fff;
-      background-color: #fd3281;
-    }
-    &.car-color h3 {
-      color: #fff;
-      background-color: #eaba5a;
-    }
+    // &.man-color h3 {
+    //   color: #fff;
+    //   background-color: #015ea4;
+    // }
+    // &.woman-color h3 {
+    //   color: #fff;
+    //   background-color: #fd3281;
+    // }
+    // &.car-color h3 {
+    //   color: #fff;
+    //   background-color: #eaba5a;
+    // }
   }
 }

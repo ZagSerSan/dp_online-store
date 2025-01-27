@@ -6,6 +6,158 @@ const { womanItem1, womanItem2, womanItem3, womanItem4, womanItem5, womanItem6 }
 const { carItem1, carItem2, carItem3, carItem4, carItem5, carItem6 } = carItems
 
 const products = [
+  //todo ----------------------------------------------------
+  {
+    name: 'Pendant item 1',
+    type: 'pendant',
+    title: 'Some title',
+    price: 23,
+    rate: 0,
+    // percentage - 5%, fixed - $5, shipping/delivery/ect(especiality) -> prod - delivery ($5)
+    discount: {
+      type: 'percentage', 
+      value: 15,
+      endTime: 0
+    },
+    // пример структуры для некскольних скидок
+    // discount: [
+    //   {
+    //     name: 'New year',
+    //     type: 'percentage',
+    //     value: 15,
+    //     endTime: 0
+    //   },
+    //   {
+    //     name: 'Delivery',
+    //     type: 'delivery',
+    //     value: 10,
+    //     endTime: 0
+    //   }
+    // ],
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/man_item_1`,
+    filesName: {
+      preview: ['listItemPreview.png'],
+      sliders: ['slide_1.png', 'slide_2.png', 'slide_3.png'],
+      dots: ['dot_1.png', 'dot_2.png', 'dot_3.png'],
+    },
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        options: [
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        options: [
+          {type: 'color', value: 'default', selected: true},
+          {type: 'color', value: 'black', selected: false},
+        ] 
+      }
+    ],
+    introSlider: {
+      switched: false,
+      slide: manItem1.introSliderPreview
+    },
+    preview: manItem1.list,
+    slider_dots: manItem1.dots,
+    slider: [
+      {
+        id: 'slider_1',
+        preview: manItem1.modalPreviews.slide1,
+        title: 'Some title'
+      },
+      {
+        id: 'slider_2',
+        preview: manItem1.modalPreviews.slide2,
+        title: 'Some title'
+      },
+      {
+        id: 'slider_3',
+        preview: manItem1.modalPreviews.slide3,
+        title: 'Some title'
+      }
+    ]
+  },
+  {
+    name: 'Spray item 1',
+    type: 'spray',
+    title: 'Some title',
+    price: 24,
+    rate: 0,
+    // percentage - 5%, fixed - $5, shipping/delivery/ect(especiality) -> prod - delivery ($5)
+    discount: {
+      type: 'percentage', 
+      value: 15,
+      endTime: 0
+    },
+    // пример структуры для некскольних скидок
+    // discount: [
+    //   {
+    //     name: 'New year',
+    //     type: 'percentage',
+    //     value: 15,
+    //     endTime: 0
+    //   },
+    //   {
+    //     name: 'Delivery',
+    //     type: 'delivery',
+    //     value: 10,
+    //     endTime: 0
+    //   }
+    // ],
+    description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+    filesPath: `./static/images/products/man/man_item_1`,
+    filesName: {
+      preview: ['listItemPreview.png'],
+      sliders: ['slide_1.png', 'slide_2.png', 'slide_3.png'],
+      dots: ['dot_1.png', 'dot_2.png', 'dot_3.png'],
+    },
+    modalOptionTypes: [
+      {
+        name: 'Size',
+        options: [
+          {type: 'size', value: '3ml', selected: true},
+          {type: 'size', value: '6ml', selected: false}
+        ]
+      },
+      {
+        name: 'Color',
+        options: [
+          {type: 'color', value: 'default', selected: true},
+          {type: 'color', value: 'black', selected: false},
+        ] 
+      }
+    ],
+    introSlider: {
+      switched: false,
+      slide: manItem1.introSliderPreview
+    },
+    preview: manItem1.list,
+    slider_dots: manItem1.dots,
+    slider: [
+      {
+        id: 'slider_1',
+        preview: manItem1.modalPreviews.slide1,
+        title: 'Some title'
+      },
+      {
+        id: 'slider_2',
+        preview: manItem1.modalPreviews.slide2,
+        title: 'Some title'
+      },
+      {
+        id: 'slider_3',
+        preview: manItem1.modalPreviews.slide3,
+        title: 'Some title'
+      }
+    ]
+  },
+  //todo ----------------------------------------------------
+
+
   {
     name: 'Man item 1',
     type: 'man',

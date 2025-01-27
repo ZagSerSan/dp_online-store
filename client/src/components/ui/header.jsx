@@ -13,6 +13,7 @@ import TextField from '../common/form/textField'
 import applyDiscount from '../../utils/applyDiscount'
 import cartStore from '../../store/cartStore'
 import { getFullUserCartItems } from '../../utils/getFullUserCartItems'
+import { productCategories } from '../../data/categories/productCategories'
 
 const Header = () => {
   const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
@@ -125,15 +126,18 @@ const Header = () => {
 
   return (
     <header className='header'>
+
       {/* хелпер для анимации полета корзины */}
       <div className='cart-helper'>
         <Icon id='cart'/>
       </div>
       <div className="my-container header__inner">
+
         {/* логотип */}
         <div className='header-logo'>
           <img src={LOGO_URL} alt="logo" />
         </div>
+
         {/* навигационные ссылки */}
         <nav>
           <ul className='header-nav'>
@@ -151,9 +155,12 @@ const Header = () => {
                 onMouseLeave={() => setDropMenu(false)}
                 className='drop-menu'
               >
-                <Link className='drop-menu__link' to='/category/man'>Men's</Link>
+                {productCategories.map(category => (
+                  <Link key={category.id} className='drop-menu__link' to={category.to}>{category.label}</Link>
+                ))}
+                {/* <Link className='drop-menu__link' to='/category/man'>Men's</Link>
                 <Link className='drop-menu__link' to='/category/woman'>Women's</Link>
-                <Link className='drop-menu__link' to='/category/car'>For Car</Link>
+                <Link className='drop-menu__link' to='/category/car'>For Car</Link> */}
               </div>}
             </li>
             <li className='header-nav__link'><Link to="/information">Information</Link></li>
@@ -163,8 +170,10 @@ const Header = () => {
             }
           </ul>
         </nav>
+
         {/* правая панель действий */}
         <div className='header-panel'>
+
           {/* дроп-меню поиска */}
           {showSearch &&
             <div
@@ -204,10 +213,12 @@ const Header = () => {
               }
             </div>
           }
+
           {/* кнопка поиска */}
           <button className='header-panel__icon' onClick={handleSearch}>
             {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
           </button>
+
           {/* кнопка и дроп-меню пользователя */}
           <div className='header-panel__user-container'>
             <button
@@ -246,6 +257,7 @@ const Header = () => {
               )
             }
           </div>
+
           {/* кнопка и дроп-меню корзины */}
           <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
             data-cart='cart'
@@ -298,6 +310,7 @@ const Header = () => {
               </div>
             }
           </div>
+
           {/* кнопка бургер-меню */}
           <div className="burger" onClick={toggleBurger}>
             {/* кнопка */}
@@ -317,6 +330,7 @@ const Header = () => {
               </div>
             )}
           </div>
+
         </div> 
       </div>
     </header>
