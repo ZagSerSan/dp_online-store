@@ -8,8 +8,15 @@ const apiServerUrl = configFile.apiEndPoint
 // it's main folder for images
 const mainImagesDir = 'images/products/'
 
-// пути к файлам типов
 //todo получать кол-во товаров типа сюда из массива продуктов, а не вручную писать
+// пути к файлам типов
+// const getImagesPaths = (initialProducts) => {
+  // 1 определить кол-во типов
+  // 2 определить typesItems[type].quantity
+  // вернуть typesItems c правильным quantity
+// }
+
+// const typesItems = getImagesPaths(initialProducts)
 const typesItems = {
   men: {
     quantity: 6,
@@ -72,6 +79,8 @@ const getAllItems = (typesItems) => {
   // для экспорта всех айтемов
   return allItems
 }
+// retunted { menItems, womenItems, sprayItems, pendantItems }
+// после тут создать полный массив всех продуктов как было в productMock.js
 
 //* EXPORT ============================
 module.exports = getAllItems(typesItems)

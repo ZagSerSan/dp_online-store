@@ -6,6 +6,7 @@ const { womenItem1, womenItem2, womenItem3, womenItem4, womenItem5, womenItem6 }
 const { sprayItem1, sprayItem2, sprayItem3, sprayItem4, sprayItem5, sprayItem6 } = sprayItems
 const { pendantItem1 } = pendantItems
 
+// const initialProducts
 const products = [
   //todo ----------------------------------------------------
   {
@@ -20,12 +21,6 @@ const products = [
       endTime: 0
     },
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
-    filesPath: `./static/images/products/pendant/item_1`,
-    filesName: {
-      preview: ['listItemPreview.png'],
-      sliders: ['slide_1.png', 'slide_2.png', 'slide_3.png'],
-      dots: ['dot_1.png', 'dot_2.png', 'dot_3.png'],
-    },
     modalOptionTypes: [
       {
         name: 'Size',
@@ -42,6 +37,13 @@ const products = [
         ] 
       }
     ],
+
+    filesName: {
+      preview: ['listItemPreview.png'],
+      sliders: ['slide_1.png', 'slide_2.png', 'slide_3.png'],
+      dots: ['dot_1.png', 'dot_2.png', 'dot_3.png'],
+    },
+    filesPath: `./static/images/products/pendant/item_1`,
     introSlider: {
       switched: false,
       slide: menItem1.introSliderPreview
@@ -1130,4 +1132,7 @@ const products = [
   },
 ]
 
+//todo функция получения всех путей картинок
+
+// const products = getImagesPaths(initialProducts)
 module.exports = products
