@@ -5,270 +5,73 @@ const configFile = require('../../config/default.json')
 const apiServerUrl = configFile.apiEndPoint
 // const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
-const manItems = {
-  manItem1: {
-    list: apiServerUrl + 'images/products/man/man_item_1/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_1/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_1/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_1/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_1/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_1/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_1/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_1/introSlide.png'
-  },
-  manItem2: {
-    list: apiServerUrl + 'images/products/man/man_item_2/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_2/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_2/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_2/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_2/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_2/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_2/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_2/introSlide.png'
-  },
-  manItem3: {
-    list: apiServerUrl + 'images/products/man/man_item_3/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_3/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_3/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_3/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_3/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_3/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_3/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_3/introSlide.png'
-  },
-  manItem4: {
-    list: apiServerUrl + 'images/products/man/man_item_4/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_4/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_4/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_4/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_4/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_4/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_4/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_4/introSlide.png'
-  },
-  manItem5: {
-    list: apiServerUrl + 'images/products/man/man_item_5/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_5/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_5/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_5/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_5/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_5/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_5/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_5/introSlide.png'
-  },
-  manItem6: {
-    list: apiServerUrl + 'images/products/man/man_item_6/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/man/man_item_6/dot_1.png',
-      apiServerUrl + 'images/products/man/man_item_6/dot_2.png',
-      apiServerUrl + 'images/products/man/man_item_6/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/man/man_item_6/slide_1.png',
-      slide2: apiServerUrl + 'images/products/man/man_item_6/slide_2.png',
-      slide3: apiServerUrl + 'images/products/man/man_item_6/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/man/man_item_6/introSlide.png'
-  },
-}
+// it's main folder for images
+const mainImagesDir = 'images/products/'
 
-const womanItems = {
-  womanItem1: {
-    list: apiServerUrl + 'images/products/woman/woman_item_1/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_1/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_1/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_1/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_1/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_1/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_1/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_1/introSlide.png'
+// пути к файлам типов
+//todo получать кол-во товаров типа сюда из массива продуктов, а не вручную писать
+const typesItems = {
+  men: {
+    quantity: 6,
+    imagesPath: apiServerUrl +  mainImagesDir + 'men', // it's folder name
   },
-  womanItem2: {
-    list: apiServerUrl + 'images/products/woman/woman_item_2/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_2/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_2/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_2/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_2/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_2/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_2/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_2/introSlide.png'
+  women: {
+    quantity: 6,
+    imagesPath: apiServerUrl +  mainImagesDir + 'women',
   },
-  womanItem3: {
-    list: apiServerUrl + 'images/products/woman/woman_item_3/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_3/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_3/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_3/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_3/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_3/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_3/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_3/introSlide.png'
+  spray: {
+    quantity: 6,
+    imagesPath: apiServerUrl +  mainImagesDir + 'spray',
   },
-  womanItem4: {
-    list: apiServerUrl + 'images/products/woman/woman_item_4/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_4/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_4/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_4/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_4/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_4/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_4/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_4/introSlide.png'
-  },
-  womanItem5: {
-    list: apiServerUrl + 'images/products/woman/woman_item_5/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_5/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_5/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_5/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_5/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_5/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_5/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_5/introSlide.png'
-  },
-  womanItem6: {
-    list: apiServerUrl + 'images/products/woman/woman_item_6/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/woman/woman_item_6/dot_1.png',
-      apiServerUrl + 'images/products/woman/woman_item_6/dot_2.png',
-      apiServerUrl + 'images/products/woman/woman_item_6/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/woman/woman_item_6/slide_1.png',
-      slide2: apiServerUrl + 'images/products/woman/woman_item_6/slide_2.png',
-      slide3: apiServerUrl + 'images/products/woman/woman_item_6/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/woman/woman_item_6/introSlide.png'
-  },
-}
-
-const carItems = {
-  carItem1: {
-    list: apiServerUrl + 'images/products/car/car_item_1/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_1/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_1/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_1/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_1/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_1/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_1/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_1/introSlide.png'
-  },
-  carItem2: {
-    list: apiServerUrl + 'images/products/car/car_item_2/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_2/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_2/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_2/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_2/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_2/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_2/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_2/introSlide.png'
-  },
-  carItem3: {
-    list: apiServerUrl + 'images/products/car/car_item_3/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_3/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_3/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_3/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_3/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_3/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_3/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_3/introSlide.png'
-  },
-  carItem4: {
-    list: apiServerUrl + 'images/products/car/car_item_4/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_4/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_4/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_4/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_4/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_4/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_4/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_4/introSlide.png'
-  },
-  carItem5: {
-    list: apiServerUrl + 'images/products/car/car_item_5/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_5/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_5/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_5/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_5/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_5/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_5/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_5/introSlide.png'
-  },
-  carItem6: {
-    list: apiServerUrl + 'images/products/car/car_item_6/listItemPreview.png',
-    dots: [
-      apiServerUrl + 'images/products/car/car_item_6/dot_1.png',
-      apiServerUrl + 'images/products/car/car_item_6/dot_2.png',
-      apiServerUrl + 'images/products/car/car_item_6/dot_3.png'
-    ],
-    modalPreviews: {
-      slide1: apiServerUrl + 'images/products/car/car_item_6/slide_1.png',
-      slide2: apiServerUrl + 'images/products/car/car_item_6/slide_2.png',
-      slide3: apiServerUrl + 'images/products/car/car_item_6/slide_3.png'
-    },
-    introSliderPreview: apiServerUrl + 'images/products/car/car_item_6/introSlide.png'
+  pendant: {
+    quantity: 1,
+    imagesPath: apiServerUrl +  mainImagesDir + 'pendant',
   }
 }
 
-//* EXPORT
-module.exports = {
-  manItems,
-  womanItems,
-  carItems
+// создание полного обекта данных о путях файлов
+const getAllItems = (typesItems) => {
+  let allItems = {}
+
+  Object.keys(typesItems).map(key => {
+    let collectionName = `${key}Items`
+
+    // сначала для каждого map(key создать всю коллекцию этого типа
+    // а потом добавить её в общий обект
+    let itemsCollection = {} // {manItem1: {...}, manItem1: {...}, ...} 
+    let itemsQuantity = typesItems[key].quantity
+
+    for (let i = 1; i < (itemsQuantity + 1); i++) {
+      // сначала для каждого map(key создать всю коллекцию этого типа
+      let itemName = `${key}Item${i}`
+
+      itemsCollection = {
+        ...itemsCollection,
+        [itemName]: {
+          list: `${typesItems[key].imagesPath}/item_${i}/listItemPreview.png`,
+          dots: [
+            `${typesItems[key].imagesPath}/item_${i}/dot_1.png`,
+            `${typesItems[key].imagesPath}/item_${i}/dot_2.png`,
+            `${typesItems[key].imagesPath}/item_${i}/dot_3.png`
+          ],
+          modalPreviews: {
+            slide1: `${typesItems[key].imagesPath}/item_${i}/slide_1.png`,
+            slide2: `${typesItems[key].imagesPath}/item_${i}/slide_2.png`,
+            slide3: `${typesItems[key].imagesPath}/item_${i}/slide_3.png`
+          },
+          introSliderPreview: `${typesItems[key].imagesPath}/item_${i}/introSlide.png`
+        }
+      }
+    }
+    // а потом добавить её в общий обект
+    allItems = {
+      ...allItems,
+      [collectionName]: itemsCollection
+    }
+  })
+  // для экспорта всех айтемов
+  return allItems
 }
+
+//* EXPORT ============================
+module.exports = getAllItems(typesItems)

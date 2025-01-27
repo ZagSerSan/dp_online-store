@@ -2,9 +2,8 @@ import configFile from '../../config.json'
 
 // изображения категорий
 const api_staticUrl = configFile.apiEndPoint
-const IMG_MAN = `${api_staticUrl}images/category-nav/manCateg.png`
-const IMG_WOMAN = `${api_staticUrl}images/category-nav/womanCateg.png`
-const IMG_CAR = `${api_staticUrl}images/category-nav/carCateg.png`
+const IMG_MEN = `${api_staticUrl}images/category-nav/manCateg.png`
+const IMG_WOMEN = `${api_staticUrl}images/category-nav/womanCateg.png`
 // todo
 const IMG_SPRAY = `${api_staticUrl}images/category-nav/spray.png`
 const IMG_VOLKSWAGEN = `${api_staticUrl}images/category-nav/volkswagen.png`
@@ -13,20 +12,20 @@ const IMG_SACHET = `${api_staticUrl}images/category-nav/sachet.png`
 export const productCategories = [
   {
     id: '1',
-    to: '/category/man',
-    type: 'man',
-    img: IMG_MAN,
-    alt: 'For man',
-    label: 'Man\'s',
+    to: '/category/men',
+    type: 'men',
+    img: IMG_MEN,
+    alt: 'For men',
+    label: 'Men\'s',
     styleClass: ' man-color'
   },
   {
     id: '2',
-    to: '/category/woman',
-    type: 'woman',
-    img: IMG_WOMAN,
-    alt: 'For woman',
-    label: 'Woman\'s',
+    to: '/category/women',
+    type: 'women',
+    img: IMG_WOMEN,
+    alt: 'For women',
+    label: 'Women\'s',
     styleClass: ' woman-color'
   },
   {

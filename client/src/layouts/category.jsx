@@ -8,7 +8,6 @@ import { CategoryNav, ProductsList } from '../components/ui'
 const withCategory = (CategoryNav, ProductsList) => {
   return () => {
     const { type } = useParams()
-    console.log('type :>> ', type)
     
     return (
       <div className="category" style={type && {backgroundColor: '#f6f6f6'}}>

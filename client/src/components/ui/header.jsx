@@ -158,9 +158,6 @@ const Header = () => {
                 {productCategories.map(category => (
                   <Link key={category.id} className='drop-menu__link' to={category.to}>{category.label}</Link>
                 ))}
-                {/* <Link className='drop-menu__link' to='/category/man'>Men's</Link>
-                <Link className='drop-menu__link' to='/category/woman'>Women's</Link>
-                <Link className='drop-menu__link' to='/category/car'>For Car</Link> */}
               </div>}
             </li>
             <li className='header-nav__link'><Link to="/information">Information</Link></li>
