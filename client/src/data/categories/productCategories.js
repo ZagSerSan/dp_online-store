@@ -1,13 +1,14 @@
 import configFile from '../../config.json'
+const api_staticUrl = configFile.apiEndPoint
+const mainCategoryImagesDir = `${api_staticUrl}images/category-nav/`
 
 // изображения категорий
-const api_staticUrl = configFile.apiEndPoint
-const IMG_MEN = `${api_staticUrl}images/category-nav/manCateg.png`
-const IMG_WOMEN = `${api_staticUrl}images/category-nav/womanCateg.png`
+const IMG_MEN = `${mainCategoryImagesDir}manCateg.png`
+const IMG_WOMEN = `${mainCategoryImagesDir}womanCateg.png`
 // todo
-const IMG_SPRAY = `${api_staticUrl}images/category-nav/spray.png`
-const IMG_VOLKSWAGEN = `${api_staticUrl}images/category-nav/volkswagen.png`
-const IMG_SACHET = `${api_staticUrl}images/category-nav/sachet.png`
+const IMG_SPRAY = `${mainCategoryImagesDir}spray.png`
+const IMG_VOLKSWAGEN = `${mainCategoryImagesDir}volkswagen.png`
+const IMG_SACHET = `${mainCategoryImagesDir}sachet.png`
 
 export const productCategories = [
   {
