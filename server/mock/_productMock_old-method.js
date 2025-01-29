@@ -1,9 +1,11 @@
-const { getConvertedProducts } = require("./getConvertedProducts")
+const configFile = require('../config/default.json')
+const apiServerUrl = configFile.apiEndPoint
+const mainImagesDir = 'images/products/'
 
 // initialProducts
 const initialProducts = {
   men: {
-    men_item_1: {
+    1: {
       name: 'men item 1',
       type: 'men',
       title: 'Some title',
@@ -33,7 +35,7 @@ const initialProducts = {
         }
       ],
     },
-    perfume_gold: {
+    2: {
       name: 'men item 2',
       type: 'men',
       title: 'Some title',
@@ -564,4 +566,138 @@ const initialProducts = {
   },
 }
 
-module.exports = getConvertedProducts(initialProducts)
+/* Cтруктура:
+  1 - Получение типов с их кол-вом: getItemsTypes => itemsTypes
+  2 - Создание данных о путях файлов продукта: getFilesPaths()
+  3 - создание полного обекта данных посредством добавления путей файлов
+? 4 - преобразование в старую структуру (массив во всеми продуктами подряд)
+*/
+
+// 1 Получение типов с кол-вом: itemsTypes
+function getItemsTypes(products) {
+  let result = {}
+
+  // Перебираем все ключи первого уровня в объекте "products"
+  for (let category in products) {
+    if (products.hasOwnProperty(category)) {
+      // Считаем количество элементов в каждой категории (men, women)
+      // result[category] = Object.keys(products[category]).length
+      result = {
+        ...result,
+        [category]: {
+          quantity: Object.keys(products[category]).length,
+          imagesPath: apiServerUrl +  mainImagesDir + [category]
+        }
+      }
+    }
+  }
+
+  return result
+}
+const itemsTypes = getItemsTypes(initialProducts)
+
+// 2 создание данных о путях файлов продукта
+const getFilesPaths = (itemsTypes) => {
+  let allItems = {}
+
+  Object.keys(itemsTypes).map(key => {
+    let collectionName = `${key}`
+
+    // сначала для каждого map(key создать всю коллекцию этого типа
+    // а потом добавить её в общий обект
+    let itemsCollection = {} // {manItem1: {...}, manItem1: {...}, ...} 
+    let itemsQuantity = itemsTypes[key].quantity
+
+    for (let i = 1; i < (itemsQuantity + 1); i++) {
+      // сначала для каждого map(key создать всю коллекцию этого типа
+      let itemName = `${i}`
+
+      itemsCollection = {
+        ...itemsCollection,
+        [itemName]: {
+          filesName: {
+            preview: ['listItemPreview.png'],
+            sliders: ['slide_1.png', 'slide_2.png', 'slide_3.png'],
+            dots: ['dot_1.png', 'dot_2.png', 'dot_3.png'],
+          },
+          filesPath: `./static/images/products/${key}/${key}_item_${i}`,
+          introSlider: {
+            switched: false,
+            slide: `${itemsTypes[key].imagesPath}/${key}_item_${i}/introSlide.png`,
+          },
+          preview: `${itemsTypes[key].imagesPath}/${key}_item_${i}/listItemPreview.png`,
+          slider_dots: [
+            `${itemsTypes[key].imagesPath}/${key}_item_${i}/dot_1.png`,
+            `${itemsTypes[key].imagesPath}/${key}_item_${i}/dot_2.png`,
+            `${itemsTypes[key].imagesPath}/${key}_item_${i}/dot_3.png`
+          ],
+          slider: [
+            {
+              id: `slider_1`,
+              preview: `${itemsTypes[key].imagesPath}/${key}_item_${i}/slide_1.png`,
+              title: 'Some title'
+            },
+            {
+              id: 'slider_2',
+              preview: `${itemsTypes[key].imagesPath}/${key}_item_${i}/slide_2.png`,
+              title: 'Some title'
+            },
+            {
+              id: 'slider_3',
+              preview: `${itemsTypes[key].imagesPath}/${key}_item_${i}/slide_3.png`,
+              title: 'Some title'
+            }
+          ]
+        }
+      }
+    }
+    // а потом добавить её в общий обект
+    allItems = {
+      ...allItems,
+      [collectionName]: itemsCollection
+    }
+  })
+  // для экспорта всех айтемов
+  return allItems
+}
+const filesPaths = getFilesPaths(itemsTypes)
+
+// 3 создание полного обекта данных посредством добавления путей файлов
+function mergeProductData(initialProducts, filesPaths) {
+  // Перебираем ключи в объекте filesPaths
+  for (let key in filesPaths) {
+    if (filesPaths.hasOwnProperty(key) && initialProducts.hasOwnProperty(key)) {
+      // Перебираем вложенные элементы, например menItems
+      for (let subKey in filesPaths[key]) {
+        if (filesPaths[key].hasOwnProperty(subKey) && initialProducts[key].hasOwnProperty(subKey)) {
+          // Добавляем свойства title и description в соответствующий объект initialProducts
+          initialProducts[key][subKey] = {
+            ...initialProducts[key][subKey],  // Сохраняем существующие свойства
+            ...filesPaths[key][subKey],         // Добавляем новые свойства
+            // добавдение свойства 
+          }
+        }
+      }
+    }
+  }
+  return initialProducts
+}
+const newProductsData = mergeProductData(initialProducts, filesPaths)
+
+// 4 преобразование в старую структуру
+function convertToOldStructure(newStructure) {
+  const oldStructure = []
+
+  // Преобразуем menItems в men
+  Object.values(newStructure).forEach(category => {
+    Object.values(category).forEach(item => {
+      oldStructure.push(item)
+    })
+  })
+
+  return oldStructure
+}
+
+const products = convertToOldStructure(newProductsData)
+
+module.exports = products

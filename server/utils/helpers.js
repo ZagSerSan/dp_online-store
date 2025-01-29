@@ -60,12 +60,17 @@ function generateProductData(newProductData) {
 
   return {
     name: 'Product Name',
-    type: 'man',
+    type: 'men',
     title: 'Some title',
     price: 24,
     rate: 0,
     description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
-
+    discount: {
+      type: 'percentage', 
+      value: 15,
+      endTime: 0
+    },
+    
     ...newProductData,
     ...productImagesPath,
 

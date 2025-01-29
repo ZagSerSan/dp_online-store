@@ -1,6 +1,9 @@
 import configFile from '../../config.json'
+import { funcHelper } from './funcHelper'
 const api_staticUrl = configFile.apiEndPoint
 const mainCategoryImagesDir = `${api_staticUrl}images/category-nav/`
+
+funcHelper()
 
 // изображения категорий
 const IMG_MEN = `${mainCategoryImagesDir}manCateg.png`

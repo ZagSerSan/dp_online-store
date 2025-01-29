@@ -615,8 +615,8 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 <RadioField
                   label="Category:"
                   options={[
-                    { name: 'Man', value: 'man' },
-                    { name: 'Woman', value: 'woman' },
+                    { name: 'Man', value: 'men'},
+                    { name: 'Woman', value: 'women'},
                     { name: 'Car', value: 'car' }
                   ]}
                   value={data.type}

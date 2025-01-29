@@ -9,6 +9,8 @@ node_modules
 # files 
 /products-backup
 products-backup
+/products-backup-2
+products-backup-2
 
 # testing
 /coverage

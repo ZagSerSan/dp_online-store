@@ -412,6 +412,10 @@ router.delete('/:productId', auth, async (req, res) => {
       const { productId } = req.params
       const removedProduct = await Product.findById(productId)
       
+      console.log('productId :>> ', productId)
+      console.log('removedProduct.filesPath', removedProduct.filesPath)
+      
+      
       await fs.rm(removedProduct.filesPath,
         { recursive:true }, 
         (err) => { 
