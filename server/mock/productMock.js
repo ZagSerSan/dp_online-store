@@ -567,13 +567,13 @@ const initialProducts = {
 }
 
 /* Cтруктура:
-  1 - Получение типов с кол-вом: getItemsTypes => itemsTypes
-  2 - создание данных о путях файлов продукта
+  1 - Получение типов с их кол-вом: getItemsTypes => itemsTypes
+  2 - Создание данных о путях файлов продукта: getFilesPaths()
   3 - создание полного обекта данных посредством добавления путей файлов
-? 4 - преобразование в старую структуру (массив во всеми подряд)
+? 4 - преобразование в старую структуру (массив во всеми продуктами подряд)
 */
 
-// Получение типов с кол-вом: itemsTypes
+// 1 Получение типов с кол-вом: itemsTypes
 function getItemsTypes(products) {
   let result = {}
 
@@ -596,8 +596,8 @@ function getItemsTypes(products) {
 }
 const itemsTypes = getItemsTypes(initialProducts)
 
-// создание данных о путях файлов продукта
-const getAllItems = (itemsTypes) => {
+// 2 создание данных о путях файлов продукта
+const getFilesPaths = (itemsTypes) => {
   let allItems = {}
 
   Object.keys(itemsTypes).map(key => {
@@ -660,9 +660,9 @@ const getAllItems = (itemsTypes) => {
   // для экспорта всех айтемов
   return allItems
 }
-const titles = getAllItems(itemsTypes)
+const filesPaths = getFilesPaths(itemsTypes)
 
-// создание полного обекта данных посредством добавления путей файлов
+// 3 создание полного обекта данных посредством добавления путей файлов
 function mergeProductData(testProducts, titles) {
   // Перебираем ключи в объекте titles
   for (let key in titles) {
@@ -681,9 +681,9 @@ function mergeProductData(testProducts, titles) {
   }
   return testProducts
 }
-const newProductsData = mergeProductData(initialProducts, titles)
+const newProductsData = mergeProductData(initialProducts, filesPaths)
 
-// преобразование в старую структуру
+// 4 преобразование в старую структуру
 function convertToOldStructure(newStructure) {
   const oldStructure = []
 

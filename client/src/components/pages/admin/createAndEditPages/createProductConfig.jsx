@@ -17,7 +17,7 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
   // значение полей формы info
   const initInfoData = {
     name: '',
-    type: 'man',
+    type: 'men',
     title: '',
     price: 0,
     rate: 0,
@@ -521,8 +521,8 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
                 <RadioField
                   label="Category:"
                   options={[
-                    { name: 'Man', value: 'man' },
-                    { name: 'Woman', value: 'woman' },
+                    { name: 'Man', value: 'men' },
+                    { name: 'Woman', value: 'women' },
                     { name: 'Car', value: 'car' }
                   ]}
                   value={data.type}
