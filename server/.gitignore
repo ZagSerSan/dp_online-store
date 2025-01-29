@@ -6,6 +6,10 @@ node_modules
 /.pnp
 .pnp.js
 
+# files 
+/products-backup
+products-backup
+
 # testing
 /coverage
 
