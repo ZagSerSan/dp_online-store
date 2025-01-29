@@ -1,6 +1,13 @@
 const { getConvertedProducts } = require("./getConvertedProducts")
 
-// initialProducts
+/*//*новая структура
+initialProducts = {
+  product_type: {
+    product_name: {product_name's initial_data}
+  },
+  ...
+*/
+      
 const initialProducts = {
   men: {
     men_item_1: {
