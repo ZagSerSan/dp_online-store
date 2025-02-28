@@ -10,11 +10,11 @@ initialProducts = {
       
 const initialProducts = {
   men: {
-    men_item_1: {
-      name: 'Men item 1',
+    Million: {
+      name: '1 Million',
       type: 'men',
-      title: 'Some title',
-      price: 25,
+      title: 'LeMien',
+      price: 24,
       rate: 0,
       // percentage - 5%, fixed - $5, shipping/delivery/ect(especiality) -> prod - delivery ($5)
       discount: {
@@ -22,7 +22,7 @@ const initialProducts = {
         value: 15,
         endTime: 0
       },
-      description: 'Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.',
+      description: '1 Million marki LeMien jest talizmanem sukcesu materialnego jego właściciela i elementem jego wizerunku. Drzewno-korzenny aromat może wykreować wizerunek mężczyzny solidnego, luksusowego i bogatego. Świetna propozycja dla nowoczesnego mężczyzny – lidera w życiu.',
       modalOptionTypes: [
         {
           name: 'Size',
@@ -44,7 +44,7 @@ const initialProducts = {
       name: 'Men item 2',
       type: 'men',
       title: 'Some title',
-      price: 20,
+      price: 24,
       rate: 0,
       discount: {
         type: 'percentage',
@@ -75,7 +75,7 @@ const initialProducts = {
       name: 'Women item 1',
       type: 'women',
       title: 'Some title',
-      price: 16,
+      price: 24,
       rate: 0,
       discount: {
         type: 'percentage',
@@ -104,7 +104,7 @@ const initialProducts = {
       name: 'Women item 2',
       type: 'women',
       title: 'Some title',
-      price: 22,
+      price: 24,
       rate: 0,
       discount: {
         type: 'percentage',
@@ -135,7 +135,7 @@ const initialProducts = {
       name: 'Spray item 1',
       type: 'spray',
       title: 'Some title',
-      price: 18,
+      price: 56,
       rate: 0,
       discount: {
         type: 'percentage',
@@ -164,7 +164,7 @@ const initialProducts = {
       name: 'Spray item 2',
       type: 'spray',
       title: 'Some title',
-      price: 24,
+      price: 56,
       rate: 0,
       discount: {
         type: 'percentage',
@@ -195,7 +195,7 @@ const initialProducts = {
       name: 'Pendant item 1',
       type: 'pendant',
       title: 'Some title',
-      price: 23,
+      price: 45,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -224,7 +224,7 @@ const initialProducts = {
       name: 'Pendant item 2',
       type: 'pendant',
       title: 'Some title',
-      price: 32,
+      price: 45,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -255,7 +255,7 @@ const initialProducts = {
       name: 'Sachet item 1',
       type: 'sachet',
       title: 'Some title',
-      price: 44,
+      price: 39,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -284,7 +284,7 @@ const initialProducts = {
       name: 'Sachet item 2',
       type: 'sachet',
       title: 'Some title',
-      price: 34,
+      price: 39,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -315,7 +315,7 @@ const initialProducts = {
       name: 'Diffusers item 1',
       type: 'diffusers',
       title: 'Some title',
-      price: 43,
+      price: 59,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -344,7 +344,7 @@ const initialProducts = {
       name: 'Diffusers item 2',
       type: 'diffusers',
       title: 'Some title',
-      price: 41,
+      price: 59,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -375,7 +375,7 @@ const initialProducts = {
       name: 'Candles item 1',
       type: 'candles',
       title: 'Some title',
-      price: 43,
+      price: 58,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -404,7 +404,7 @@ const initialProducts = {
       name: 'Candles item 2',
       type: 'candles',
       title: 'Some title',
-      price: 41,
+      price: 58,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -435,7 +435,7 @@ const initialProducts = {
       name: 'Refill item 1',
       type: 'refill',
       title: 'Some title',
-      price: 43,
+      price: 76,
       rate: 0,
       discount: {
         type: 'percentage', 
@@ -464,7 +464,7 @@ const initialProducts = {
       name: 'Refill item 2',
       type: 'refill',
       title: 'Some title',
-      price: 41,
+      price: 76,
       rate: 0,
       discount: {
         type: 'percentage', 

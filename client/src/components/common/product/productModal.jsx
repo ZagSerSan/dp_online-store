@@ -78,11 +78,11 @@ const ProductModal = ({ item, modalState, onToggleState }) => {
                 <h3 className="product-modal-content__name">{item.name}</h3>
 
                 {item.discount?.endTime > Date.now()
-                  ? <p className="product-modal-content__price">$
-                      <span>{applyDiscount(item.price, item.discount).toFixed(2)} - </span>
-                      <strike>${(item.price).toFixed(2)}</strike>
+                  ? <p className="product-modal-content__price">
+                      <span>{applyDiscount(item.price, item.discount).toFixed(2)} zł - </span>
+                      <strike>{(item.price).toFixed(2)} zł</strike>
                     </p>
-                  : <p className="product-modal-content__price">${(item.price).toFixed(2)}</p>
+                  : <p className="product-modal-content__price">{(item.price).toFixed(2)} zł</p>
                 }
 
                 <div className="product-modal-content__rate">

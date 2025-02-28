@@ -81,10 +81,10 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
 
         {discount?.endTime > Date.now()
           ? <p className="product-item__price">
-              <span>{applyDiscount(price, discount).toFixed(2)} - </span>
-              <strike>${(price).toFixed(2)}</strike>
+              <span>{applyDiscount(price, discount).toFixed(2)} zł - </span>
+              <strike>{(price).toFixed(2)} zł</strike>
             </p>
-          : <p className="product-item__price">${price.toFixed(2)}</p>
+          : <p className="product-item__price">{price.toFixed(2)} zł</p>
         }
       </div>
     </div>

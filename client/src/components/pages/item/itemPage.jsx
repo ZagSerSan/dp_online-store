@@ -105,13 +105,13 @@ const ItemPage = () => {
 
                 {currentProduct.discount?.endTime > Date.now()
                   ? <div>
-                      <p className="preview-info__price">$
-                        <span>{applyDiscount(currentProduct.price, currentProduct.discount).toFixed(2)} - </span>
-                        <strike>${(currentProduct.price).toFixed(2)}</strike>
+                      <p className="preview-info__price">
+                        <span>{applyDiscount(currentProduct.price, currentProduct.discount).toFixed(2)} zł - </span>
+                        <strike>{(currentProduct.price).toFixed(2)} zł</strike>
                       </p>
                       <Timer endDate={currentProduct.discount?.endTime} rerenderComponent={rerenderComponent}/>
                     </div>
-                  : <p className="preview-info__price">${(currentProduct.price).toFixed(2)}</p>
+                  : <p className="preview-info__price">{(currentProduct.price).toFixed(2)} zł</p>
                 }
 
                 <p className="preview-info__in-stock">In stock</p>

@@ -57,10 +57,10 @@ const MyProductsList = ({ cartItems }) => {
                       {item.discount?.endTime > Date.now()
                         ? <p className="item-content__price">
                             <span className='darkened-text'>price: </span>
-                            <span>${applyDiscount(item.price, item.discount).toFixed(2)} -
-                            <strike> ${(item.price).toFixed(2)}</strike></span>
+                            <span>{applyDiscount(item.price, item.discount).toFixed(2)} zł -
+                            <strike> {(item.price).toFixed(2)} zł</strike></span>
                           </p>
-                        : <p className="item-content__price">${(item.price).toFixed(2)}</p>
+                        : <p className="item-content__price">{(item.price).toFixed(2)} zł</p>
                       }
                       <p className='item-content__price'>
                         <span className='darkened-text'>count: </span>
@@ -69,8 +69,8 @@ const MyProductsList = ({ cartItems }) => {
                     </div>
                     <div className="item-content-info__col">
                       <p>
-                        <span className='darkened-text'>${applyDiscount(item.price, item.discount).toFixed(2)} x {item.count} = </span>
-                        ${(applyDiscount(item.price, item.discount) * item.count).toFixed(2)}
+                        <span className='darkened-text'>{applyDiscount(item.price, item.discount).toFixed(2)} zł x {item.count} = </span>
+                        {(applyDiscount(item.price, item.discount) * item.count).toFixed(2)} zł
                       </p>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const MyProductsList = ({ cartItems }) => {
         <div className="my-products-actions">
           <div className="my-products-actions__total">
             <p>Total:</p>
-            <p>${calculateTotalPrice(cartItems).toFixed(2)}</p>
+            <p>{calculateTotalPrice(cartItems).toFixed(2)} zł</p>
           </div>
           <div className="my-products-actions-buttons">
             <button>pay for products</button>
