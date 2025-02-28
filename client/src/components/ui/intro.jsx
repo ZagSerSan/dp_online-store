@@ -29,8 +29,8 @@ const Intro = () => {
               {/* left part */}
               <div className="slider-item__column">
                 <div className="slider-item__content">
-                  <h3>{slider.name}</h3>
-                  <h1>{slider.title}</h1>
+                  <h3>{slider.title}</h3>
+                  <h1>{slider.name}</h1>
                   <Link to={`/category/${slider.type}/${slider._id}`}>SHOP NOW</Link>
                 </div>
               </div>
