@@ -15,7 +15,7 @@ const IMG_REFILL = `${mainCategoryImagesDir}refill.jpg`
 export const productCategories = [
   {
     // мужские
-    active: true,
+    // active: true,
     id: '1',
     to: '/category/men',
     type: 'men',
@@ -25,7 +25,7 @@ export const productCategories = [
   },
   {
     // женские
-    active: true,
+    // active: true,
     id: '2',
     to: '/category/women',
     type: 'women',
@@ -35,7 +35,7 @@ export const productCategories = [
   },
   {
     // подвеска (медальён)
-    active: true,
+    // active: true,
     id: '3',
     to: '/category/pendant',
     type: 'pendant', img: IMG_PENDANT,
@@ -45,7 +45,7 @@ export const productCategories = [
   },
   {
     // спрей
-    active: true,
+    // active: true,
     id: '4',
     to: '/category/spray',
     type: 'spray', img: IMG_SPRAY,
@@ -54,7 +54,7 @@ export const productCategories = [
   },
   {
     // Аромасаше (в гардироб)
-    active: true,
+    // active: true,
     id: '5',
     to: '/category/sachet',
     type: 'sachet', img: IMG_SACHET,
@@ -63,7 +63,7 @@ export const productCategories = [
   },
   {
     // Арома Дифузоры / Aroma Diffusers
-    active: true,
+    // active: true,
     id: '6',
     to: '/category/diffusers',
     type: 'diffusers', img: IMG_DIFFUSERS,
@@ -72,7 +72,7 @@ export const productCategories = [
   },
   {
     // Арома Свечи / Aroma Candles
-    active: true,
+    // active: true,
     id: '7',
     to: '/category/candles',
     type: 'candles', img: IMG_CANDLES,
@@ -81,7 +81,7 @@ export const productCategories = [
   },
   {
     // Рефил / Refill
-    active: true,
+    // active: true,
     id: '8',
     to: '/category/refill',
     type: 'refill', img: IMG_REFILL,

@@ -132,9 +132,12 @@
   // left part: modal preview
   &-preview {
     width: 100%;
-    max-width: 320px;
-    max-height: 380px;
+    max-width: 350px;
+    max-height: 350px;
     border: 1px solid #ddd;
+    img {
+      width: 100%;
+    }
   }
 
   // right part: modal content
