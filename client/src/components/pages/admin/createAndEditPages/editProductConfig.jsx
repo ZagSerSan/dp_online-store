@@ -82,6 +82,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     },
     images: {}
   }
+
   const [imageData, setImageData] = useState(initImagesData)
 
   // функции редактирования данных (картинок и других)
@@ -372,9 +373,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
       {contentType === 'images'
         ? (
           <div>
-            {/* <h3 className="accordion-page-item-content__title">Product Images</h3> */}
-            {/* <h4 className="accordion-page-item-content__subtitle">Edit previews and sliders</h4> */}
-
             <form className="form-container images" onSubmit={(e) => handleUpdate(e, contentType, imageData)}>
               <div className="form-container__row">
 
@@ -398,7 +396,10 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                 </div>
 
                 <div className="form-container__col">
-                  <p className='form-container__title'>Product preview</p>
+                  <div className='form-container__title'>
+                    <input type='checkbox'/>
+                    intro slider
+                  </div>
                   <div className='form-container-intro display_block'>
 
                     <div className="form-container__row">

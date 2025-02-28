@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import productStore from '../../../../store/productStore'
 import ProductService from '../../../../service/product.service'
 // utils
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { filesValidator } from '../../../../utils/filesValidator'
 // components
 import CreateProductConfig from './createProductConfig'
 
-const CreateProduct = () => {
+const CreateProduct = ({ type }) => {
   const navigate = useNavigate()
   const { createNewProduct } = productStore()
   const [newProdData, setNewProdData] = useState({})
@@ -21,6 +21,19 @@ const CreateProduct = () => {
     {number: 2, contentType: 'options', title: 'Add product options'},
     {number: 3, contentType: 'images', title: 'Add product images'}
   ]
+
+  //todo - создавать или обновлять 
+  if (type === 'create') {
+    console.log('create prod page')
+    // <CreateOrEditProductConfig
+    //   type='create'
+    // />
+  } else {
+    console.log('edit prod page')
+    // <CreateOrEditProductConfig
+    //   type='edit'
+    // />
+  }
   
   // переключение типа контента
   const toggleSettingItem = (e, settingItemId) => {

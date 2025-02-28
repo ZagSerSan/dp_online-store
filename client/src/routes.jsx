@@ -42,7 +42,7 @@ const routes = [
         path: 'products',
         children: [
           {path: '', element: <AdminPage tabState='products'/>},
-          {path: 'create-product', element: <CreateProduct/>},
+          {path: 'create-product', element: <CreateProduct type='create'/>},
           {
             path: 'edit-product',
             children: [

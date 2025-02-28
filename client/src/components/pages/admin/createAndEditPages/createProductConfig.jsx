@@ -286,9 +286,6 @@ const CreateProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) =
       {contentType === 'images'
         ? (
           <div>
-            <div className="accordion-page-item-content__title">Product Images</div>
-            <div className="accordion-page-item-content__subtitle">Edit previews and sliders</div>
-
             <form className="form-container images" onSubmit={(e) => handleNext(e, contentType, imageData)}>
 
               <div className="form-container__row">

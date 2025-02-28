@@ -33,12 +33,12 @@ router.post('/createProduct', auth, async (req, res) => {
     })
 
     res.status(201).send(newProduct)
-  } catch (e) {
-    console.log(e)
-    res.status(500).json({
-      message: 'На сервере проихошла ошибка, попробуйте позже.',
-    })
-  }
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        message: 'На сервере проихошла ошибка, попробуйте позже.',
+      })
+    }
   // если не является админом:
   } else {
     res.status(401).json({
@@ -104,11 +104,12 @@ router.put('/:productId', auth, async (req, res) => {
           const folderName = splitString(editedProduct.name, ' ', '_')
           const IMAGES_URL_API = `${configFile.apiEndPoint}images/products/${editedProduct.type}/${folderName}`
           const { preview, sliders, dots, intro } = req.body.filesName
+
           // генерация новых данных для обновления
           const generateImagePath = (namesArray, imagesType) => {
             switch (imagesType) {
               case 'intro':
-                if (!!intro) {
+                if (intro) {
                   return `${IMAGES_URL_API}/${intro[0]}`
                 } else {
                   return `${IMAGES_URL_API}/${preview[0]}`
@@ -146,24 +147,42 @@ router.put('/:productId', auth, async (req, res) => {
         }
         // обработка файлов продукта
         if (req.headers.images === 'files') {
-          // удаление старых файлов
-          await fs.rm(editedProduct.filesPath,
-            { recursive:true }, 
-            (err) => { 
-              console.error(err) 
-            }
-          )
-          // создание новой папки и запись новых файлов
-          await fs.mkdir(editedProduct.filesPath)
-          Object.values(req.files).forEach(file => {
-            let dir = `${editedProduct.filesPath}/${file.name}`
-            fs.writeFile(dir, file.data)
-          })
+          // + проверка существования папки    
+          const filesPath = editedProduct.filesPath
+          try {
+            await fs.access(filesPath)
+            console.log('Папка существует')
+            //todo обновлять файлы
+            // // удаление старых файлов
+            // await fs.rm(filesPath,
+            //   { recursive:true }, 
+            //   (err) => { 
+            //     console.error(err) 
+            //   }
+            // )
+
+          } catch (err) {
+            console.log('Папка не существует')
+            // создание новой папки и запись новых файлов
+            await fs.mkdir(filesPath,
+              (err) => {
+                if (err) {
+                  return console.error(err)
+                }
+                console.log('Directory created successfully!')
+              })
+            // запись файлов
+            Object.values(req.files).forEach(file => {
+              let dir = `${filesPath}/${file.name}`
+              fs.writeFile(dir, file.data)
+            })
+          }
+
           res.send(null)
         }
       } catch (e) {
         console.log(chalk.red('error'), e)
-        res.status(401).json({message: 'Ошибка на сервере'})
+        res.status(401).json({message: 'Ошибка на сервере: product.routes.js - codeline: 169'})
       }
     } else
     // если опшины

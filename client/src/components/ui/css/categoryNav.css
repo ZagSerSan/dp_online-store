@@ -1,5 +1,5 @@
 .category-nav_HW {
-  background-color: #f6f6f6;
+  background-color: #d6d6d6;
 }
 
 .category-nav {
@@ -7,6 +7,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   padding: 40px 0 60px;
@@ -38,8 +40,9 @@
 .category-nav-item {
   display: block;
   position: relative;
-  width: 33.3%;
-  margin: 0 15px;
+  width: 25%;
+  height: auto;
+  padding: 0 15px 45px;
   cursor: pointer;
 }
 .category-nav-item img {
@@ -53,7 +56,7 @@
 }
 .category-nav-item h3 {
   position: absolute;
-  bottom: -35px;
+  bottom: 20px;
   left: 50%;
   z-index: 3;
   -webkit-transform: translateX(-50%);
@@ -61,12 +64,12 @@
   width: 80%;
   display: inline-block;
   font-family: "Pacifico", cursive;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 400;
   line-height: 1;
   text-align: center;
-  color: #000101;
-  padding: 20px 74px;
+  color: #000;
+  padding: 15px 0px;
   background-color: #fff;
   border-radius: 50px;
   -webkit-box-shadow: 0 0.3px 7px rgba(0, 0, 0, 0.2);
@@ -95,7 +98,14 @@
     font-size: 16px;
   }
 }
-.category-nav-item:after {
+.category-nav-item a {
+  position: relative;
+  display: block;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.category-nav-item a:after {
+  background-color: black;
   content: "";
   position: absolute;
   top: 50%;
@@ -109,20 +119,11 @@
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
-.category-nav-item.man-color:after {
-  background-color: #001a2e;
-}
-.category-nav-item.woman-color:after {
-  background-color: #360015;
-}
-.category-nav-item.car-color:after {
-  background-color: #2e1f00;
-}
 .category-nav-item:hover h3 {
   color: #fff;
   background-color: #eaba5a;
 }
-.category-nav-item:hover:after {
+.category-nav-item:hover a:after {
   opacity: 0.5;
   width: 100%;
   height: 100%;
