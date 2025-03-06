@@ -1,0 +1,15 @@
+{
+  "mainNav_home": "Главная",
+  "mainNav_admin": "Админ",
+  "mainNav_information": "Инфо",
+  "mainNav_category": "Категории",
+  
+  "categoryItem_mens": "Мужские",
+  "categoryItem_womens": "Женские",
+  "categoryItem_pendant": "Подвески",
+  "categoryItem_spray": "Спреи",
+  "categoryItem_sachet": "Сашетки",
+  "categoryItem_diffusers": "Диффузоры",
+  "categoryItem_candles": "Свечи",
+  "categoryItem_refill": "Заправки"
+}

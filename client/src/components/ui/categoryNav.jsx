@@ -2,12 +2,14 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import productStore from '../../store/productStore'
 import './css/categoryNav.css'
+import { useTranslation } from 'react-i18next' // i18next
 // массив для рендера категорий
 import { productCategories } from '../../data/categories/productCategories'
 // utils
 import { checkStock } from '../../utils/checkStock'
 
 const CategoryNav = () => {
+  const { t, i18n } = useTranslation(); // t — функция для получения перевода, i18n — для смены языка
   const { type } = useParams()
   const { productsEntity } = productStore()
 

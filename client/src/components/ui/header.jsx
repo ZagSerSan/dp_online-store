@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './css/header.css'
 // store, service, utils
 import productStore from '../../store/productStore'
@@ -19,6 +20,8 @@ const Header = () => {
   const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
 
   // сущности и функции сторов
+  const { i18n } = useTranslation()
+  const { t } = useTranslation('header')  
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { removeFromCart } = cartStore()
   const { productsEntity } = productStore()
@@ -124,6 +127,10 @@ const Header = () => {
     ? cartItemsForDropMenu.slice(0, dropItemslimit)
     : cartItemsForDropMenu
 
+    const changeLanguage = (lng) => {
+      i18n.changeLanguage(lng)
+    }
+
   return (
     <header className='header'>
 
@@ -141,14 +148,14 @@ const Header = () => {
         {/* навигационные ссылки */}
         <nav>
           <ul className='header-nav'>
-            <li className='header-nav__link'><Link to="/">Home</Link></li>
+            <li className='header-nav__link'><Link to="/">{t('mainNav_home')}</Link></li>
             <li className='header-nav__link'>
               <Link
                 to="/category"
                 onMouseEnter={() => setDropMenu(true)}
                 onMouseLeave={() => setDropMenu(false)}
               >
-                Category
+                {t('mainNav_category')}
               </Link>
               {dropMenu && <div
                 onMouseEnter={() => setDropMenu(true)}
@@ -156,20 +163,31 @@ const Header = () => {
                 className='drop-menu'
               >
                 {productCategories.map(category => (
-                  <Link key={category.id} className='drop-menu__link' to={category.to}>{category.label}</Link>
+                  <Link key={category.id} className='drop-menu__link' to={category.to}>{t(category.label)}</Link>
+                  // <Link key={category.id} className='drop-menu__link' to={category.to}>{category.label}</Link>
                 ))}
               </div>}
             </li>
-            <li className='header-nav__link'><Link to="/information">Information</Link></li>
+            <li className='header-nav__link'><Link to="/information">{t('mainNav_information')}</Link></li>
             {
               (authedUser && authedUser.admin) &&
-              <li className='header-nav__link'><Link to="/admin">Admin</Link></li>
+              <li className='header-nav__link'><Link to="/admin">{t('mainNav_admin')}</Link></li>
             }
           </ul>
         </nav>
 
         {/* правая панель действий */}
         <div className='header-panel'>
+
+          <div>
+            <button className='header-panel__icon' onClick={() => changeLanguage('en')}>en</button>
+            <button className='header-panel__icon' onClick={() => changeLanguage('ru')}>ru</button>
+          </div>
+
+          {/* кнопка поиска */}
+          <button className='header-panel__icon' onClick={handleSearch}>
+            {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
+          </button>
 
           {/* дроп-меню поиска */}
           {showSearch &&
@@ -210,11 +228,6 @@ const Header = () => {
               }
             </div>
           }
-
-          {/* кнопка поиска */}
-          <button className='header-panel__icon' onClick={handleSearch}>
-            {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
-          </button>
 
           {/* кнопка и дроп-меню пользователя */}
           <div className='header-panel__user-container'>

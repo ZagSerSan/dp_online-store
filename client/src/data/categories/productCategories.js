@@ -21,7 +21,8 @@ export const productCategories = [
     type: 'men',
     img: IMG_MEN,
     alt: 'For men',
-    label: 'Men\'s',
+    label: 'categoryItem_mens',
+    // label: 'Men\'s',
   },
   {
     // женские
@@ -31,7 +32,7 @@ export const productCategories = [
     type: 'women',
     img: IMG_WOMEN,
     alt: 'For women',
-    label: 'Women\'s',
+    label: 'categoryItem_womens',
   },
   {
     // подвеска (медальён)
@@ -41,7 +42,7 @@ export const productCategories = [
     type: 'pendant', img: IMG_PENDANT,
     img: IMG_PENDANT,
     alt: 'Aroma Pendant',
-    label: 'Pendant',
+    label: 'categoryItem_pendant',
   },
   {
     // спрей
@@ -50,7 +51,7 @@ export const productCategories = [
     to: '/category/spray',
     type: 'spray', img: IMG_SPRAY,
     alt: 'Spray',
-    label: 'Spray',
+    label: 'categoryItem_spray',
   },
   {
     // Аромасаше (в гардироб)
@@ -59,7 +60,7 @@ export const productCategories = [
     to: '/category/sachet',
     type: 'sachet', img: IMG_SACHET,
     alt: 'Fragrance Sachet',
-    label: 'Sachet',
+    label: 'categoryItem_sachet',
   },
   {
     // Арома Дифузоры / Aroma Diffusers
@@ -68,7 +69,7 @@ export const productCategories = [
     to: '/category/diffusers',
     type: 'diffusers', img: IMG_DIFFUSERS,
     alt: 'Aroma Diffusers',
-    label: 'Diffusers',
+    label: 'categoryItem_diffusers',
   },
   {
     // Арома Свечи / Aroma Candles
@@ -77,7 +78,7 @@ export const productCategories = [
     to: '/category/candles',
     type: 'candles', img: IMG_CANDLES,
     alt: 'Aroma Candles',
-    label: 'Candles',
+    label: 'categoryItem_candles',
   },
   {
     // Рефил / Refill
@@ -86,6 +87,6 @@ export const productCategories = [
     to: '/category/refill',
     type: 'refill', img: IMG_REFILL,
     alt: 'Aroma Refill',
-    label: 'Refill',
+    label: 'categoryItem_refill',
   }
 ]

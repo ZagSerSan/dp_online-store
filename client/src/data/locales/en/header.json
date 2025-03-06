@@ -1,0 +1,15 @@
+{
+  "mainNav_home": "Home",
+  "mainNav_admin": "Admin",
+  "mainNav_information": "Information",
+  "mainNav_category": "Category",
+
+  "categoryItem_mens": "Men's",
+  "categoryItem_womens": "Women's",
+  "categoryItem_pendant": "Pendant",
+  "categoryItem_spray": "Spray",
+  "categoryItem_sachet": "Sachet",
+  "categoryItem_diffusers": "Diffusers",
+  "categoryItem_candles": "Candles",
+  "categoryItem_refill": "Refill"
+}
