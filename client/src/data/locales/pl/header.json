@@ -1,0 +1,28 @@
+{
+  "mainNav_home": "Główna",
+  "mainNav_category": "Kategorie",
+  "mainNav_information": "Informacje",
+  "mainNav_admin": "Admin",
+  
+  "categoryItem_mens": "Męskie",
+  "categoryItem_womens": "Damskie",
+  "categoryItem_pendant": "Zawieszki",
+  "categoryItem_spray": "Spraye",
+  "categoryItem_sachet": "Saszetki",
+  "categoryItem_diffusers": "Dyfuzory",
+  "categoryItem_candles": "Świece",
+  "categoryItem_refill": "Uzupełnienia",
+
+  "userPanelItem_profile": "Profil",
+  "userPanelItem_favourites": "Ulubione",
+  "userPanelItem_cart": "Koszyk",
+  "userPanelItem_logout": "Wyloguj",
+  "userPanelItem_login": "Zaloguj",
+  "userPanelItem_register": "Zarejestruj",
+
+  "search_placeholder": "Wpisz, aby wyszukać..",
+  "search_notFound": "Nie znaleziono",
+  
+  "cart_goToCart": "Przejdź do koszyka",
+  "cart_empty": "Puste"
+}

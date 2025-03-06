@@ -21,7 +21,7 @@ const Header = () => {
 
   // сущности и функции сторов
   const { i18n } = useTranslation()
-  const { t } = useTranslation('header')  
+  const { t } = useTranslation('header')
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { removeFromCart } = cartStore()
   const { productsEntity } = productStore()
@@ -182,6 +182,7 @@ const Header = () => {
           <div>
             <button className='header-panel__icon' onClick={() => changeLanguage('en')}>en</button>
             <button className='header-panel__icon' onClick={() => changeLanguage('ru')}>ru</button>
+            <button className='header-panel__icon' onClick={() => changeLanguage('pl')}>pl</button>
           </div>
 
           {/* кнопка поиска */}
@@ -195,7 +196,7 @@ const Header = () => {
               className='drop-menu search'
             >
               <TextField
-                placeholder="write to search.."
+                placeholder={t('search_placeholder')}
                 name="search"
                 value={searchData.search}
                 onChange={handleChange}
@@ -224,7 +225,7 @@ const Header = () => {
                     </NavLink>
                   </div>
                 </div>
-                : searchData.search ? <p className='not-found'>not found</p> : null
+                : searchData.search ? <p className='not-found'>{t('search_notFound')}</p> : null
               }
             </div>
           }
@@ -248,10 +249,10 @@ const Header = () => {
                     onMouseLeave={() => setAuthDropMenu(false)}
                     className='drop-menu user'
                   >
-                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>Profile</NavLink>
-                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>Favourites</NavLink>
-                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>My cart</NavLink>
-                    <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>LogOut</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>{t('userPanelItem_profile')}</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
+                    <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>{t('userPanelItem_logout')}</NavLink>
                   </div>
               )
               : (authDropMenu &&
@@ -260,9 +261,9 @@ const Header = () => {
                   onMouseLeave={() => setAuthDropMenu(false)}
                   className='drop-menu user'
                 >
-                  <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>Favourites</NavLink>
-                  <NavLink className='drop-menu__link' to='/auth/login'>Login</NavLink>
-                  <NavLink className='drop-menu__link' to='/auth/register'>Register</NavLink>
+                  <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/login'>{t('userPanelItem_login')}</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/register'>{t('userPanelItem_register')}</NavLink>
                 </div>
               )
             }
@@ -311,11 +312,11 @@ const Header = () => {
                     )}
                     <div className='to-cart-btn'>
                       <NavLink className='drop-menu__link to-cart-btn' to='/cart'>
-                        Go to cart
+                        {t('cart_goToCart')}
                       </NavLink>
                     </div>
                   </div>
-                  : <p className='cart-is-empty'>empty</p>
+                  : <p className='cart-is-empty'>{t('cart_empty')}</p>
                 }
               </div>
             }
@@ -330,12 +331,12 @@ const Header = () => {
             {/* меню */}
             {burgerMenu && (
               <div className="burger-menu">
-                <Link className='burger-menu__link' to="/">Home</Link>
-                <Link className='burger-menu__link' to="/category">Category</Link>
-                <Link className='burger-menu__link' to="/information">Information</Link>
+                <Link className='burger-menu__link' to="/">{t('mainNav_home')}</Link>
+                <Link className='burger-menu__link' to="/category">{t('mainNav_category')}</Link>
+                <Link className='burger-menu__link' to="/information">{t('mainNav_information')}</Link>
                 {
                   (authedUser && authedUser.admin) &&
-                  <Link className='burger-menu__link' to="/admin">Admin</Link>
+                  <Link className='burger-menu__link' to="/admin">{t('mainNav_admin')}</Link>
                 }
               </div>
             )}

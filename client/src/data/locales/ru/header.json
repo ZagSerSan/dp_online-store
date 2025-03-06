@@ -1,8 +1,8 @@
 {
   "mainNav_home": "Главная",
-  "mainNav_admin": "Админ",
-  "mainNav_information": "Инфо",
   "mainNav_category": "Категории",
+  "mainNav_information": "Инфо",
+  "mainNav_admin": "Админ",
   
   "categoryItem_mens": "Мужские",
   "categoryItem_womens": "Женские",
@@ -11,5 +11,19 @@
   "categoryItem_sachet": "Сашетки",
   "categoryItem_diffusers": "Диффузоры",
   "categoryItem_candles": "Свечи",
-  "categoryItem_refill": "Заправки"
+  "categoryItem_refill": "Заправки",
+  
+  "userPanelItem_profile": "Профиль",
+  "userPanelItem_favourites": "Избранное",
+  "userPanelItem_cart": "Корзина",
+  "userPanelItem_logout": "Выйти",
+  "userPanelItem_login": "Войти",
+  "userPanelItem_register": "Зарегистрироваться",
+
+  "search_placeholder": "Напиште для поиска..",
+  "search_notFound": "Не найдено",
+
+  "cart_goToCart": "Перейти в корзину",
+  "cart_empty": "Пусто"
+  
 }

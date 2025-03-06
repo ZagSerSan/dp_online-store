@@ -1,8 +1,8 @@
 {
   "mainNav_home": "Home",
-  "mainNav_admin": "Admin",
-  "mainNav_information": "Information",
   "mainNav_category": "Category",
+  "mainNav_information": "Information",
+  "mainNav_admin": "Admin",
 
   "categoryItem_mens": "Men's",
   "categoryItem_womens": "Women's",
@@ -11,5 +11,18 @@
   "categoryItem_sachet": "Sachet",
   "categoryItem_diffusers": "Diffusers",
   "categoryItem_candles": "Candles",
-  "categoryItem_refill": "Refill"
+  "categoryItem_refill": "Refill",
+
+  "userPanelItem_profile": "Profile",
+  "userPanelItem_favourites": "Favourites",
+  "userPanelItem_cart": "Cart",
+  "userPanelItem_logout": "LogOut",
+  "userPanelItem_login": "Login",
+  "userPanelItem_register": "Register",
+  
+  "search_placeholder": "Write to search..",
+  "search_notFound": "Not found",
+ 
+  "cart_goToCart": "Go to cart",
+  "cart_empty": "Empty" 
 }

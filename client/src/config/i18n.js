@@ -3,10 +3,10 @@ import { initReactI18next } from 'react-i18next'
 
 // Подключаем переводимые файлы
 import enHeader from '../data/locales/en/header.json'
-// import enCart from './locales/en/cart.json'
 
 import ruHeader from '../data/locales/ru/header.json'
-// import ruCart from './locales/ru/cart.json'
+
+import plHeader from '../data/locales/pl/header.json'
 
 i18n
   .use(initReactI18next) // Подключаем React-обертку для i18next
@@ -14,15 +14,18 @@ i18n
     resources: {
       en: {
         header: enHeader,
-        // cart: enCart,
       },
       ru: {
         header: ruHeader,
-        // cart: ruCart,
+      },
+      pl: {
+        header: plHeader,
       },
     },
     lng: 'en', // язык по умолчанию
     fallbackLng: 'en', // язык, на который будет происходить переключение в случае отсутствия перевода
+    ns: ['header'], // Добавляем все используемые namespaces
+    // defaultNS: 'common', // По умолчанию используем common.json
     interpolation: {
       escapeValue: false, // не экранировать значения
     },

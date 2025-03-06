@@ -9,7 +9,8 @@ import { productCategories } from '../../data/categories/productCategories'
 import { checkStock } from '../../utils/checkStock'
 
 const CategoryNav = () => {
-  const { t, i18n } = useTranslation(); // t — функция для получения перевода, i18n — для смены языка
+  const { i18n } = useTranslation(); // t — функция для получения перевода, i18n — для смены языка
+  const { t } = useTranslation('header')
   const { type } = useParams()
   const { productsEntity } = productStore()
 
@@ -34,7 +35,7 @@ const CategoryNav = () => {
                   to={item.to}
                 >
                   <img src={item.img} alt={item.alt} />
-                  <h3 >{item.label}</h3>
+                  <h3 >{t(item.label)}</h3>
                 </Link>
               </div>
             )
