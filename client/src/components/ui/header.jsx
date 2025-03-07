@@ -15,13 +15,16 @@ import applyDiscount from '../../utils/applyDiscount'
 import cartStore from '../../store/cartStore'
 import { getFullUserCartItems } from '../../utils/getFullUserCartItems'
 import { productCategories } from '../../data/categories/productCategories'
+import LanguageSwitcher from '../common/languageSwitcher/languageSwitcher'
+
 
 const Header = () => {
   const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
-
-  // сущности и функции сторов
-  const { i18n } = useTranslation()
+  // язык
+  const [language, setLanguage] = useState("en")
   const { t } = useTranslation('header')
+  
+  // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { removeFromCart } = cartStore()
   const { productsEntity } = productStore()
@@ -127,10 +130,6 @@ const Header = () => {
     ? cartItemsForDropMenu.slice(0, dropItemslimit)
     : cartItemsForDropMenu
 
-    const changeLanguage = (lng) => {
-      i18n.changeLanguage(lng)
-    }
-
   return (
     <header className='header'>
 
@@ -179,11 +178,7 @@ const Header = () => {
         {/* правая панель действий */}
         <div className='header-panel'>
 
-          <div>
-            <button className='header-panel__icon' onClick={() => changeLanguage('en')}>en</button>
-            <button className='header-panel__icon' onClick={() => changeLanguage('ru')}>ru</button>
-            <button className='header-panel__icon' onClick={() => changeLanguage('pl')}>pl</button>
-          </div>
+          <LanguageSwitcher currentLang={language} onChange={setLanguage} />
 
           {/* кнопка поиска */}
           <button className='header-panel__icon' onClick={handleSearch}>

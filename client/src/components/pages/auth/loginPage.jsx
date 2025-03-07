@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate, Link } from "react-router-dom"
+import { useTranslation } from 'react-i18next'
 import './auth.css'
 // utils
 import { validator } from '../../../utils/validator'
@@ -14,6 +15,7 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const { setAuthedUser, authorizated } = userStore()
   const [errors, setErrors] = useState({})
+  const { t } = useTranslation('auth')
 
   // значение полей формы
   const [data, setData] = useState({
@@ -34,10 +36,10 @@ const LoginPage = () => {
       console.log('e', e)
       const errorType = e.response.data.error.message
       if (errorType === 'EMAIL_NOT_FOUND') {
-        setErrors({email: 'Email not found!'})
+        setErrors({email: 'validate_email_notFound'})
       }
       if (errorType === 'INVALID_PASSWORD') {
-        setErrors({password: 'Invalid password!'})
+        setErrors({password: 'validate_password_invalid'})
       }
     }
   }
@@ -66,17 +68,17 @@ const LoginPage = () => {
   return (
     <div className="my-container auth-form-container">
       <div className="authorization-page">
-        <h2 className='authorization-page__title'>Login</h2>
+        <h2 className='authorization-page__title'>{t('login')}</h2>
         <form className="authorization-page-form" onSubmit={handleSubmit}>
           <TextField
-            placeholder="Email"
+            placeholder="placeholder_email"
             name="email"
             value={data.email}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            placeholder="Password"
+            placeholder="placeholder_password"
             name="password"
             value={data.password}
             type="password"
@@ -89,10 +91,11 @@ const LoginPage = () => {
             disabled={!isValid}
             className="submit"
           >
-            Login
+            {t('login')}
           </button>
           <p className="relocate-msg">
-            If you does not have account, please <Link to='/auth/register'>Register</Link>
+            {t('downLink_register_msg')}
+            <Link to='/auth/register'>{t('downLink_register_link')}</Link>
           </p>
         </form>
       </div>

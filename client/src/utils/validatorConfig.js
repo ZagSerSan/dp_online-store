@@ -2,55 +2,57 @@
 export const validatorConfig = {
   name: {
     isRequired: {
-      message: 'Name is required!'
+      // message: 'Name is required!'
+      message: 'validate_name_required'
+      
     },
     isMinLenght: {
-      message: 'Name must have 3 symbols!',
+      message: 'validate_name_symbols',
       minValue: 3
     }
   },
   title: {
     isRequired: {
-      message: 'Name is required!'
+      message: 'validate_name_required'
     },
     isMinLenght: {
-      message: 'Name must have 3 symbols!',
+      message: 'validate_name_symbols',
       minValue: 3
     }
   },
   value: {
     isRequired: {
-      message: 'value is required!'
+      message: 'value_required'
     }
   },
   email: {
     isRequired: {
-      message: 'Mail is required!'
+      message: 'validate_email_required'
     },
     isMail: {
-      message: 'Mail is not correct!'
+      message: 'validate_email_correct'
     }
   },
   mail: {
     isRequired: {
-      message: 'Mail is required!'
+      message: 'validate_email_required'
     },
     isMail: {
-      message: 'Mail is not correct!'
+      message: 'validate_email_correct'
     }
   },
   password: {
     isRequired: {
-      message: 'Password is required!'
+      message: 'validate_password_required'
     },
     isCapitalSymbol: {
-      message: 'Password must have Capital Symbol!'
+      message: 'validate_password_capital'
     },
     isContainDigit: {
-      message: 'Password must have digit symbol!'
+      message: 'validate_password_digit'
     },
     isMinLenght: {
-      message: 'Password must have min 8 symbols!',
+      message: 'validate_password_min',
       minValue: 8
     }
   },

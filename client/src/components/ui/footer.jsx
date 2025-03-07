@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 import './css/footer.css'
 // utils
 import { validator } from '../../utils/validator'
@@ -9,8 +10,10 @@ import configFile from '../../config.json'
 import Icon from '../common/icon'
 import TextField from '../common/form/textField'
 
+const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
+
 const Footer = () => {
-  const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
+  const { t } = useTranslation('footer')
 
   // значение полей формы и ошибки
   const [data, setData] = useState({email: ''})
@@ -53,7 +56,7 @@ const Footer = () => {
         {/* первая колонка с лого */}
         <div className="footer__col footer-firstcol">
           <img src={LOGO_URL} alt="logo" className="footer-firstcol__logo" />
-          <p className="footer-firstcol__description">Lorem ipsum dolor sit amet, co adipisi elit, sed eiusmod tempor incididunt ut labore et dolore</p>
+          <p className="footer-firstcol__description">{t('discription')}</p>
           <div className="footer-firstcol__social">
             <Icon id='facebook'/>
             <Icon id='instagram'/>

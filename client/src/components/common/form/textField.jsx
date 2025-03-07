@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import Icon from '../icon'
 
 const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, optionKey, index, switchErrMsg = true }) => {
+  const { t } = useTranslation('auth')
   // Добавляем состояние показывать/не показывать пароль
   const [showPassword, setShowPassword] = useState(false)
   // состояние "форма была тронута"
@@ -26,7 +28,7 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
         </label>
       )}
       <input
-        placeholder={placeholder}
+        placeholder={t(placeholder)}
         type={showPassword ? 'text' : type}
         className={(!isBlured ? '' : errors?.[name] ? 'is-invalid' : 'is-valid')}
         name={name}
@@ -43,7 +45,7 @@ const TextField = ({ name, label, value, type, placeholder, errors, onChange, su
         </button>
       )}
       {switchErrMsg && (
-        errors && isBlured && <div className="error-msg">{errors[name]}</div>
+        errors && isBlured && <div className="error-msg">{t(errors[name])}</div>
       )}
     </div>
   )

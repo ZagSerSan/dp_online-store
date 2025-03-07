@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '../../common/form/textField'
 import CheckBoxField from '../../common/form/checkBoxField'
+import { useTranslation } from 'react-i18next'
 import './auth.css'
 import authService from '../../../service/auth.service'
 import { getRandomInt } from '../../../utils/helper'
@@ -12,6 +13,7 @@ import userStore from '../../../store/userStore'
 const RegisterPage = () => {
   const { setAuthedUser, authorizated } = userStore()
   const [errors, setErrors] = useState({})
+  const { t } = useTranslation('auth')
 
   // значение полей формы
   const [data, setData] = useState({
@@ -63,21 +65,21 @@ const RegisterPage = () => {
         <h2 className='authorization-page__title'>Register</h2>
         <form className="authorization-page-form" onSubmit={handleSubmit}>
           <TextField
-            placeholder="Name"
+            placeholder="placeholder_name"
             name="name"
             value={data.name}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            placeholder="Email"
+            placeholder="placeholder_email"
             name="email"
             value={data.email}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
-            placeholder="Password"
+            placeholder="placeholder_password"
             name="password"
             value={data.password}
             type="password"
@@ -89,17 +91,18 @@ const RegisterPage = () => {
             onChange={handleChange}
             name="admin"
           >
-            <p className='license-msg'>As an admin.</p>
+            <p className='license-msg'>{t('as_admin')}</p>
           </CheckBoxField>
           <button
             type="submit"
             disabled={!isValid}
             className="submit"
           >
-            Register
+            {t('register')}
           </button>
           <p className='relocate-msg'>
-            If you have account, please <Link to='/auth/login'>Login</Link>
+            {t('downLink_login_msg')}
+            <Link to='/auth/login'>{t('downLink_login_link')}</Link>
           </p>
         </form>
       </div>

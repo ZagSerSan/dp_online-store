@@ -1,0 +1,31 @@
+{
+  "mainNav_home": "Головна",
+  "mainNav_category": "Категорії",
+  "mainNav_information": "Інфо",
+  "mainNav_admin": "Адмін",
+  
+  "categoryItem_mens": "Чоловічі",
+  "categoryItem_womens": "Жіночі",
+  "categoryItem_pendant": "Підвіски",
+  "categoryItem_spray": "Спреї",
+  "categoryItem_sachet": "Сашетки",
+  "categoryItem_diffusers": "Диффузори",
+  "categoryItem_candles": "Свічки",
+  "categoryItem_refill": "Заправки",
+  
+  "userPanelItem_profile": "Профіль",
+  "userPanelItem_favourites": "Вибране",
+  "userPanelItem_cart": "Кошик",
+  "userPanelItem_logout": "Вийти",
+  "userPanelItem_login": "Війти",
+  "userPanelItem_register": "Зареєструватись",
+
+  "search_placeholder": "Напишіть для пошуку..",
+  "search_notFound": "Не знайдено",
+
+  "cart_goToCart": "Перейти до кошика",
+  "cart_empty": "Пусто"
+  
+}
+
+
