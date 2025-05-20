@@ -30,10 +30,11 @@ const NavLinks = ({ authedUser }) => {
           </div>}
         </li>
         <li className='header-nav__link'><Link to="/information">{t('mainNav_information')}</Link></li>
-        {
+        <li className='header-nav__link'><Link to="/information">{t('mainNav_partnership')}</Link></li>
+        {/* {
           (authedUser && authedUser.admin) &&
           <li className='header-nav__link'><Link to="/admin">{t('mainNav_admin')}</Link></li>
-        }
+        } */}
       </ul>
     </nav>
   )

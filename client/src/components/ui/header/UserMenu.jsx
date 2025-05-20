@@ -35,6 +35,11 @@ const UserMenu = ({ authedUser, logOut }) => {
               className='drop-menu user'
             >
               <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>{t('userPanelItem_profile')}</NavLink>
+
+              { authedUser.admin &&
+                <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to={`/admin`}>{t('mainNav_admin')}</NavLink>
+              }
+
               <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
               <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
               <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>{t('userPanelItem_logout')}</NavLink>

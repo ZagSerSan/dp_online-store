@@ -1,7 +1,8 @@
 {
   "mainNav_home": "Home",
   "mainNav_category": "Category",
-  "mainNav_information": "Information",
+  "mainNav_information": "Info",
+  "mainNav_partnership": "Partnership",
   "mainNav_admin": "Admin",
 
   "categoryItem_mens": "Men's",
