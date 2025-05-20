@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { useTranslation } from 'react-i18next'
-import "./languageSwitcher.css"
+import "./css/languageSwitcher.css"
 
 const languages = [
   { code: "en", name: "English", flag: "EN" },

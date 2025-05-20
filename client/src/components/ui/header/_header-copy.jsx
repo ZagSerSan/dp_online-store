@@ -6,32 +6,43 @@ import './css/header.css'
 import productStore from '../../../store/productStore'
 import userStore from '../../../store/userStore'
 import globalStore from '../../../store/globalStore'
+// import { cartAnimation } from '../../utils/cartAnimation'
 // components
 import Icon from '../../common/icon'
+import TextField from '../../common/form/textField'
 import applyDiscount from '../../../utils/applyDiscount'
 import cartStore from '../../../store/cartStore'
 import { getFullUserCartItems } from '../../../utils/getFullUserCartItems'
+// import { productCategories } from '../../../data/categories/productCategories'
+// import LanguageSwitcher from './LanguageSwitcher'
 
 //todo целевой импорт
 import StoreLogo from './StoreLogo'
 import NavLinks from './NavLinks'
-import LanguageSwitcher from './LanguageSwitcher'
-import SearchButton from './SearchButton'
-import UserMenu from './UserMenu'
+// import LanguageSwitcher from './LanguageSwitcher'
+// import SearchButton from './SearchButton'
+// import UserMenu from './UserMenu'
 // import CartButton from './CartButton'
 
 const Header = () => {
   // язык
   const [language, setLanguage] = useState("en")
   const { t } = useTranslation('header')
+  
   // сущности и функции сторов
   const { authedUser, updateUser, updLocalUserCart, localUser, logOut } = userStore()
   const { removeFromCart } = cartStore()
   const { productsEntity } = productStore()
   const { globalLoading } = globalStore()
+  // локальное состояния компонента
+  const [filteredProducts, setFilteredProducts] = useState()
   // дроп меню
+  const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
-  // const [authDropMenu, setAuthDropMenu] = useState(false)
+  const [authDropMenu, setAuthDropMenu] = useState(false)
+
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchData, setSearchData] = useState({search: ''})
 
   const [burgerMenu, setBurgerMenu] = useState(false)
 
@@ -65,7 +76,26 @@ const Header = () => {
     setBurgerMenu(prev => !prev)
     closeSearch()
   }
-  
+  // изменение состояния поиска
+  const handleChange = ({ name, value }) => {
+    setSearchData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    setFilteredProducts(value
+      ? productsEntity.filter(entity => entity.name.toLowerCase().includes(value.toLowerCase())).splice(0, 4)
+      : []
+    )
+  }
+  // открыть/закрыть меню пользователя
+  const toggleUserMenu = () => {
+    if (authDropMenu) {
+      setAuthDropMenu(false)
+    } else {
+      setAuthDropMenu(true)
+      closeSearch()
+    }
+  }
   // открыть/закрыть меню корзины
   const toggleCartMenu = () => {
     if (cartMenu) {
@@ -74,6 +104,25 @@ const Header = () => {
       setCartMenu(true)
       closeSearch()
     }
+  }
+  // открыть/закрыть поиск
+  const handleSearch = () => {
+    if (showSearch) {
+      setShowSearch(false)
+      closeSearch()
+    } else {
+      setShowSearch(true)
+    }
+  }
+  // обнуление состояния поиска
+  const closeSearch = () => {
+    setShowSearch(false)
+    setSearchData({search: ''})
+    setFilteredProducts([])
+  }
+  const logout = () => {
+    logOut()
+    setAuthDropMenu(false)
   }
 
   // Сопоставляем актуальные полные данные продуктов на основе корзины
@@ -93,22 +142,110 @@ const Header = () => {
   return (
     <header className='header'>
 
-      <div className="my-container header__inner">
-        {/* логотип ----- */}
-        <StoreLogo/>
+    
 
-        {/* навигационные ссылки ----- */}
+
+      {/* хелпер для анимации полета корзины */}
+      {/* <div className='cart-helper'>
+        <Icon id='cart'/>
+      </div> */}
+
+      <div className="my-container header__inner">
+        {/* ------ логотип ----- */}
+        <StoreLogo/>
+        {/* ------ навигационные ссылки ----- */}
         <NavLinks authedUser={authedUser}/>
         
-        {/* правая панель действий ----- */}
+        {/* ------ правая панель действий ----- */}
         <div className='header-panel'>
-          <LanguageSwitcher currentLang={language} onChange={setLanguage} />
-          <SearchButton />
-          <UserMenu authedUser={authedUser} logOut={logOut}/>
-          {/* 
-          
-          <CartMenu /> 
-          */}
+
+          {/* <LanguageSwitcher currentLang={language} onChange={setLanguage} /> */}
+
+          {/* кнопка поиска */}
+          <button className='header-panel__icon' onClick={handleSearch}>
+            {showSearch ? <Icon id='close'/> : <Icon id='search'/>}
+          </button>
+
+          {/* дроп-меню поиска */}
+          {showSearch &&
+            <div
+              className='drop-menu search'
+            >
+              <TextField
+                placeholder={t('search_placeholder')}
+                name="search"
+                value={searchData.search}
+                onChange={handleChange}
+              />
+              {(filteredProducts && filteredProducts.length > 0)
+                ? <div className='search-wrapper'>
+                  {(filteredProducts.map(item => (
+                    <div key={item._id} className='search-wrapper__col'>
+                      <div className="search-wrapper__row">
+                        <NavLink onClick={closeSearch} to={`/category/${item.type}/${item._id}`}>
+                          <img src={item.preview} alt={item.name} />
+                        </NavLink>
+                      </div>
+                      <div className="search-wrapper__row">
+                        <NavLink onClick={closeSearch} to={`/category/${item.type}/${item._id}`}>
+                          {item.name}
+                        </NavLink>
+                        <p>${item.price}</p>
+                      </div>
+                    </div>
+                    ))
+                  )}
+                  <div className='to-search-btn'>
+                    <NavLink onClick={closeSearch} className='drop-menu__link to-search-btn' to='/category'>
+                      View more
+                    </NavLink>
+                  </div>
+                </div>
+                : searchData.search ? <p className='not-found'>{t('search_notFound')}</p> : null
+              }
+            </div>
+          }
+
+          {/* кнопка и дроп-меню пользователя */}
+          <div
+            className='header-panel__user-container'
+            onMouseEnter={toggleUserMenu}
+            onMouseLeave={toggleUserMenu}
+          >
+            <button
+              onClick={toggleUserMenu}
+            >
+              {authedUser
+                ? <img src={authedUser.image} alt="avatar" />
+                : <Icon id='user'/>
+              }
+            </button>
+            {authedUser
+              ? (authDropMenu &&
+                  <div
+                    onMouseEnter={() => setAuthDropMenu(true)}
+                    onMouseLeave={() => setAuthDropMenu(false)}
+                    className='drop-menu user'
+                  >
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>{t('userPanelItem_profile')}</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+                    <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
+                    <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>{t('userPanelItem_logout')}</NavLink>
+                  </div>
+              )
+              : (authDropMenu &&
+                <div
+                  onMouseEnter={() => setAuthDropMenu(true)}
+                  onMouseLeave={() => setAuthDropMenu(false)}
+                  className='drop-menu user'
+                >
+                  <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/login'>{t('userPanelItem_login')}</NavLink>
+                  <NavLink className='drop-menu__link' to='/auth/register'>{t('userPanelItem_register')}</NavLink>
+                </div>
+              )
+            }
+          </div>
 
           {/* кнопка и дроп-меню корзины */}
           <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
