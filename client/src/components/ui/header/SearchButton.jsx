@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
-import productStore from '../../../store/productStore'
 import TextField from '../../common/form/textField'
 import Icon from '../../common/icon'
 
-const SearchButton = () => {
+const SearchButton = ({ productsEntity }) => {
   const { t } = useTranslation('header')
-  const { productsEntity } = productStore()
   const [filteredProducts, setFilteredProducts] = useState()
   const [showSearch, setShowSearch] = useState(false)
   const [searchData, setSearchData] = useState({search: ''})

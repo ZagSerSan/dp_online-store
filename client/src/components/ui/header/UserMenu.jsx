@@ -1,61 +1,54 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import Icon from '../../common/icon'
 
 const UserMenu = ({ authedUser, logOut }) => {
-  const [authDropMenu, setAuthDropMenu] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation('header')
 
   // открыть/закрыть меню пользователя
-  const toggleUserMenu = () => {
-    if (authDropMenu) {
-      setAuthDropMenu(false)
-    } else {
-      setAuthDropMenu(true)
-    }
-  }
+  const handleClick = () => setIsOpen((prev) => !prev)
 
   const logout = () => {
     logOut()
-    setAuthDropMenu(false)
+    setIsOpen(false)
   }
 
   return (
     <div
       className='header-panel__user-container'
-      onMouseEnter={toggleUserMenu}
-      onMouseLeave={toggleUserMenu}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
     >
-      <button
-        onClick={toggleUserMenu}
-      >
-        {authedUser
+      <button onClick={handleClick}>
+        {authedUser // показ разных иконок в завис-сти от наличия логина
           ? <img src={authedUser.image} alt="avatar" />
           : <Icon id='user'/>
         }
       </button>
-      {authedUser
-        ? (authDropMenu &&
+      {authedUser // показ разных меню в завис-сти от наличия логина
+        ? (isOpen &&
             <div
-              onMouseEnter={() => setAuthDropMenu(true)}
-              onMouseLeave={() => setAuthDropMenu(false)}
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
               className='drop-menu user'
             >
-              <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>{t('userPanelItem_profile')}</NavLink>
-              <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
-              <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to={`/profile/${authedUser._id}`}>{t('userPanelItem_profile')}</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
               <NavLink onClick={logout} className='drop-menu__link' to='/auth/login' style={{color: 'red'}}>{t('userPanelItem_logout')}</NavLink>
             </div>
         )
-        : (authDropMenu &&
+        : (isOpen &&
           <div
-            onMouseEnter={() => setAuthDropMenu(true)}
-            onMouseLeave={() => setAuthDropMenu(false)}
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
             className='drop-menu user'
           >
-            <NavLink onClick={() => setAuthDropMenu(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
-            <NavLink className='drop-menu__link' to='/auth/login'>{t('userPanelItem_login')}</NavLink>
-            <NavLink className='drop-menu__link' to='/auth/register'>{t('userPanelItem_register')}</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/auth/login'>{t('userPanelItem_login')}</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/favourites'>{t('userPanelItem_favourites')}</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='drop-menu__link' to='/cart'>{t('userPanelItem_cart')}</NavLink>
           </div>
         )
       }

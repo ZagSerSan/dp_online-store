@@ -9,8 +9,9 @@ const languages = [
   { code: "ru", name: "Русский", flag: "RU" }
 ]
 
-const LanguageSwitcher = ({ currentLang, onChange }) => {
+const LanguageSwitcher = () => {
   const { i18n } = useTranslation()
+  const [language, setLanguage] = useState("en")
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -31,7 +32,7 @@ const LanguageSwitcher = ({ currentLang, onChange }) => {
     }
   }, [isOpen])
 
-  const selectedLang = languages.find((lang) => lang.code === currentLang)
+  const selectedLang = languages.find((lang) => lang.code === language)
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
@@ -54,7 +55,7 @@ const LanguageSwitcher = ({ currentLang, onChange }) => {
               className="lang-option"
               onClick={() => {
                 changeLanguage(lang.code)
-                onChange(lang.code)
+                setLanguage(lang.code)
                 setIsOpen(false)
               }}
             >

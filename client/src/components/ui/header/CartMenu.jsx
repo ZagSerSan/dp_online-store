@@ -1,18 +1,15 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
-import productStore from '../../../store/productStore'
 import cartStore from '../../../store/cartStore'
-import userStore from '../../../store/userStore'
-
 import Icon from '../../common/icon'
 import applyDiscount from '../../../utils/applyDiscount'
 import { getFullUserCartItems } from '../../../utils/getFullUserCartItems'
 
-const CartMenu = ({ productsEntity, authedUser, localUser, updateUser}) => {
+const isOpen = ({ productsEntity, authedUser, updateUser, localUser, updLocalUserCart }) => {
   const { t } = useTranslation('header')
   const { removeFromCart } = cartStore()
-  const [cartMenu, setCartMenu] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   // Сопоставляем актуальные полные данные продуктов на основе корзины
   const cartItemsForDropMenu = authedUser
@@ -29,21 +26,14 @@ const CartMenu = ({ productsEntity, authedUser, localUser, updateUser}) => {
     : cartItemsForDropMenu
 
   // открыть/закрыть меню корзины
-  const toggleCartMenu = () => {
-    if (cartMenu) {
-      setCartMenu(false)
-    } else {
-      setCartMenu(true)
-      // closeSearch()
-    }
-  }
+  const handleClick = () => setIsOpen((prev) => !prev)
 
   return (
-    <div className={'header-panel__icon cart' + (cartMenu ? ' big-zone' : '')}
+    <div className={'header-panel__icon cart' + (isOpen ? ' big-zone' : '')}
       data-cart='cart'
-      onClick={toggleCartMenu}
-      onMouseEnter={toggleCartMenu}
-      onMouseLeave={toggleCartMenu}
+      onClick={handleClick}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
     >
       {authedUser && authedUser?.cart.length > 0
         ? <div className="card-index">{authedUser.cart.length}</div>
@@ -52,10 +42,10 @@ const CartMenu = ({ productsEntity, authedUser, localUser, updateUser}) => {
           : null
       }
       <Icon id='cart'/>
-      {cartMenu &&
+      {isOpen &&
         <div
-          onMouseEnter={() => setCartMenu(true)}
-          onMouseLeave={() => setCartMenu(false)}
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
           className='drop-menu cart'
         >
           {(splicedItems && splicedItems.length > 0)
@@ -93,4 +83,4 @@ const CartMenu = ({ productsEntity, authedUser, localUser, updateUser}) => {
   )
 }
 
-export default CartMenu
+export default isOpen
