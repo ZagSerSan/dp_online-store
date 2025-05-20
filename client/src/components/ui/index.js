@@ -1,4 +1,4 @@
-import Header from './header'
+import Header from './header/header'
 import Intro from './intro'
 import CategoryNav from './categoryNav'
 import ProductsList from './productsList'

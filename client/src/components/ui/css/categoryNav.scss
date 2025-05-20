@@ -23,6 +23,8 @@
       padding: 0 15px 25px;
 
       a {
+        border: 0px;
+
         img {
           display: none;
         }
@@ -50,6 +52,7 @@
     position: relative;
     display: block;
     border-radius: 15px;
+    border: solid 1px #7e4c4f6b;
     cursor: pointer;
 
     img {
@@ -82,7 +85,7 @@
       padding: 15px 0px;
       background-color: #fff;
       border-radius: 50px;
-      box-shadow: 0 0.3px 7px rgb(0 0 0 / 20%);
+      box-shadow: 0 0.3px 7px rgba(0, 0, 0, 0.973);
       transition: all 0.3s ease 0s;
 
       @media (max-width: 1150px) {
@@ -103,7 +106,7 @@
     }
 
     &:after {
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.774);
       border-radius: 15px;
 
       content: "";

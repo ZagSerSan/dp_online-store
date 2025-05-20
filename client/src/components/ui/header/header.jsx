@@ -3,23 +3,21 @@ import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './css/header.css'
 // store, service, utils
-import productStore from '../../store/productStore'
-import userStore from '../../store/userStore'
-import globalStore from '../../store/globalStore'
-import { cartAnimation } from '../../utils/cartAnimation'
-import configFile from '../../config.json'
+import productStore from '../../../store/productStore'
+import userStore from '../../../store/userStore'
+import globalStore from '../../../store/globalStore'
+// import { cartAnimation } from '../../utils/cartAnimation'
 // components
-import Icon from '../common/icon'
-import TextField from '../common/form/textField'
-import applyDiscount from '../../utils/applyDiscount'
-import cartStore from '../../store/cartStore'
-import { getFullUserCartItems } from '../../utils/getFullUserCartItems'
-import { productCategories } from '../../data/categories/productCategories'
-import LanguageSwitcher from '../common/languageSwitcher/languageSwitcher'
-
+import Icon from '../../common/icon'
+import TextField from '../../common/form/textField'
+import applyDiscount from '../../../utils/applyDiscount'
+import cartStore from '../../../store/cartStore'
+import { getFullUserCartItems } from '../../../utils/getFullUserCartItems'
+import { productCategories } from '../../../data/categories/productCategories'
+import LanguageSwitcher from '../../common/languageSwitcher/languageSwitcher'
+import StoreLogo from './StoreLogo'
 
 const Header = () => {
-  const LOGO_URL = `${configFile.apiEndPoint}images/logo/logoSapach.png`  
   // язык
   const [language, setLanguage] = useState("en")
   const { t } = useTranslation('header')
@@ -31,37 +29,41 @@ const Header = () => {
   const { globalLoading } = globalStore()
   // локальное состояния компонента
   const [filteredProducts, setFilteredProducts] = useState()
+  // дроп меню
   const [dropMenu, setDropMenu] = useState(false)
   const [cartMenu, setCartMenu] = useState(false)
   const [authDropMenu, setAuthDropMenu] = useState(false)
+
   const [showSearch, setShowSearch] = useState(false)
   const [searchData, setSearchData] = useState({search: ''})
+
   const [burgerMenu, setBurgerMenu] = useState(false)
 
   // после загрузки приложения отслеживать скролл и переключать фиксацию header
   // так же скрывать дроп-меню при скролле
-  useEffect(() => {
-    if (!globalLoading) {
-      const header = document.querySelector('.header')
-      const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
+  // useEffect(() => {
+  //   if (!globalLoading) {
+  //     const header = document.querySelector('.header')
+  //     const limitHeigth = (window.innerHeight / 3) < 200 ? 200 : window.innerHeight / 3
 
-      window.addEventListener('scroll', (e) => {
-        e.stopPropagation()
+  //     window.addEventListener('scroll', (e) => {
+  //       e.stopPropagation()
         
-        if (window.scrollY > limitHeigth) {
-          header.classList.add('fixed')
-        } else {
-          header.classList.remove('fixed')
-        }
+  //       if (window.scrollY > limitHeigth) {
+  //         header.classList.add('fixed')
+  //       } else {
+  //         header.classList.remove('fixed')
+  //       }
 
-        setDropMenu(false)
-        setCartMenu(false)
-        setAuthDropMenu(false)
-        setShowSearch(false)
-        setBurgerMenu(false)
-      })
-    }
-  }, [globalLoading])
+  //       setDropMenu(false)
+  //       setCartMenu(false)
+  //       setAuthDropMenu(false)
+  //       setShowSearch(false)
+  //       setBurgerMenu(false)
+  //     })
+  //   }
+  // }, [globalLoading])
+
   // переключение бургер меню
   const toggleBurger = () => {
     setBurgerMenu(prev => !prev)
@@ -134,17 +136,14 @@ const Header = () => {
     <header className='header'>
 
       {/* хелпер для анимации полета корзины */}
-      <div className='cart-helper'>
+      {/* <div className='cart-helper'>
         <Icon id='cart'/>
-      </div>
+      </div> */}
       <div className="my-container header__inner">
+        {/* ------ логотип ----- */}
+        <StoreLogo/>
 
-        {/* логотип */}
-        <div className='header-logo'>
-          <img src={LOGO_URL} alt="logo" />
-        </div>
-
-        {/* навигационные ссылки */}
+        {/* ------ навигационные ссылки ----- */}
         <nav>
           <ul className='header-nav'>
             <li className='header-nav__link'><Link to="/">{t('mainNav_home')}</Link></li>
@@ -175,7 +174,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* правая панель действий */}
+        {/* ------ правая панель действий ----- */}
         <div className='header-panel'>
 
           <LanguageSwitcher currentLang={language} onChange={setLanguage} />
@@ -226,11 +225,13 @@ const Header = () => {
           }
 
           {/* кнопка и дроп-меню пользователя */}
-          <div className='header-panel__user-container'>
+          <div
+            className='header-panel__user-container'
+            onMouseEnter={toggleUserMenu}
+            onMouseLeave={toggleUserMenu}
+          >
             <button
               onClick={toggleUserMenu}
-              onMouseEnter={toggleUserMenu}
-              onMouseLeave={toggleUserMenu}
             >
               {authedUser
                 ? <img src={authedUser.image} alt="avatar" />
