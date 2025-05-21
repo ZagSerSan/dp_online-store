@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
-import './css/header.css'
+import './header.scss'
 // store, service, utils
 import productStore from '../../../store/productStore'
 import userStore from '../../../store/userStore'
 import globalStore from '../../../store/globalStore'
 // components
-import StoreLogo from './StoreLogo'
-import NavLinks from './NavLinks'
-import LanguageSwitcher from './LanguageSwitcher'
-import SearchButton from './SearchButton'
-import UserMenu from './UserMenu'
-import CartMenu from './CartMenu'
-import BurgerMenu from './BurgerMenu'
+import StoreLogo from './storeLogo/StoreLogo'
+import NavLinks from './navLinks/NavLinks'
+import LanguageSwitcher from './languageSwitcher/LanguageSwitcher'
+import SearchButton from './searchButton/SearchButton'
+import UserMenu from './userMenu/UserMenu'
+import CartMenu from './cartMenu/CartMenu'
+import BurgerMenu from './burgerMenu/BurgerMenu'
 
 const Header = () => {
   // сущности и функции сторов
@@ -48,9 +48,9 @@ const Header = () => {
     <header className='header'>
       <div className="my-container header__inner">
         {/* логотип */}
-        <StoreLogo/>
+        <StoreLogo />
         {/* навигация */}
-        <NavLinks {...{ authedUser }}/>
+        <NavLinks />
         {/* правая панель действий */}
         <div className='header-panel'>
           {/* переключатель языков */}

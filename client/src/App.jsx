@@ -1,14 +1,10 @@
-import React from 'react'
 import { useRoutes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './app.css'
-import './_common-css/clickerPage.css'
 // components
 import routes from './routes'
 import withRouter from './utils/withRouter';
 import AppLoader from './components/ui/hoc/appLoader';
-// import Header from './components/ui/header'
 import Header from './components/ui/header/header'
 import Footer from './components/ui/footer';
 

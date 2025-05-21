@@ -1,0 +1,66 @@
+.language-switcher {
+  position: relative;
+  display: inline-block;
+
+  .lang-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.185);
+    }
+  }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 4px 0;
+    z-index: 100;
+    opacity: 1;
+    transform: translateY(10px);
+    pointer-events: none;
+    // animation: dropdownIn 0.25s ease forwards;
+  }
+
+  .lang-option {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    span {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Анимация появления дропа
+// @keyframes dropdownIn {
+//   from {
+//     opacity: 0;
+//     transform: translateY(10px);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translateY(0);
+//     pointer-events: auto;
+//   }
+// }
