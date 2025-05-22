@@ -48,7 +48,7 @@ const LanguageSwitcher = () => {
 
       {/* Выпадающее меню */}
       {isOpen && (
-        <div className="lang-dropdown dropdown-animated">
+        <div className="lang-dropdown dropdown">
           {languages.map((lang) => (
             <button
               key={lang.code}

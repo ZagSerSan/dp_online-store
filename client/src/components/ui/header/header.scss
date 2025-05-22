@@ -1,29 +1,24 @@
+// @use "@/styles/variables" as *;
+
 .header {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
+	z-index: 1000;
 	width: 100%;
 	// margin: 0px auto;
 	background-color: #fff;
 	padding: 15px 0;
 
 	// оболочка
-	&__inner {
+	&__wrapper {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
-		.header-logo {
-			@media (max-width: 500px) {
-				img {
-					width: 100px;
-				}
-			}
-		}
 	}
+
 	// фикцация при скролле сраницы
-	&.fixed {
+	&--fixed {
 		position: fixed;
 		padding: 7px 0;
 		box-shadow: 0px 0px 10px #6d6d6d;
@@ -40,40 +35,40 @@
 	}
 }
 // навигация, меню ссылок
-.header-nav {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 0;
-	margin: 0;
+// .header-nav {
+// 	position: relative;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	padding: 0;
+// 	margin: 0;
 
-	&__link {
-		display: inline-block;
-		align-items: center;
-		font-family: "Montserrat", sans-serif;
-		font-weight: 500;
-		color: #383838;
-		text-decoration: none;
-		text-transform: uppercase;
-		margin-right: 30px;
-		transition: color 0.1s linear;
+// 	&__link {
+// 		display: inline-block;
+// 		align-items: center;
+// 		font-family: "Montserrat", sans-serif;
+// 		font-weight: 500;
+// 		color: #383838;
+// 		text-decoration: none;
+// 		text-transform: uppercase;
+// 		margin-right: 30px;
+// 		transition: color 0.1s linear;
 
-		a:not(.drop-menu__link) {
-			display: flex;
-			align-items: center;
-			height: 50px;
-			text-decoration: none;
-			@media (max-width: 500px) {
-				height: 30px;
-			}
-		}
-		&:hover {
-			color: #f6ab44;
-			text-decoration: none;
-		}
-	}
-}
+// 		a:not(.drop-menu__link) {
+// 			display: flex;
+// 			align-items: center;
+// 			height: 50px;
+// 			text-decoration: none;
+// 			@media (max-width: 500px) {
+// 				height: 30px;
+// 			}
+// 		}
+// 		&:hover {
+// 			color: #f6ab44;
+// 			text-decoration: none;
+// 		}
+// 	}
+// }
 // стили всех дроп-меню
 .drop-menu {
 	//* общие стили

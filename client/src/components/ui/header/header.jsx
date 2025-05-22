@@ -6,7 +6,7 @@ import userStore from '../../../store/userStore'
 import globalStore from '../../../store/globalStore'
 // components
 import StoreLogo from './storeLogo/StoreLogo'
-import NavLinks from './navLinks/NavLinks'
+import NavLinks from './navLinks/navLinks'
 import LanguageSwitcher from './languageSwitcher/LanguageSwitcher'
 import SearchButton from './searchButton/SearchButton'
 import UserMenu from './userMenu/UserMenu'
@@ -29,9 +29,9 @@ const Header = () => {
         e.stopPropagation()
         
         if (window.scrollY > limitHeigth) {
-          header.classList.add('fixed')
+          header.classList.add('header--fixed')
         } else {
-          header.classList.remove('fixed')
+          header.classList.remove('header--fixed')
         }
 
       //? так же скрывать дроп-меню при скролле
@@ -46,7 +46,7 @@ const Header = () => {
   
   return (
     <header className='header'>
-      <div className="my-container header__inner">
+      <div className="header__wrapper my-container">
         {/* логотип */}
         <StoreLogo />
         {/* навигация */}
