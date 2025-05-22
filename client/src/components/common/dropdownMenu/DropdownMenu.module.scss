@@ -1,0 +1,14 @@
+@import "../../../styles/reusable/dropdown.scss"; // если хочешь переиспользовать базовые стили
+
+.dropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownToggle {
+  @extend .dropdown-toggle;
+}
+
+.dropdown {
+  @extend .dropdown;
+}
