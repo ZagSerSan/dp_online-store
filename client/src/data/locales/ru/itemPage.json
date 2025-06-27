@@ -1,0 +1,20 @@
+{
+  "inStock": "Есть в наличии",
+  "outOfStock": "Нет в наличии",
+
+  "description": "Описание",
+  "moreInformation": "Доп. информация",
+  "reviews": "Отзывы",
+
+  "addToCart": "Добавить в корзину",
+  "size": "Размер",
+  "color": "Цвет",
+  "noComments": "Нет комментариев",
+  "addComment": "Добавить комментарий",
+  "rating": "Рейтинг",
+  "name": "Имя",
+  "message": "Сообщение",
+  "email": "Email",
+  "addReview": "Добавить отзыв"
+  
+}

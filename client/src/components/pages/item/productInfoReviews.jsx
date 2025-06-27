@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next' // i18next
 // utils
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { formatDate } from '../../../utils/formatDate'
@@ -13,6 +14,7 @@ import Icon from '../../common/icon'
 import AddReviewForm from './addReviewForm'
 
 const ProductInfoReviews = () => {
+  const { t } = useTranslation('itemPage')
   const { commentsEntity, deleteComment } = commentStore()
   const { authedUser, usersEntity } = userStore()
   const { updateProduct  } = productStore()
@@ -79,7 +81,7 @@ const ProductInfoReviews = () => {
                   <p className='product-reviews-item__description'>{review.content}</p>
                 </div>
               </div>
-            )) : <p className='no-comments'>no comments</p>
+            )) : <p className='no-comments'>{t('noComments')}</p>
           ) : 'loading...'
       }
       </div>

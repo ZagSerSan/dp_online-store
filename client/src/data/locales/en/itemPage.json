@@ -1,0 +1,19 @@
+{
+  "inStock": "In stock",
+  "outOfStock": "Out of stock",
+
+  "description": "Description",
+  "moreInformation": "More information",
+  "reviews": "Reviews",
+
+  "addToCart": "Add to cart",
+  "size": "Size",
+  "color": "Color",
+  "noComments": "No comments",
+  "addComment": "Add comment",
+  "rating": "Rating",
+  "name": "Name",
+  "message": "Message",
+  "email": "Email",
+  "addReview": "Add review"
+}

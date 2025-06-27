@@ -14,7 +14,7 @@ const NavLinks = () => {
         <li className={styles.link}>
           <DropdownMenu
             toggleContent={
-              <span>{t('mainNav_category')}</span>
+              <Link to="/category">{t('mainNav_category')}</Link>
             }
           >
             {productCategories.map(category => (

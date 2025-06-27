@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import Icon from '../icon'
+import './scss/textField.scss'
 
 const TextField = ({ name, label, value, type, placeholder, errors, onChange, submitType, optionKey, index, switchErrMsg = true }) => {
   const { t } = useTranslation('auth')

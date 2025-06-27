@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
-import './css/footer.css'
+import './css/footer.scss'
 // utils
 import { validator } from '../../utils/validator'
 import { validatorConfig } from '../../utils/validatorConfig'

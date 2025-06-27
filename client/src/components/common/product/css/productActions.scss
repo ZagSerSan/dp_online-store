@@ -57,6 +57,19 @@
     &:hover {
       background-color: #f6ab44;
     }
+
+    &-nostock {
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 25px;
+      padding: 10px 42px;
+      border: 1px solid #a0a0a0;
+      transition: background-color 0.3s ease 0s;
+      background-color: #81272d;
+      color: #fff;
+      cursor: not-allowed;
+    }
+
     // &.added {
     //   &:hover {
     //     background-color: #a10000;

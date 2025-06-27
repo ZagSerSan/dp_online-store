@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './css/productActions.css'
+import { useTranslation } from 'react-i18next' // i18next
+import './css/productActions.scss'
 import userStore from '../../../store/userStore'
 import cartStore from '../../../store/cartStore'
 import Icon from '../icon'
 
 const ProductActions = ({ item }) => {
+  const { t } = useTranslation('itemPage')
   const { authedUser, updateUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { cartItemData, setCartItemData, addToCart, toggleBookmark } = cartStore()
             
@@ -33,12 +35,18 @@ const ProductActions = ({ item }) => {
           disabled={cartItemData.count === 10}
         >+</button>
       </div>
-      <button
-        className={"product-actions-cartadd" + (isInCart ? ' added' : '')}
-        onClick={(e) => addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart )}
-      >
-        ADD TO CART
-      </button>
+
+      {/* //todo */}
+      {item.stock ? (
+        <button
+          className={"product-actions-cartadd" + (isInCart ? ' added' : '')}
+          onClick={(e) => addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart )}
+        >
+          {t('addToCart')}
+        </button>
+      ) : (
+        <span className="product-actions-cartadd-nostock">{t('outOfStock')}</span>
+      )}
       <button
         className={"product-actions-bookmark" + (isBookmarked ? ' active' : '')}
         onClick={(e) => toggleBookmark(e, item._id, authedUser, updateUser, updLocalUserBookmarks)}

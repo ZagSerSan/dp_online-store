@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Textarea = ({ name, label, value, errors, onChange, submitType }) => {
+const Textarea = ({ name, label, value, placeholder, errors, onChange, submitType }) => {
   const [isBlured, setIsBlured] = useState(false)
   
   const handleChange = ({ target }) => {
@@ -17,7 +17,7 @@ const Textarea = ({ name, label, value, errors, onChange, submitType }) => {
         </label>
       )}
       <textarea
-        cols="4" rows="3" placeholder="Message"
+        cols="4" rows="3" placeholder={placeholder}
         className={
           'form-control ' +
           (!isBlured ? '' : errors[name] ? ' is-invalid' : ' is-valid')

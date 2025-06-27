@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import './css/productPage.css'
+import { useTranslation } from 'react-i18next' // i18next
+import './css/productPage.scss'
 // utils
 import { ratingStarsHelper } from '../../../utils/rateCountHelper'
 import { settings } from '../../../utils/sliderSettings'
@@ -20,9 +21,8 @@ import ProductInfoDescription from './productInfoDescription'
 import Timer from '../../common/timer/timer'
 import applyDiscount from '../../../utils/applyDiscount'
 
-  // todo (line 93) - отображение скидки (опционально с таймером)
-
 const ItemPage = () => {
+  const { t } = useTranslation('itemPage')
   const { itemId } = useParams()
   const currentProduct = productStore((state) => state.productsEntity.find(item => item._id === itemId))
 
@@ -30,9 +30,9 @@ const ItemPage = () => {
   // переключение контента
   const [contentState, setContentState] = useState('reviews')
   const navLinks = [
-    {Label: 'DESCRIPTION', state: 'description', counter: false},
-    {Label: 'MORE INFORMATION', state: 'more', counter: false},
-    {Label: 'REVIEWS', state: 'reviews', counter: true}
+    {Label: 'description', state: 'description', counter: false},
+    {Label: 'moreInformation', state: 'more', counter: false},
+    {Label: 'reviews', state: 'reviews', counter: true}
   ]
 
   // попытка сделать рендер через замыкание из дочернего элемента
@@ -114,7 +114,13 @@ const ItemPage = () => {
                   : <p className="preview-info__price">{(currentProduct.price).toFixed(2)} zł</p>
                 }
 
-                <p className="preview-info__in-stock">In stock</p>
+                {/* //todo - In stock */}
+                
+                {currentProduct.stock
+                  ? <p className="preview-info__in-stock">{t('inStock')} ({currentProduct.stock})</p>
+                  : <p className="preview-info__no-stock">{t('outOfStock')} ({currentProduct.stock})</p>
+                }
+
                 <p className="preview-info__description">{currentProduct.description}</p>
                 <div className='options'>
                   {currentProduct.modalOptionTypes.map(item => (
@@ -137,7 +143,7 @@ const ItemPage = () => {
                     className={contentState === link.state ? 'active' : ''}
                     onClick={() => toggleContent(link.state)}
                   >
-                    {link.Label} {link.counter && <span>({commentsEntity?.length})</span>}
+                    {t(link.Label)} {link.counter && <span>({commentsEntity?.length})</span>}
                   </button>
                 ))}
               </div>

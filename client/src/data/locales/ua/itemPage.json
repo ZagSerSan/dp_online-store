@@ -1,0 +1,20 @@
+{
+  "inStock": "В наявності",
+  "outOfStock": "Немає в наявності",
+
+  "description": "Опис",
+  "moreInformation": "Дод. інформація",
+  "reviews": "Відгуки",
+
+  "addToCart": "Додати до кошика",
+  "size": "Розмір",
+  "color": "Колір",
+  "noComments": "Коментарів ще немає",
+  "addComment": "Додати коментар",
+  "rating": "Рейтинг",
+  "name": "Ім’я",
+  "message": "Повідомлення",
+  "email": "Email",
+  "addReview": "Додати відгук"
+  
+}

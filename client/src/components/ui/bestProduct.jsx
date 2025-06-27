@@ -1,5 +1,5 @@
 // main
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import './css/bestProduct.css'
@@ -46,9 +46,9 @@ const BestProduct = () => {
                 {maxRatingProduct.discount?.endTime > Date.now()
                   ? <p>
                       <span>{applyDiscount(maxRatingProduct.price, maxRatingProduct.discount).toFixed(2)} - </span>
-                      <strike>${(maxRatingProduct.price).toFixed(2)}</strike>
+                      <strike>{(maxRatingProduct.price).toFixed(2)} zł</strike>
                     </p>
-                  : <p className="preview-info__price">${(maxRatingProduct.price).toFixed(2)}</p>
+                  : <p className="preview-info__price">{(maxRatingProduct.price).toFixed(2)} zł</p>
                 }
 
               </div>

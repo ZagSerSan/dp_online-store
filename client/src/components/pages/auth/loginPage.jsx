@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate, Link } from "react-router-dom"
 import { useTranslation } from 'react-i18next'
-import './auth.css'
+import './auth.scss'
 // utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'

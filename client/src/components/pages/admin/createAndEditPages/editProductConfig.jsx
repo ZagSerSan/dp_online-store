@@ -30,13 +30,11 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
   const [isProductOnSale, setIsProductOnSale] = useState(
     currentProduct.discount.endTime < Date.now() ? false : true
   )
-
   useEffect(() => {
     currentProduct?.discount?.endTime > Date.now()
       ? setIsProductOnSale(true)
       : setIsProductOnSale(false)
   }, [])
-
   //* значение полей формы info
   const initInfoData = {
     _id: productId,
@@ -44,13 +42,13 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     type: currentProduct ? currentProduct.type : '',
     title: currentProduct ? currentProduct.title : '',
     price: currentProduct ? currentProduct.price : '',
+    stock: currentProduct ? currentProduct.stock : '',
     description: currentProduct ? currentProduct.description : '',
     discount: {
       ...currentProduct.discount
     },
   }
   const [data, setData] = useState(initInfoData)
-
   //* значение полей формы options
   const initOptionsData = {
     option_1: {
@@ -74,7 +72,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     ? tranformOptionsData(currentProduct.modalOptionTypes)
     : initOptionsData
   )
-
   //* ImageData
   const initImagesData = {
     introSlider: {
@@ -82,9 +79,7 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     },
     images: {}
   }
-
   const [imageData, setImageData] = useState(initImagesData)
-
   // функции редактирования данных (картинок и других)
   const changeImageData = (e, files, filesType) => {
     // e.preventDefault()
@@ -153,7 +148,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         break
     }
   }
-
   const handleChange = (payload, submitType, optionKey, index) => {
     let { name, value } = payload
 
@@ -271,7 +265,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
     }
     handleSubmit(e, contentType, data)
   }
-
   // функции кнопок изменения опшинов
   const addOptionType = (optionsTypeLength) => {
     const optionTypeName = `option_${optionsTypeLength + 1}`
@@ -610,6 +603,18 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     errors={errors}
                     submitType='price'
                   />
+                  
+                  {/* //todo - change stock */}
+                  <TextField
+                    label={`Stock: ${data.stock}`}
+                    placeholder="1"
+                    name="stock"
+                    value={data.stock}
+                    onChange={handleChange}
+                    errors={errors}
+                    submitType='stock' //?!
+                  />
+
                 </div>
               </div>
               <div className="form-container__row">

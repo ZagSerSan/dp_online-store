@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next' // i18next
 // utils
 import { validator } from '../../../utils/validator'
 import { validatorConfig } from '../../../utils/validatorConfig'
@@ -16,6 +17,7 @@ import TextField from '../../common/form/textField'
 import Textarea from '../../common/form/textarea'
 
 const AddReviewForm = ({ productId }) => {
+  const { t } = useTranslation('itemPage')
   const { itemId } = useParams()
   const { authedUser } = userStore()
   const { addComment, commentsEntity } = commentStore()
@@ -100,9 +102,9 @@ const AddReviewForm = ({ productId }) => {
 
   return (
     <div className='product-reviews-add-form'>
-      <p className="title">ADD YOUR COMMENTS :</p>
+      <p className="title">{t('addComment')}:</p>
       <div className="subtitle interactive-ratting-function">
-        <p>Rating:</p>
+        <p>{t('rating')}:</p>
         <div>
           {ratingStarsHelper.map(star => (
             <button
@@ -121,14 +123,14 @@ const AddReviewForm = ({ productId }) => {
           <TextField
             name="name"
             value={data.name}
-            placeholder='Name'
+            placeholder={t('name')}
             onChange={handleChange}
             errors={errors}
           />
           <TextField
             name="email"
             value={data.email}
-            placeholder='Email'
+            placeholder={t('email')}
             onChange={handleChange}
             errors={errors}
           />
@@ -136,6 +138,7 @@ const AddReviewForm = ({ productId }) => {
         <Textarea
           name="content"
           value={data.content}
+          placeholder={t('message')}
           onChange={handleChange}
           errors={errors}
         />
@@ -144,7 +147,7 @@ const AddReviewForm = ({ productId }) => {
             disabled={!isValid}
             className={'submit' + (!isValid ? ' disabled' : '')}
           >
-            add review
+            {t('addReview')}
           </button>
       </form>
     </div>

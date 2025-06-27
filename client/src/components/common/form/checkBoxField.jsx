@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './checkBoxField.css'
+import './checkBoxField.scss'
 
 const CheckBoxField = ({ name, value, submitType, onChange, children, error }) => {
   const [isBlured, setIsBlured] = useState(false)

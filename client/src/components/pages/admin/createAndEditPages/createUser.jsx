@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './../../auth/auth.css'
+import './../../auth/auth.scss'
 import { Link, useNavigate } from 'react-router-dom'
 // utils
 import { validator } from '../../../../utils/validator'

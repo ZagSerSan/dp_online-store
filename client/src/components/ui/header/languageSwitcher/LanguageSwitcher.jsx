@@ -5,7 +5,7 @@ import "./languageSwitcher.scss"
 const languages = [
   { code: "en", name: "English", flag: "EN" },
   { code: "pl", name: "Polski", flag: "PL" },
-  { code: "uk", name: "Українська", flag: "UK" },
+  { code: "ua", name: "Українська", flag: "UA" },
   { code: "ru", name: "Русский", flag: "RU" }
 ]
 

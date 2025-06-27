@@ -1,0 +1,20 @@
+{
+  "inStock": "Dostępny",
+  "outOfStock": "Niedostępny",
+
+  "description": "Opis",
+  "moreInformation": "Więcej informacji",
+  "reviews": "Opinie",
+
+  "addToCart": "Dodaj do koszyka",
+  "size": "Rozmiar",
+  "color": "Kolor",
+  "noComments": "Brak komentarzy",
+  "addComment": "Dodaj komentarz",
+  "rating": "Ocena",
+  "name": "Imię",
+  "message": "Wiadomość",
+  "email": "Email",
+  "addReview": "Dodaj opinię"
+  
+}

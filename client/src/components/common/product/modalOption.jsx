@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next' // i18next
 import './css/modalOption.css'
 import cartStore from '../../../store/cartStore'
 
 const ModalOption = ({ name, options }) => {
+  const { t } = useTranslation('itemPage')
   const { cartItemData, cartItemDataWasChanged, setCartItemData, setCartItemDataIsChanged } = cartStore()
   // инициализация состояния cart item'а
   useEffect(() => {
@@ -20,7 +22,7 @@ const ModalOption = ({ name, options }) => {
 
   return (
     <div className='modal-option'>
-      <h4 className='modal-option__title'>{name}:</h4>
+      <h4 className='modal-option__title'>{t(name)}:</h4>
       <div>
         {options && options.map(option => (
           <button
