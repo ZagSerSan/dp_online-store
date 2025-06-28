@@ -9,7 +9,6 @@ const SearchButton = ({ productsEntity }) => {
   const [filteredProducts, setFilteredProducts] = useState()
   const [showSearch, setShowSearch] = useState(false)
   const [searchData, setSearchData] = useState({search: ''})
-
   // изменение состояния поиска
   const handleChange = ({ name, value }) => {
     setSearchData(prev => ({
@@ -21,7 +20,6 @@ const SearchButton = ({ productsEntity }) => {
       : []
     )
   }
-
   // открыть/закрыть поиск
   const handleSearch = () => {
     if (showSearch) {
@@ -31,14 +29,12 @@ const SearchButton = ({ productsEntity }) => {
       setShowSearch(true)
     }
   }
-
   // обнуление состояния поиска
   const closeSearch = () => {
     setShowSearch(false)
     setSearchData({search: ''})
     // setFilteredProducts([])
   }
-
 
   return (
     <div>
@@ -68,7 +64,7 @@ const SearchButton = ({ productsEntity }) => {
                   <NavLink onClick={closeSearch} to={`/category/${item.type}/${item._id}`}>
                     {item.name}
                   </NavLink>
-                  <p>${item.price}</p>
+                  <p>{item.price} zl</p>
                 </div>
               </div>
               ))

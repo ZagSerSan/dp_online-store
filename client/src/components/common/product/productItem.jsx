@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
-import './css/productItem.css'
+import './css/productItem.scss'
 //store, components
 import cartStore from '../../../store/cartStore'
 import userStore from '../../../store/userStore'
@@ -11,7 +11,7 @@ import applyDiscount from '../../../utils/applyDiscount'
 const ProductItem = ({ item, setModalState, setModalItem }) => {
   const navigate = useNavigate()
   const { authedUser, localUser, updateUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
-  const { addToCart, toggleBookmark } = cartStore()
+  const { addToCart, removeFromCart, toggleBookmark } = cartStore()
   const { _id: id, name, preview, title, price, type, discount } = item
   const [cartHover, setCartHover] = useState(false)
 
@@ -47,16 +47,31 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
     modalWindow.style.width = `${prodItem_height}px`
   }
 
+  // handleCartChange
+  const handleAddToCart = (e, params) => {
+    e.stopPropagation()
+    addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart)
+  }
+  const handleRemoveFromCart = (e, params) => {
+    e.stopPropagation()
+    removeFromCart(e, isInCart, authedUser, localUser, updateUser, updLocalUserCart)
+  }
+
   return (
     <div key={id} className="product-item">
+      {/* product item image */}
       <div onClick={openItemPage} className="product-item__img">
         <img src={preview} alt={title} />
+        {/* image popap */}
         <div className="product-item__img-popap">
           <button onClick={(e) => showItem(e, item)}>
             <Icon id='view' data-modal='1'/>
           </button>
           <button
-            onClick={(e) => addToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart )}
+            onClick={isInCart
+              ? (e) => handleRemoveFromCart(e, isInCart, authedUser, localUser, updateUser, updLocalUserCart)
+              : (e) => handleAddToCart(e, authedUser, localUser, updateUser, updLocalUserCart, item, isInCart)
+            }
             onMouseEnter={() => setCartHover(true)}
             onMouseLeave={() => setCartHover(false)}
           >
@@ -67,7 +82,7 @@ const ProductItem = ({ item, setModalState, setModalItem }) => {
           </button>
         </div>
       </div>
-
+      {/* product item content */}
       <div className="product-item__content">
         <div className="product-item__title">
           <Link to={`/category/${item.type}/${item._id}`}>{name}</Link>

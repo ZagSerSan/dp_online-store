@@ -6,6 +6,7 @@ import { filesValidator } from '../../../../utils/filesValidator'
 import { validator } from '../../../../utils/validator'
 import { validatorConfig } from '../../../../utils/validatorConfig'
 import { tranformOptionsData } from '../../../../utils/tranformOptionsData'
+import { productCategories } from '../../../../data/categories/productCategories.js'
 // store, components
 import productStore from '../../../../store/productStore'
 import RadioField from '../../../common/form/radioField'
@@ -159,6 +160,15 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
         }))
         break
       case 'price':
+        value = Number(value)
+        if (!isNaN(value)) {
+          setData(prev => ({
+            ...prev,
+            [name]: value
+          }))
+        }
+        break
+      case 'stock':
         value = Number(value)
         if (!isNaN(value)) {
           setData(prev => ({
@@ -603,8 +613,6 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     errors={errors}
                     submitType='price'
                   />
-                  
-                  {/* //todo - change stock */}
                   <TextField
                     label={`Stock: ${data.stock}`}
                     placeholder="1"
@@ -612,19 +620,19 @@ const EditProductConfig = ({ contentType, toggleSettingItem, handleSubmit }) => 
                     value={data.stock}
                     onChange={handleChange}
                     errors={errors}
-                    submitType='stock' //?!
+                    submitType='stock'
                   />
-
                 </div>
               </div>
               <div className="form-container__row">
                 <RadioField
                   label="Category:"
-                  options={[
-                    { name: 'Man', value: 'men'},
-                    { name: 'Woman', value: 'women'},
-                    { name: 'Car', value: 'car' }
-                  ]}
+                  // options={[
+                  //   { name: 'Man', value: 'men'},
+                  //   { name: 'Woman', value: 'women'},
+                  //   { name: 'Car', value: 'car' }
+                  // ]}
+                  options={productCategories}
                   value={data.type}
                   name="type"
                   onChange={handleChange}

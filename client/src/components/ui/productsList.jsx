@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
-import './css/productsList.css'
+import './css/productsList.scss'
 // store
 import productStore from '../../store/productStore'
 // components

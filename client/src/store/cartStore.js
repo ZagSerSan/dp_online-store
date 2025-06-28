@@ -148,7 +148,6 @@ const cartStore = create((set) => ({
     set((state) => ({ cartItemDataWasChanged: false}))
     set((state) => ({ cartItemData: {...state.cartItemData, count: 1} }))
   }),
-  //todo удалить из корзины
   removeFromCart: (e, item, authedUser, localUser, updateUser, updLocalUserCart, role = '') => set(async (state) => {
     // cartAnimation(e.target, true)
     let newCart
