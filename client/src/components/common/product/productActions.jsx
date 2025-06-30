@@ -6,7 +6,7 @@ import userStore from '../../../store/userStore'
 import cartStore from '../../../store/cartStore'
 import Icon from '../icon'
 
-const ProductActions = ({ item }) => {
+const ProductActions = ({ item, available }) => {
   const { t } = useTranslation('itemPage')
   const { authedUser, updateUser, localUser, updLocalUserCart, updLocalUserBookmarks } = userStore()
   const { cartItemData, setCartItemData, addToCart, toggleBookmark } = cartStore()
@@ -32,7 +32,7 @@ const ProductActions = ({ item }) => {
         <p>{cartItemData.count}</p>
         <button
           onClick={() => setCartItemData('increment')}
-          disabled={cartItemData.count === 10}
+          disabled={cartItemData.count === available}
         >+</button>
       </div>
 

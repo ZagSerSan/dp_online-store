@@ -20,6 +20,7 @@ import ProductInfoReviews from './productInfoReviews'
 import ProductInfoDescription from './productInfoDescription'
 import Timer from '../../common/timer/timer'
 import applyDiscount from '../../../utils/applyDiscount'
+import ProductService from '../../../service/product.service'
 
 const ItemPage = () => {
   const { t } = useTranslation('itemPage')
@@ -70,6 +71,14 @@ const ItemPage = () => {
     })
   }, [itemId])
 
+  // получения инфы о доступности продукта
+  const [available, setAvailable] = useState()
+  useEffect(() => {
+    ProductService.getAvailable(itemId)
+      .then((res) => setAvailable(res.available))
+      .catch((e) => console.error('Ошибка доступности:', e))
+  }, [])
+
   return (
     <div className="product-page">
       {currentProduct ? (
@@ -113,14 +122,11 @@ const ItemPage = () => {
                     </div>
                   : <p className="preview-info__price">{(currentProduct.price).toFixed(2)} zł</p>
                 }
-
-                {/* //todo - In stock */}
-                
-                {currentProduct.stock
-                  ? <p className="preview-info__in-stock">{t('inStock')} ({currentProduct.stock})</p>
-                  : <p className="preview-info__no-stock">{t('outOfStock')} ({currentProduct.stock})</p>
+                {/* In stock */}
+                {available
+                  ? <p className="preview-info__in-stock">{t('inStock')} ({available})</p>
+                  : <p className="preview-info__no-stock">{t('outOfStock')} ({available})</p>
                 }
-
                 <p className="preview-info__description">{currentProduct.description}</p>
                 <div className='options'>
                   {currentProduct.modalOptionTypes.map(item => (
@@ -131,7 +137,7 @@ const ItemPage = () => {
                     />
                   ))}
                 </div>
-                <ProductActions item={currentProduct}/>
+                <ProductActions item={currentProduct} available={available} />
               </div>
             </div>
 

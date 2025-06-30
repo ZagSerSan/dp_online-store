@@ -9,6 +9,7 @@ const router = express.Router({mergeParams: true})
 const { generateProductData, splitString } = require('../utils/helpers')
 const User = require('../models/User')
 const configFile = require('../config/default.json')
+const { getAvailableStock } = require('../utils/getAvailableStock')
 
 // получение всех продуктов
 router.get('/', async (req, res) => {
@@ -19,6 +20,20 @@ router.get('/', async (req, res) => {
     res.status(500).json({
       message: 'На сервере проихошла ошибка, попробуйте позже.'
     })
+  }
+})
+
+// запрос доступности продукта
+router.get('/:productId/available', async (req, res) => {
+  try {
+    const available = await getAvailableStock(req.params.productId)
+    if (available === null) {
+      return res.status(404).json({ message: 'Товар не найден' })
+    }
+    res.json({ available })
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({ message: 'Ошибка сервера' })
   }
 })
 

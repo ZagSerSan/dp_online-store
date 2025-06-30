@@ -8,6 +8,11 @@ const ProductService = {
     const { data } = await httpService.get(productEndpoint)
     return data
   },
+  // получения инфы о доступности продукта
+  getAvailable: async (productId) => {
+    const { data } = await httpService.get(productEndpoint + productId + '/available')
+    return data.content
+  },
   // создание сущности продукта на сервере
   createProduct: async (body) => {
     const url = productEndpoint + 'createProduct'

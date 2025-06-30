@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './css/cartPage.css'
+import productStore from '../../../store/productStore'
 import userStore from '../../../store/userStore'
 import MyProductsList from '../../common/table/myProductsList'
-import productStore from '../../../store/productStore'
 import { getFullUserCartItems } from '../../../utils/getFullUserCartItems'
+import './cartPage.scss'
 
 const CartPage = () => {
   // получение выполнившего вход пользователя или из localStore
@@ -18,7 +18,7 @@ const CartPage = () => {
   : localUser
     ? getFullUserCartItems(productsEntity, localUser.cart)
     : []
-
+  
   // если вдруг сущности не загрузились (тестовый момент)
   if (!cartItems || !productsEntity) return
 

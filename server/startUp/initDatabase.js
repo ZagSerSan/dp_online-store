@@ -3,8 +3,6 @@
 const Product = require('../models/Product')
 const productsMock = require('../mock/productMock.js')
 
-// console.log(productsMock.length)
-
 module.exports = async () => {
   const product = await Product.find()
   if (product.length !== productsMock.length) {

@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './css/myProductsList.css'
 import { Link, Navigate } from 'react-router-dom'
-import Icon from '../icon'
+import './css/myProductsList.css'
+// store, service
 import userStore from '../../../store/userStore'
+import cartStore from '../../../store/cartStore'
+import ReserveService from '../../../service/reserve.service';
+// custom
+import Icon from '../icon'
 import Pagination from '../pagination'
 import applyDiscount from '../../../utils/applyDiscount'
-import cartStore from '../../../store/cartStore'
 import { calculateTotalPrice } from '../../../utils/calculateTotalPrice'
 
 const MyProductsList = ({ cartItems }) => {
@@ -25,6 +28,20 @@ const MyProductsList = ({ cartItems }) => {
   if (splicedEntity.length === 0) {
     setCurrentPage(prev => prev - 1)
   }
+
+
+
+  //todo
+  const handleReserve = async () => {
+    try {
+      const reserveData = await ReserveService.createReserve(cartItems)
+      console.log('Резерв создан:', reserveData)
+    } catch (error) {
+      console.error('Ошибка резервации:', error)
+    }
+  }
+
+
 
   return (
       <div className='my-products'>
@@ -94,7 +111,11 @@ const MyProductsList = ({ cartItems }) => {
             <p>{calculateTotalPrice(cartItems).toFixed(2)} zł</p>
           </div>
           <div className="my-products-actions-buttons">
-            <button>pay for products</button>
+            <button
+              onClick={handleReserve}
+            >
+              pay for products
+            </button>
             <button onClick={(e) => removeFromCart(e, null, authedUser, localUser, updateUser, updLocalUserCart, 'clear-all')}>Clear cart</button>
           </div>
         </div>
